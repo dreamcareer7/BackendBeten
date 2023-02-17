@@ -3,8 +3,12 @@
 ## Tasks
 
  - Make sure roles and permissions are working for all possible CRUD actions, Most of them are already just commented out, they just need a little modification to get them working. (Create any necessary gates & permissions you think are missing)
+Hamza: Done, Nigusu please check it.
 
  - Get real data from table and render dashboard overview cards and charts that are visually appealing with the real data — preferably using Jquery Ajax for most of them
 
  - Refer to the database tables diagram to add more relevant features missing
+ 
+ - Redirection Bug, please Hamza do it.
+ 
 
