@@ -9,6 +9,5 @@ Hamza: Done, Nigusu please check it.
 
  - Refer to the database tables diagram to add more relevant features missing
  
- - Redirection Bug, please Hamza do it.
  
 
