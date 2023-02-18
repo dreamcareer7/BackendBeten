@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\User;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -73,27 +74,33 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user = Auth::user();
+        if($user->hasPermissionTo('services.create')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            \Log::info('Request: ', $data);
 
-        \Log::info('Request: ', $data);
+            $row = Service::create([
+                'title'=> $request->post('title'),
+                'country_id'=> $request->post('country_id'),
+                'before_date'=> $request->post('before_date'),
+                'exact_date'=> $request->post('exact_date'),
+                'after_date'=> $request->post('after_date'),
+            ]);
 
-		$row = Service::create([
-			'title'=> $request->post('title'),
-			'country_id'=> $request->post('country_id'),
-			'before_date'=> $request->post('before_date'),
-			'exact_date'=> $request->post('exact_date'),
-			'after_date'=> $request->post('after_date'),
-		]);
+            // $row->roles()->attach( $request->post('roles') );
+            //if( $request->post('send_confirmation') > 0 )
+            //	sendemailto( $row->email );
 
-		// $row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
+            return $this->index();
+        }else{
+            $msg = 'dont have access to add Service';
+            return $msg;
+        }
 
-		return $this->index();
     }
 
     /**

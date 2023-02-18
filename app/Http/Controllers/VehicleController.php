@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
@@ -70,28 +71,30 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user_ = Auth::user();
+        if($user_->hasPermissionTo('users.edit')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            $row = Service::create([
+                'fullname'=> $request->post('fullname'),
+                'gender'=> $request->post('gender'),
+                'profession_id'=> $request->post('profession'),
+                'country_id'=> $request->post('country'),
+                'phone'=> $request->post('phone'),
+                'id_type'=> $request->post('id_type'),
+                'id_no'=> $request->post('id_no'),
+                'dob'=> $request->post('dob'),
+            ]);
 
-		$row = Service::create([
-			'fullname'=> $request->post('fullname'),
-			'gender'=> $request->post('gender'),
-			'profession_id'=> $request->post('profession'),
-			'country_id'=> $request->post('country'),
-			'phone'=> $request->post('phone'),
-			'id_type'=> $request->post('id_type'),
-			'id_no'=> $request->post('id_no'),
-			'dob'=> $request->post('dob'),
-		]);
+            return $this->index();
+        }else{
+            $msg = 'dont have permission to add Vehicle';
+            return $msg;
+        }
 
-		// $row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
-
-		return $this->index();
     }
 
     /**

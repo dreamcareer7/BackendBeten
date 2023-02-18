@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -88,26 +89,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user = Auth::user();
+        if($user->hasPermissionTo('users.create')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            $row = User::create([
+                'name'=> $request->post('name'),
+                'username'=> $request->post('username'),
+                'contact'=> $request->post('contact'),
+                'password'=> $request->post('password'), // Hash::make($request->post('password')), we hash in model
+                'is_active'=> $request->post('is_active'),
+            ]);
 
-		$row = User::create([
-			'name'=> $request->post('name'),
-			'username'=> $request->post('username'),
-			'contact'=> $request->post('contact'),
-			'password'=> $request->post('password'), // Hash::make($request->post('password')), we hash in model
-			'is_active'=> $request->post('is_active'),
-		]);
+            $row->roles()->attach( $request->post('roles') );
+            //if( $request->post('send_confirmation') > 0 )
+            //	sendemailto( $row->email );
 
-		$row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
+            return $this->index();
+        }else{
+            $msg = 'dont have permission to add User';
+            return $msg;
+        }
 
-		return $this->index();
     }
 
     /**
@@ -160,23 +166,29 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        abort_if( ! auth()->user()->can('users.edit'), 403, 'Forbidden');
-        Validator::make(
-			$request->all(),
-			$this->validationRules( $user->id )
-		)->validate();
+        $user_ = Auth::user();
+        if($user_->hasPermissionTo('users.edit')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules( $user->id )
+            )->validate();
 
-		$user->name = $request->post('name');
-		$user->email = $request->post('email');
-		$user->is_active = $request->post('is_active');
+            $user->name = $request->post('name');
+            $user->email = $request->post('email');
+            $user->is_active = $request->post('is_active');
 
-		if( $request->password > ' ' ) // change password only if user entered a new one
-			$user->password= $request->post('password');
+            if( $request->password > ' ' ) // change password only if user entered a new one
+                $user->password= $request->post('password');
 
-		$user->save();
-		$user->syncRoles( $request->post('roles') );
+            $user->save();
+            $user->syncRoles( $request->post('roles') );
 
-        return "Saved Successfully.";
+            return "Saved Successfully.";
+        }else{
+            $msg = 'dont have permission to add user';
+            return $msg;
+        }
+
 		//return redirect()->route('dashboard.users.show', $user->id)->with('success', __('dashboard.messages.record_updated_successfully'));
 
 

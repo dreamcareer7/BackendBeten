@@ -7,7 +7,11 @@
 		  <div class="d-flex justify-content-between">
             <div class="h5">Crew List</div>
             <div class="title">{{ config('app.name') }}</div>
-            <div class="actions">@can('users.create')<a class="btn btn-outline-success ajax" href="{{ route('dashboard.crew.create') }}">Create</a> @endcan</div>
+            <div class="actions">
+                @can('crew.create')
+                    <a class="btn btn-outline-success ajax" href="{{ route('dashboard.crew.create') }}">Create</a>
+                @endcan
+            </div>
 		  </div>
         </div>
 	@if (Session::has('error'))

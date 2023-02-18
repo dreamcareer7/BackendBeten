@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
@@ -71,29 +72,29 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user = Auth::user();
+        if($user->hasPermissionTo('clients.create')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            Client::create([
+                'fullname'=> $request->post('fullname'),
+                'gender'=> $request->post('gender'),
+                'country_id'=> $request->post('country'),
+                'phone'=> $request->post('phone'),
+                'id_type'=> $request->post('id_type'),
+                'id_no'=> $request->post('id_no'),
+                'is_handicap'=> $request->post('is_handicap'),
+                'dob'=> $request->post('dob'),
+            ]);
 
-        Client::create([
-			'fullname'=> $request->post('fullname'),
-			'gender'=> $request->post('gender'),
-            'country_id'=> $request->post('country'),
-			'phone'=> $request->post('phone'),
-			'id_type'=> $request->post('id_type'),
-			'id_no'=> $request->post('id_no'),
-			'is_handicap'=> $request->post('is_handicap'),
-			'dob'=> $request->post('dob'),
-		]);
+            return $this->index();
+        }else{
+            return "dont have permission to add client";
+        }
 
-		// $row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
-
-		return $this->index();
     }
 
     /**

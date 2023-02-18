@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\Crew;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
@@ -72,22 +73,28 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user = Auth::user();
+        if($user->hasPermissionTo('groups.create')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            $row = Group::create([
+                'title'=> $request->post('title'),
+                'crew_id'=> $request->post('crew_id'),
+            ]);
 
-		$row = Group::create([
-			'title'=> $request->post('title'),
-			'crew_id'=> $request->post('crew_id'),
-		]);
+            // $row->roles()->attach( $request->post('roles') );
+            //if( $request->post('send_confirmation') > 0 )
+            //	sendemailto( $row->email );
 
-		// $row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
+            return $this->index();
+        }else{
+            $msg = 'dont have permission to add Group';
+            return $msg;
+        }
 
-		return $this->index();
     }
 
     /**

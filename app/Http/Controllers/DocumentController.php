@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
@@ -65,34 +66,35 @@ class DocumentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
 
     public function store(Request $request)
     {
-        // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user = Auth::user();
+        if($user->hasPermissionTo('documents.create')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            Document::create([
+                'fullname'=> $request->post('fullname'),
+                'gender'=> $request->post('gender'),
+                'country_id'=> $request->post('country'),
+                'phone'=> $request->post('phone'),
+                'id_type'=> $request->post('id_type'),
+                'id_no'=> $request->post('id_no'),
+                'is_handicap'=> $request->post('is_handicap'),
+                'dob'=> $request->post('dob'),
+            ]);
 
-        Document::create([
-			'fullname'=> $request->post('fullname'),
-			'gender'=> $request->post('gender'),
-            'country_id'=> $request->post('country'),
-			'phone'=> $request->post('phone'),
-			'id_type'=> $request->post('id_type'),
-			'id_no'=> $request->post('id_no'),
-			'is_handicap'=> $request->post('is_handicap'),
-			'dob'=> $request->post('dob'),
-		]);
+            return $this->index();
+        }else{
+            $msg = 'dont have permission to add documents';
+            return $msg;
+        }
 
-		// $row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
-
-		return $this->index();
     }
 
     /**

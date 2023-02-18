@@ -18,7 +18,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total Users</h6>
-                                                        <h2 class="mb-0 number-font">44,278</h2>
+                                                        <h2 class="mb-0 number-font">{{$users}}</h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -28,7 +28,7 @@
                                                     </div>
                                                 </div>
                                                 <span class="text-muted fs-12"><span class="text-secondary"><i
-                                                            class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
+                                                            class="fe fe-arrow-up-circle  text-secondary"></i> %</span>
                                                     Last week</span>
                                             </div>
                                         </div>
@@ -39,7 +39,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total Crew</h6>
-                                                        <h2 class="mb-0 number-font">2,987</h2>
+                                                        <h2 class="mb-0 number-font">{{$crew}}</h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -60,7 +60,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total Vechicles</h6>
-                                                        <h2 class="mb-0 number-font">6,345</h2>
+                                                        <h2 class="mb-0 number-font">{{$vehicle}}</h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -81,7 +81,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total Groups</h6>
-                                                        <h2 class="mb-0 number-font">2,965</h2>
+                                                        <h2 class="mb-0 number-font">{{$groups}}</h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -102,18 +102,16 @@
                         <!-- ROW-1 END -->
 
                         <!-- ROW-2 -->
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Sales Analytics</h3>
+                                        <h3 class="card-title">Services Analytics</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="d-flex mx-auto text-center justify-content-center mb-4">
                                             <div class="d-flex text-center justify-content-center me-3"><span
-                                                    class="dot-label bg-primary my-auto"></span>Total Sales</div>
-                                            <div class="d-flex text-center justify-content-center"><span
-                                                    class="dot-label bg-secondary my-auto"></span>Total Orders</div>
+                                                    class="dot-label bg-primary my-auto"></span>Total Services</div>
                                         </div>
                                         <div class="chartjs-wrapper-demo">
                                             <canvas id="transactions" class="chart-dropshadow"></canvas>
@@ -125,7 +123,7 @@
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
                                 <div class="card overflow-hidden">
                                     <div class="card-body pb-0 bg-recentorder">
-                                        <h3 class="card-title text-white">Recent Orders</h3>
+                                        <h3 class="card-title text-white">Recent Services</h3>
                                         <div class="chartjs-wrapper-demo">
                                             <canvas id="recentorders" class="chart-dropshadow"></canvas>
                                         </div>
@@ -138,8 +136,8 @@
                                                 <i class="fe fe-check"></i>
                                             </div>
                                             <div class="">
-                                                <h6 class="mb-1 fw-semibold">Delivered Orders</h6>
-                                                <p class="fw-normal fs-12"> <span class="text-success">3.5%</span>
+                                                <h6 class="mb-1 fw-semibold">Services Done</h6>
+                                                <p class="fw-normal fs-12"> <span class="text-success">0%</span>
                                                     increased </p>
                                             </div>
                                             <div class=" ms-auto my-auto">
@@ -151,8 +149,8 @@
                                                 <i class="fe fe-x"></i>
                                             </div>
                                             <div class="">
-                                                <h6 class="mb-1 fw-semibold">Cancelled Orders</h6>
-                                                <p class="fw-normal fs-12"> <span class="text-success">1.2%</span>
+                                                <h6 class="mb-1 fw-semibold">Cancelled Services</h6>
+                                                <p class="fw-normal fs-12"> <span class="text-success">0%</span>
                                                     increased </p>
                                             </div>
                                             <div class=" ms-auto my-auto">
@@ -167,7 +165,7 @@
                         <!-- ROW-2 END -->
 
                         <!-- ROW-3 -->
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-xl-4 col-md-12">
                                 <div class="card">
                                     <div class="card-header">

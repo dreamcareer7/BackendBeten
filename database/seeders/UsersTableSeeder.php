@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
             $adminUser = User::create([
                             'name' => $faker->name,
                             'is_active'=>1,
-                            'username' => $faker->name,
+                            'username' => $faker->userName,
                             'contact' => config('eogsoft.contact'),
                             'password'=> Hash::make( 'password' ), // This password can not be accessed
                         ]);

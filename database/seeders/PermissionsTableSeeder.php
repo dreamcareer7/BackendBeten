@@ -38,6 +38,54 @@ class PermissionsTableSeeder extends Seeder
 			'roles.delete',
 			'roles.*',
 
+            'crew.index',
+            'crew.create',
+            'crew.edit',
+            'crew.delete',
+            'crew.view',
+
+            'services.index',
+            'services.create',
+            'services.edit',
+            'services.delete',
+            'services.view',
+
+            'vehicles.index',
+            'vehicles.create',
+            'vehicles.edit',
+            'vehicles.delete',
+            'vehicles.view',
+
+            'groups.index',
+            'groups.create',
+            'groups.edit',
+            'groups.delete',
+            'groups.view',
+
+            'clients.index',
+            'clients.create',
+            'clients.edit',
+            'clients.delete',
+            'clients.view',
+
+            'documents.index',
+            'documents.create',
+            'documents.edit',
+            'documents.delete',
+            'documents.view',
+
+            'contracts.index',
+            'contracts.create',
+            'contracts.edit',
+            'contracts.delete',
+            'contracts.view',
+
+            'complaints.index',
+            'complaints.create',
+            'complaints.edit',
+            'complaints.delete',
+            'complaints.view',
+
 			'settings.general',
 			'settings.*',
 		];
@@ -45,5 +93,6 @@ class PermissionsTableSeeder extends Seeder
 		foreach( $permissions as $permit )
 			Permission::create(['name' => $permit]);
     }
+
 
 }

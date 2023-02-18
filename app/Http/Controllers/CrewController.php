@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Profession;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CrewController extends Controller
 {
@@ -72,36 +73,42 @@ class CrewController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
 
     public function store(Request $request)
     {
         // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
+        $user = Auth::user();
+        if($user->hasPermissionTo('crew.create')){
+            Validator::make(
+                $request->all(),
+                $this->validationRules()
+            )->validate();
 
-        Validator::make(
-			$request->all(),
-			$this->validationRules()
-		)->validate();
+            \Log::info('Request: ', $data);
 
-        \Log::info('Request: ', $data);
+            $row = Crew::create([
+                'fullname'=> $request->post('fullname'),
+                'gender'=> $request->post('gender'),
+                'profession_id'=> $request->post('profession'),
+                'country_id'=> $request->post('country'),
+                'phone'=> $request->post('phone'),
+                'id_type'=> $request->post('id_type'),
+                'id_no'=> $request->post('id_no'),
+                'dob'=> $request->post('dob'),
+            ]);
 
-		$row = Crew::create([
-			'fullname'=> $request->post('fullname'),
-			'gender'=> $request->post('gender'),
-			'profession_id'=> $request->post('profession'),
-			'country_id'=> $request->post('country'),
-			'phone'=> $request->post('phone'),
-			'id_type'=> $request->post('id_type'),
-			'id_no'=> $request->post('id_no'),
-			'dob'=> $request->post('dob'),
-		]);
+            // $row->roles()->attach( $request->post('roles') );
+            //if( $request->post('send_confirmation') > 0 )
+            //	sendemailto( $row->email );
 
-		// $row->roles()->attach( $request->post('roles') );
-		//if( $request->post('send_confirmation') > 0 )
-		//	sendemailto( $row->email );
+            return $this->index();
+        }else{
+            $message = 'dont have permission to create Crew';
+            return $message;
+        }
 
-		return $this->index();
     }
 
     /**
