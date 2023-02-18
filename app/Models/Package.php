@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\API\API\API\API\API\API\API\API\SubscriptionController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

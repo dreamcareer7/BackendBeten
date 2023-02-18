@@ -9,11 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -24,7 +26,7 @@ class User extends Authenticatable
         'username',
         'password',
         'contact',
-		'is_active'
+        'is_active'
     ];
 
     /**
@@ -46,14 +48,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
-	public function setPasswordAttribute($value, $ignore = false)
-	{
-		if( $ignore )
-			$this->attributes['password'] = $value;
-		else
-			$this->attributes['password'] = Hash::make( $value );
-
-	}
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
 }
