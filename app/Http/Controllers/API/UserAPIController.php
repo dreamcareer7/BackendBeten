@@ -48,6 +48,21 @@ class UserAPIController extends Controller
             return response()->json('dont have permission to see Users', 402);
         }
     }
+    public function paginate(Request $request){
+
+        $per_page = $request->input('per_page') ?? 25;
+        $name = $request->input('name') ?? null;
+        $email = $request->input('email') ?? null;
+        $clients = User::orderby('id','desc');
+
+        if($name){
+            $clients->where('name','LIKE',$name.'%');
+        }
+        if($email){
+            $clients->where('email',$email);
+        }
+        return response()->json($clients->paginate($per_page));
+    }
 
     /**
      * Store a newly created resource in storage.

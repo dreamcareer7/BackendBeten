@@ -19,6 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->group(function(){
+
+});
+Route::controller(\App\Http\Controllers\API\UserAPIController::class)->prefix('users')->group(function(){
+    Route::get('paginate','paginate');
+});
+
 
 Route::prefix('v2')->group(function() {
     Route::post('/sign_in', [App\Http\Controllers\API\Auth\LoginAPIController::class, 'signIn']);

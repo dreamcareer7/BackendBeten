@@ -15,6 +15,12 @@ class ClientsAPIController extends Controller
     use  ResponseTrait;
 
 
+    /**
+     * @var \Illuminate\Contracts\Auth\Authenticatable|null
+     */
+    private $authUser;
+    private $userId;
+
     public function __construct()
     {
         $this->authUser = auth('api')->user();
@@ -125,7 +131,25 @@ class ClientsAPIController extends Controller
         }
     }
 
+    public function paginate(Request $request){
 
+        $per_page = $request->input('per_page') ?? 25;
+        $name = $request->input('name') ?? null;
+        $gender= $request->input('gender') ?? null;
+        $id_number = $request->input('id_number') ?? null;
+        $clients = Client::orderby('id','desc');
+
+        if($name){
+            $clients->where('name','LIKE',$name.'%');
+        }
+        if($gender){
+            $clients->where('gender',$gender);
+        }
+        if($id_number){
+            $clients->where('id_number','LIKE',$id_number.'%');
+        }
+       return response()->json($clients->paginate($per_page));
+    }
     private function validationRules()
     {
         $result = [

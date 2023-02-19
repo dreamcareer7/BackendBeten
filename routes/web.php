@@ -114,6 +114,16 @@ Route::get('migrate',function (){
     Artisan::call('migrate');
 });
 
+Route::get('routes',function (){
+    $routeCollection = Illuminate\Support\Facades\Route::getRoutes();
+    $routes = [];
+    foreach ($routeCollection as $value) {
+        $routes[]= $value->uri();
+    }
+
+    return response()->json($routes);
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
