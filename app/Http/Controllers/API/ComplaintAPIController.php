@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Models\Complaint;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ComplaintController extends Controller
+
+class ComplaintAPIController extends Controller
 {
     /**
      * Display a listing of the resource.

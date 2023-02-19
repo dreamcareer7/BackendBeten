@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Models\Dormitory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class DormitoryController extends Controller
+
+class DormitoryAPIController extends Controller
 {
     /**
      * Display a listing of the resource.

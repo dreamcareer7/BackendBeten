@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\API\API\API\API\API\API\API\API\Auth;
+namespace App\Http\Controllers\API\Auth;
 
 
 use App\Models\User;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class RegisterAPIController extends \App\Http\Controllers\API\API\API\API\API\API\API\API\Controller
+class RegisterAPIController extends \App\Http\Controllers\Controller
 {
 
     use ResponseTrait;
