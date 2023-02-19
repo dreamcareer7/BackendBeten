@@ -34,6 +34,16 @@ class UserController extends Controller
 		return safeResponse($result);
     }
 
+    public function paginate(Request $request){
+        $users = User::orderb('id','desc');
+        $search= $request->input('q') ?? null;
+        $per_page= $request->input('per_page') ?? 25;
+        if($search){
+            $users->where('name','LIKE',$search.'%');
+        }
+        return response()->json($users->paginate($per_page));
+    }
+
     /**
      * Display a listing of the resource using Oracle DataTables / Yejira
      *
@@ -247,5 +257,6 @@ class UserController extends Controller
 
 		return $result;
     }
+
 
 }

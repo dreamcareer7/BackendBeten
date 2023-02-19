@@ -35,7 +35,7 @@ class LoginAPIController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => "Login credentials are invalid.",
-                    'response' => null], 422);
+                    'response' => null], 401);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
