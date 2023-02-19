@@ -22,9 +22,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function(){
 
 });
+
+
+
 Route::controller(\App\Http\Controllers\API\UserAPIController::class)->prefix('users')->group(function(){
     Route::get('paginate','paginate');
+    Route::get('delete/{id}','delete');
 });
+
+
+
 
 
 Route::prefix('v2')->group(function() {
@@ -35,10 +42,11 @@ Route::prefix('v2')->group(function() {
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {
+    Route::resource('/users', App\Http\Controllers\API\UserAPIController::class);
+
     Route::resource('/clients', App\Http\Controllers\API\ClientsAPIController::class);
     Route::resource('/services', App\Http\Controllers\API\ServiceAPIController::class);
     Route::resource('/crew', App\Http\Controllers\API\CrewAPIController::class);
-    Route::resource('/users', App\Http\Controllers\API\UserAPIController::class);
     Route::resource('/vehicles', App\Http\Controllers\API\VehicleAPIController::class);
     Route::resource('/documents', App\Http\Controllers\API\DocumentAPIController::class);
     Route::resource('/groups', App\Http\Controllers\API\GroupAPIController::class);
