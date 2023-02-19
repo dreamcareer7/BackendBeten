@@ -23,7 +23,7 @@ class ServiceAPIController extends Controller
      */
     public function index(Request $request)
     {
-        if ($this->authUser->hasPermissionTo('services.index')) {
+       // if ($this->authUser->hasPermissionTo('services.index')) {
 
             $clients = Service::paginate($request->input('per_page')?? 25);
 
@@ -32,9 +32,9 @@ class ServiceAPIController extends Controller
                 'data' => $clients,
                 'status_code' => 200,
             ]));
-        } else {
-            return response()->json('dont have permission to see services', 402);
-        }
+        //} else {
+       //     return response()->json('dont have permission to see services', 402);
+       // }
     }
 
 
@@ -47,7 +47,7 @@ class ServiceAPIController extends Controller
 
     public function store(Request $request)
     {
-        if ($this->authUser->hasPermissionTo('services.create')) {
+       // if ($this->authUser->hasPermissionTo('services.create')) {
             Validator::make(
                 $request->all(),
                 $this->validationRules()
@@ -67,10 +67,9 @@ class ServiceAPIController extends Controller
                 'data' => $row,
                 'status_code' => 200,
             ]));
-        } else {
-            return response()->json('dont have permission to add service', 402);
-
-        }
+       // } else {
+       //     return response()->json('dont have permission to add service', 402);
+       // }
 
     }
 
@@ -81,16 +80,16 @@ class ServiceAPIController extends Controller
      */
     public function show($id)
     {
-        if ($this->authUser->hasPermissionTo('services.view')) {
+        //if ($this->authUser->hasPermissionTo('services.view')) {
             $crew = Service::find($id);
             return response()->json(([
                 'message' => 'services Details',
                 'data' => $crew,
                 'status_code' => 200,
             ]));
-        } else {
-            return response()->json('dont have permission to see service', 402);
-        }
+       // } else {
+       //     return response()->json('dont have permission to see service', 402);
+       // }
     }
 
     /**
@@ -111,7 +110,7 @@ class ServiceAPIController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->authUser->hasPermissionTo('services.delete')) {
+        //if ($this->authUser->hasPermissionTo('services.delete')) {
             $crew = Service::delete($id);
 
             return response()->json( ([
@@ -119,9 +118,10 @@ class ServiceAPIController extends Controller
                 'data'          =>  null,
                 'status_code'   => 200,
             ]));
-        } else {
-            return  response()->json('dont have permission to delete service', 402);
-        }    }
+       // } else {
+        //    return  response()->json('dont have permission to delete service', 402);
+       // }
+    }
 
 
     private function validationRules()

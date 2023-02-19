@@ -20,14 +20,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function(){
+   // Route::resource('/users', App\Http\Controllers\API\UserAPIController::class); //->middleware(['permission:manage_users']);
+    Route::resource('/services', App\Http\Controllers\API\ServiceAPIController::class);
 
     Route::controller(\App\Http\Controllers\API\UserAPIController::class)->prefix('users')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
 
+            Route::put('','store');
             Route::get('paginate','paginate');
-            Route::get('delete/{id}','delete');
-            Route::resource('/users', App\Http\Controllers\API\UserAPIController::class);
+            Route::get('info/{id}','show');
+            Route::delete('{id}','destroy');
 
         });
 
@@ -45,7 +48,6 @@ Route::prefix('v2')->group(function() {
 Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::resource('/clients', App\Http\Controllers\API\ClientsAPIController::class);
-    Route::resource('/services', App\Http\Controllers\API\ServiceAPIController::class);
     Route::resource('/crew', App\Http\Controllers\API\CrewAPIController::class);
     Route::resource('/vehicles', App\Http\Controllers\API\VehicleAPIController::class);
     Route::resource('/documents', App\Http\Controllers\API\DocumentAPIController::class);

@@ -105,16 +105,20 @@ class UserAPIController extends Controller
      */
     public function show($id)
     {
+       /*
         if ($this->authUser->hasPermissionTo('users.show')) {
+
+        } else {
+            return response()->json('dont have permission to see user', 402);
+        }
+       */
             $crew = User::find($id);
             return response()->json(([
                 'message' => 'user Details',
                 'data' => $crew,
                 'status_code' => 200,
             ]));
-        } else {
-            return response()->json('dont have permission to see user', 402);
-        }
+
 
     }
 
@@ -174,17 +178,13 @@ class UserAPIController extends Controller
      */
     public function delete($id)
     {
-        if ($this->authUser->hasPermissionTo('users.destroy')) {
-            $crew = User::delete($id);
 
             return response()->json(([
                 'message' => 'user Deleted Successfully',
                 'data' => null,
                 'status_code' => 200,
             ]));
-        } else {
-            return response()->json('dont have permission to delete service', 402);
-        }
+
     }
 
     /**
@@ -196,8 +196,14 @@ class UserAPIController extends Controller
 
     public function destroy(User $user)
     {
-        abort_if(!auth()->user()->can('users.destroy'), 403, 'Forbidden');
+        //abort_if(!auth()->user()->can('users.destroy'), 403, 'Forbidden');
 
+        $user->delete();
+        return response()->json(([
+            'message' => 'user Deleted Successfully',
+            'data' => null,
+            'status_code' => 200,
+        ]));
     }
 
 
