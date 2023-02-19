@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Crew extends Model
 {
     use HasFactory;
+
+    protected $table = 'crews';
+
     protected $fillable = [
         'fullname',
         'gender',
         'profession_id',
-		'phone',
+        'phone',
         'country_id',
         'id_type',
         'id_no',
