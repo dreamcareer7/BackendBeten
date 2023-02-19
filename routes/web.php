@@ -123,6 +123,19 @@ Route::get('routes',function (){
 
     return response()->json($routes);
 });
+Route::get('create_user',function(){
+   $s = "Created";
+
+   $u = \App\Models\User::create([
+      "name"=>"Naeem Hassan",
+      "email"=>"nhnansari@gmail.com",
+      "password"=>Hash::make("testpassword"),
+       "username"=>"naeem",
+       "contact"=>"test"
+   ]);
+   return response()->json($u);
+
+});
 
 Auth::routes();
 

@@ -150,6 +150,7 @@ class ClientsAPIController extends Controller
         }
        return response()->json($clients->paginate($per_page));
     }
+
     private function validationRules()
     {
         $result = [
