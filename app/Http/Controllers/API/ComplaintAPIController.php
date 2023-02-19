@@ -22,11 +22,11 @@ class ComplaintAPIController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($this->authUser->hasPermissionTo('complaints.index')) {
 
-            $clients = Complaint::get();
+            $clients = Complaint::paginate($request->input('per_page')?? 25);
 
             return response()->json(([
                 'message' => 'Complaints list',

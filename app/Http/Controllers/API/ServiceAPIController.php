@@ -21,11 +21,11 @@ class ServiceAPIController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($this->authUser->hasPermissionTo('services.index')) {
 
-            $clients = Service::get();
+            $clients = Service::paginate($request->input('per_page')?? 25);
 
             return response()->json(([
                 'message' => 'services list',
