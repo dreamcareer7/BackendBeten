@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\Service;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -53,13 +55,17 @@ class UserAPIController extends Controller
         $per_page = $request->input('per_page') ?? 25;
         $name = $request->input('name') ?? null;
         $email = $request->input('email') ?? null;
+        $contact = $request->input('contact') ?? null;
         $clients = User::orderby('id','desc');
 
         if($name){
             $clients->where('name','LIKE',$name.'%');
         }
         if($email){
-            $clients->where('email',$email);
+             $clients->where('email','LIKE',$email.'%');
+        }
+        if($email){
+             $clients->where('contact','LIKE',$contact.'%');
         }
         return response()->json($clients->paginate($per_page));
     }
@@ -137,37 +143,36 @@ class UserAPIController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\UpdateUserRequest $request
+     * @param \App\Http\Requests\UserUpdateRequest $request
      * @param \App\Models\User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, $user_id)
     {
-        if ($this->authUser->hasPermissionTo('users.edit')) {
-            Validator::make(
-                $request->all(),
-                $this->validationRules($user->id)
-            )->validate();
+       // if ($this->authUser->hasPermissionTo('users.edit')) {
 
-            $user->name = $request->post('name');
-            $user->email = $request->post('email');
-            $user->is_active = $request->post('is_active');
+        $user = User::findorfail($user_id);
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->username = $request->input('username');
+            $user->is_active = $request->input('is_active');
 
             if ($request->password > ' ') // change password only if user entered a new one
-                $user->password = $request->post('password');
+                $user->password =Hash::make( $request->input('password'));
 
             $user->save();
-            $user->syncRoles($request->post('roles'));
+            $user->syncRoles($request->input('roles'));
 
             return response()->json(([
                 'message' => 'user updated successfully',
                 'data' => null,
                 'status_code' => 200,
+                'success' => true,
             ]));
-        } else {
-            return response()->json('dont have permission to update user', 402);
+       // } else {
+       //     return response()->json('dont have permission to update user', 402);
 
-        }
+       // }
     }
 
     /**
@@ -179,6 +184,8 @@ class UserAPIController extends Controller
     public function delete($id)
     {
 
+        $user = User::findorfail($id);
+        User::where('id',$user->id)->delete();
             return response()->json(([
                 'message' => 'user Deleted Successfully',
                 'data' => null,
@@ -212,8 +219,10 @@ class UserAPIController extends Controller
         $result = [
             'name' => 'required|string|min:10', //|unique:users,name'.($resource_id > 0 ? ','.$resource_id : ''),
             //'email' => 'required|email:rfc,dns|unique:users,email'.($resource_id > 0 ? ','.$resource_id : ''), //https://laravel.com/docs/9.x/validation#rule-email
-            'email' => 'required|email|unique:users,email' . ($resource_id > 0 ? ',' . $resource_id : ''),
-            'password' => 'min:4|confirmed' . ($resource_id > 0 ? '|nullable' : ''),
+         //   'email' => 'required|email|unique:users,email' . ($resource_id > 0 ? ',' . $resource_id : ''),
+            'email'=>['required','email', Rule::unique('users')->ignore($this->id, 'id')],
+            'username' => 'required|email|unique:users,email' . ($resource_id > 0 ? ',' . $resource_id : ''),
+            'password' => 'min:8|confirmed' . ($resource_id > 0 ? '|nullable' : ''),
             /*
                         'password' => [	// reference https://stackoverflow.com/questions/31539727/laravel-password-validation-rule
                                     'sometimes',
