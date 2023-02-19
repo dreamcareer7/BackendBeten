@@ -17,11 +17,10 @@ class CreateServicesTable extends Migration
             $table->id();
 			$table->string('title');
 			$table->unsignedTinyInteger('country_id');
-			
 			$table->datetime('before_date')->nullable();
 			$table->datetime('exact_date')->nullable();
 			$table->datetime('after_date')->nullable();
-			
+
             $table->timestamps();
         });
     }

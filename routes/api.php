@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,4 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('/dormitory', App\Http\Controllers\API\DormitoryAPIController::class);
     Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
 });
+Auth::routes();

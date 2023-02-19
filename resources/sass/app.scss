@@ -1,13 +1,8 @@
-// If you want to override variables do it here
-@import "variables";
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
 
-$enable-ltr: true; /* stylelint-disable-line scss/dollar-variable-default */
-$enable-rtl: true; /* stylelint-disable-line scss/dollar-variable-default */
+// Variables
+@import 'variables';
 
-// Import styles
-@import "@coreui/coreui/scss/coreui";
-
-@import "layout";
-
-// If you want to add custom CSS you can put it here.
-@import "custom";
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
