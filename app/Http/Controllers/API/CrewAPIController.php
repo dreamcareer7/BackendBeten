@@ -25,11 +25,11 @@ class CrewAPIController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($this->authUser->hasPermissionTo('crew.index')) {
 
-            $clients = Crew::get();
+            $clients = Crew::paginate($request->input('per_page')?? 25);
 
             return response()->json( ([
                 'message'       => 'Crew list',

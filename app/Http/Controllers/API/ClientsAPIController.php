@@ -26,11 +26,11 @@ class ClientsAPIController extends Controller
      *
      * @return JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($this->authUser->hasPermissionTo('clients.index')) {
 
-            $clients = Client::get();
+            $clients = Client::paginate($request->input('per_page')?? 25);
 
             return response()->json( ([
                 'message'       => 'Client list',

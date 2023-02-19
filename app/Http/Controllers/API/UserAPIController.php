@@ -33,11 +33,11 @@ class UserAPIController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
         if ($this->authUser->hasPermissionTo('users.browse')) {
 
-            $clients = User::get();
+            $clients = User::paginate($request->input('per_page')?? 25);
 
             return response()->json(([
                 'message' => 'Users list',
