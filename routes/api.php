@@ -46,6 +46,17 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post('add','store');
 
         });
+    Route::controller(\App\Http\Controllers\API\DormitoryAPIController::class)->prefix('dormitories')
+       // ->middleware(['permission:manage_users'])
+        ->group(function(){
+            Route::put('','store');
+            Route::get('paginate','paginate');
+            Route::get('info/{id}','show');
+            Route::post('delete/{id}','delete');
+            Route::post('update/{id}','update');
+            Route::post('add','add');
+
+        });
 
 });
 
@@ -63,7 +74,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('/crew', App\Http\Controllers\API\CrewAPIController::class);
     Route::resource('/documents', App\Http\Controllers\API\DocumentAPIController::class);
     Route::resource('/groups', App\Http\Controllers\API\GroupAPIController::class);
-    Route::resource('/dormitory', App\Http\Controllers\API\DormitoryAPIController::class);
-    Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
+     Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
 });
 Auth::routes();

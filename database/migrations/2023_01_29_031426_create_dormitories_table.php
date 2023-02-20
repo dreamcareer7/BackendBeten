@@ -17,7 +17,8 @@ class CreateDormitoriesTable extends Migration
             $table->id();
 			$table->string('title');
 			$table->string('phone');
-			$table->unsignedTinyInteger('city_id');
+			$table->string('country');
+			$table->string('city_id');
 			$table->string('location');
 			$table->string('coordinate')->nullable()->comment('json of geometry');
 			$table->boolean('is_active')->default(true);
