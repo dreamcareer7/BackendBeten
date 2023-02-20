@@ -118,12 +118,14 @@ class UserAPIController extends Controller
             return response()->json('dont have permission to see user', 402);
         }
        */
-            $crew = User::find($id);
-            return response()->json(([
+            $crew = User::whereId($id)->with('roles')->first();
+            $roles = Role::select('name')->get();
+            return response()->json([
                 'message' => 'user Details',
                 'data' => $crew,
+                'available_roles' => $roles,
                 'status_code' => 200,
-            ]));
+            ]);
 
 
     }
