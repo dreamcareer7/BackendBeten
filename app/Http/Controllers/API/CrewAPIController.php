@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewCrewRequest;
 use App\Models\Crew;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -48,33 +49,41 @@ class CrewAPIController extends Controller
      * @return JsonResponse
      */
 
-    public function store(Request $request)
+    public function store(NewCrewRequest $request)
     {
-        if ($this->authUser->hasPermissionTo('crew.create')) {
-            Validator::make(
-                $request->all(),
-                $this->validationRules()
-            )->validate();
 
-            $client = Crew::create([
-                'fullname'=> $request->post('fullname'),
-                'gender'=> $request->post('gender'),
-                'profession_id'=> $request->post('profession'),
-                'country_id'=> $request->post('country'),
-                'phone'=> $request->post('phone'),
-                'id_type'=> $request->post('id_type'),
-                'id_no'=> $request->post('id_no'),
-                'dob'=> $request->post('dob'),
-            ]);
+        $data= $request->only([
+            'fullname',
+            'gender',
+            'profession_id',
+            'phone',
+            'country_id',
+            'id_type',
+            'id_no',
+            'dob',
+            'is_active',
+        ]);
 
+        //check if any crew with same id type id number and country already exists
+        $exists = Crew::where('id_type',$request->input('id_type'))
+            ->where('id_no',$request->input('id_no'))
+            ->where('country_id',$request->input('country_id'))
+            ->exists();
+        if(!$exists){
+            Crew::create($data);
             return response()->json( ([
                 'message'       => 'Crew Created Successfully',
-                'data'          =>  $client,
-                'status_code'   => 200,
+                'success'   => true,
             ]));
-        } else {
-            return  response()->json('dont have permission to add clients', 402);
         }
+        else{
+            return response()->json( [
+                'message'       => 'A crew already exists with same id type, id number and country',
+                'success'   => false,
+            ],422);
+        }
+
+
     }
 
     /**
@@ -85,16 +94,9 @@ class CrewAPIController extends Controller
      */
     public function show($id)
     {
-        if ($this->authUser->hasPermissionTo('crew.view')) {
-            $crew = Crew::find($id);
-            return response()->json( ([
-                'message'       => 'Crew Details',
-                'data'          =>  $crew,
-                'status_code'   => 200,
-            ]));
-        } else {
-            return  response()->json(null, 402);
-        }
+      $crew = Crew::findorfail($id);
+      return response()->json($crew);
+
     }
 
     /**
@@ -106,6 +108,37 @@ class CrewAPIController extends Controller
     public function update($id,Request $request)
     {
         //
+        $crew=  Crew::findorfail($id);
+
+        $data= $request->only([
+            'fullname',
+            'gender',
+            'profession_id',
+            'phone',
+            'country_id',
+            'id_type',
+            'id_no',
+            'dob',
+            'is_active',
+        ]);
+        //check if any crew with same id type id number and country already exists
+        $exists = Crew::where('id_type',$request->input('id_type'))
+            ->where('id_no',$request->input('id_no'))
+            ->where('country_id',$request->input('country_id'))
+            ->exists();
+        if(!$exists){
+            Crew::where('id',$crew->id)->update($data);
+            return response()->json( ([
+                'message'       => 'Crew updated Successfully',
+                'success'   => true,
+            ]));
+        }
+        else{
+            return response()->json( [
+                'message'       => 'A crew already exists with same id type, id number and country',
+                'success'   => false,
+            ],422);
+        }
     }
 
     /**
@@ -115,17 +148,13 @@ class CrewAPIController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->authUser->hasPermissionTo('crew.delete')) {
-            $crew = Crew::delete($id);
+        $crew = Crew::where('id',$id)->delete();
+        return response()->json( ([
+            'message'       => 'Crew Deleted Successfully',
+            'data'          =>  null,
+            'status_code'   => 200,
+        ]));
 
-            return response()->json( ([
-                'message'       => 'Crew Deleted Successfully',
-                'data'          =>  null,
-                'status_code'   => 200,
-            ]));
-        } else {
-            return  response()->json('dont have permission to delete documents', 402);
-        }
     }
 
 

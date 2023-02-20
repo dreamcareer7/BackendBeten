@@ -174,7 +174,7 @@ class ClientsAPIController extends Controller
         $clients = Client::orderby('id','desc');
 
         if($name){
-            $clients->where('name','LIKE',$name.'%');
+            $clients->where('fullname','LIKE',$name.'%');
         }
         if($country_id){
             $clients->where('country_id','LIKE',$country_id.'%');
@@ -199,4 +199,5 @@ class ClientsAPIController extends Controller
 
         return $result;
     }
+
 }
