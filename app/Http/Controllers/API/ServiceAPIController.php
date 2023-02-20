@@ -7,6 +7,7 @@ use App\Models\Crew;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ServiceAPIController extends Controller
 {

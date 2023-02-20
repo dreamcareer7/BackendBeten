@@ -16,11 +16,10 @@ class CreateVehiclesTable extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
 			$table->string('model');
-			$table->string('manufactory');
+			$table->string('manufacturer');
 			$table->unsignedInteger('year');
 			$table->string('registration');
 			$table->string('badge');
-			
 			$table->softDeletes();
             $table->timestamps();
         });

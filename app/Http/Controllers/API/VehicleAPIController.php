@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewVehicleRequest;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,32 +70,20 @@ class VehicleAPIController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(NewVehicleRequest $request)
     {
-        // abort_if( ! auth()->user()->can('users.create'), 403, 'Forbidden');
-        $user_ = Auth::user();
-        if($user_->hasPermissionTo('users.edit')){
-            Validator::make(
-                $request->all(),
-                $this->validationRules()
-            )->validate();
-
-            $row = Service::create([
-                'fullname'=> $request->post('fullname'),
-                'gender'=> $request->post('gender'),
-                'profession_id'=> $request->post('profession'),
-                'country_id'=> $request->post('country'),
-                'phone'=> $request->post('phone'),
-                'id_type'=> $request->post('id_type'),
-                'id_no'=> $request->post('id_no'),
-                'dob'=> $request->post('dob'),
-            ]);
-
-            return $this->index();
-        }else{
-            $msg = 'dont have permission to add Vehicle';
-            return $msg;
-        }
+        $data = $request->only([
+            "modal",
+            "registration",
+            "manufacturer",
+            "year",
+            "badge",
+        ]);
+        Vehicle::create($data);
+        return response()->json([
+           "success"=>true,
+           "message"=>"New Vehicle Added Successfully."
+        ]);
 
     }
 

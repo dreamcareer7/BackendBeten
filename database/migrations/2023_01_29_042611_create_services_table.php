@@ -16,8 +16,8 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
 			$table->string('title');
-			$table->unsignedTinyInteger('country_id');
-			$table->datetime('before_date')->nullable();
+			$table->string('country_id');
+ 			$table->datetime('before_date')->nullable();
 			$table->datetime('exact_date')->nullable();
 			$table->datetime('after_date')->nullable();
 

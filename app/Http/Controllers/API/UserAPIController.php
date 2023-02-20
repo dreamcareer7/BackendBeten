@@ -52,7 +52,7 @@ class UserAPIController extends Controller
     }
     public function paginate(Request $request){
 
-        $per_page = $request->input('per_page') ?? 25;
+        $per_page = $request->input('per_page') ?? 1;
         $name = $request->input('name') ?? null;
         $email = $request->input('email') ?? null;
         $contact = $request->input('contact') ?? null;
