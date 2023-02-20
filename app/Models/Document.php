@@ -18,4 +18,16 @@ class Document extends Model
       "document_type",
       "description",
     ];
+
+    // Available model types for documents 
+    protected $model_types = [
+      'App\Models\Contract',
+      'App\Models\Vehicles',
+      'App\Models\Crew',
+      'App\Models\User',
+      'App\Models\Meal',
+      'App\Models\Complaint',
+      // other than contract, for example location, terms, photos..etc
+      'App\Models\Dormitory',
+    ];
 }
