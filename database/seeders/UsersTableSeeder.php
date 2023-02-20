@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
         foreach (range(1,3) as $index) {
             $adminUser = User::create([
                             'name' => $faker->name,
+                            'email' => $faker->unique()->safeEmail,
                             'is_active'=>1,
                             'username' => $faker->userName,
                             'contact' => config('eogsoft.contact'),
