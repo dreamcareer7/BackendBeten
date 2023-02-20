@@ -212,9 +212,9 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-    'aliases' => [
+    'aliases' => Facade::defaultAliases()->merge([
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-    ],
+    ])->toArray(),
 
 ];
