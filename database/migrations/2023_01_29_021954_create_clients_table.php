@@ -16,7 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
 			$table->string('fullname')->comment('Arabic language');
-			$table->unsignedTinyInteger('country_id');
+			$table->unsignedBigInteger('country_id');
 			$table->string('id_type');
 			$table->string('id_no');
 			$table->boolean('gender')->default('0')->comment('0->male, 1->female');

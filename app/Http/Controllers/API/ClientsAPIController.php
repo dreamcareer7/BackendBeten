@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewClientRequest;
 use App\Models\Client;
 use App\Models\Country;
 use Illuminate\Http\JsonResponse;
@@ -55,33 +56,41 @@ class ClientsAPIController extends Controller
      * @return JsonResponse
      */
 
-    public function store(Request $request)
+    public function store(NewClientRequest $request)
     {
-        if ($this->authUser->hasPermissionTo('clients.create')) {
-            Validator::make(
-                $request->all(),
-                $this->validationRules()
-            )->validate();
 
-            $client = Client::create([
-                'fullname' => $request->post('fullname'),
-                'gender' => $request->post('gender'),
-                'country_id' => $request->post('country'),
-                'phone' => $request->post('phone'),
-                'id_type' => $request->post('id_type'),
-                'id_no' => $request->post('id_no'),
-                'is_handicap' => $request->post('is_handicap'),
-                'dob' => $request->post('dob'),
-            ]);
+        $success = false;
+        $message = '';
 
-            return response()->json( ([
-                'message'       => 'Client Created Successfully',
-                'data'          =>  $client,
-                'status_code'   => 200,
-            ]));
-        } else {
-            return  response()->json('dont have permission to add clients', 402);
+        $data = $request->only([
+            "fullname",
+            "gender",
+            "country_id",
+            "phone",
+            "id_type",
+            "id_no",
+            "is_handicap",
+            "dob",
+        ]);
+
+        //check if this client already exists
+        $client = Client::where('country_id',$request->input('country_id'))
+            ->where('id_type',$request->input('id_type'))
+            ->where('id_no',$request->input('id_no'))->first();
+        if($client){
+           $success = false;
+           $message ="There is already a client from same country, id type and id number.";
         }
+        else{
+            $c = Client::create($data);
+            $success = true;
+            $message = "New Client added successfully.";
+        }
+
+        return response()->json([
+           "success"=>$success,
+           "message"=>$message
+        ]);
     }
 
     /**
@@ -92,12 +101,8 @@ class ClientsAPIController extends Controller
      */
     public function show($id)
     {
-        if ($this->authUser->hasPermissionTo('clients.view')) {
-            $client = Client::find($id);
-            return response()->json($client, 200);
-        } else {
-            return  response()->json(null, 402);
-        }
+        $client = Client::findorfail($id);
+        return response()->json($client);
     }
 
     /**
@@ -108,7 +113,37 @@ class ClientsAPIController extends Controller
      */
     public function update($id,Request $request)
     {
-        //
+        $data = $request->only([
+            "fullname",
+            "gender",
+            "country_id",
+            "phone",
+            "id_type",
+            "id_no",
+            "is_handicap",
+            "dob",
+        ]);
+        $s = Client::findorfail($id);
+
+        //check if this client already exists
+        $client = Client::where('country_id',$request->input('country_id'))
+            ->where('id_type',$request->input('id_type'))
+            ->where('id','!=',$s->id)
+            ->where('id_no',$request->input('id_no'))->first();
+        if($client){
+            $success = false;
+            $message ="There is already a client from same country, id type and id type.";
+        }
+        else{
+            $c = Client::where('id',$s->id)->update($data);
+            $success = true;
+            $message = "Client Updated successfully.";
+        }
+
+        return response()->json([
+            "success"=>$success,
+            "message"=>$message
+        ]);
     }
 
     /**
@@ -118,17 +153,15 @@ class ClientsAPIController extends Controller
      */
     public function destroy($id)
     {
-        if ($this->authUser->hasPermissionTo('clients.delete')) {
-            $client = Client::delete($id);
+
+            $client = Client::where('id',$id)->delete($id);
 
             return response()->json( ([
                 'message'       => 'Client Deleted Successfully',
                 'data'          =>  null,
                 'status_code'   => 200,
             ]));
-        } else {
-            return  response()->json('dont have permission to delete clients', 402);
-        }
+
     }
 
     public function paginate(Request $request){
@@ -136,11 +169,15 @@ class ClientsAPIController extends Controller
         $per_page = $request->input('per_page') ?? 25;
         $name = $request->input('name') ?? null;
         $gender= $request->input('gender') ?? null;
+        $country_id= $request->input('country_id') ?? null;
         $id_number = $request->input('id_number') ?? null;
         $clients = Client::orderby('id','desc');
 
         if($name){
             $clients->where('name','LIKE',$name.'%');
+        }
+        if($country_id){
+            $clients->where('country_id','LIKE',$country_id.'%');
         }
         if($gender){
             $clients->where('gender',$gender);

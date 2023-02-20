@@ -56,7 +56,41 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post('update/{id}','update');
             Route::post('add','add');
 
-        });
+    });
+    Route::controller(\App\Http\Controllers\API\GroupsApiController::class)->prefix('groups')
+       // ->middleware(['permission:manage_users'])
+        ->group(function(){
+            Route::put('','store');
+            Route::get('paginate','paginate');
+            Route::get('info/{id}','show');
+            Route::post('delete/{id}','delete');
+            Route::post('update/{id}','update');
+            Route::post('add','createGroup');
+    });
+    Route::controller(\App\Http\Controllers\API\CrewAPIController::class)->prefix('crews')
+       // ->middleware(['permission:manage_users'])
+        ->group(function(){
+            Route::put('','store');
+            Route::get('paginate','paginate');
+            Route::get('info/{id}','show');
+            Route::post('delete/{id}','delete');
+            Route::post('update/{id}','update');
+            Route::post('add','createGroup');
+            Route::get('all','all');
+    });
+
+
+    Route::controller(\App\Http\Controllers\API\ClientsAPIController::class)->prefix('clients')
+       // ->middleware(['permission:manage_users'])
+        ->group(function(){
+            Route::put('','store');
+            Route::get('paginate','paginate');
+            Route::get('info/{id}','show');
+            Route::post('delete/{id}','destroy');
+            Route::post('update/{id}','update');
+            Route::post('add','store');
+            Route::get('all','all');
+    });
 
 });
 
