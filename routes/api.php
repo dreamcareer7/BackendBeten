@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\DocumentAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -63,10 +64,12 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::put('','store');
             Route::get('paginate','paginate');
             Route::get('info/{id}','show');
-            Route::post('delete/{id}','delete');
+            Route::post('delete/{id}','destroy');
             Route::post('update/{id}','update');
             Route::post('add','createGroup');
+            Route::post('assign_clients/{id}','assignClients');
     });
+
     Route::controller(\App\Http\Controllers\API\CrewAPIController::class)->prefix('crews')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
@@ -92,6 +95,12 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::get('all','all');
     });
 
+    Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){
+        Route::get('paginate','paginated');
+        Route::get('paginate','paginated');
+    });
+
+
 });
 
 
@@ -107,7 +116,10 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('/clients', App\Http\Controllers\API\ClientsAPIController::class);
     Route::resource('/crew', App\Http\Controllers\API\CrewAPIController::class);
     Route::resource('/documents', App\Http\Controllers\API\DocumentAPIController::class);
-    Route::resource('/groups', App\Http\Controllers\API\GroupAPIController::class);
-     Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
+      Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
 });
 Auth::routes();
+Route::get('migrate',function(){
+   \Illuminate\Support\Facades\Artisan::call('migrate');
+   return 'migrated';
+});

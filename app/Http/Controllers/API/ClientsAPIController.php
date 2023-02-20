@@ -169,6 +169,7 @@ class ClientsAPIController extends Controller
         $per_page = $request->input('per_page') ?? 25;
         $name = $request->input('name') ?? null;
         $gender= $request->input('gender') ?? null;
+        $phone= $request->input('phone') ?? null;
         $country_id= $request->input('country_id') ?? null;
         $id_number = $request->input('id_number') ?? null;
         $clients = Client::orderby('id','desc');
@@ -178,6 +179,9 @@ class ClientsAPIController extends Controller
         }
         if($country_id){
             $clients->where('country_id','LIKE',$country_id.'%');
+        }
+        if($phone){
+            $clients->where('phone','LIKE',$phone.'%');
         }
         if($gender){
             $clients->where('gender',$gender);

@@ -12,4 +12,11 @@ class Group extends Model
       "title",
       "crew_id"
     ];
+
+    public function crew(){
+        return $this->hasOne(Crew::class,'id','crew_id');
+    }
+    public function clients(){
+        return $this->hasMany(GroupClients::class,'id','group_id');
+    }
 }
