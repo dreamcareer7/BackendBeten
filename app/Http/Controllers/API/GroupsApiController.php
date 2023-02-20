@@ -4,28 +4,22 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\NewDormitoryRequest;
 use App\Http\Requests\NewGroupRequest;
+use App\Models\Client;
 use App\Models\Dormitory;
 use App\Models\Group;
+use App\Models\GroupClients;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
 class GroupsApiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function createGroup(NewGroupRequest $request)
     {
@@ -34,7 +28,11 @@ class GroupsApiController extends Controller
             "title",
             "crew_id",
         ]);
-        Group::create($data);
+      $group=  Group::create($data);
+      $group_id =$group->id;
+
+      $this->assignClients($group_id,$request);
+
         return response()->json([
             "success"=>true,
             "message"=>"Group Added Successfully."
@@ -42,61 +40,72 @@ class GroupsApiController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function add(NewDormitoryRequest $request)
-    {
-
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Dormitory  $dormitory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Dormitory $dormitory)
+    public function show($id)
     {
-        //
+        $group = Group::findorfail($id);
+        $clients = GroupClients::where('group_id',$id)->get();
+        $group_clients = [];
+
+        foreach($clients as $client){
+            $client = Client::where('id',$client->client_id)->first();
+            $group_clients[]=$client;
+        }
+        return response()->json([
+            "group"=>$group,
+            "clients"=>$group_clients
+        ]);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Dormitory  $dormitory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Dormitory $dormitory)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Dormitory  $dormitory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update($id,Request $request)
     {
-        $dormitory = Dormitory::findorfail($id);
+        $group = Group::findorfail($id);
         $data = $request->only([
             "title",
-            "phone",
-            "country",
-            "city_id",
-            "location",
-            "coordinate",
-            "is_active",
+            "crew_id",
         ]);
-        Dormitory::where('id',$id)->update($data);
+
+        Group::where('id', $id)->update($data);
+
+
         return response()->json([
             "success"=>true,
-            "message"=>"Dormitory updated Successfully."
+            "message"=>"Group updated Successfully."
+        ]);
+
+    }
+
+    public function assignClients($id,Request $request){
+        $group = Group::findorfail($id);
+
+        //delete all the group clients and insert new
+        GroupClients::where('group_id', $id)->delete();
+
+        $clients = $request->input('clients');
+        if ($clients){
+            foreach ($clients as $client) {
+                $s=  GroupClients::create([
+                    "client_id" => $client['id'],
+                    "group_id" => $id
+                ]);
+             }
+        }
+        return response()->json([
+           "success"=>true,
+           "message"=>"Updated Successfully."
         ]);
     }
 
@@ -109,46 +118,28 @@ class GroupsApiController extends Controller
     public function destroy($id)
     {
         //
-        $dormitory = Dormitory::findorfail($id);
-        Dormitory::where('id',$dormitory->id)->delete();
+        $group = Group::findorfail($id);
+        Group::where('id',$id)->delete();
         return response()->json([
             "success"=>true,
-            "message"=>"Dormitory Deleted Successfully."
+            "message"=>"Group Deleted Successfully."
         ]);
     }
 
     public function paginate(Request $request){
-        $users = Dormitory::orderby('id','desc');
+        $groups = Group::orderby('id','desc');
         $title= $request->input('title') ?? null;
-        $phone= $request->input('phone') ?? null;
-        $country= $request->input('country') ?? null;
-        $city_id= $request->input('city_id') ?? null;
-        $location= $request->input('location') ?? null;
-        $coordinate= $request->input('coordinate') ?? null;
-        $is_active= $request->input('is_active') ?? null;
+        $crew_id= $request->input('crew_id') ?? null;
         $per_page= $request->input('per_page') ?? 25;
         if($title){
-            $users->where('title','LIKE',$title.'%');
+            $groups->where('title','LIKE',$title.'%');
         }
-        if($phone){
-            $users->where('phone','LIKE',$phone.'%');
+        if($crew_id){
+            $groups->where('crew_id',$crew_id);
+
         }
-        if($country){
-            $users->where('country','LIKE',$country.'%');
-        }
-        if($city_id){
-            $users->where('city_id','LIKE',$city_id.'%');
-        }
-        if($location){
-            $users->where('location','LIKE',$location.'%');
-        }
-        if($coordinate){
-            $users->where('coordinate','LIKE',$coordinate.'%');
-        }
-        if($is_active){
-            $users->where('is_active',$is_active);
-        }
-        return response()->json($users->paginate($per_page));
+
+        return response()->json($groups->with('crew')->paginate($per_page));
     }
 
 }

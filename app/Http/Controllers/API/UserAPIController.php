@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Service;
 use App\Models\User;
@@ -75,31 +76,25 @@ class UserAPIController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(NewUserRequest $request)
     {
-        if ($this->authUser->hasPermissionTo('users.create')) {
-            Validator::make(
-                $request->all(),
-                $this->validationRules()
-            )->validate();
 
             $row = User::create([
-                'name' => $request->post('name'),
-                'username' => $request->post('username'),
-                'contact' => $request->post('contact'),
-                'password' => Hash::make($request->post('password')),
-                'is_active' => $request->post('is_active'),
+                'name' => $request->input('name'),
+                'username' => $request->input('username'),
+                'email' => $request->input('email'),
+                'contact' => $request->input('contact'),
+                'password' => Hash::make($request->input('password')),
+                'is_active' => $request->input('is_active') ?? 1,
             ]);
 
             return response()->json(([
                 'message' => 'Users Created Successfully',
                 'data' => $row,
                 'status_code' => 200,
+                'success' => true,
             ]));
-        } else {
-            return response()->json('dont have permission to add User', 402);
 
-        }
 
     }
 
