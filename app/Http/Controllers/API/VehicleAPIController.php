@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewVehicleRequest;
+use App\Http\Requests\VehicleUpdateRequest;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,7 +74,7 @@ class VehicleAPIController extends Controller
     public function store(NewVehicleRequest $request)
     {
         $data = $request->only([
-            "modal",
+            "model",
             "registration",
             "manufacturer",
             "year",
@@ -93,9 +94,11 @@ class VehicleAPIController extends Controller
      * @param  \App\Models\Service  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function show(Service $vehicle)
+    public function show($id)
     {
         //
+        $vehicle = Vehicle::findorfail($id);
+        return response()->json($vehicle);
     }
 
     /**
@@ -116,9 +119,23 @@ class VehicleAPIController extends Controller
      * @param  \App\Models\Service  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $vehicle)
+    public function update(VehicleUpdateRequest $request, $id)
     {
         //
+        $data = $request->only([
+            "model",
+            "registration",
+            "manufacturer",
+            "year",
+            "badge",
+        ]);
+        Vehicle::where('id',$id)->update($data);
+
+        return response()->json([
+            "success"=>true,
+            "message"=>"Information Updated Successfully."
+        ]);
+
     }
 
     /**
@@ -143,5 +160,17 @@ class VehicleAPIController extends Controller
 		];
 
 		return $result;
+    }
+
+    public function paginate(Request $request){
+        $users = Vehicle::orderby('id','desc');
+        $model= $request->input('model') ?? null;
+        $year= $request->input('model') ?? null;
+        $model= $request->input('model') ?? null;
+        $per_page= $request->input('per_page') ?? 25;
+        if($model){
+            $users->where('model','LIKE',$model.'%');
+        }
+        return response()->json($users->paginate($per_page));
     }
 }

@@ -17,7 +17,6 @@ class NewVehicleRequest extends FormRequest
              'year' => 'required',
              'badge' => 'required',
         ];
-
     }
 
     public function authorize()

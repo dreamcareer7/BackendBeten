@@ -12,8 +12,9 @@ class VehicleUpdateRequest extends FormRequest
     {
 
         return [
+            'id' => ['required',Rule::exists('vehicles')],
             'model' => 'required',
-            'registration'=>['required','email', Rule::unique('vehicles')->ignore($this->id, 'id')],
+            'registration'=>['required', Rule::unique('vehicles')->ignore($this->id, 'id')],
             'manufacturer'=>['required'],
             'year' => 'required',
             'badge' => 'required',
