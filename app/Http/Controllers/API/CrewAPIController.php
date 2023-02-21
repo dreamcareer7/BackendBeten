@@ -124,7 +124,7 @@ class CrewAPIController extends Controller
         //check if any crew with same id type id number and country already exists
         $exists = Crew::where('id_type',$request->input('id_type'))
             ->where('id_no',$request->input('id_no'))
-            ->where('country_id',$request->input('country_id'))
+            ->where('country_id',$request->input('country_id'))->where('id','!=',$crew->id)
             ->exists();
         if(!$exists){
             Crew::where('id',$crew->id)->update($data);
@@ -171,8 +171,8 @@ class CrewAPIController extends Controller
     }
     public function paginate(Request $request){
         $users = Crew::orderby('id','desc');
-        $title= $request->input('title') ?? null;
-        $phone= $request->input('phone') ?? null;
+        $title= $request->input('fullname') ?? null;
+        $id_type= $request->input('id_type') ?? null;
         $country= $request->input('country') ?? null;
         $city_id= $request->input('city_id') ?? null;
         $location= $request->input('location') ?? null;
@@ -180,10 +180,10 @@ class CrewAPIController extends Controller
         $is_active= $request->input('is_active') ?? null;
         $per_page= $request->input('per_page') ?? 25;
         if($title){
-            $users->where('title','LIKE',$title.'%');
+            $users->where('fullname','LIKE',$title.'%');
         }
-        if($phone){
-            $users->where('phone','LIKE',$phone.'%');
+        if($id_type){
+            $users->where('id_type',$id_type);
         }
         if($country){
             $users->where('country','LIKE',$country.'%');

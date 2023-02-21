@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class NewDocumentRequest extends FormRequest
+class UpdateDocumentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,6 @@ class NewDocumentRequest extends FormRequest
            "title"=>"required",
             "model_type"=>"required",
             "model_id"=>"required|numeric",
-            "file"=>["required",Rule::file()]
-        ];
+         ];
     }
 }

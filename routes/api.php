@@ -97,15 +97,20 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
     Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){
-        Route::get('paginate','paginated');
+        Route::get('paginate','paginate');
         Route::post('upload','uploadFile');
+        Route::get('info/{id}','info');
+        Route::post('update/{id}','updateDocument');
+        Route::post('delete/{id}','destroy');
     });
 
     // Get available roles to select from when creating a user
     Route::get('roles', [RoleController::class, 'index']);
 
 });
-
+Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){
+    Route::get('view/{path}','getFile');
+});
 
 Route::prefix('v2')->group(function() {
     Route::post('/sign_in', [App\Http\Controllers\API\Auth\LoginAPIController::class, 'signIn']);

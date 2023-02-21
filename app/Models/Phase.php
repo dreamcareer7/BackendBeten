@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Phase extends Model
 {
     use HasFactory;
+    protected $fillable=["title"];
+
+    public function services(){
+        return $this->hasMany(PhaseService::class,'id','phase_id');
+    }
 }
