@@ -97,7 +97,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){
         Route::get('paginate','paginated');
-        Route::get('paginate','paginated');
+        Route::post('upload','uploadFile');
     });
 
 

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Requests\NewDocumentRequest;
 use App\Models\Crew;
 use App\Models\Document;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use PhpParser\Comment\Doc;
 use App\Http\Controllers\Controller;
 
@@ -138,5 +142,27 @@ class DocumentAPIController extends Controller
 		];
 
 		return $result;
+    }
+
+    public function uploadFile(NewDocumentRequest $request){
+
+        $success =false;
+        $message = "";
+        $file = $request->file('file') ?? null;
+        $file_name = $file->getBasename();
+        $file_extension= $file->getExtension();
+        $fname = $file->getFilename();
+         $message = $file_name;
+        $random = Str::random(15);
+
+        $qualified_name = $file_name.'_'.$random.".".$file_extension;
+        $uploadLocation = resource_path('documents'.DIRECTORY_SEPARATOR.$qualified_name);
+
+         $uploaded =  Storage::putFile($uploadLocation,$file);
+
+        return response()->json([
+           "success"=>$success,
+           "message"=>$message
+        ]);
     }
 }
