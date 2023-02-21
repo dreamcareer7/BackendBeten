@@ -6,6 +6,7 @@ use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
@@ -223,5 +224,19 @@ class UserAPIController extends Controller
         ];
 
         return $result;
+    }
+
+    /**
+     * List Supervisors
+     *
+     * This is currently consumed by the frontend to populate the supervisor
+     * dropdown menu when creating a service commit
+     *
+     * @return \Illuminate\Http\JsonResponse
+     **/
+    public function list_supervisors(): JsonResponse
+    {
+        $users = User::select('id', 'name')->get();
+        return response()->json($users);
     }
 }

@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\DocumentAPIController;
+use App\Http\Controllers\API\ServiceAPIController;
+use App\Http\Controllers\API\ServiceCommitAPIController;
+use App\Http\Controllers\API\UserAPIController;
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -106,6 +109,23 @@ Route::middleware('auth:sanctum')->group(function(){
 
     // Get available roles to select from when creating a user
     Route::get('roles', [RoleController::class, 'index']);
+
+    // Get available services to select from when creating a service commit
+    Route::get('service/list', [ServiceAPIController::class, 'list']);
+    // Get available users to select from when creating a service commit
+    // as a supervisor_id
+    Route::get('users/list_supervisors', [UserAPIController::class, 'list_supervisors']);
+
+    // Service commits CRUD endpoints
+    Route::controller(ServiceCommitAPIController::class)
+        ->prefix('service/commits')->group(function() {
+
+            Route::get('/', 'index');
+            // Route::post('upload','uploadFile');
+            // Route::get('info/{id}','info');
+            // Route::post('update/{id}','updateDocument');
+            // Route::post('delete/{id}','destroy');
+    });
 
 });
 Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){

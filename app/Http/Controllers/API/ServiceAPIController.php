@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Crew;
 use App\Models\Service;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -36,6 +37,20 @@ class ServiceAPIController extends Controller
         //} else {
        //     return response()->json('dont have permission to see services', 402);
        // }
+    }
+
+    /**
+     * List all available services
+     *
+     * This is currently consumed by the frontend to populate the services
+     * dropdown menu when creating a service commit
+     *
+     * @return \Illuminate\Http\JsonResponse
+     **/
+    public function list(): JsonResponse
+    {
+        $services = Service::select('id', 'title')->get();
+        return response()->json($services);
     }
 
 
