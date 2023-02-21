@@ -14,3 +14,9 @@ Hamza: Done, Nigusu please check it.
  
  
 
+## Demo
+- On Sunday 2023-02-12 *canceled.
+- On Friday 2023-02-17 *canceled.
+- On Sunday 2023-02-19 *canceled with promises to be in hours, so, changed to next day!
+- Promised on Monday 2023-02-20 *canceled with no response and we received some harsh questions regarding our honesty!
+- So, given a chance on 2023-02-22 early morning 10AM GMT [I hope we make it].
