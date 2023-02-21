@@ -131,6 +131,7 @@ Route::middleware('auth:sanctum')->group(function(){
         ->prefix('service/commits')->group(function() {
 
             Route::get('/', 'index');
+            Route::post('/', 'store');
             // Route::post('upload','uploadFile');
             // Route::get('info/{id}','info');
             // Route::post('update/{id}','updateDocument');
