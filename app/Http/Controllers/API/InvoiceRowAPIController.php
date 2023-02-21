@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\API\API\Controller;
 use App\Models\InvoiceRow;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class InvoiceRowAPIController extends Controller
 {
