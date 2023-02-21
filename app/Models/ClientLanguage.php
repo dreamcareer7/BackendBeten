@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ClientLanguage extends Model
 {
@@ -11,10 +13,6 @@ class ClientLanguage extends Model
 
     protected $table = 'client_languages';
 
-    protected $fillable = [
-        'client_id',
-        'language_id',
-    ];
     public function language()
     {
         return $this->hasMany(Language::class, 'id', 'language_id');

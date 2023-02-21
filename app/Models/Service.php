@@ -1,21 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Service extends Model
 {
     use HasFactory;
-
-    protected $table = 'services';
-
-    protected $fillable = [
-        'title',
-        'country_id',
-        'before_date',
-        'exact_date',
-        'after_date',
-    ];
 }
