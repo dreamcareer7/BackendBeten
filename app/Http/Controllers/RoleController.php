@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class RoleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Get available roles to select from when creating a user.
      *
-     * @return \Illuminate\Http\Response
+     * Returns a non-associative array of roles names
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return response()->json(Role::pluck('name')->toArray());
     }
 
     /**

@@ -4,24 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\NewUserRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Models\Service;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
-
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use Illuminate\Http\Request;
-
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
-
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\VerifiesEmails;
-use Illuminate\Auth\Events\Verified;
 
 class UserAPIController extends Controller
 {
@@ -40,7 +28,7 @@ class UserAPIController extends Controller
     {
         if ($this->authUser->hasPermissionTo('users.browse')) {
 
-            $clients = User::paginate($request->input('per_page')?? 25);
+            $clients = User::paginate($request->input('per_page') ?? 25);
 
             return response()->json(([
                 'message' => 'Users list',
@@ -51,22 +39,23 @@ class UserAPIController extends Controller
             return response()->json('dont have permission to see Users', 402);
         }
     }
-    public function paginate(Request $request){
+    public function paginate(Request $request)
+    {
 
         $per_page = $request->input('per_page') ?? 1;
         $name = $request->input('name') ?? null;
         $email = $request->input('email') ?? null;
         $contact = $request->input('contact') ?? null;
-        $clients = User::orderby('id','desc');
+        $clients = User::orderby('id', 'desc');
 
-        if($name){
-            $clients->where('name','LIKE',$name.'%');
+        if ($name) {
+            $clients->where('name', 'LIKE', $name . '%');
         }
-        if($email){
-             $clients->where('email','LIKE',$email.'%');
+        if ($email) {
+            $clients->where('email', 'LIKE', $email . '%');
         }
-        if($email){
-             $clients->where('contact','LIKE',$contact.'%');
+        if ($email) {
+            $clients->where('contact', 'LIKE', $contact . '%');
         }
         return response()->json($clients->paginate($per_page));
     }
@@ -79,23 +68,23 @@ class UserAPIController extends Controller
     public function store(NewUserRequest $request)
     {
 
-            $row = User::create([
-                'name' => $request->input('name'),
-                'username' => $request->input('username'),
-                'email' => $request->input('email'),
-                'contact' => $request->input('contact'),
-                'password' => Hash::make($request->input('password')),
-                'is_active' => $request->input('is_active') ?? 1,
-            ]);
+        $row = User::create([
+            'name' => $request->input('name'),
+            'username' => $request->input('username'),
+            'email' => $request->input('email'),
+            'contact' => $request->input('contact'),
+            'password' => Hash::make($request->input('password')),
+            'is_active' => $request->input('is_active') ?? 1,
+        ]);
 
-            return response()->json(([
-                'message' => 'Users Created Successfully',
-                'data' => $row,
-                'status_code' => 200,
-                'success' => true,
-            ]));
+        $row->syncRoles($request->input('roles'));
 
-
+        return response()->json(([
+            'message' => 'Users Created Successfully',
+            'data' => $row,
+            'status_code' => 200,
+            'success' => true,
+        ]));
     }
 
     /**
@@ -106,23 +95,21 @@ class UserAPIController extends Controller
      */
     public function show($id)
     {
-       /*
+        /*
         if ($this->authUser->hasPermissionTo('users.show')) {
 
         } else {
             return response()->json('dont have permission to see user', 402);
         }
        */
-            $crew = User::whereId($id)->with('roles')->first();
-            $roles = Role::select('name')->get();
-            return response()->json([
-                'message' => 'user Details',
-                'data' => $crew,
-                'available_roles' => $roles,
-                'status_code' => 200,
-            ]);
-
-
+        $crew = User::whereId($id)->with('roles')->first();
+        $roles = Role::select('name')->get();
+        return response()->json([
+            'message' => 'user Details',
+            'data' => $crew,
+            'available_roles' => $roles,
+            'status_code' => 200,
+        ]);
     }
 
     /**
@@ -146,30 +133,30 @@ class UserAPIController extends Controller
      */
     public function update(UserUpdateRequest $request, $user_id)
     {
-       // if ($this->authUser->hasPermissionTo('users.edit')) {
+        // if ($this->authUser->hasPermissionTo('users.edit')) {
 
         $user = User::findorfail($user_id);
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->username = $request->input('username');
-            $user->is_active = $request->input('is_active');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->username = $request->input('username');
+        $user->is_active = $request->input('is_active');
 
-            if ($request->password > ' ') // change password only if user entered a new one
-                $user->password =Hash::make( $request->input('password'));
+        if ($request->password > ' ') // change password only if user entered a new one
+            $user->password = Hash::make($request->input('password'));
 
-            $user->save();
-            $user->syncRoles($request->input('roles'));
+        $user->save();
+        $user->syncRoles($request->input('roles'));
 
-            return response()->json(([
-                'message' => 'user updated successfully',
-                'data' => null,
-                'status_code' => 200,
-                'success' => true,
-            ]));
-       // } else {
-       //     return response()->json('dont have permission to update user', 402);
+        return response()->json(([
+            'message' => 'user updated successfully',
+            'data' => null,
+            'status_code' => 200,
+            'success' => true,
+        ]));
+        // } else {
+        //     return response()->json('dont have permission to update user', 402);
 
-       // }
+        // }
     }
 
     /**
@@ -182,13 +169,12 @@ class UserAPIController extends Controller
     {
 
         $user = User::findorfail($id);
-        User::where('id',$user->id)->delete();
-            return response()->json(([
-                'message' => 'user Deleted Successfully',
-                'data' => null,
-                'status_code' => 200,
-            ]));
-
+        User::where('id', $user->id)->delete();
+        return response()->json(([
+            'message' => 'user Deleted Successfully',
+            'data' => null,
+            'status_code' => 200,
+        ]));
     }
 
     /**
@@ -216,8 +202,8 @@ class UserAPIController extends Controller
         $result = [
             'name' => 'required|string|min:10', //|unique:users,name'.($resource_id > 0 ? ','.$resource_id : ''),
             //'email' => 'required|email:rfc,dns|unique:users,email'.($resource_id > 0 ? ','.$resource_id : ''), //https://laravel.com/docs/9.x/validation#rule-email
-         //   'email' => 'required|email|unique:users,email' . ($resource_id > 0 ? ',' . $resource_id : ''),
-            'email'=>['required','email', Rule::unique('users')->ignore($this->id, 'id')],
+            //   'email' => 'required|email|unique:users,email' . ($resource_id > 0 ? ',' . $resource_id : ''),
+            'email' => ['required', 'email', Rule::unique('users')->ignore($this->id, 'id')],
             'username' => 'required|email|unique:users,email' . ($resource_id > 0 ? ',' . $resource_id : ''),
             'password' => 'min:8|confirmed' . ($resource_id > 0 ? '|nullable' : ''),
             /*
@@ -238,5 +224,4 @@ class UserAPIController extends Controller
 
         return $result;
     }
-
 }

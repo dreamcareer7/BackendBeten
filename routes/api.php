@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\DocumentAPIController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,8 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('upload','uploadFile');
     });
 
+    // Get available roles to select from when creating a user
+    Route::get('roles', [RoleController::class, 'index']);
 
 });
 
