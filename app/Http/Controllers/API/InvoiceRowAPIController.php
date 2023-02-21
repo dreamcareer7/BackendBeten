@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\API\API;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\API\Controller;
 use App\Models\InvoiceRow;
