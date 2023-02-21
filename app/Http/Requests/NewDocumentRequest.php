@@ -27,7 +27,7 @@ class NewDocumentRequest extends FormRequest
            "title"=>"required",
             "model_type"=>"required",
             "model_id"=>"required",
-             "file"=>"required"
+            "file"=>"required"
         ];
     }
 }

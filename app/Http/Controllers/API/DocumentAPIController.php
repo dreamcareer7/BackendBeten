@@ -59,7 +59,7 @@ class DocumentAPIController extends Controller
                 $this->validationRules()
             )->validate();
 
-           $doc= Document::create([
+            $doc= Document::create([
                 'fullname'=> $request->post('fullname'),
                 'gender'=> $request->post('gender'),
                 'country_id'=> $request->post('country'),
@@ -134,14 +134,14 @@ class DocumentAPIController extends Controller
 
     private function validationRules()
     {
-		$result = [
-			'fullname' => 'required|string|min:4',
-			'gender' => 'required',
-			'id_type' => 'required',
-			'id_number' => 'required',
-		];
+        $result = [
+            'fullname' => 'required|string|min:4',
+            'gender' => 'required',
+            'id_type' => 'required',
+            'id_number' => 'required',
+        ];
 
-		return $result;
+        return $result;
     }
 
     public function uploadFile(NewDocumentRequest $request){
@@ -149,20 +149,29 @@ class DocumentAPIController extends Controller
         $success =false;
         $message = "";
         $file = $request->file('file') ?? null;
-        $file_name = $file->getBasename();
-        $file_extension= $file->getExtension();
-        $fname = $file->getFilename();
-         $message = $file_name;
-        $random = Str::random(15);
+        $random = Str::random(10);
+        $uploadLocation = resource_path('documents');
+        $actual_location = $uploadLocation.$random.'_'.$file->getClientOriginalName();
+        $uploaded= $file->move($uploadLocation,$random.'_'.$file->getClientOriginalName());
+        $message =$uploaded;
 
-        $qualified_name = $file_name.'_'.$random.".".$file_extension;
-        $uploadLocation = resource_path('documents'.DIRECTORY_SEPARATOR.$qualified_name);
-
-         $uploaded =  Storage::putFile($uploadLocation,$file);
-
+        if($uploaded){
+            Document::create([
+                "title"=>$request->input('title'),
+                "model_type"=>$request->input('model_type'),
+                "model_id"=>$request->input('model_id'),
+                "path"=>$actual_location,
+                "uploaded_by"=>auth('api')->user()->id,
+            ]);
+            $success = false;
+            $message = "Document Uploaded successfully.";
+        }
+        else{
+            $message = "There was an error while uploading file.";
+        }
         return response()->json([
-           "success"=>$success,
-           "message"=>$message
+            "success"=>$success,
+            "message"=>$message
         ]);
     }
 }

@@ -15,11 +15,9 @@ class Document extends Model
       "model_type",
       "model_id",
       "uploaded_by",
-      "document_type",
-      "description",
-    ];
+     ];
 
-    // Available model types for documents 
+    // Available model types for documents
     protected $model_types = [
       'App\Models\Contract',
       'App\Models\Vehicles',
