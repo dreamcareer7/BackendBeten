@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Profession extends Model
+class Evaluation extends Model
 {
     use HasFactory;
 
-    protected $table = 'professions';
+    protected $table = 'evaluations';
 
     protected $fillable = [
-        'title',
+        'provider_model_type',
+        'provider_model_id',
     ];
 }

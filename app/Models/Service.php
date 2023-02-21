@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    protected $fillable=[
+
+    protected $table = 'services';
+
+    protected $fillable = [
         'title',
         'country_id',
         'before_date',
