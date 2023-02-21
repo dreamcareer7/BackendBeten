@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewPhaseRequest;
 use App\Models\Phase;
 use App\Models\PhaseService;
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class PhaseServiceAPIController extends Controller
@@ -41,10 +42,19 @@ class PhaseServiceAPIController extends Controller
     {
         $resp = null;
         $phase  = Phase::findorfail($id);
+        $serv = [];
         if($phase){
             $resp = Phase::where('id',$phase->id)->with('services')->first();
+            $services = PhaseService::where('phase_id',$phase->id)->get();
+            foreach ($services as $phase_service){
+             $service =Service::where('id', $phase_service->service_id)->first();
+             $serv[]=$service;
+            }
         }
-        return response()->json($resp);
+        return response()->json([
+            "phase"=>$phase,
+            "services"=>$serv
+        ]);
         //
     }
 
@@ -75,7 +85,7 @@ class PhaseServiceAPIController extends Controller
             foreach ($services as $service){
                 PhaseService::create([
                    "phase_id"=>$phase_id,
-                   "services_id"=>$service["id"]
+                   "service_id"=>$service["id"]
                 ]);
             }
         }
@@ -84,16 +94,30 @@ class PhaseServiceAPIController extends Controller
         PhaseService::where('phase_id',$phase_id)->delete();
         return true;
     }
-    public function destroyService($id){
+    public function destroyPhase($id){
         $phase  = Phase::findorfail($id);
 
         //delete Phase
         Phase::where('id',$phase->id)->delete();
         //delete the services connection
-        PhaseService::where('phase_id',$phase->id)->delete();
+        $this->clearPhaseServices($id);
         return response()->json([
            "success"=>true,
            "message"=>"Phase Removed Successfully."
         ]);
     }
+
+    public function paginate(Request $request)
+    {
+
+        $per_page = $request->input('per_page') ?? 30;
+        $title = $request->input('title') ?? null;
+        $phase = Phase::orderby('id', 'desc')->with('services');
+
+        if ($title) {
+            $phase->where('title', 'LIKE', $title . '%');
+        }
+        return response()->json($phase->paginate($per_page));
+    }
+
 }

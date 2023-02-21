@@ -151,4 +151,7 @@ class ServiceAPIController extends Controller
 
         return $result;
     }
+    public function all(){
+        return response()->json(Service::get());
+    }
 }

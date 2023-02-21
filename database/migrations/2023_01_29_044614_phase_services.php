@@ -14,8 +14,11 @@ class PhaseServices extends Migration
     public function up()
     {
         Schema::create('phase_services', function (Blueprint $table) {
-			$table->unsignedBigInteger('phase_id');
+            $table->id();
+            $table->unsignedBigInteger('phase_id');
 			$table->unsignedBigInteger('service_id');
+            $table->timestamps();
+
         });
 
     }

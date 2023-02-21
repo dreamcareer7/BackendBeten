@@ -107,8 +107,18 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::post('delete/{id}','destroy');
     });
 
+    Route::controller(\App\Http\Controllers\API\PhaseServiceAPIController::class)->prefix('phases')->group(function(){
+       Route::get('paginate','paginate');
+       Route::post('add','store');
+       Route::post('update/{id}','update');
+       Route::post('delete/{id}','destroyPhase');
+       Route::get('info/{id}','show');
+    });
+
+
     // Get available roles to select from when creating a user
     Route::get('roles', [RoleController::class, 'index']);
+    Route::get('services/all', [\App\Http\Controllers\API\ServiceAPIController::class, 'all']);
 
     // Get available services to select from when creating a service commit
     Route::get('service/list', [ServiceAPIController::class, 'list']);
