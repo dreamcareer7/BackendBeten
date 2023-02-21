@@ -29,7 +29,7 @@ class DocumentAPIController extends Controller
      */
     public function index(Request $request)
     {
-        if ($this->authUser->hasPermissionTo('documents.index')) {
+        if (auth()->user()->hasPermissionTo('documents.index')) {
 
             $doc = Document::paginate($request->input('per_page')?? 25);
 
