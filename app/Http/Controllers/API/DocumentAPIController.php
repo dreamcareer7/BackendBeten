@@ -160,10 +160,10 @@ class DocumentAPIController extends Controller
                 "title"=>$request->input('title'),
                 "model_type"=>$request->input('model_type'),
                 "model_id"=>$request->input('model_id'),
-                "path"=>$actual_location,
-                "uploaded_by"=>auth('api')->user()->id,
+                "path"=>$random.'_'.$file->getClientOriginalName()
+              //  "uploaded_by"=>Auth::guard('api')->id(),
             ]);
-            $success = false;
+            $success = true;
             $message = "Document Uploaded successfully.";
         }
         else{
