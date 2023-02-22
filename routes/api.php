@@ -132,6 +132,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
             Route::get('/', 'index');
             Route::post('/', 'store');
+            Route::get('{id}', 'show');
             // Route::post('upload','uploadFile');
             // Route::get('info/{id}','info');
             // Route::post('update/{id}','updateDocument');

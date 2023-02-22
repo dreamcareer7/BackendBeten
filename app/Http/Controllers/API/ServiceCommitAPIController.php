@@ -58,12 +58,25 @@ class ServiceCommitAPIController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show(int $id): JsonResponse
     {
-        //
+        $service_commit = Service_Commit::select(
+                'service_id',
+                'badge',
+                'scheduled_at',
+                'started_at',
+                'location',
+                'supervisor_id'
+            // Eager load relationships
+            )->with(['service:id,title', 'supervisor:id,name'])
+            ->where('id', $id)
+            ->first();
+
+        return response()->json($service_commit); // auto serialized
     }
 
     /**
