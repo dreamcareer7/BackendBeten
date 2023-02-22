@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateServicesTable extends Migration
 {
@@ -11,16 +13,15 @@ class CreateServicesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-			$table->string('title');
-			$table->string('country_id');
- 			$table->datetime('before_date')->nullable();
-			$table->datetime('exact_date')->nullable();
-			$table->datetime('after_date')->nullable();
-
+            $table->string('title');
+            $table->enum('city', ['Jeddah', 'Medina', 'Ynbu', 'Taif']);
+            $table->datetime('before_date')->nullable();
+            $table->datetime('exact_date')->nullable();
+            $table->datetime('after_date')->nullable();
             $table->timestamps();
         });
     }
@@ -30,7 +31,7 @@ class CreateServicesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('services');
     }
