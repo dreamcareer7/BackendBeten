@@ -107,11 +107,13 @@ class ServiceCommitAPIController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        Service_Commit::whereId($id)->delete();
+        return response()->json(status: 204);
     }
 }
