@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewCrewRequest;
+use App\Models\Country;
 use App\Models\Crew;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -51,7 +52,6 @@ class CrewAPIController extends Controller
 
     public function store(NewCrewRequest $request)
     {
-
         $data= $request->only([
             'fullname',
             'gender',
@@ -64,10 +64,11 @@ class CrewAPIController extends Controller
             'is_active',
         ]);
 
+
         //check if any crew with same id type id number and country already exists
         $exists = Crew::where('id_type',$request->input('id_type'))
             ->where('id_no',$request->input('id_no'))
-            ->where('country_id',$request->input('country_id'))
+            ->where('country_id', $data['country_id'])
             ->exists();
         if(!$exists){
             Crew::create($data);
@@ -76,13 +77,11 @@ class CrewAPIController extends Controller
                 'success'   => true,
             ]));
         }
-        else{
-            return response()->json( [
-                'message'       => 'A crew already exists with same id type, id number and country',
-                'success'   => false,
-            ],422);
-        }
 
+        return response()->json( [
+            'message'       => 'A crew already exists with same id type, id number and country',
+            'success'   => false,
+        ],422);
 
     }
 
@@ -170,7 +169,7 @@ class CrewAPIController extends Controller
 		return $result;
     }
     public function paginate(Request $request){
-        $users = Crew::orderby('id','desc');
+        $users = Crew::countryName()->orderby('id','desc');
         $title= $request->input('fullname') ?? null;
         $id_type= $request->input('id_type') ?? null;
         $country= $request->input('country') ?? null;

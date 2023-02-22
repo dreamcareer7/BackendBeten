@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\NewDormitoryRequest;
+use App\Models\Client;
 use App\Models\Dormitory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -61,9 +62,10 @@ class DormitoryAPIController extends Controller
      * @param  \App\Models\Dormitory  $dormitory
      * @return \Illuminate\Http\Response
      */
-    public function show(Dormitory $dormitory)
+    public function show($id)
     {
-        //
+        $dormitory = Dormitory::findorfail($id);
+        return response()->json($dormitory);
     }
 
     /**
@@ -121,7 +123,7 @@ class DormitoryAPIController extends Controller
     }
 
     public function paginate(Request $request){
-        $users = Dormitory::orderby('id','desc');
+        $users = Dormitory::countryName()->orderby('id','desc');
         $title= $request->input('title') ?? null;
         $phone= $request->input('phone') ?? null;
         $country= $request->input('country') ?? null;

@@ -27,7 +27,7 @@ class ServiceAPIController extends Controller
     {
        // if ($this->authUser->hasPermissionTo('services.index')) {
 
-            $clients = Service::paginate($request->input('per_page')?? 25);
+            $clients = Service::countryName()->paginate($request->input('per_page')?? 25);
 
             return response()->json(([
                 'message' => 'services list',

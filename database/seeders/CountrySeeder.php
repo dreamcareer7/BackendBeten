@@ -21,15 +21,16 @@ class CountrySeeder extends Seeder
      */
     public function run()
     {
-		Country::truncate();
-        $faker = Faker::create();
-        $min = 1;
-        $max = 5;
-        foreach (range($min,$max) as $index) {
-            Country::create([
-                'id' => $faker->unique()->numberBetween($min,$max),
-                'title' => $faker->country,
+        $json = file_get_contents(database_path('countries.json'));
+        $countries = json_decode($json, true);
+
+        foreach ($countries as $country) {
+            Country::updateOrCreate(['id' => $country['id']], [
+                'id' => $country['id'],
+                'name' => $country['name'],
+                'code' => $country['code']
             ]);
         }
     }
+
 }

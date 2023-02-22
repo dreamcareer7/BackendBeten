@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function(){
+    Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
    // Route::resource('/users', App\Http\Controllers\API\UserAPIController::class); //->middleware(['permission:manage_users']);
     Route::resource('/services', App\Http\Controllers\API\ServiceAPIController::class);
 
@@ -57,7 +58,7 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::put('','store');
             Route::get('paginate','paginate');
             Route::get('info/{id}','show');
-            Route::post('delete/{id}','delete');
+            Route::post('delete/{id}','destroy');
             Route::post('update/{id}','update');
             Route::post('add','add');
 
@@ -165,3 +166,5 @@ Route::get('migrate',function(){
    \Illuminate\Support\Facades\Artisan::call('migrate');
    return 'migrated';
 });
+
+

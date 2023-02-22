@@ -22,4 +22,25 @@ class Crew extends Model
         'dob',
         'is_active',
     ];
+
+    /*
+     * Scopes
+     */
+
+    public function scopeCountryName($query)
+    {
+        return $query->addSelect(['country_name' => Country::select('name')
+                     ->whereColumn('country_id', 'countries.id')
+                     ->limit(1)
+        ]);
+    }
+
+    /*
+     * Relationships
+     */
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }
