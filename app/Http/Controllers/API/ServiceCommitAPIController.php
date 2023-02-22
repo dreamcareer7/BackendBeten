@@ -26,7 +26,7 @@ class ServiceCommitAPIController extends Controller
             'started_at',
             'location',
             'supervisor_id'
-        )->with('service:id,title')->get();
+        )->with(['service:id,title', 'supervisor:id,name'])->get();
         return response()->json($service_commits);
     }
 

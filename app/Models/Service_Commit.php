@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Service_Commit extends Model
 {
@@ -30,5 +31,17 @@ class Service_Commit extends Model
     public function service_commit_log()
     {
         return $this->hasOne(Service_Commit_Log::class, 'service_commit_id', 'id');
+    }
+
+    /**
+     * Service commit supervisor
+     *
+     * Get the supervisor user of the service commit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function supervisor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'supervisor_id');
     }
 }
