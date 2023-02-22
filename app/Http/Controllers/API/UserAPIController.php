@@ -42,12 +42,20 @@ class UserAPIController extends Controller
     }
     public function paginate(Request $request)
     {
-
+        // TODO: not yet implemented on frontend hence always 30
         $per_page = $request->input('per_page') ?? 30;
         $name = $request->input('name') ?? null;
         $email = $request->input('email') ?? null;
         $contact = $request->input('contact') ?? null;
-        $clients = User::orderby('id', 'desc');
+        $clients = User::select(
+            'id',
+            'name',
+            'username',
+            'email',
+            'is_active',
+            'contact',
+            'created_at' // Need to format
+        )->orderby('id', 'DESC');
 
         if ($name) {
             $clients->where('name', 'LIKE', $name . '%');
