@@ -170,9 +170,9 @@ class ClientsAPIController extends Controller
         $name = $request->input('name') ?? null;
         $gender= $request->input('gender') ?? null;
         $phone= $request->input('phone') ?? null;
-        $country_id= $request->input('country_id') ?? null;
+        $country_id= $request->input('country') ?? null;
         $id_number = $request->input('id_number') ?? null;
-        $clients = Client::orderby('id','desc');
+        $clients = Client::countryName()->orderby('id','desc');
 
         if($name){
             $clients->where('fullname','LIKE',$name.'%');

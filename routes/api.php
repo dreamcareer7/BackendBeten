@@ -164,3 +164,5 @@ Route::get('migrate',function(){
    \Illuminate\Support\Facades\Artisan::call('migrate');
    return 'migrated';
 });
+
+Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
