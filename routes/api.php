@@ -25,6 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function(){
+    Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
    // Route::resource('/users', App\Http\Controllers\API\UserAPIController::class); //->middleware(['permission:manage_users']);
     Route::resource('/services', App\Http\Controllers\API\ServiceAPIController::class);
 
@@ -165,4 +166,4 @@ Route::get('migrate',function(){
    return 'migrated';
 });
 
-Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
+
