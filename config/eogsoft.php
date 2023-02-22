@@ -8,6 +8,6 @@ return [
 	],
 	'adminuser' => 'admin@eogsoft.com',
 	'adminusername' => 'admin',
-	'contact' => 'Sekela',
+	'contact' => 'Eimad',
 	'adminpass' => 'T,W;e0n#4l$QY_',
 ];
