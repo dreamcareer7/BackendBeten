@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateServiceCommitRequest;
 use App\Models\Service_Commit;
-use Illuminate\Http\{JsonResponse, Request};
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\{CreateServiceCommitRequest, UpdateServiceCommitRequest};
 
 class ServiceCommitAPIController extends Controller
 {
@@ -82,13 +82,26 @@ class ServiceCommitAPIController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\UpdateServiceCommitRequest $request
+     * @param int $id
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateServiceCommitRequest $request, int $id): JsonResponse
     {
-        //
+        $service_commit = Service_Commit::select('id')
+            ->where('id', $id)
+            ->first();
+        // Request data already validated from the form request class
+        $service_commit->service_id = $request->service_id;
+        $service_commit->badge = $request->badge;
+        $service_commit->scheduled_at = $request->scheduled_at;
+        $service_commit->started_at = $request->started_at;
+        $service_commit->location = $request->location;
+        $service_commit->supervisor_id = $request->supervisor_id;
+        // Save in the database
+        $service_commit->save();
+        return response()->json(status: 204); // No content
     }
 
     /**
