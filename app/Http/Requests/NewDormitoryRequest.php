@@ -17,7 +17,7 @@ class NewDormitoryRequest extends FormRequest
             'city_id'=>['required'],
              'location' => 'required',
              'coordinate' => 'required',
-             'is_active' => 'required',
+             'is_active' => ['nullable'],
         ];
     }
 
