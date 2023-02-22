@@ -58,13 +58,13 @@ class UserAPIController extends Controller
         )->orderby('id', 'DESC');
 
         if ($name) {
-            $clients->where('name', 'LIKE', $name . '%');
+            $clients->where('name', 'LIKE', '%' . $name . '%');
         }
         if ($email) {
             $clients->where('email', 'LIKE', $email . '%');
         }
         if ($email) {
-            $clients->where('contact', 'LIKE', $contact . '%');
+            $clients->where('contact', 'LIKE', '%' . $contact . '%');
         }
         return response()->json($clients->paginate($per_page));
     }
