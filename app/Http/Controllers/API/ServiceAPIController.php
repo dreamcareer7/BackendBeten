@@ -23,13 +23,11 @@ class ServiceAPIController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $services = Service::paginate($request->input('per_page') ?? 25);
+        $services = Service::select(
+            'id', 'title', 'city', 'before_date', 'exact_date', 'after_date'
+        )->get();
 
-        return response()->json([
-            'message' => 'Services list',
-            'data' => $services,
-            'status_code' => 200,
-        ], status: 200);
+        return response()->json(data: $services, status: 200);
     }
 
     /**
