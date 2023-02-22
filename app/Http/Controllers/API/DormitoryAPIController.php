@@ -121,7 +121,7 @@ class DormitoryAPIController extends Controller
     }
 
     public function paginate(Request $request){
-        $users = Dormitory::orderby('id','desc');
+        $users = Dormitory::countryName()->orderby('id','desc');
         $title= $request->input('title') ?? null;
         $phone= $request->input('phone') ?? null;
         $country= $request->input('country') ?? null;
