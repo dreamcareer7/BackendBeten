@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\NewDormitoryRequest;
+use App\Models\Client;
 use App\Models\Dormitory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -61,9 +62,10 @@ class DormitoryAPIController extends Controller
      * @param  \App\Models\Dormitory  $dormitory
      * @return \Illuminate\Http\Response
      */
-    public function show(Dormitory $dormitory)
+    public function show($id)
     {
-        //
+        $dormitory = Dormitory::findorfail($id);
+        return response()->json($dormitory);
     }
 
     /**
