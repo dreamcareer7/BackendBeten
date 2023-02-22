@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use DateTimeInterface;
@@ -12,17 +14,6 @@ class Service_Commit extends Model
     use HasFactory;
 
     protected $table = 'service_commits';
-
-    protected $fillable = [
-        'service_id',
-        'badge',
-        'schedule_at',
-        'started_at',
-        'from_location',
-        'supervisor_id',
-        'from_location',
-        'created_at',
-    ];
 
     /**
      * The attributes that should be cast.
