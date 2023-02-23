@@ -106,6 +106,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('info/{id}','info');
         Route::post('update/{id}','updateDocument');
         Route::post('delete/{id}','destroy');
+        Route::get('model-types', 'getModelTypes');
     });
 
     Route::controller(\App\Http\Controllers\API\PhaseServiceAPIController::class)->prefix('phases')->group(function(){

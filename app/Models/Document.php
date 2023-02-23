@@ -1,24 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Document extends Model
 {
     use HasFactory;
-    protected $table="documents";
-    protected $fillable=[
-      "title",
-      "path",
-      "model_type",
-      "model_id",
-      "uploaded_by",
-     ];
 
     // Available model types for documents
-    protected $model_types = [
+    public static $model_types = [
       'App\Models\Contract',
       'App\Models\Vehicles',
       'App\Models\Crew',

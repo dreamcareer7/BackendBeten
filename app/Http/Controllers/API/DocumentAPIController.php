@@ -228,4 +228,18 @@ class DocumentAPIController extends Controller
 
         return response()->json($documents->paginate($per_page));
     }
+
+    /**
+     * Get model types
+     *
+     * Get the available model types to associate with a document
+     *
+     * @return \Illuminate\Http\JsonResponse
+     **/
+    public function getModelTypes(): JsonResponse
+    {
+        // Retreive the model types from the hardcoded static public property
+        // of the Document eloquent model
+        return response()->json(data: Document::$model_types);
+    }
 }
