@@ -21,6 +21,7 @@ class CreateServiceCommitsTable extends Migration
 			$table->datetime('started_at')->nullable();
 			$table->string('location');
 			$table->unsignedBigInteger('supervisor_id')->comment('crew_id')->nullable();
+            $table->foreign('supervisor_id')->references('id')->on('crews');
 
             $table->timestamps();
         });

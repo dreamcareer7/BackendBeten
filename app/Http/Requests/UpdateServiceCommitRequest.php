@@ -31,7 +31,7 @@ class UpdateServiceCommitRequest extends FormRequest
             'scheduled_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
             'started_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
             'location' => 'bail|required|string|min:3|max:255',
-            'supervisor_id' => 'bail|nullable|integer|exists:users,id',
+            'supervisor_id' => 'bail|nullable|integer|exists:crews,id',
         ];
     }
 

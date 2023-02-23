@@ -46,12 +46,12 @@ class Service_Commit extends Model
     /**
      * Service commit supervisor
      *
-     * Get the supervisor user of the service commit
+     * Get the supervisor crew member of the service commit
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
     public function supervisor(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'supervisor_id');
+        return $this->belongsTo(Crew::class, 'supervisor_id');
     }
 }
