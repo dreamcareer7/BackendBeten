@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\DocumentAPIController;
+use App\Http\Controllers\API\HospitalitiesController;
 use App\Http\Controllers\API\ServiceAPIController;
 use App\Http\Controllers\API\ServiceCommitAPIController;
 use App\Http\Controllers\API\UserAPIController;
@@ -85,6 +86,7 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post('update/{id}','update');
             Route::post('add','store');
             Route::get('all','all');
+            Route::get('list', 'list');
     });
 
 
@@ -142,6 +144,8 @@ Route::middleware('auth:sanctum')->group(function(){
             // Route::post('update/{id}','updateDocument');
             // Route::post('delete/{id}','destroy');
     });
+
+    Route::apiResource('hospitalities', HospitalitiesController::class);
 
 });
 Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){

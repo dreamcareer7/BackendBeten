@@ -1,27 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\API;
 
+use App\Models\Crew;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewCrewRequest;
-use App\Models\Country;
-use App\Models\Crew;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\ResponseTrait;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\{JsonResponse, Request};
 
 class CrewAPIController extends Controller
 {
-    use  ResponseTrait;
-
-
-    public function __construct()
-    {
-        $this->authUser = auth('api')->user();
-        $this->userId = @$this->authUser->id;
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +18,7 @@ class CrewAPIController extends Controller
      */
     public function index(Request $request)
     {
-        if ($this->authUser->hasPermissionTo('crew.index')) {
+        if (auth()->user()->hasPermissionTo('crew.index')) {
 
             $clients = Crew::paginate($request->input('per_page')?? 25);
 
@@ -205,4 +194,17 @@ class CrewAPIController extends Controller
         return response()->json(Crew::get());
     }
 
+    /**
+     * List crew members
+     *
+     * This endpoint is currently used to populate the dropdown
+     * on the hospitality creation page
+     *
+     * @return \Illuminate\Http\JsonResponse
+     **/
+    public function list(): JsonResponse
+    {
+        $crew = Crew::select('id', 'fullname')->get();
+        return response()->json(data: $crew);
+    }
 }
