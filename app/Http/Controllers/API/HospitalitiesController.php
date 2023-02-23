@@ -8,17 +8,29 @@ use App\Models\Hospitality;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\CreateHospitalityRequest;
+use Exception;
+use Illuminate\Support\Facades\Validator;
 
 class HospitalitiesController extends Controller
 {
     /**
     * Display a listing of the hospitality.
     *
-    * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\JsonResponse
     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $hospitalities = Hospitality::select(
+            'id',
+            'title',
+            'description',
+            'required_date',
+            'quantity',
+            'received_by',
+            'extra'
+        // Eager load the receiver (crew member) full name
+        )->with('receiver:id,fullname')->get();
+        return response()->json(data: $hospitalities);
     }
 
     /**
@@ -64,10 +76,11 @@ class HospitalitiesController extends Controller
     *
     * @param \App\Models\Hospitality $hospitality
     *
-    * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\JsonResponse
     */
-    public function destroy(Hospitality $hospitality)
+    public function destroy(Hospitality $hospitality): JsonResponse
     {
-        //
+        $hospitality->delete();
+        return response()->json(status: 204); // No content
     }
 }

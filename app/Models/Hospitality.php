@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -20,6 +21,16 @@ class Hospitality extends Model
     protected $casts = [
         'required_date' => 'datetime',
     ];
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @return string the date formatted
+     */
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d');
+    }
 
     /**
      * Get the crew member receiving the hospitality
