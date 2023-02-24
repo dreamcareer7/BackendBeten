@@ -6,6 +6,7 @@ use App\Http\Controllers\API\ServiceAPIController;
 use App\Http\Controllers\API\DocumentAPIController;
 use App\Http\Controllers\API\HospitalitiesController;
 use App\Http\Controllers\API\ServiceCommitAPIController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\API\ServiceCommitAPIController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Auth::routes();
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
    // Route::resource('/users', App\Http\Controllers\API\UserAPIController::class); //->middleware(['permission:manage_users']);
