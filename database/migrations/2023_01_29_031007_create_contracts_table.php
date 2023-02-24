@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateContractsTable extends Migration
 {
@@ -11,16 +13,13 @@ class CreateContractsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-			$table->string('reference');
-			$table->string('model_type');
-			$table->unsignedBigInteger('model_id');
-			$table->text('extra')->nullable()->comment('json conditions');
-			
-			$table->softDeletes();
+            $table->string('url');
+            $table->unsignedBigInteger('contractable_id');
+            $table->string('contractable_type');
             $table->timestamps();
         });
     }
@@ -30,7 +29,7 @@ class CreateContractsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('contracts');
     }

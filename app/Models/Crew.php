@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\HasContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Crew extends Model
 {
-    use HasFactory;
+    use HasFactory, HasContract;
 
     protected $table = 'crews';
 
