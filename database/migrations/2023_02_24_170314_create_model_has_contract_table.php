@@ -15,8 +15,11 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // TODO: figure out how to set the cardinality
         Schema::create('model_has_contract', function (Blueprint $table) {
             $table->unsignedBigInteger('contract_id');
+            $table->foreign('contract_id')->references('id')->on('contracts')
+                ->onDelete('cascade');
             $table->primary(
                 ['contract_id', 'model_id', 'model_type'],
                 'model_has_contract_contract_model_type_primary'
