@@ -19,13 +19,3 @@ use Illuminate\Support\Facades\Hash;
 Route::get('/', function () {
     return view('index');
 });
-
-Auth::routes();
-Route::group(['middleware' => ['auth']], function() {
-
-
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

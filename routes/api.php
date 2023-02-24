@@ -1,14 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\UserAPIController;
+use App\Http\Controllers\API\ServiceAPIController;
 use App\Http\Controllers\API\DocumentAPIController;
 use App\Http\Controllers\API\HospitalitiesController;
-use App\Http\Controllers\API\ServiceAPIController;
 use App\Http\Controllers\API\ServiceCommitAPIController;
-use App\Http\Controllers\API\UserAPIController;
-use App\Http\Controllers\RoleController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +17,6 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
@@ -120,8 +113,11 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
 
-    // Get available roles to select from when creating a user
-    Route::get('roles', [RoleController::class, 'index']);
+    // Get available roles & crew members to select from when creating a user
+    Route::get(
+        'populate-create-user-dropdowns',
+        [UserAPIController::class, 'populateCreateUserDropdowns']
+    );
     Route::get('services/all', [\App\Http\Controllers\API\ServiceAPIController::class, 'all']);
 
     // Get available services to select from when creating a service commit
@@ -166,10 +162,3 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('/documents', App\Http\Controllers\API\DocumentAPIController::class);
       Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
 });
-Auth::routes();
-Route::get('migrate',function(){
-   \Illuminate\Support\Facades\Artisan::call('migrate');
-   return 'migrated';
-});
-
-

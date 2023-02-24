@@ -1,25 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\NewUserRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Models\User;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
+use App\Models\{Crew, User};
 use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\{NewUserRequest, UserUpdateRequest};
 
 class UserAPIController extends Controller
 {
-    public function __construct()
-    {
-        $this->authUser = auth('api')->user();
-        $this->userId = @$this->authUser->id;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -27,18 +21,16 @@ class UserAPIController extends Controller
      */
     public function index(Request $request)
     {
-        if ($this->authUser->hasPermissionTo('users.browse')) {
-
+        if (auth()->user()->hasPermissionTo('users.browse')) {
             $clients = User::paginate($request->input('per_page') ?? 25);
 
-            return response()->json(([
+            return response()->json([
                 'message' => 'Users list',
                 'data' => $clients,
                 'status_code' => 200,
-            ]));
-        } else {
-            return response()->json('dont have permission to see Users', 402);
+            ]);
         }
+        return response()->json('dont have permission to see Users', 403);
     }
     public function paginate(Request $request)
     {
@@ -76,7 +68,6 @@ class UserAPIController extends Controller
      */
     public function store(NewUserRequest $request)
     {
-
         $row = User::create([
             'name' => $request->input('name'),
             'username' => $request->input('username'),
@@ -150,8 +141,9 @@ class UserAPIController extends Controller
         $user->username = $request->input('username');
         $user->is_active = $request->input('is_active');
 
-        if ($request->password > ' ') // change password only if user entered a new one
+        if ($request->password > ' ') { // change password only if user entered a new one
             $user->password = Hash::make($request->input('password'));
+        }
 
         $user->save();
         $user->syncRoles($request->input('roles'));
@@ -176,7 +168,6 @@ class UserAPIController extends Controller
      */
     public function delete($id)
     {
-
         $user = User::findorfail($id);
         User::where('id', $user->id)->delete();
         return response()->json(([
@@ -246,5 +237,20 @@ class UserAPIController extends Controller
     {
         $users = User::select('id', 'name')->get();
         return response()->json($users);
+    }
+
+    /**
+     * Populate user creation dropdowns
+     *
+     * Get available roles & crew members to select from when creating a user
+     *
+     * @return \Illuminate\Http\JsonResponse
+     **/
+    public function populateCreateUserDropdowns(): JsonResponse
+    {
+        return response()->json(data: [
+            'roles' => Role::select('name')->pluck('name'),
+            'crew_members' => Crew::select('id', 'fullname')->get(),
+        ]);
     }
 }

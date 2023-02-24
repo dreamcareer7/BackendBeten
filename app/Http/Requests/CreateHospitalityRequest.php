@@ -27,13 +27,15 @@ class CreateHospitalityRequest extends FormRequest
     {
         return [
             'title' => 'bail|required|string|min:3|max:255',
-            'description' => 'bail|required|string|min:5|max:255',
+            'description' => 'bail|string|min:5|max:255',
             'required_date' => 'bail|required|date_format:Y-m-d',
             // TODO: figure out what the maximum quantity is
-            'quantity' => 'bail|required|integer|min:1',
+            // Can be decimal
+            'quantity' => 'bail|required|decimal|min:1|max:',
             // TODO: replace by users table if required
             'received_by' => 'bail|required|integer|exists:crews,id',
             'extra' => 'bail|nullable|string|min:3|max:65535', // mysql max
+            // Hospitalities_transaction => model type can be crew or client
         ];
     }
 }
