@@ -20,6 +20,11 @@ class CrewFactory extends Factory
 	{
 		return [
 			'fullname' => fake(locale: 'ar_SA')->name(),
+			'country_id' => 1,
+			'phone' => fake()->phoneNumber,
+			'id_type' => 'Passport',
+			'id_no' => fake()->iban,
+			'dob' => fake()->date,
 		];
 	}
 }

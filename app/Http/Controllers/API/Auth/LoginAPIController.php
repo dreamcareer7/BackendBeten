@@ -6,10 +6,8 @@ namespace App\Http\Controllers\API\Auth;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Illuminate\Support\Facades\{Auth, Hash, Validator};
+use Illuminate\Support\Facades\{Hash, Validator};
 
 class LoginAPIController extends Controller
 {
