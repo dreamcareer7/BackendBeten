@@ -26,6 +26,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
  * @mixin \Eloquent
  */
 class Group extends Model

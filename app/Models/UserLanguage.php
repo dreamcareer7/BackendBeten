@@ -20,6 +20,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|UserLanguage query()
  * @method static \Illuminate\Database\Eloquent\Builder|UserLanguage whereLanguageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserLanguage whereUserId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
  * @mixin \Eloquent
  */
 class UserLanguage extends Model

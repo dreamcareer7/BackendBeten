@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * App\Models\PhaseService
@@ -23,20 +23,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|PhaseService wherePhaseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PhaseService whereServiceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|PhaseService whereUpdatedAt($value)
+ * @property-read \App\Models\Phase|null $phase
+ * @property-read \App\Models\Service|null $service
  * @mixin \Eloquent
  */
 class PhaseService extends Model
 {
-	use HasFactory;
-	protected $fillable=[
-		"phase_id","service_id"
-	];
-
-	public function service(){
-		return $this->hasOne('services','id','service_id');
+	public function service(): HasOne
+	{
+		return $this->hasOne(Service::class, 'id', 'service_id');
 	}
-	public function phase(){
-		return $this->hasOne('phases','id','phase_id');
 
+	public function phase(): HasOne
+	{
+		return $this->hasOne(Phase::class, 'id', 'phase_id');
 	}
 }

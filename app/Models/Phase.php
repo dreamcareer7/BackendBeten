@@ -23,6 +23,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Phase whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Phase whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Phase whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
  * @mixin \Eloquent
  */
 class Phase extends Model

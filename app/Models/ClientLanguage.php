@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|ClientLanguage query()
  * @method static \Illuminate\Database\Eloquent\Builder|ClientLanguage whereClientId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ClientLanguage whereLanguageId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
  * @mixin \Eloquent
  */
 class ClientLanguage extends Model
