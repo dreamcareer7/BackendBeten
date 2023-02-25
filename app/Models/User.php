@@ -6,6 +6,7 @@ namespace App\Models;
 
 use DateTimeInterface;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Traits\HasDocuments;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -70,7 +71,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
-	use HasApiTokens, HasFactory, HasRoles, Notifiable;
+	use HasApiTokens, HasDocuments, HasFactory, HasRoles, Notifiable;
 
 	protected $guard_name = 'api';
 

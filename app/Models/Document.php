@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -39,15 +40,27 @@ class Document extends Model
 {
 	use HasFactory;
 
-	// Available model types for documents
-	public static $model_types = [
-	  'App\Models\Contract',
-	  'App\Models\Vehicles',
-	  'App\Models\Crew',
-	  'App\Models\User',
-	  'App\Models\Meal',
-	  'App\Models\Complaint',
-	  // other than contract, for example location, terms, photos..etc
-	  'App\Models\Dormitory',
+	/** @var array $model_types Available model types for contracts */
+	// Note that this property is currently for documentation purposes only
+	// It's not referenced or used anywhere in the codebase
+	public static array $model_types = [
+		Contract::class,
+		Vehicle::class,
+		Crew::class,
+		User::class,
+		Meal::class,
+		Complaint::class,
+		// other than contract, for example location, terms, photos..etc
+		Dormitory::class,
 	];
+
+	/**
+	 * Get the parent documentable model (any of $this->model_types).
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+	 */
+	public function documentable(): MorphTo
+	{
+		return $this->morphTo();
+	}
 }

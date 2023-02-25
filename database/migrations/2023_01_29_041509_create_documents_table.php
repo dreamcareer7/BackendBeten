@@ -13,14 +13,14 @@ class CreateDocumentsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::create('documents', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
 			$table->string('path');
-			$table->string('model_type');
-			$table->unsignedBigInteger('model_id');
+			$table->unsignedBigInteger('documentable_id');
+			$table->string('documentable_type');
 			$table->timestamps();
 		});
 	}
@@ -30,7 +30,7 @@ class CreateDocumentsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::dropIfExists('documents');
 	}

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
-use App\Models\Traits\HasContract;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\{HasContract, HasDocuments};
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -50,7 +50,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Crew extends Model
 {
-	use HasContract, HasFactory;
+	use HasContract, HasDocuments, HasFactory;
 
 	/*
 	 * Local Query scope

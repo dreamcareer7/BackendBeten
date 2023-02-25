@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
@@ -34,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  */
 class Contract extends Model
 {
+	use HasDocuments;
+
 	/** @var array $model_types Available model types for contracts */
 	// Note that this property is currently for documentation purposes only
 	// It's not referenced or used anywhere in the codebase

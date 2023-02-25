@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -45,7 +46,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Complaint extends Model
 {
-	use HasFactory;
+	use HasDocuments, HasFactory;
 
 	protected $table = 'complaints';
 }
