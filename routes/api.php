@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\API\UserAPIController;
 use App\Http\Controllers\API\ServiceAPIController;
 use App\Http\Controllers\API\DocumentAPIController;
 use App\Http\Controllers\API\HospitalitiesController;
 use App\Http\Controllers\API\ServiceCommitAPIController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 Auth::routes();
+
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
    // Route::resource('/users', App\Http\Controllers\API\UserAPIController::class); //->middleware(['permission:manage_users']);
-    Route::resource('/services', App\Http\Controllers\API\ServiceAPIController::class);
+    Route::resource('/services', ServiceAPIController::class);
 
-    Route::controller(\App\Http\Controllers\API\UserAPIController::class)->prefix('users')
+    Route::controller(UserAPIController::class)->prefix('users')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
             Route::put('','store');
@@ -36,7 +38,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
         });
 
-    Route::controller(\App\Http\Controllers\API\VehicleAPIController::class)->prefix('vehicles')
+    Route::controller(VehicleAPIController::class)->prefix('vehicles')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
             Route::put('','store');
@@ -47,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post('add','store');
 
         });
-    Route::controller(\App\Http\Controllers\API\DormitoryAPIController::class)->prefix('dormitories')
+    Route::controller(DormitoryAPIController::class)->prefix('dormitories')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
             Route::put('','store');
@@ -58,7 +60,7 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post('add','add');
 
     });
-    Route::controller(\App\Http\Controllers\API\GroupsApiController::class)->prefix('groups')
+    Route::controller(GroupsApiController::class)->prefix('groups')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
             Route::put('','store');
@@ -70,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::post('assign_clients/{id}','assignClients');
     });
 
-    Route::controller(\App\Http\Controllers\API\CrewAPIController::class)->prefix('crews')
+    Route::controller(CrewAPIController::class)->prefix('crews')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
             Route::put('','store');
@@ -84,7 +86,7 @@ Route::middleware('auth:sanctum')->group(function(){
     });
 
 
-    Route::controller(\App\Http\Controllers\API\ClientsAPIController::class)->prefix('clients')
+    Route::controller(ClientsAPIController::class)->prefix('clients')
        // ->middleware(['permission:manage_users'])
         ->group(function(){
             Route::put('','store');
@@ -105,7 +107,7 @@ Route::middleware('auth:sanctum')->group(function(){
         Route::get('model-types', 'getModelTypes');
     });
 
-    Route::controller(\App\Http\Controllers\API\PhaseServiceAPIController::class)->prefix('phases')->group(function(){
+    Route::controller(PhaseServiceAPIController::class)->prefix('phases')->group(function(){
        Route::get('paginate','paginate');
        Route::post('add','store');
        Route::post('update/{id}','update');
@@ -119,7 +121,7 @@ Route::middleware('auth:sanctum')->group(function(){
         'populate-create-user-dropdowns',
         [UserAPIController::class, 'populateCreateUserDropdowns']
     );
-    Route::get('services/all', [\App\Http\Controllers\API\ServiceAPIController::class, 'all']);
+    Route::get('services/all', [ServiceAPIController::class, 'all']);
 
     // Get available services to select from when creating a service commit
     Route::get('service/list', [ServiceAPIController::class, 'list']);
@@ -136,10 +138,6 @@ Route::middleware('auth:sanctum')->group(function(){
             Route::get('{id}', 'show');
             Route::patch('{id}', 'update');
             Route::delete('{id}', 'destroy');
-            // Route::post('upload','uploadFile');
-            // Route::get('info/{id}','info');
-            // Route::post('update/{id}','updateDocument');
-            // Route::post('delete/{id}','destroy');
     });
 
     Route::apiResource('hospitalities', HospitalitiesController::class);
@@ -148,18 +146,10 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::controller(DocumentAPIController::class)->prefix('documents')->group(function(){
     Route::get('view/{path}','getFile');
 });
-
+// TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {
     Route::post('/sign_in', [App\Http\Controllers\API\Auth\LoginAPIController::class, 'signIn']);
 
     //we do not need it for client
    // Route::post('/sign_up', [App\Http\Controllers\API\Auth\RegisterAPIController::class, 'register']);
-});
-
-Route::group(['middleware' => ['jwt.verify']], function () {
-
-    Route::resource('/clients', App\Http\Controllers\API\ClientsAPIController::class);
-    Route::resource('/crew', App\Http\Controllers\API\CrewAPIController::class);
-    Route::resource('/documents', App\Http\Controllers\API\DocumentAPIController::class);
-      Route::resource('/phases', App\Http\Controllers\API\PhaseAPIController::class);
 });

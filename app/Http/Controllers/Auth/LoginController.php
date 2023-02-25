@@ -60,25 +60,23 @@ class LoginController extends Controller
         $success=false;
         $password = $request->input('password');
         $email = $request->input('email');
-        $user = User::where('email',$email)->first();
-        if($user){
+        $user = User::where('email', $email)->first();
+        if ($user) {
             //check for password
             $dbpassword = $user->password;
-            if(Hash::check($password,$dbpassword)){
+            if (Hash::check($password, $dbpassword)) {
                 //issue new Token
                 $token= $user->createToken("System Login")->plainTextToken;
                 $success = true;
                 $message= "successfully logged in.";
-            }
-            else{
+            } else {
                 $message = "Invalid Password";
             }
-        }
-        else{
+        } else {
             $message="Invalid email address.";
         }
 
-        if($success){
+        if ($success) {
             return response()->json([
                 "success"=>$success,
                 "message"=>$message,
@@ -93,5 +91,4 @@ class LoginController extends Controller
 
         return $this->sendFailedLoginResponse($request);
     }
-
 }
