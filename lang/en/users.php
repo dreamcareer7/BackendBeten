@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 	'model_header'=>'Users list',
 	'show_header'=>'Show user',

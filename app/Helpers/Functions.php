@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*************************************
  *	safeResponse
  *		return json string of data sent

@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 use Spatie\Permission\Models\Permission;
@@ -11,15 +12,15 @@ use Spatie\Permission\PermissionRegistrar;
 
 class PermissionsTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        // Reset cached roles and permissions
-        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		// Reset cached roles and permissions
+		app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
 		$permissions = [
 
@@ -38,53 +39,53 @@ class PermissionsTableSeeder extends Seeder
 			'roles.delete',
 			'roles.*',
 
-            'crew.index',
-            'crew.create',
-            'crew.edit',
-            'crew.delete',
-            'crew.view',
+			'crew.index',
+			'crew.create',
+			'crew.edit',
+			'crew.delete',
+			'crew.view',
 
-            'services.index',
-            'services.create',
-            'services.edit',
-            'services.delete',
-            'services.view',
+			'services.index',
+			'services.create',
+			'services.edit',
+			'services.delete',
+			'services.view',
 
-            'vehicles.index',
-            'vehicles.create',
-            'vehicles.edit',
-            'vehicles.delete',
-            'vehicles.view',
+			'vehicles.index',
+			'vehicles.create',
+			'vehicles.edit',
+			'vehicles.delete',
+			'vehicles.view',
 
-            'groups.index',
-            'groups.create',
-            'groups.edit',
-            'groups.delete',
-            'groups.view',
+			'groups.index',
+			'groups.create',
+			'groups.edit',
+			'groups.delete',
+			'groups.view',
 
-            'clients.index',
-            'clients.create',
-            'clients.edit',
-            'clients.delete',
-            'clients.view',
+			'clients.index',
+			'clients.create',
+			'clients.edit',
+			'clients.delete',
+			'clients.view',
 
-            'documents.index',
-            'documents.create',
-            'documents.edit',
-            'documents.delete',
-            'documents.view',
+			'documents.index',
+			'documents.create',
+			'documents.edit',
+			'documents.delete',
+			'documents.view',
 
-            'contracts.index',
-            'contracts.create',
-            'contracts.edit',
-            'contracts.delete',
-            'contracts.view',
+			'contracts.index',
+			'contracts.create',
+			'contracts.edit',
+			'contracts.delete',
+			'contracts.view',
 
-            'complaints.index',
-            'complaints.create',
-            'complaints.edit',
-            'complaints.delete',
-            'complaints.view',
+			'complaints.index',
+			'complaints.create',
+			'complaints.edit',
+			'complaints.delete',
+			'complaints.view',
 
 			'settings.general',
 			'settings.*',
@@ -92,7 +93,7 @@ class PermissionsTableSeeder extends Seeder
 
 		foreach( $permissions as $permit )
 			Permission::create(['name' => $permit]);
-    }
+	}
 
 
 }

@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasContract
 {
-    /**
-     * Get the contract belonging to the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
-     */
-    public function contract(): MorphOne
-    {
-        return $this->morphOne(Contract::class, 'contractable');
-    }
+	/**
+	 * Get the contract belonging to the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+	 */
+	public function contract(): MorphOne
+	{
+		return $this->morphOne(Contract::class, 'contractable');
+	}
 }

@@ -1,45 +1,78 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * App\Models\Dormitory
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $phone
+ * @property \App\Models\Country|null $country
+ * @property string $city_id
+ * @property string $location
+ * @property string|null $coordinate json of geometry
+ * @property int $is_active
+ * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory countryName()
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCityId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCoordinate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Dormitory extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $table = 'dormitories';
+	protected $table = 'dormitories';
 
-    protected $fillable=[
-        'title' ,
-        'phone' ,
-        'country' ,
-        'city_id' ,
-        'location' ,
-        'coordinate' ,
-        'is_active' ,
-    ];
+	protected $fillable=[
+		'title' ,
+		'phone' ,
+		'country' ,
+		'city_id' ,
+		'location' ,
+		'coordinate' ,
+		'is_active' ,
+	];
 
 
-    /*
-    * Scopes
-    */
+	/*
+	* Scopes
+	*/
 
-    public function scopeCountryName($query)
-    {
-        return $query->addSelect(['country_name' => Country::select('name')
-            ->whereColumn('country', 'countries.id')
-            ->limit(1)
-        ]);
-    }
+	public function scopeCountryName($query)
+	{
+		return $query->addSelect(['country_name' => Country::select('name')
+			->whereColumn('country', 'countries.id')
+			->limit(1)
+		]);
+	}
 
-    /*
-     * Relationships
-     */
+	/*
+	 * Relationships
+	 */
 
-    public function country()
-    {
-        return $this->belongsTo(Country::class, 'id', 'country');
-    }
+	public function country()
+	{
+		return $this->belongsTo(Country::class, 'id', 'country');
+	}
 }

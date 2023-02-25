@@ -8,31 +8,31 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateServicesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up(): void
-    {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->enum('city', ['Jeddah', 'Medina', 'Ynbu', 'Taif']);
-            $table->datetime('before_date')->nullable();
-            $table->datetime('exact_date')->nullable();
-            $table->datetime('after_date')->nullable();
-            $table->timestamps();
-        });
-    }
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up(): void
+	{
+		Schema::create('services', function (Blueprint $table) {
+			$table->id();
+			$table->string('title');
+			$table->enum('city', ['Jeddah', 'Medina', 'Ynbu', 'Taif']);
+			$table->datetime('before_date')->nullable();
+			$table->datetime('exact_date')->nullable();
+			$table->datetime('after_date')->nullable();
+			$table->timestamps();
+		});
+	}
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('services');
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('services');
+	}
 }

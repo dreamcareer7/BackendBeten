@@ -10,14 +10,14 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        Model::unguard();
-        Paginator::useBootstrap();
-    }
+	/**
+	 * Bootstrap any application services.
+	 *
+	 * @return void
+	 */
+	public function boot(): void
+	{
+		Model::unguard();
+		Paginator::useBootstrap();
+	}
 }
