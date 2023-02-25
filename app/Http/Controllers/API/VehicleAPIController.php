@@ -8,7 +8,7 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\{NewVehicleRequest, VehicleUpdateRequest};
+use App\Http\Requests\{NewVehicleRequest, UpdateVehicleRequest};
 
 class VehicleAPIController extends Controller
 {
@@ -118,17 +118,20 @@ class VehicleAPIController extends Controller
 	 * @param  \App\Models\Service  $vehicle
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(VehicleUpdateRequest $request, $id)
+	public function update(UpdateVehicleRequest $request, $id)
 	{
-		//
-		$data = $request->only([
-			"model",
-			"registration",
-			"manufacturer",
-			"year",
-			"badge",
+		$v = Vehicle::find($id);
+		if ($request->missing('documents')) {
+			$v->update([
+			"model" => $request->model,
+			"registration" => $request->registration,
+			"manufacturer" => $request->manufacturer,
+			"year" => $request->year,
+			"badge" => $request->badge,
 		]);
-		Vehicle::where('id',$id)->update($data);
+		} else {
+			$v->update(); // trigger update for trait interecfp
+		}
 
 		return response()->json([
 			"success"=>true,

@@ -48,7 +48,6 @@ class Document extends Model
 		Vehicle::class,
 		Crew::class,
 		User::class,
-		Meal::class,
 		Complaint::class,
 		// other than contract, for example location, terms, photos..etc
 		Dormitory::class,
