@@ -136,7 +136,9 @@ class UserAPIController extends Controller
 		// if ($this->authUser->hasPermissionTo('users.edit')) {
 
 		$user = User::findorfail($user_id);
-		$user->name = $request->input('name');
+		if ($request->missing('documents')) {
+			# code...
+			$user->name = $request->input('name');
 		$user->email = $request->input('email');
 		$user->username = $request->input('username');
 		$user->is_active = $request->input('is_active');
@@ -144,9 +146,11 @@ class UserAPIController extends Controller
 		if ($request->password > ' ') { // change password only if user entered a new one
 			$user->password = Hash::make($request->input('password'));
 		}
+		$user->syncRoles($request->input('roles'));
+		}
+		
 
 		$user->save();
-		$user->syncRoles($request->input('roles'));
 
 		return response()->json(([
 			'message' => 'user updated successfully',

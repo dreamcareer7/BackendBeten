@@ -21,9 +21,14 @@ trait HasDocuments
 	{
 		static::saving(function ($model) {
 			if (request()->hasFile('documents')) {
-				$model->documents()->createMany([
-					'path' => request()->documents->store('documents')
+				foreach (request()->documents as $document) {
+					info($document);
+					$model->documents()->create([
+						'title' => $document->getClientOriginalName(),
+					'path' => $document->store('documents')
 				]);
+				}
+				
 			}
 		});
 	}
