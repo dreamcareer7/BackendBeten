@@ -116,17 +116,21 @@ class CrewAPIController extends Controller
 			->exists();
 		if(!$exists){
 			Crew::where('id',$crew->id)->update($data);
+			if ($request->hasFile('contract')) {
+				$path = $request->contract->store('contracts');
+				$crew->contract()->create([
+					'url' => $path
+				]);
+			}
 			return response()->json( ([
 				'message'       => 'Crew updated Successfully',
 				'success'   => true,
 			]));
 		}
-		else{
-			return response()->json( [
-				'message'       => 'A crew already exists with same id type, id number and country',
-				'success'   => false,
-			],422);
-		}
+		return response()->json( [
+			'message'       => 'A crew already exists with same id type, id number and country',
+			'success'   => false,
+		],422);
 	}
 
 	/**

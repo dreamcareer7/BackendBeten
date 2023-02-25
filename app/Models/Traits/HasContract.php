@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasContract
 {
+	// TODO: intercept updating
 	/**
 	 * Get the contract belonging to the model.
 	 *
