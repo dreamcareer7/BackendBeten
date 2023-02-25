@@ -98,7 +98,7 @@ class DormitoryAPIController extends Controller
 			"coordinate",
 			"is_active",
 		]);
-		Dormitory::where('id',$id)->update($data);
+		$dormitory->update($data);
 		return response()->json([
 			"success"=>true,
 			"message"=>"Dormitory updated Successfully."

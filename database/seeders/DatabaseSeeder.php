@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Crew;
 use Illuminate\Database\Seeder;
+use App\Models\{Crew, Dormitory, Vehicle};
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,5 +24,7 @@ class DatabaseSeeder extends Seeder
 			UsersTableSeeder::class,
 		]);
 		Crew::factory()->create();
+		Vehicle::factory()->create();
+		Dormitory::factory()->create();
 	}
 }

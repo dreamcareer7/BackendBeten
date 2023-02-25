@@ -9,7 +9,25 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 trait HasContract
 {
-	// TODO: intercept updating
+	/**
+	 * The "boot" method of the model.
+	 *
+	 * Intercept the update, check if there's a contract file on the request
+	 * and if so, create a new contract and attach it to the model
+	 *
+	 * @return void
+	 */
+	protected static function bootHasContract(): void
+	{
+		static::saving(function ($model) {
+			if (request()->hasFile('contract')) {
+				$model->contract()->create([
+					'url' => request()->contract->store('contracts')
+				]);
+			}
+		});
+	}
+
 	/**
 	 * Get the contract belonging to the model.
 	 *

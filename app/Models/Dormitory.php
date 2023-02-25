@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -40,25 +41,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Dormitory extends Model
 {
-	use HasFactory;
-
-	protected $table = 'dormitories';
-
-	protected $fillable=[
-		'title' ,
-		'phone' ,
-		'country' ,
-		'city_id' ,
-		'location' ,
-		'coordinate' ,
-		'is_active' ,
-	];
-
+	use HasContract, HasFactory;
 
 	/*
 	* Scopes
 	*/
-
 	public function scopeCountryName($query)
 	{
 		return $query->addSelect(['country_name' => Country::select('name')
