@@ -31,7 +31,7 @@ class CreateHospitalityRequest extends FormRequest
 			'required_date' => 'bail|required|date_format:Y-m-d',
 			// TODO: figure out what the maximum quantity is
 			// Can be decimal
-			'quantity' => 'bail|required|decimal|min:1|max:',
+			'quantity' => 'bail|required|decimal:2|min:1|max:',
 			// TODO: replace by users table if required
 			'received_by' => 'bail|required|integer|exists:crews,id',
 			'extra' => 'bail|nullable|string|min:3|max:65535', // mysql max
