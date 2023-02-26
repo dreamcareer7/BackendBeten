@@ -41,4 +41,9 @@ class Service extends Model
 	 * @var bool
 	 */
 	public $timestamps = false;
+
+	public function city()
+	{
+		return $this->belongsTo(City::class, 'city');
+	}
 }

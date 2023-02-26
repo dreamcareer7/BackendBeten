@@ -26,7 +26,7 @@ class ServiceAPIController extends Controller
 	{
 		$services = Service::select(
 			'id', 'title', 'city', 'before_date', 'exact_date', 'after_date'
-		)->get();
+		)->with('city:id,title')->get();
 
 		return response()->json(data: $services, status: 200);
 	}
@@ -106,7 +106,7 @@ class ServiceAPIController extends Controller
 	public function destroy($id)
 	{
 		//if ($this->authUser->hasPermissionTo('services.delete')) {
-			$crew = Service::delete($id);
+			$crew = Service::find($id)->delete($id);
 
 			return response()->json( ([
 				'message'       => 'services Deleted Successfully',

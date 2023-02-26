@@ -18,7 +18,9 @@ class CreatePhasesTable extends Migration
 		Schema::create('phases', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			$table->boolean('is_required');
+			// TODO: not sure if this is nullable
+			// Check requirements
+			$table->boolean('is_required')->nullable();
 		});
 	}
 
