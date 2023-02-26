@@ -35,6 +35,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Group extends Model
 {
 	use HasFactory;
+
+	/**
+	 * Indicates if the model should be timestamped.
+	 *
+	 * @var bool
+	 */
+	public $timestamps = false;
+
 	public function crew(){
 		return $this->hasOne(Crew::class,'id','crew_id');
 	}

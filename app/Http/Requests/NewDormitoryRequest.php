@@ -12,8 +12,7 @@ class NewDormitoryRequest extends FormRequest
 	{
 		return [
 			'title' => 'required',
-			'phone'=>['required'],
-			'country'=>['required'],
+			'phones'=>['required'],
 			'city_id'=>['required'],
 			 'location' => 'required',
 			 'coordinate' => 'required',

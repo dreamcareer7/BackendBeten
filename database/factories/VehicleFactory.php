@@ -23,7 +23,7 @@ class VehicleFactory extends Factory
 			'manufacturer' => fake()->name,
 			'year' => fake()->year,
 			'registration' => fake()->name,
-			'badge' => fake()->name,
+			'badge' => fake()->randomNumber(),
 		];
 	}
 }

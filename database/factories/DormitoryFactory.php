@@ -24,7 +24,6 @@ class DormitoryFactory extends Factory
 			'country' => fake()->country,
 			'city_id' => 1,
 			'location' => fake()->address,
-			'coordinate' => 'fdjklsflksdj',
 		];
 	}
 }

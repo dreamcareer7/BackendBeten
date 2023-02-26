@@ -42,8 +42,7 @@ class DormitoryAPIController extends Controller
 		//
 		$data = $request->only([
 		   "title",
-		   "phone",
-		   "country",
+		   "phones",
 		   "city_id",
 		   "location",
 		   "coordinate",
@@ -91,8 +90,7 @@ class DormitoryAPIController extends Controller
 		$dormitory = Dormitory::findorfail($id);
 		$data = $request->only([
 			"title",
-			"phone",
-			"country",
+			"phones",
 			"city_id",
 			"location",
 			"coordinate",
@@ -125,8 +123,7 @@ class DormitoryAPIController extends Controller
 	public function paginate(Request $request){
 		$users = Dormitory::countryName()->orderby('id','desc');
 		$title= $request->input('title') ?? null;
-		$phone= $request->input('phone') ?? null;
-		$country= $request->input('country') ?? null;
+		$phone= $request->input('phones') ?? null;
 		$city_id= $request->input('city_id') ?? null;
 		$location= $request->input('location') ?? null;
 		$coordinate= $request->input('coordinate') ?? null;
@@ -136,10 +133,7 @@ class DormitoryAPIController extends Controller
 			$users->where('title','LIKE',$title.'%');
 		}
 		if($phone){
-			$users->where('phone','LIKE',$phone.'%');
-		}
-		if($country){
-			$users->where('country','LIKE',$country.'%');
+			$users->where('phones','LIKE',$phone.'%');
 		}
 		if($city_id){
 			$users->where('city_id','LIKE',$city_id.'%');

@@ -18,11 +18,11 @@ class CreateDormitoriesTable extends Migration
 		Schema::create('dormitories', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			$table->string('phone');
-			$table->string('country');
-			$table->string('city_id');
+			$table->string('phones');
+			$table->unsignedBigInteger('city_id');
+			$table->foreign('city_id')->references('id')->on('cities');
 			$table->string('location');
-			$table->string('coordinate')->nullable()->comment('json of geometry');
+			$table->geometry('coordinate')->nullable()->comment('json of geometry');
 			$table->boolean('is_active')->default(true);
 
 			$table->softDeletes();

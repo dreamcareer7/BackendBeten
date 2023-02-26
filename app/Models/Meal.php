@@ -10,4 +10,11 @@ use Illuminate\Database\Eloquent\Model;
 class Meal extends Model
 {
 	use HasDocuments;
+
+	/**
+	 * Indicates if the model should be timestamped.
+	 *
+	 * @var bool
+	 */
+	public $timestamps = false;
 }

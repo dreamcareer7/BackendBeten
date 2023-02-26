@@ -19,9 +19,9 @@ class CreateVehiclesTable extends Migration
 			$table->id();
 			$table->string('model');
 			$table->string('manufacturer');
-			$table->unsignedInteger('year');
+			$table->year('year');
 			$table->string('registration');
-			$table->string('badge');
+			$table->integer('badge');
 			$table->softDeletes();
 			$table->timestamps();
 		});
