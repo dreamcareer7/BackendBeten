@@ -9,7 +9,7 @@ use App\Models\{Crew, Document};
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DocumentResource;
 use Illuminate\Http\{JsonResponse, Request};
-use Illuminate\Support\Facades\{Auth, File, Storage};
+use Illuminate\Support\Facades\{Auth, File, Storage, Validator};
 use App\Http\Requests\{NewDocumentRequest, UpdateDocumentRequest};
 
 class DocumentAPIController extends Controller
@@ -103,19 +103,22 @@ class DocumentAPIController extends Controller
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified document from database.
 	 *
-	 * @return JsonResponse
+	 * @param int $id The ID of the document to delete.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function destroy($id)
+	public function destroy(int $id): JsonResponse
 	{
-		Document::findorfail($id);
-		Document::where('id',$id)->delete();
-		 return response()->json( ([
-			'message'       => 'Document Deleted Successfully',
-			'success'          =>  true,
-		]));
-
+		Validator::make(['id' => $id], [
+			'id' => 'bail|required|integer|exists:documents,id'
+		])->validate();
+		$document = Document::select('id', 'path')->where('id', $id)->first();
+		$document->delete();
+		// Should also delete the file
+		Storage::delete($document->path);
+		return response()->json(status: 204); // No content
 	}
 
 

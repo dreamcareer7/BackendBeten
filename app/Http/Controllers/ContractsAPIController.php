@@ -8,6 +8,7 @@ use App\Models\Contract;
 use Illuminate\Support\Str;
 use App\Http\Resources\ContractResource;
 use Illuminate\Http\{JsonResponse, Request};
+use Illuminate\Support\Facades\{Storage, Validator};
 
 class ContractsAPIController extends Controller
 {
@@ -90,13 +91,21 @@ class ContractsAPIController extends Controller
 	}
 
 	/**
-	 * Remove the specified contract from storage.
+	 * Remove the specified contract from database.
 	 *
-	 * @param  int  $id
-	 * @return \Illuminate\Http\Response
+	 * @param int $id The ID of the contract to delete.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function destroy($id)
+	public function destroy(int $id): JsonResponse
 	{
-		//
+		Validator::make(['id' => $id], [
+			'id' => 'bail|required|integer|exists:contracts,id'
+		])->validate();
+		$contract = Contract::select('id', 'url')->where('id', $id)->first();
+		$contract->delete();
+		// Should also delete the file
+		Storage::delete($contract->url);
+		return response()->json(status: 204); // No content
 	}
 }

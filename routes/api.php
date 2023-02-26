@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::resource('/cities', CitiesController::class);
 	Route::resource('/meals', CitiesController::class);
 	Route::get('/contracts/{type}/{id}', [ContractsAPIController::class, 'index']);
+	Route::delete('/contracts/{id}', [ContractsAPIController::class, 'destroy']);
 	Route::get('/documents/{type}/{id}', [DocumentAPIController::class, 'list']);
 
 	Route::controller(UserAPIController::class)->prefix('users')
@@ -114,7 +115,7 @@ Route::middleware('auth:sanctum')->group(function () {
 		Route::post('upload','uploadFile');
 		Route::get('info/{id}','info');
 		Route::post('update/{id}','updateDocument');
-		Route::post('delete/{id}','destroy');
+		Route::delete('{id}', 'destroy');
 		Route::get('model-types', 'getModelTypes');
 	});
 
