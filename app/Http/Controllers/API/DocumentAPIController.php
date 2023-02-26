@@ -7,6 +7,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Support\Str;
 use App\Models\{Crew, Document};
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DocumentResource;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Support\Facades\{Auth, File, Storage};
 use App\Http\Requests\{NewDocumentRequest, UpdateDocumentRequest};
@@ -236,5 +237,28 @@ class DocumentAPIController extends Controller
 		// Retreive the model types from the hardcoded static public property
 		// of the Document eloquent model
 		return response()->json(data: Document::$model_types);
+	}
+
+	/**
+	 * Display a listing of the documents for a given model.
+	 *
+	 * @param string $type the model type
+	 * @param int $id the model id
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function list(string $type, int $id): JsonResponse
+	{
+		$type = 'App\Models\\' . Str::title($type);
+		// If the model specified is not in the document model types
+		// Refuse the query
+		if (! in_array($type, Document::$model_types)) {
+			return response()->json(status: 400); // Bad request
+		}
+		$documents = Document::whereDocumentableType($type)
+			->whereDocumentableId($id)
+			->select('id', 'path')
+			->get();
+		return response()->json(DocumentResource::collection($documents));
 	}
 }

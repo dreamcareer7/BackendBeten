@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::resource('/cities', CitiesController::class);
 	Route::resource('/meals', CitiesController::class);
 	Route::get('/contracts/{type}/{id}', [ContractsAPIController::class, 'index']);
+	Route::get('/documents/{type}/{id}', [DocumentAPIController::class, 'list']);
 
 	Route::controller(UserAPIController::class)->prefix('users')
 		->group(function () {
