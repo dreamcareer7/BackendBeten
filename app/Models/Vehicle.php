@@ -33,6 +33,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereRegistration($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereYear($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
+ * @method static \Database\Factories\VehicleFactory factory($count = null, $state = [])
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @mixin \Eloquent
  */
 class Vehicle extends Model

@@ -30,6 +30,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
  * @mixin \Eloquent
  */
 class Group extends Model

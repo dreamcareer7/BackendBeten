@@ -37,6 +37,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereUpdatedAt($value)
+ * @property string $phones
+ * @property-read \App\Models\Contract|null $contract
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
+ * @method static \Database\Factories\DormitoryFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhones($value)
  * @mixin \Eloquent
  */
 class Dormitory extends Model

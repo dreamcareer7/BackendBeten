@@ -27,6 +27,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property int|null $is_required
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @method static \Illuminate\Database\Eloquent\Builder|Phase whereIsRequired($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PhaseService> $services
  * @mixin \Eloquent
  */
 class Phase extends Model
