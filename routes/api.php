@@ -12,6 +12,7 @@ use App\Http\Controllers\API\{
 	DormitoryAPIController,
 	GroupsApiController,
 	HospitalitiesController,
+	MealsAPIController,
 	PhaseServiceAPIController,
 	ServiceAPIController,
 	ServiceCommitAPIController,
@@ -32,9 +33,9 @@ Auth::routes();
 
 Route::middleware('auth:sanctum')->group(function () {
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
-	Route::resource('/services', ServiceAPIController::class);
-	Route::resource('/cities', CitiesController::class);
-	Route::resource('/meals', CitiesController::class);
+	Route::apiResource('/services', ServiceAPIController::class);
+	Route::apiResource('/cities', CitiesController::class);
+	Route::apiResource('/meals', MealsAPIController::class);
 	Route::get('/contracts/{type}/{id}', [ContractsAPIController::class, 'index']);
 	Route::delete('/contracts/{id}', [ContractsAPIController::class, 'destroy']);
 	Route::get('/documents/{type}/{id}', [DocumentAPIController::class, 'list']);
