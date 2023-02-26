@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use App\Models\Grammar\ExtendedMySQLGrammar;
+use Illuminate\Support\Facades\{DB, Schema};
 use Illuminate\Database\Migrations\Migration;
 
 class CreateDormitoriesTable extends Migration
@@ -13,9 +14,11 @@ class CreateDormitoriesTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
-		Schema::create('dormitories', function (Blueprint $table) {
+		DB::connection()->setSchemaGrammar(new ExtendedMySQLGrammar());
+		$schema = DB::connection()->getSchemaBuilder();
+		$schema->create('dormitories', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
 			$table->string('phones');
@@ -35,7 +38,7 @@ class CreateDormitoriesTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::dropIfExists('dormitories');
 	}
