@@ -146,9 +146,9 @@ class VehicleAPIController extends Controller
 	 * @param  \App\Models\Service  $vehicle
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Service $vehicle)
+	public function delete(Vehicle $vehicle)
 	{
-		//
+		$vehicle->forceDelete();
 	}
 
 
