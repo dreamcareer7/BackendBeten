@@ -20,8 +20,7 @@ class DormitoryFactory extends Factory
 	{
 		return [
 			'title' => fake()->name,
-			'phone' => fake()->phoneNumber,
-			'country' => fake()->country,
+			'phones' => fake()->phoneNumber,
 			'city_id' => 1,
 			'location' => fake()->address,
 		];

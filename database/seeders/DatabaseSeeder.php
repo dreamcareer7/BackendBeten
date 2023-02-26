@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\{Crew, Dormitory, Vehicle};
+use App\Models\{City, Crew, Dormitory, Vehicle};
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
 		]);
 		Crew::factory()->create();
 		Vehicle::factory()->create();
+		City::create([
+			'title' => 'Makkah',
+		]);
 		Dormitory::factory()->create();
 	}
 }
