@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
+use App\Http\Controllers\ContractsAPIController;
 use App\Http\Controllers\API\{
 	CitiesController,
 	ClientsAPIController,
@@ -34,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::resource('/services', ServiceAPIController::class);
 	Route::resource('/cities', CitiesController::class);
 	Route::resource('/meals', CitiesController::class);
+	Route::get('/contracts/{type}/{id}', [ContractsAPIController::class, 'index']);
 
 	Route::controller(UserAPIController::class)->prefix('users')
 		->group(function () {

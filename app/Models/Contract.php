@@ -12,25 +12,23 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * App\Models\Contract
  *
  * @property int $id
- * @property string $reference
- * @property string $model_type
- * @property int $model_id
- * @property string|null $extra json conditions
- * @property string|null $deleted_at
+ * @property string $url
+ * @property int $contractable_id
+ * @property string $contractable_type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read Model|\Eloquent $contractable
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
  * @method static \Illuminate\Database\Eloquent\Builder|Contract newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Contract newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Contract query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereContractableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereContractableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contract whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contract whereExtra($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contract whereModelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contract whereModelType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Contract whereReference($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereUrl($value)
  * @mixin \Eloquent
  */
 class Contract extends Model
