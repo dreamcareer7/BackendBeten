@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Models\City;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\{JsonResponse, Request};
 
 class CitiesController extends Controller
 {
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of the cities.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index()
+	public function index(): JsonResponse
 	{
 		return response()->json(City::select('id', 'title')->get());
 	}

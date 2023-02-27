@@ -25,9 +25,7 @@ class DatabaseSeeder extends Seeder
 		]);
 		Crew::factory()->create();
 		Vehicle::factory()->create();
-		City::create([
-			'title' => 'Makkah',
-		]);
+		City::factory()->count(count: 5)->create();
 		Dormitory::factory()->create();
 		Meal::factory()->create();
 		Group::factory()->create();
