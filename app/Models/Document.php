@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -21,7 +20,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $document_type
  * @property string|null $description
  * @property int|null $uploaded_by
- * @property-read Model|\Eloquent $documentable
  * @method static \Illuminate\Database\Eloquent\Builder|Document newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Document newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Document query()
@@ -53,14 +51,4 @@ class Document extends Model
 		// other than contract, for example location, terms, photos..etc
 		Dormitory::class,
 	];
-
-	/**
-	 * Get the parent documentable model (any of $this->model_types).
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-	 */
-	public function documentable(): MorphTo
-	{
-		return $this->morphTo();
-	}
 }

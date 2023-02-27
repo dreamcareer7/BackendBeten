@@ -44,15 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	/** documents */
 	Route::get('/documents/{type}/{id}', [DocumentAPIController::class, 'list']);
 	Route::post('/documents/{type}/{id}', [DocumentAPIController::class, 'store']);
-	Route::controller(DocumentAPIController::class)->prefix('documents')
-		->group(function () {
-			Route::get('paginate','paginate');
-			Route::post('upload','uploadFile');
-			Route::get('info/{id}','info');
-			Route::post('update/{id}','updateDocument');
-			Route::delete('{id}', 'destroy');
-			Route::get('model-types', 'getModelTypes');
-	});
+	Route::delete('/documents/{id}', [DocumentAPIController::class, 'destroy']);
 
 	/** End contracts and documents */
 
@@ -163,8 +155,9 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('hospitalities', HospitalitiesController::class);
 
 });
-Route::controller(DocumentAPIController::class)->prefix('documents')->group(function () {
-	Route::get('view/{path}','getFile');
+Route::controller(DocumentAPIController::class)->prefix('documents')
+	->group(function () {
+		Route::get('view/{path}','getFile');
 });
 // TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {
