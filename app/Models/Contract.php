@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Traits\HasDocuments;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 /**
  * App\Models\Contract
@@ -31,7 +31,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Contract extends Model
 {
-	use HasDocuments;
+	/**
+	 * A contract is an arbitrary record in the database
+	 * i.e it does not hold actual files
+	 * We create multiple documents that do, belonging to the contract
+	 * But the document record itself belong to the model type coming
+	 * from the request, this explains why Contract model uses the trait
+	 * HasDocuments
+	 */
+	use HasDocuments, SoftDeletes;
+
+	/**
+	 * The name of the "updated at" column.
+	 *
+	 * @var string|null
+	 */
+	const UPDATED_AT = null;
 
 	/** @var array $model_types Available model types for contracts */
 	// This property is used for validation ATM

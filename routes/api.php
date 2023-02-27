@@ -37,26 +37,20 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
 
-	/** Contracts and documents */
-	Route::get('/contracts/{type}/{id}', [ContractsAPIController::class, 'index']);
-	Route::post('/contracts/{type}/{id}', [ContractsAPIController::class, 'store']);
-	Route::delete('/contracts/{id}', [ContractsAPIController::class, 'destroy']);
-	/** documents */
-	Route::get('/documents/{type}/{id}', [DocumentAPIController::class, 'list']);
-	Route::post('/documents/{type}/{id}', [DocumentAPIController::class, 'store']);
-	Route::delete('/documents/{id}', [DocumentAPIController::class, 'destroy']);
-
-	/** End contracts and documents */
-
-	Route::controller(UserAPIController::class)->prefix('users')
+	/** Contracts */
+	Route::controller(ContractsAPIController::class)->prefix('contracts')
 		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','delete');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-
+			Route::get('/{type}/{id}', 'index');
+			Route::post('/{type}/{id}', 'store');
+			Route::delete('/{id}', 'destroy');
+		});
+	
+	/** Documents */
+	Route::controller(DocumentAPIController::class)->prefix('documents')
+		->group(function () {
+			Route::get('/{type}/{id}', 'index');
+			Route::post('/{type}/{id}', 'store');
+			Route::delete('/{id}', 'destroy');
 		});
 
 	Route::controller(VehicleAPIController::class)->prefix('vehicles')

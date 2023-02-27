@@ -19,9 +19,12 @@ class CreateDocumentsTable extends Migration
 			$table->id();
 			$table->string('title');
 			$table->string('path');
-			$table->unsignedBigInteger('documentable_id');
-			$table->string('documentable_type');
-			$table->timestamps();
+			$table->string('model_type');
+			$table->unsignedBigInteger('model_id');
+			$table->unsignedBigInteger('created_by');
+			$table->timestamp('created_at');
+			$table->unsignedBigInteger('deleted_by')->nullable();
+			$table->softDeletes();
 		});
 	}
 

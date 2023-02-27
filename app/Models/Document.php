@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 /**
  * App\Models\Document
@@ -37,7 +37,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Document extends Model
 {
-	use HasFactory;
+	use HasFactory, SoftDeletes;
+
+	/**
+	 * The name of the "updated at" column.
+	 *
+	 * @var string|null
+	 */
+	const UPDATED_AT = null;
 
 	/** @var array $model_types Available model types for contracts */
 	// Note that this property is currently for documentation purposes only
