@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Traits\{HasContract, HasDocuments};
+use App\Models\Traits\{HasContracts, HasDocuments};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -44,5 +44,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Vehicle extends Model
 {
-	use HasContract, HasDocuments, HasFactory;
+	use HasContracts, HasDocuments, HasFactory;
 }

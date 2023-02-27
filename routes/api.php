@@ -155,6 +155,14 @@ Route::middleware('auth:sanctum')->group(function () {
 
 	Route::apiResource('hospitalities', HospitalitiesController::class);
 
+	// TODO: add endpoints to upload documents and contracts
+	// This is necessary to bypass the models validation upon updating
+	// Thinking................
+	// POST /documents/{model_type}/{model_id}
+	// Controller will trigger an arbitrary update so the traits functions run??
+	// or we can have the controller validate the file format and attach dynamically
+	// Not sure which one is better.....
+
 });
 Route::controller(DocumentAPIController::class)->prefix('documents')->group(function () {
 	Route::get('view/{path}','getFile');

@@ -41,8 +41,7 @@ class Contract extends Model
 	use HasDocuments;
 
 	/** @var array $model_types Available model types for contracts */
-	// Note that this property is currently for documentation purposes only
-	// It's not referenced or used anywhere in the codebase
+	// This property is used for validation ATM
 	public static array $model_types = [
 		Crew::class,
 		Vehicle::class,
