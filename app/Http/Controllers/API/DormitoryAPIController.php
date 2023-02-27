@@ -120,34 +120,35 @@ class DormitoryAPIController extends Controller
 		]);
 	}
 
-	public function paginate(Request $request){
-		$users = Dormitory::countryName()->orderby('id','desc');
-		$title= $request->input('title') ?? null;
-		$phone= $request->input('phones') ?? null;
-		$city_id= $request->input('city_id') ?? null;
-		$location= $request->input('location') ?? null;
-		$coordinate= $request->input('coordinate') ?? null;
-		$is_active= $request->input('is_active') ?? null;
-		$per_page= $request->input('per_page') ?? 25;
-		if($title){
-			$users->where('title','LIKE',$title.'%');
+	public function paginate(Request $request)
+	{
+		$dormitories = Dormitory::orderby('id','desc');
+		$title = $request->input('title') ?? null;
+		$phone = $request->input('phones') ?? null;
+		$city_id = $request->input('city_id') ?? null;
+		$location = $request->input('location') ?? null;
+		$coordinate = $request->input('coordinate') ?? null;
+		$is_active = $request->input('is_active') ?? null;
+		$per_page = $request->input('per_page') ?? 25;
+		if ($title){
+			$dormitories->where('title','LIKE',$title.'%');
 		}
-		if($phone){
-			$users->where('phones','LIKE',$phone.'%');
+		if ($phone){
+			$dormitories->where('phones','LIKE',$phone.'%');
 		}
-		if($city_id){
-			$users->where('city_id','LIKE',$city_id.'%');
+		if ($city_id){
+			$dormitories->where('city_id','LIKE',$city_id.'%');
 		}
-		if($location){
-			$users->where('location','LIKE',$location.'%');
+		if ($location){
+			$dormitories->where('location','LIKE',$location.'%');
 		}
-		if($coordinate){
-			$users->where('coordinate','LIKE',$coordinate.'%');
+		if ($coordinate){
+			$dormitories->where('coordinate','LIKE',$coordinate.'%');
 		}
-		if($is_active){
-			$users->where('is_active',$is_active);
+		if ($is_active){
+			$dormitories->where('is_active',$is_active);
 		}
-		return response()->json($users->paginate($per_page));
+		return response()->json($dormitories->paginate($per_page));
 	}
 
 }
