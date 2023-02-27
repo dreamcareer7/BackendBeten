@@ -29,6 +29,12 @@ trait HasDocuments
 				}
 			}
 		});
+
+		// Any model that uses this trait should append a property called
+		// is_documentable with a value of true
+		static::retrieved(function ($model) {
+			$model->is_documentable = true;
+		});
 	}
 
 	/**
