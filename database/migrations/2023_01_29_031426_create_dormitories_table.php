@@ -27,7 +27,6 @@ class CreateDormitoriesTable extends Migration
 			$table->string('location');
 			$table->geometry('coordinate')->nullable()->comment('json of geometry');
 			$table->boolean('is_active')->default(true);
-
 			$table->softDeletes();
 			$table->timestamps();
 		});

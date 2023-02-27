@@ -53,6 +53,17 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::delete('/{id}', 'destroy');
 		});
 
+	Route::controller(UserAPIController::class)->prefix('users')
+		->group(function () {
+			Route::put('','store');
+			Route::get('paginate','paginate');
+			Route::get('info/{id}','show');
+			Route::post('delete/{id}','delete');
+			Route::post('update/{id}','update');
+			Route::post('add','store');
+
+		});
+
 	Route::controller(VehicleAPIController::class)->prefix('vehicles')
 	   // ->middleware(['permission:manage_users'])
 		->group(function () {
