@@ -41,23 +41,17 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::get('/contracts/{type}/{id}', [ContractsAPIController::class, 'index']);
 	Route::post('/contracts/{type}/{id}', [ContractsAPIController::class, 'store']);
 	Route::delete('/contracts/{id}', [ContractsAPIController::class, 'destroy']);
+	/** documents */
 	Route::get('/documents/{type}/{id}', [DocumentAPIController::class, 'list']);
-
-	// TODO: add endpoints to upload documents and contracts
-	// This is necessary to bypass the models validation upon updating
-	// Thinking................
-	// POST /documents/{model_type}/{model_id}
-	// Controller will trigger an arbitrary update so the traits functions run??
-	// or we can have the controller validate the file format and attach dynamically
-	// Not sure which one is better.....
-
-	Route::controller(DocumentAPIController::class)->prefix('documents')->group(function () {
-		Route::get('paginate','paginate');
-		Route::post('upload','uploadFile');
-		Route::get('info/{id}','info');
-		Route::post('update/{id}','updateDocument');
-		Route::delete('{id}', 'destroy');
-		Route::get('model-types', 'getModelTypes');
+	Route::post('/documents/{type}/{id}', [DocumentAPIController::class, 'store']);
+	Route::controller(DocumentAPIController::class)->prefix('documents')
+		->group(function () {
+			Route::get('paginate','paginate');
+			Route::post('upload','uploadFile');
+			Route::get('info/{id}','info');
+			Route::post('update/{id}','updateDocument');
+			Route::delete('{id}', 'destroy');
+			Route::get('model-types', 'getModelTypes');
 	});
 
 	/** End contracts and documents */

@@ -41,40 +41,40 @@ class DocumentAPIController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created document in database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return string
+	 * @param \Illuminate\Http\Request $request
+	 * @param string $type Model type to upload the documents for
+	 * @param int $id Model ID to upload the documents for
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-
-	public function store(Request $request)
+	public function store(Request $request, string $type, int $id): JsonResponse
 	{
-		if ($this->authUser->hasPermissionTo('documents.create')) {
-
-			Validator::make(
-				$request->all(),
-				$this->validationRules()
-			)->validate();
-
-			$doc= Document::create([
-				'fullname'=> $request->post('fullname'),
-				'gender'=> $request->post('gender'),
-				'country_id'=> $request->post('country'),
-				'phone'=> $request->post('phone'),
-				'id_type'=> $request->post('id_type'),
-				'id_no'=> $request->post('id_no'),
-				'is_handicap'=> $request->post('is_handicap'),
-				'dob'=> $request->post('dob'),
-			]);
-			return response()->json( ([
-				'message'       => 'Documents Create Successfully',
-				'data'          =>  $doc,
-				'status_code'   => 200,
-			]));
-		} else {
-			return  response()->json('dont have permission to add Documents', 402);
+		$type = 'App\Models\\' . Str::title($type);
+		// TODO: Must also validate that the ID exists in that model
+		// If the model specified is not in the document model types
+		// Of the request is missing documents files
+		// Reject the operation
+		if (
+			!in_array($type, Document::$model_types) ||
+			!$request->hasFile('documents')
+		) {
+			return response()->json(status: 400); // Bad request
 		}
-
+		// Iterate through the documents files in the request
+		foreach ($request->documents as $document) {
+			// We can't get the dynamic model to attach contracts for
+			// But we have the class name, so we invert the operation
+			// Create a new document from each of the files
+			Document::create([
+				'title' => $document->getClientOriginalName(),
+				'path' => $document->store('documents'),
+				'documentable_type' => $type, // Pass the model type, namespaced
+				'documentable_id' => $id, // Pass the model ID
+			]);
+		}
+		return response()->json(status: 201); // Created
 	}
 
 	public function info($id){
