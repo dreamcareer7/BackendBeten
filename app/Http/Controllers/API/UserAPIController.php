@@ -133,35 +133,26 @@ class UserAPIController extends Controller
 	 */
 	public function update(UserUpdateRequest $request, $user_id)
 	{
-		// if ($this->authUser->hasPermissionTo('users.edit')) {
-
 		$user = User::findorfail($user_id);
-		if ($request->missing('documents')) {
-			# code...
-			$user->name = $request->input('name');
+		$user->name = $request->input('name');
 		$user->email = $request->input('email');
 		$user->username = $request->input('username');
 		$user->is_active = $request->input('is_active');
 
-		if ($request->password > ' ') { // change password only if user entered a new one
+		// change password only if user entered a new one
+		if ($request->has('password')) {
 			$user->password = Hash::make($request->input('password'));
 		}
 		$user->syncRoles($request->input('roles'));
-		}
-		
 
 		$user->save();
 
-		return response()->json(([
+		return response()->json([
 			'message' => 'user updated successfully',
 			'data' => null,
 			'status_code' => 200,
 			'success' => true,
-		]));
-		// } else {
-		//     return response()->json('dont have permission to update user', 402);
-
-		// }
+		], 200);
 	}
 
 	/**

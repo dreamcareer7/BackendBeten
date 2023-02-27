@@ -20,6 +20,7 @@ trait HasDocuments
 	protected static function bootHasDocuments(): void
 	{
 		static::saving(function ($model) {
+			unset($model->is_documentable);
 			if (request()->hasFile('documents')) {
 				foreach (request()->documents as $document) {
 					$model->documents()->create([
