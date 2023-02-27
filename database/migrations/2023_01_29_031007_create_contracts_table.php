@@ -20,6 +20,7 @@ class CreateContractsTable extends Migration
 			$table->string('url');
 			$table->unsignedBigInteger('contractable_id');
 			$table->string('contractable_type');
+			// TODO: what is extra JSON column from the diagram???
 			$table->timestamps();
 		});
 	}

@@ -13,36 +13,34 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @property int $id
  * @property string $title
- * @property string $phone
- * @property \App\Models\Country|null $country
- * @property string $city_id
+ * @property string $phones
+ * @property int $city_id
  * @property string $location
- * @property string|null $coordinate json of geometry
+ * @property mixed|null $coordinate json of geometry
  * @property int $is_active
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Contract> $contracts
+ * @property-read int|null $contracts_count
+ * @property-read \App\Models\Country|null $country
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory countryName()
+ * @method static \Database\Factories\DormitoryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory query()
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCityId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCoordinate($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereLocation($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhones($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereUpdatedAt($value)
- * @property string $phones
- * @property-read \App\Models\Contract|null $contract
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read int|null $documents_count
- * @method static \Database\Factories\DormitoryFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhones($value)
  * @mixin \Eloquent
  */
 class Dormitory extends Model

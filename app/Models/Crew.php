@@ -26,8 +26,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Contract|null $contract
  * @property-read \App\Models\Country|null $country
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read int|null $documents_count
  * @method static \Illuminate\Database\Eloquent\Builder|Crew countryName()
  * @method static \Database\Factories\CrewFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Crew newModelQuery()
@@ -46,11 +47,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Crew wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereProfessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read int|null $documents_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Contract> $contracts
+ * @property-read int|null $contracts_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @mixin \Eloquent
  */

@@ -6,7 +6,6 @@ namespace App\Models;
 
 use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * App\Models\Contract
@@ -17,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string $contractable_type
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read Model|\Eloquent $contractable
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @property-read int|null $documents_count
  * @method static \Illuminate\Database\Eloquent\Builder|Contract newModelQuery()
@@ -29,11 +27,6 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereUrl($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @mixin \Eloquent
  */
 class Contract extends Model
@@ -48,13 +41,5 @@ class Contract extends Model
 		Dormitory::class,
 	];
 
-	/**
-	 * Get the parent contractable model (any of $this->model_types)
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\MorphTo
-	 **/
-	public function contractable(): MorphTo
-	{
-		return $this->morphTo();
-	}
+	// TODO: cast extra JSON column into an array if we end up adding it
 }
