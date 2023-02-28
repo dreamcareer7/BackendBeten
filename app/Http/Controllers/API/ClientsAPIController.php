@@ -64,17 +64,16 @@ class ClientsAPIController extends Controller
 			"fullname",
 			"gender",
 			"country_id",
-			"phone",
 			"id_type",
-			"id_no",
+			"id_number",
 			"is_handicap",
-			"dob",
+			'id_name',
 		]);
 
 		//check if this client already exists
 		$client = Client::where('country_id',$request->input('country_id'))
 			->where('id_type',$request->input('id_type'))
-			->where('id_no',$request->input('id_no'))->first();
+			->where('id_number',$request->input('id_number'))->first();
 		if($client){
 		   $success = false;
 		   $message ="There is already a client from same country, id type and id number.";

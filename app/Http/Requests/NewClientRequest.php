@@ -14,10 +14,8 @@ class NewClientRequest extends FormRequest
 			'fullname' => 'required',
 			'gender'=>['required'],
 			'country_id'=>['required'],
-			 'phone' => 'required',
 			 'id_type' => 'required',
-			 'id_no' => 'required',
-			 'dob' => 'required',
+			 'id_number' => 'required',
 		 ];
 	}
 
