@@ -44,6 +44,6 @@ class Service extends Model
 
 	public function city()
 	{
-		return $this->belongsTo(City::class, 'city');
+		return $this->belongsTo(City::class, 'city_id');
 	}
 }

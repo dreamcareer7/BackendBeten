@@ -22,11 +22,11 @@ class ServiceAPIController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index(Request $request): JsonResponse
+	public function index(): JsonResponse
 	{
 		$services = Service::select(
 			'id', 'title', 'city_id', 'before_date', 'exact_date', 'after_date'
-		)->with('city:id,title')->get();
+		)->with('city:id,title')->paginate(10);
 
 		return response()->json(data: $services, status: 200);
 	}
