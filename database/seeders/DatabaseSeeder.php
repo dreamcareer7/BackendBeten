@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 		// We should probably seed client_languages before seeding clients
 		// At the moment the two tables are not related
 		$this->call([
+			ServicesTableSeeder::class,
 			MealTypesTableSeeder::class,
 			ProfessionSeeder::class,
 			CountrySeeder::class,
