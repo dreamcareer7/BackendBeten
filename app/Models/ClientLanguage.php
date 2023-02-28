@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -34,10 +35,18 @@ class ClientLanguage extends Model
 {
 	use HasFactory;
 
-	protected $table = 'client_languages';
-
-	public function language()
+	/**
+	 * Get the languages that the client understands???
+	 * TODO: figure this out
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function language(): HasMany
 	{
-		return $this->hasMany(Language::class, 'id', 'language_id');
+		return $this->hasMany(
+			related: Language::class,
+			foreignKey: 'id',
+			localKey: 'language_id'
+		);
 	}
 }

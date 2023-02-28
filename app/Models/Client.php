@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 /**
  * App\Models\Client
@@ -43,7 +44,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Client extends Model
 {
-	use HasFactory;
+	use HasFactory, SoftDeletes;
 
 	/*
 	 * Scopes
@@ -57,10 +58,11 @@ class Client extends Model
 	}
 
 	/*
-	 * Relationships
+	 * Get the country from which the client comes from.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-
-	public function country()
+	public function country(): BelongsTo
 	{
 		return $this->belongsTo(Country::class);
 	}

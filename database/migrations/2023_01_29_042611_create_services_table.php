@@ -18,10 +18,10 @@ class CreateServicesTable extends Migration
 		Schema::create('services', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			$table->unsignedBigInteger('city');
-			$table->datetime('before_date')->nullable();
-			$table->datetime('exact_date')->nullable();
-			$table->datetime('after_date')->nullable();
+			$table->unsignedBigInteger('city_id');
+			$table->timestamp('before_date')->nullable();
+			$table->timestamp('exact_date')->nullable();
+			$table->timestamp('after_date')->nullable();
 		});
 	}
 

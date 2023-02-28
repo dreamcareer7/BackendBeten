@@ -13,21 +13,22 @@ class CreateClientsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::create('clients', function (Blueprint $table) {
 			$table->id();
 			$table->string('fullname')->comment('Arabic language');
 			$table->unsignedBigInteger('country_id');
 			$table->string('id_type');
-			$table->string('id_no');
-			$table->boolean('gender')->default('0')->comment('0->male, 1->female');
+			$table->string('id_number');
+			$table->string('id_name');
+			$table->enum('gender', [
+				'Male',
+				'Female',
+			])->default('Male');
 			$table->boolean('is_handicap')->default(false);
-			$table->string('phone')->nullable();
-			$table->date('dob')->nullable();
-
-			$table->softDeletes();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
@@ -36,7 +37,7 @@ class CreateClientsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::dropIfExists('clients');
 	}

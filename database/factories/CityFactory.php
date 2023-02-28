@@ -19,7 +19,7 @@ class CityFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'title' => fake('ar_SA')->city,
+			'title' => fake()->city,
 		];
 	}
 }

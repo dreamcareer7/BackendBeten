@@ -16,9 +16,12 @@ class DatabaseSeeder extends Seeder
 	 */
 	public function run(): void
 	{
+		// We should probably seed client_languages before seeding clients
+		// At the moment the two tables are not related
 		$this->call([
 			ProfessionSeeder::class,
 			CountrySeeder::class,
+			ClientsTableSeeder::class,
 			PermissionsTableSeeder::class,
 			RolesTableSeeder::class,
 			UsersTableSeeder::class,
