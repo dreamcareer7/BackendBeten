@@ -31,6 +31,8 @@ use App\Http\Controllers\API\{
 */
 Auth::routes();
 
+Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
+
 Route::middleware('auth:sanctum')->group(function () {
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
 	Route::apiResource('/services', ServiceAPIController::class);
@@ -157,10 +159,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 	Route::apiResource('hospitalities', HospitalitiesController::class);
 
-});
-Route::controller(DocumentAPIController::class)->prefix('documents')
-	->group(function () {
-		Route::get('view/{path}','getFile');
 });
 // TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {

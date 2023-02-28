@@ -25,6 +25,7 @@ class UsersTableSeeder extends Seeder
 
 		// Seed static email admin user for easier development
 		User::factory()->create([
+			'name' => 'Dr. Imad',
 			'email' => 'admin@murafiq.com',
 		])->assignRole('admin');
 	}

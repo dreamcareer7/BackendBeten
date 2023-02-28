@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Models\Traits\HasDocuments;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 /**
@@ -57,4 +58,16 @@ class Contract extends Model
 	];
 
 	// TODO: cast extra JSON column into an array if we end up adding it
+
+	/**
+	 * Get the documents belonging to the model.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+	 */
+	public function documents(): MorphMany
+	{
+		// the name is weird right? it should be documentable
+		// But the client required that name in DB schema
+		return $this->morphMany(related: Document::class, name: 'model');
+	}
 }

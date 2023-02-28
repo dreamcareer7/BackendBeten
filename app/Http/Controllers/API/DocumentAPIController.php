@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\DocumentResource;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Support\Facades\{Storage, Validator};
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DocumentAPIController extends Controller
 {
@@ -44,6 +45,18 @@ class DocumentAPIController extends Controller
 				'deleted_at'
 			)->get();
 		return response()->json(DocumentResource::collection($documents));
+	}
+
+	/**
+	 * Download the specified document.
+	 *
+	 * @param string $path Path of the document to download
+	 *
+	 * @return \Symfony\Component\HttpFoundation\StreamedResponse
+	 */
+	public function download(string $path): StreamedResponse
+	{
+		return Storage::download('documents/' . $path);
 	}
 
 	/**
