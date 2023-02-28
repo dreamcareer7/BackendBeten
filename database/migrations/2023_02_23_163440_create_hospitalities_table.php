@@ -19,12 +19,9 @@ return new class extends Migration
 			$table->id();
 			$table->string('title');
 			$table->string('description');
-			// TODO: What does required here mean?
 			$table->timestamp('required_date');
-			$table->unsignedInteger('quantity');
-			// TODO: received by user or crew?
+			$table->float('quantity');
 			$table->unsignedBigInteger('received_by');
-			$table->foreign('received_by')->references('id')->on('crews');
 			$table->text('extra')->nullable();
 			$table->timestamps();
 		});

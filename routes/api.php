@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
+	Route::apiResource('hospitalities', HospitalitiesController::class);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
@@ -158,9 +159,6 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::patch('{id}', 'update');
 			Route::delete('{id}', 'destroy');
 	});
-
-	Route::apiResource('hospitalities', HospitalitiesController::class);
-
 });
 // TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {

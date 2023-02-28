@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
 		DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 		User::truncate(); // Remove all existing users
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-		User::factory()->count(3)->create()
+		User::factory()->count(5000)->create()
 			->each(fn (User $user) => $user->assignRole('admin'));
 
 		// Seed static email admin user for easier development
