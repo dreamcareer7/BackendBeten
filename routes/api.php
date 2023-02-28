@@ -12,6 +12,7 @@ use App\Http\Controllers\API\{
 	DormitoryAPIController,
 	GroupsApiController,
 	HospitalitiesController,
+	MealTypesController,
 	MealsAPIController,
 	PhaseServiceAPIController,
 	ServiceAPIController,
@@ -38,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
+	Route::apiResource('/meal_types', MealTypesController::class);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
