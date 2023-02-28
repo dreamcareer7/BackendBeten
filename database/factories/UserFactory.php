@@ -20,10 +20,10 @@ class UserFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'is_active' => 1,
+			'is_active' => fake()->boolean(chanceOfGettingTrue: 80),
 			'name' => fake()->name(),
 			'contact' => config('eogsoft.contact'),
-			'username' => fake()->unique()->userName,
+			'username' => fake()->unique(maxRetries: 200000)->userName,
 			'email' => fake()->unique()->safeEmail(),
 			'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
 			'remember_token' => Str::random(10),

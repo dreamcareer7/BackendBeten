@@ -19,9 +19,9 @@ class CreateServicesTable extends Migration
 			$table->id();
 			$table->string('title');
 			$table->unsignedBigInteger('city_id');
-			$table->timestamp('before_date')->nullable();
-			$table->timestamp('exact_date')->nullable();
-			$table->timestamp('after_date')->nullable();
+			$table->dateTime('before_date')->nullable();
+			$table->dateTime('exact_date')->nullable();
+			$table->dateTime('after_date')->nullable();
 		});
 	}
 
