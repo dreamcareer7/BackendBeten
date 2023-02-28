@@ -30,7 +30,6 @@ class DatabaseSeeder extends Seeder
 		Vehicle::factory()->create();
 		City::factory()->count(count: 5)->create();
 		Dormitory::factory()->create();
-		Meal::factory()->create();
 		Group::factory()->create();
 	}
 }

@@ -25,7 +25,7 @@ class ServiceAPIController extends Controller
 	public function index(Request $request): JsonResponse
 	{
 		$services = Service::select(
-			'id', 'title', 'city', 'before_date', 'exact_date', 'after_date'
+			'id', 'title', 'city_id', 'before_date', 'exact_date', 'after_date'
 		)->with('city:id,title')->get();
 
 		return response()->json(data: $services, status: 200);

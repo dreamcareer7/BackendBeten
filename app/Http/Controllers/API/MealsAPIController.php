@@ -11,7 +11,7 @@ use Illuminate\Http\{JsonResponse, Request};
 class MealsAPIController extends Controller
 {
 	/**
-	 * Display a listing of the meal.
+	 * Display a listing of the meals.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
@@ -44,14 +44,15 @@ class MealsAPIController extends Controller
 	/**
 	 * Display the specified meal.
 	 *
-	 * @param int $id
-	 * @return \Illuminate\Http\Response
+	 * @param \App\Models\Meal $meal
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function show($id)
+	public function show(Meal $meal): JsonResponse
 	{
-		// TODO: select only necessary fields, return JSON
-		return Meal::find($id);
+		return response()->json($meal);
 	}
+
 	/**
 	 * Update the specified meal in database.
 	 *
