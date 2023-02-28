@@ -27,7 +27,6 @@ class ContractResource extends JsonResource
 			'created_at' => $this->created_at,
 			'deleted_by' => $this->deleted_by,
 			'deleted_at' => $this->deleted_at,
-			'documents' => $this->documents,
 		];
 	}
 }

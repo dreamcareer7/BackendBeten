@@ -112,7 +112,7 @@ class ContractsAPIController extends Controller
 				'created_by' => auth()->id(),
 			]);
 		}
-		return response()->json(status: 201); // Created
+		return response()->json(data: $contract_id, status: 201); // Created
 	}
 
 	/**
