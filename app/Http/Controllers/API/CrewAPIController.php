@@ -189,9 +189,17 @@ class CrewAPIController extends Controller
 		return response()->json($users->paginate($per_page));
 	}
 
-	public function all()
+	public function all(Request $request)
 	{
-		return response()->json(Crew::get());
+		$query = Crew::select('id', 'fullname');
+
+		$request->whenFilled('fullname', function ($input) use ($query) {
+			$query->where('fullname', 'LIKE', '%' . $input . '%')->limit(10);
+		}, function () use ($query) {
+			$query->limit(10);
+		});
+
+		return response()->json($query->get());
 	}
 
 	/**
