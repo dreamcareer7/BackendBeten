@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Service;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateServiceRequest;
+use App\Http\Requests\{CreateServiceRequest, UpdateMealTypeRequest};
 use Illuminate\Http\{JsonResponse, Request};
 
 class ServiceAPIController extends Controller
@@ -90,19 +90,17 @@ class ServiceAPIController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param \Illuminate\Http\Request $request
+	 * @param \App\Http\Requests\UpdateMealTypeRequest $request
+	 * @param \App\Models\Service $service
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update($id,Request $request)
+	public function update(UpdateMealTypeRequest $request, Service $service)
 	{
 		//
-		$service = Service::findOrFail($id);
 		$service->update([
 			'title' => $request->title,
 			'city_id' => $request->city_id,
 			'before_date' => $request->before_date,
-			'exact_date' => $request->exact_date,
-			'after_date' => $request->after_date,
 		]);
 		return response()->json(status: 204); // No content
 	}
