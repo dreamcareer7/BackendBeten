@@ -20,7 +20,7 @@ class GroupFactory extends Factory
 	{
 		return [
 			'title' => fake()->word,
-			'crew_id' => 1,
+			'crew_id' => rand(1, 5000),
 		];
 	}
 }
