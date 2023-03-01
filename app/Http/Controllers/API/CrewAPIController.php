@@ -188,7 +188,9 @@ class CrewAPIController extends Controller
 		}
 		return response()->json($users->paginate($per_page));
 	}
-	public function all(){
+
+	public function all()
+	{
 		return response()->json(Crew::get());
 	}
 

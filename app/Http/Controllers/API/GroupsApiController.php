@@ -6,8 +6,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{Client, Dormitory, Group, GroupClients};
 use App\Http\Requests\{NewDormitoryRequest, NewGroupRequest};
+use App\Models\{Client, Crew, Dormitory, Group, GroupClients};
 
 class GroupsApiController extends Controller
 {
@@ -122,20 +122,27 @@ class GroupsApiController extends Controller
 		]);
 	}
 
-	public function paginate(Request $request){
-		$groups = Group::orderby('id','desc');
-		$title= $request->input('title') ?? null;
-		$crew_id= $request->input('crew_id') ?? null;
-		$per_page= $request->input('per_page') ?? 25;
-		if($title){
-			$groups->where('title','LIKE',$title.'%');
-		}
-		if($crew_id){
-			$groups->where('crew_id',$crew_id);
+	public function paginate(Request $request)
+	{
+		$groups = Group::orderby('id');
 
-		}
+		$request->whenFilled('title', function ($input) use ($groups) {
+			$groups->where('title', 'LIKE', $input . '%');
+		});
 
-		return response()->json($groups->with('crew')->paginate($per_page));
+		$request->whenFilled('crew_member', function ($input) use ($groups) {
+			// Get IDs of crew members starting with the query string value
+			$crew_members_ids = Crew::select('id')
+				->where('fullname', 'LIKE', '%' . $input . '%')
+				->limit(50) // Reasonable limit, this gets hit on keyup
+				->pluck('id');
+			$groups->whereIn('crew_id', $crew_members_ids);
+		});
+
+		return response()->json(
+			// Only eager load what's necessary for display
+			data: $groups->with('crew:id,fullname')->paginate(25)
+		);
 	}
 
 }
