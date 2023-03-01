@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{NewDormitoryRequest, NewGroupRequest};
 use App\Models\{Client, Crew, Dormitory, Group, GroupClients};
 
@@ -35,26 +35,20 @@ class GroupsApiController extends Controller
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified group.
 	 *
-	 * @param  \App\Models\Dormitory  $dormitory
+	 * @param int $id The ID of the group to fetch
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function show($id)
+	public function show(int $id): JsonResponse
 	{
-		$group = Group::findorfail($id);
-		$clients = GroupClients::where('group_id',$id)->get();
-		$group_clients = [];
+		$group = Group::select('id', 'title', 'crew_id')
+			->where('id', $id)
+			->with('crew:id,fullname')
+			->first();
 
-		foreach($clients as $client){
-			$client = Client::where('id',$client->client_id)->first();
-			$group_clients[]=$client;
-		}
-		return response()->json([
-			"group"=>$group,
-			"clients"=>$group_clients
-		]);
-
+		return response()->json($group);
 	}
 
 

@@ -94,7 +94,7 @@ Route::middleware('auth:sanctum')->group(function () {
 		->group(function () {
 			Route::put('','store');
 			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
+			Route::get('{id}', 'show');
 			Route::post('delete/{id}','destroy');
 			Route::post('update/{id}','update');
 			Route::post('add','createGroup');
