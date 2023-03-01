@@ -96,6 +96,15 @@ class ServiceAPIController extends Controller
 	public function update($id,Request $request)
 	{
 		//
+		$service = Service::findOrFail($id);
+		$service->update([
+			'title' => $request->title,
+			'city_id' => $request->city_id,
+			'before_date' => $request->before_date,
+			'exact_date' => $request->exact_date,
+			'after_date' => $request->after_date,
+		]);
+		return response()->json(status: 204); // No content
 	}
 
 	/**
