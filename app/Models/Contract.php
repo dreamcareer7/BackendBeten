@@ -28,6 +28,25 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereUrl($value)
+ * @property string $reference
+ * @property string $model_type
+ * @property int $model_id
+ * @property mixed|null $extra
+ * @property int $created_by
+ * @property int|null $deleted_by
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereExtra($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereModelType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract whereReference($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Contract withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @mixin \Eloquent
  */
 class Contract extends Model

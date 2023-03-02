@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  *
  * @property int $id
  * @property int $meal_type_id
- * @property int $quntity
+ * @property int $quantity
  * @property string $to_model_type
  * @property int $to_model_id
  * @property string $sent_at
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Meal query()
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereMealTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Meal whereQuntity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Meal wherequantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereSentAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereToModelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereToModelType($value)
@@ -33,6 +33,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @method static \Illuminate\Database\Eloquent\Builder|Meal whereQuantity($value)
  * @mixin \Eloquent
  */
 class Meal extends Model

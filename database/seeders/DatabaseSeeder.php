@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 			GroupsTableSeeder::class,
 			HospitalitiesTableSeeder::class,
 			ServicesTableSeeder::class,
+			PhasesTableSeeder::class,
 			MealTypesTableSeeder::class,
 			ProfessionSeeder::class,
 			CountrySeeder::class,

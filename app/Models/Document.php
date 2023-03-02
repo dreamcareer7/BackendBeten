@@ -33,6 +33,19 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Document whereUploadedBy($value)
+ * @property string $model_type
+ * @property int $model_id
+ * @property int $created_by
+ * @property int|null $deleted_by
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Document onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document whereModelType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Document withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Document withoutTrashed()
  * @mixin \Eloquent
  */
 class Document extends Model

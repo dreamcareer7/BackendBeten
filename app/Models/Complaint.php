@@ -48,6 +48,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property string|null $reference
+ * @property string $location
+ * @method static \Database\Factories\ComplaintFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Complaint whereLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Complaint whereReference($value)
  * @mixin \Eloquent
  */
 class Complaint extends Model

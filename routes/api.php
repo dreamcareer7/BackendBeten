@@ -14,7 +14,7 @@ use App\Http\Controllers\API\{
 	HospitalitiesController,
 	MealTypesController,
 	MealsAPIController,
-	PhaseServiceAPIController,
+	PhasesController,
 	ServiceAPIController,
 	ServiceCommitAPIController,
 	UserAPIController,
@@ -40,7 +40,15 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
-	Route::apiResource('hospitalities', HospitalitiesController::class);
+	Route::apiResource('/hospitalities', HospitalitiesController::class);
+	Route::apiResource('/phases', PhasesController::class);
+	// Route::controller(PhasesController::class)->prefix('phases')->group(function () {
+	//    Route::get('paginate','paginate');
+	//    Route::post('/','store');
+	//    Route::post('update/{id}','update');
+	//    Route::post('delete/{id}','destroyPhase');
+	//    Route::get('info/{id}','show');
+	// });
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
@@ -125,14 +133,6 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('update/{id}','update');
 			Route::post('add','store');
 			Route::get('all','all');
-	});
-
-	Route::controller(PhaseServiceAPIController::class)->prefix('phases')->group(function () {
-	   Route::get('paginate','paginate');
-	   Route::post('add','store');
-	   Route::post('update/{id}','update');
-	   Route::post('delete/{id}','destroyPhase');
-	   Route::get('info/{id}','show');
 	});
 
 

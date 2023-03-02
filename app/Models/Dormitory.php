@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory wherePhones($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dormitory whereUpdatedAt($value)
+ * @property-read \App\Models\City $city
  * @mixin \Eloquent
  */
 class Dormitory extends Model

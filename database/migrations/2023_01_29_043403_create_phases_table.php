@@ -13,14 +13,12 @@ class CreatePhasesTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::create('phases', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			// TODO: not sure if this is nullable
-			// Check requirements
-			$table->boolean('is_required')->nullable();
+			$table->boolean('is_required');
 		});
 	}
 
@@ -29,7 +27,7 @@ class CreatePhasesTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::dropIfExists('phases');
 	}

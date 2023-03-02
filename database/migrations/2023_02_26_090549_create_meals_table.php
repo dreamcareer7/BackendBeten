@@ -18,7 +18,7 @@ return new class extends Migration
 		Schema::create('meals', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('meal_type_id');
-			$table->integer('quntity');
+			$table->integer('quantity');
 			$table->string('to_model_type');
 			$table->unsignedBigInteger('to_model_id');
 			$table->dateTime('sent_at');

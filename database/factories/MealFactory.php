@@ -21,7 +21,7 @@ class MealFactory extends Factory
 	{
 		return [
 			'meal_type_id' => fake()->randomDigit(),
-			'quntity' => fake()->randomNumber(),
+			'quantity' => fake()->randomNumber(),
 			'to_model_type' => fake()->randomElement(
 				array_merge(Contract::$model_types, Document::$model_types)
 			),

@@ -40,6 +40,14 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereIsHandicap($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
+ * @property string $id_number
+ * @property string $id_name
+ * @method static \Database\Factories\ClientFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Client onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Client whereIdName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Client whereIdNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Client withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Client withoutTrashed()
  * @mixin \Eloquent
  */
 class Client extends Model

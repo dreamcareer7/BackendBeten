@@ -34,6 +34,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Hospitality whereRequiredDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hospitality whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hospitality whereUpdatedAt($value)
+ * @method static \Database\Factories\HospitalityFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class Hospitality extends Model

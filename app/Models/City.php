@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|City whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|City whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|City whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dormitory> $dormitories
+ * @property-read int|null $dormitories_count
+ * @method static \Database\Factories\CityFactory factory($count = null, $state = [])
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dormitory> $dormitories
  * @mixin \Eloquent
  */
 class City extends Model

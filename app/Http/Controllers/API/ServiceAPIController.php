@@ -5,18 +5,12 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Models\Service;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{CreateServiceRequest, UpdateMealTypeRequest};
-use Illuminate\Http\{JsonResponse, Request};
 
 class ServiceAPIController extends Controller
 {
-	public function __construct()
-	{
-		$this->authUser = auth('api')->user();
-		$this->userId = @$this->authUser->id;
-	}
-
 	/**
 	 * Display a listing of the services.
 	 *
@@ -26,7 +20,7 @@ class ServiceAPIController extends Controller
 	{
 		$services = Service::select(
 			'id', 'title', 'city_id', 'before_date', 'exact_date', 'after_date'
-		)->with('city:id,title')->paginate(10);
+		)->with('city:id,title')->paginate(50);
 
 		return response()->json(data: $services, status: 200);
 	}
@@ -57,7 +51,7 @@ class ServiceAPIController extends Controller
 	{
 		Service::create([
 			'title' => $request->title,
-			'city' => $request->city,
+			'city_id' => $request->city_id,
 			'before_date' => $request->before_date,
 			'exact_date' => $request->exact_date,
 			'after_date' => $request->after_date,
@@ -75,16 +69,12 @@ class ServiceAPIController extends Controller
 	 */
 	public function show($id)
 	{
-		//if ($this->authUser->hasPermissionTo('services.view')) {
 			$crew = Service::find($id);
 			return response()->json(([
 				'message' => 'services Details',
 				'data' => $crew,
 				'status_code' => 200,
 			]));
-	   // } else {
-	   //     return response()->json('dont have permission to see service', 402);
-	   // }
 	}
 
 	/**
@@ -96,7 +86,6 @@ class ServiceAPIController extends Controller
 	 */
 	public function update(UpdateMealTypeRequest $request, Service $service)
 	{
-		//
 		$service->update([
 			'title' => $request->title,
 			'city_id' => $request->city_id,
@@ -112,7 +101,6 @@ class ServiceAPIController extends Controller
 	 */
 	public function destroy($id)
 	{
-		//if ($this->authUser->hasPermissionTo('services.delete')) {
 			$crew = Service::find($id)->delete($id);
 
 			return response()->json( ([
@@ -120,12 +108,10 @@ class ServiceAPIController extends Controller
 				'data'          =>  null,
 				'status_code'   => 200,
 			]));
-	   // } else {
-		//    return  response()->json('dont have permission to delete service', 402);
-	   // }
 	}
 
-	public function all(){
+	public function all()
+	{
 		return response()->json(Service::get());
 	}
 }

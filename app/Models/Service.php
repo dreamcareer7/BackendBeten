@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * App\Models\Service
@@ -29,6 +30,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereUpdatedAt($value)
+ * @property int $city_id
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
+ * @property-read int|null $phases_count
+ * @method static \Database\Factories\ServiceFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Service whereCityId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
  * @mixin \Eloquent
  */
 class Service extends Model
@@ -45,5 +52,15 @@ class Service extends Model
 	public function city()
 	{
 		return $this->belongsTo(City::class, 'city_id');
+	}
+
+	/**
+	 * The phases that belong to the service.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function phases(): BelongsToMany
+	{
+		return $this->belongsToMany(related: Phase::class);
 	}
 }

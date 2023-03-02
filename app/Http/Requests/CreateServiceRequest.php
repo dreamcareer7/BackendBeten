@@ -27,7 +27,7 @@ class CreateServiceRequest extends FormRequest
 	{
 		return [
 			'title' => 'bail|required|string|min:3|max:255',
-			'city' => 'bail|required|integer|exists:cities,id',
+			'city_id' => 'bail|required|integer|exists:cities,id',
 			// We must receive only one of these 3 dates
 			'before_date' => 'bail|prohibits:exact_date,after_date',
 			'exact_date' => 'bail|prohibits:before_date,after_date',

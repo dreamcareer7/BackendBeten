@@ -32,10 +32,10 @@ class MealsAPIController extends Controller
 	{
 		// TODO: add validation
 		Meal::create([
-			'meal_type_id' => $request->type_id,
-			'quntity' => $request->quantity,
-			'to_model_type' => $request->model_type,
-			'to_model_id' => $request->model_id,
+			'meal_type_id' => $request->meal_type_id,
+			'quantity' => $request->quantity,
+			'to_model_type' => $request->to_model_type,
+			'to_model_id' => $request->to_model_id,
 			'sent_at' => $request->sent_at,
 		]);
 		return response()->json(status: 201); // Created
@@ -66,7 +66,7 @@ class MealsAPIController extends Controller
 		$meal = Meal::findOrFail($id);
 		$meal->update([
 			'meal_type_id' => $request->type_id,
-			'quntity' => $request->quantity,
+			'quantity' => $request->quantity,
 			'to_model_type' => $request->model_type,
 			'to_model_id' => $request->model_id,
 			'sent_at' => $request->sent_at,
