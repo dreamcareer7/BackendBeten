@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Phase;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePhaseRequest;
 use Illuminate\Http\{JsonResponse, Request};
-use App\Models\{Phase, PhaseService, Service};
 
 class PhasesController extends Controller
 {
@@ -34,11 +34,10 @@ class PhasesController extends Controller
 	 */
 	public function store(CreatePhaseRequest $request): JsonResponse
 	{
-		$phase_id = Phase::create([
+		Phase::create([
 			'title' => $request->title,
 			'is_required' => $request->is_required,
-		])->id;
-		$this->assignServices($phase_id, $request->services);
+		])->services()->attach($request->services);
 		return response()->json(status: 201); // Created
 	}
 
@@ -91,16 +90,17 @@ class PhasesController extends Controller
 		PhaseService::where('phase_id', $phase_id)->delete();
 		return true;
 	}
-	public function destroyPhase($id){
-		$phase  = Phase::findorfail($id);
 
+	public function destroyPhase($id)
+	{
+		$phase = Phase::findorfail($id);
 		//delete Phase
 		Phase::where('id',$phase->id)->delete();
 		//delete the services connection
 		$this->clearPhaseServices($id);
 		return response()->json([
-		   "success"=>true,
-		   "message"=>"Phase Removed Successfully."
+			"success"=>true,
+			"message"=>"Phase Removed Successfully."
 		]);
 	}
 }
