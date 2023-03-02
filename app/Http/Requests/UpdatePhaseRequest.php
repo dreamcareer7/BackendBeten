@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateServiceRequest extends FormRequest
+class UpdatePhaseRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -27,8 +27,9 @@ class UpdateServiceRequest extends FormRequest
 	{
 		return [
 			'title' => 'bail|required|string|min:3|max:255',
-			'city_id' => 'bail|required|integer|exists:cities,id',
-			'before_date' => 'bail|nullable|date_format:Y-m-d',
+			'is_required' => 'bail|required|boolean',
+			'services' => 'required|array',
+			'services.*' => 'integer|exists:services,id',
 		];
 	}
 }

@@ -6,8 +6,8 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Phase;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreatePhaseRequest;
 use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\{CreatePhaseRequest, UpdatePhaseRequest};
 
 class PhasesController extends Controller
 {
@@ -56,23 +56,24 @@ class PhasesController extends Controller
 
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified phase in database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Models\PhaseService  $phaseService
+	 * @param \App\Http\Requests\UpdatePhaseRequest $request
+	 * @param \App\Models\Phase $phase
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update($id,CreatePhaseRequest $request)
+	public function update(
+		UpdatePhaseRequest $request,
+		Phase $phase
+	): JsonResponse
 	{
-		//
-		$title = $request->input('title');
-		$this->clearPhaseServices($id);
-		$this->assignServices($id,$request);
-		Phase::where('id',$id)->update(['title'=>$title]);
-		return response()->json([
-		   "success"=>true,
-		   "message"=>"Updated Successfully"
+		$phase->update([
+			'title' => $request->title,
+			'is_required' => $request->is_required,
 		]);
+		$phase->services()->sync($request->services);
+		return response()->json(status: 204); // No content
 	}
 
 	public function assignServices(int $phase_id, array $services)

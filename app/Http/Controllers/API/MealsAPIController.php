@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Models\Meal;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\{CreateMealRequest, UpdateMealRequest};
 
 class MealsAPIController extends Controller
 {
@@ -24,13 +25,12 @@ class MealsAPIController extends Controller
 	/**
 	 * Store a newly created meal in database.
 	 *
-	 * @param \Illuminate\Http\Request $request
+	 * @param \App\Http\Requests\CreateMealRequest $request
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function store(Request $request): JsonResponse
+	public function store(CreateMealRequest $request): JsonResponse
 	{
-		// TODO: add validation
 		Meal::create([
 			'meal_type_id' => $request->meal_type_id,
 			'quantity' => $request->quantity,
@@ -56,19 +56,18 @@ class MealsAPIController extends Controller
 	/**
 	 * Update the specified meal in database.
 	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param int $id
-	 * @return \Illuminate\Http\Response
+	 * @param \App\Models\Meal $meal
+	 * @param \App\Http\Requests\UpdateMealRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(Request $request, $id)
+	public function update(Meal $meal, UpdateMealRequest $request): JsonResponse
 	{
-		// TODO: add validation
-		$meal = Meal::findOrFail($id);
 		$meal->update([
-			'meal_type_id' => $request->type_id,
+			'meal_type_id' => $request->meal_type_id,
 			'quantity' => $request->quantity,
-			'to_model_type' => $request->model_type,
-			'to_model_id' => $request->model_id,
+			'to_model_type' => $request->to_model_type,
+			'to_model_id' => $request->to_model_id,
 			'sent_at' => $request->sent_at,
 		]);
 		return response()->json(status: 204); // No content

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Models\{Meal, MealType};
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateMealTypeRequest, UpdateMealTypeRequest};
 
 class MealTypesController extends Controller
@@ -16,9 +16,14 @@ class MealTypesController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index(): JsonResponse
+	public function index(Request $request): JsonResponse
 	{
-		return response()->json(data: MealType::paginate(50));
+		$per_page = $request->input('per_page') ?? 20;
+		$query = MealType::query();
+		$request->whenFilled('title', function ($input) use ($query) {
+			$query->where('title', 'LIKE', '%' . $input . '%');
+		});
+		return response()->json(data: $query->paginate($per_page));
 	}
 
 	/**
@@ -61,6 +66,7 @@ class MealTypesController extends Controller
 	public function update(UpdateMealTypeRequest $request, MealType $mealType)
 	{
 		$mealType->update([
+			'meal_type_id' => $request->meal_type_id,
 			'title' => $request->title,
 			'description' => $request->description,
 			'has_documents' => $request->has_documents,

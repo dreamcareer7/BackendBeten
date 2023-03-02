@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Service;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\{CreateServiceRequest, UpdateMealTypeRequest};
+use App\Http\Requests\{CreateServiceRequest, UpdateServiceRequest};
 
 class ServiceAPIController extends Controller
 {
@@ -80,11 +80,11 @@ class ServiceAPIController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param \App\Http\Requests\UpdateMealTypeRequest $request
+	 * @param \App\Http\Requests\UpdateServiceRequest $request
 	 * @param \App\Models\Service $service
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(UpdateMealTypeRequest $request, Service $service)
+	public function update(UpdateServiceRequest $request, Service $service)
 	{
 		$service->update([
 			'title' => $request->title,
