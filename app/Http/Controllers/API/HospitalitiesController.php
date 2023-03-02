@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Hospitality;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
-use App\Http\Requests\CreateHospitalityRequest;
+use App\Http\Requests\{CreateHospitalityRequest, UpdateHospitalityRequest};
 
 class HospitalitiesController extends Controller
 {
@@ -49,24 +49,27 @@ class HospitalitiesController extends Controller
 	*
 	* @param \App\Models\Hospitality $hospitality
 	*
-	* @return \Illuminate\Http\Response
+	* @return \Illuminate\Http\JsonResponse
 	*/
-	public function show(Hospitality $hospitality)
+	public function show(Hospitality $hospitality): JsonResponse
 	{
-		//
+		return response()->json(data: $hospitality->load('receiver:id,fullname'));
 	}
 
 	/**
 	* Update the specified hospitality in database.
 	*
-	* @param \Illuminate\Http\Request $request
+	* @param \App\Http\Requests\UpdateHospitalityRequest $request
 	* @param \App\Models\Hospitality $hospitality
 	*
-	* @return \Illuminate\Http\Response
+	* @return \Illuminate\Http\JsonResponse
 	*/
-	public function update(Request $request, Hospitality $hospitality)
+	public function update(
+		UpdateHospitalityRequest $request, Hospitality $hospitality
+	): JsonResponse
 	{
-		//
+		$hospitality->update($request->validated());
+		return response()->json(status: 204); // No content
 	}
 
 	/**
