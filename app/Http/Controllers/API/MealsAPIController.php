@@ -18,7 +18,7 @@ class MealsAPIController extends Controller
 	public function index(): JsonResponse
 	{
 		// TODO: API resource and collection
-		return response()->json(Meal::get());
+		return response()->json(Meal::paginate(20));
 	}
 
 	/**
@@ -77,12 +77,12 @@ class MealsAPIController extends Controller
 	/**
 	 * Remove the specified meal from database.
 	 *
-	 * @param int $id
+	 * @param \App\Models\Meal
+	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy($id)
+	public function destroy(Meal $meal): JsonResponse
 	{
-		$meal = Meal::findOrFail($id);
 		$meal->delete();
 		return response()->json(status: 204); // No content
 	}

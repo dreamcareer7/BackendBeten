@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -17,23 +18,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $to_model_type
  * @property int $to_model_id
  * @property string $sent_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read int|null $documents_count
+ * @property-read \App\Models\MealType|null $mealType
  * @method static \Database\Factories\MealFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Meal newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Meal newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Meal query()
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereMealTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Meal wherequantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Meal whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereSentAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereToModelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereToModelType($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @method static \Illuminate\Database\Eloquent\Builder|Meal whereQuantity($value)
  * @mixin \Eloquent
  */
 class Meal extends Model
@@ -46,4 +41,14 @@ class Meal extends Model
 	 * @var bool
 	 */
 	public $timestamps = false;
+
+	/**
+	 * Get the meal type the meal belongs to
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 **/
+	public function mealType(): BelongsTo
+	{
+		return $this->belongsTo(MealType::class);
+	}
 }

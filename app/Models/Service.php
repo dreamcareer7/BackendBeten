@@ -36,6 +36,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Database\Factories\ServiceFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereCityId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
  * @mixin \Eloquent
  */
 class Service extends Model

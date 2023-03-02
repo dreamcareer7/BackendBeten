@@ -22,6 +22,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Phase whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Phase whereIsRequired($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Phase whereTitle($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service> $services
+ * @method static \Database\Factories\PhaseFactory factory($count = null, $state = [])
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service> $services
  * @mixin \Eloquent
  */
 class Phase extends Model
