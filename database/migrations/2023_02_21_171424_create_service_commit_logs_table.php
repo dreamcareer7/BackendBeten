@@ -20,8 +20,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('service_commit_id');
 			$table->string('model_type');
 			$table->unsignedBigInteger('model_id');
-			// TODO: add the other roles to the enum
-			$table->enum('roles', ['admin', 'member']);
+			$table->enum('roles', ['mechanic', 'driver', 'valet', 'host', 'guide']);
 			$table->timestamps();
 		});
 	}

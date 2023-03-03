@@ -62,6 +62,6 @@ class ServiceCommit extends Model
 
 	public function service_commit_log()
 	{
-		return $this->hasOne(Service_Commit_Log::class, 'service_commit_id', 'id');
+		return $this->hasMany(Service_Commit_Log::class, 'service_commit_id', 'id');
 	}
 }

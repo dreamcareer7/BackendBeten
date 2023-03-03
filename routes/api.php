@@ -36,8 +36,17 @@ Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 
 Route::middleware('auth:sanctum')->group(function () {
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
+	Route::get('/service_commits/initialize/{id}', [ServiceCommitsController::class, 'initialize']);
 	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/service_commits', ServiceCommitsController::class);
+	Route::post('/service_commit_log', [ServiceCommitsController::class, 'addLog']);
+
+	// Endpoint to get the service commits assigend to a user...
+	// /service_commits/{user_id}???
+	Route::get(
+		'/my_service_commits',
+		[ServiceCommitsController::class, 'myCommits']
+	);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);

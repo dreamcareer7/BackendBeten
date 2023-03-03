@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\ServiceCommit;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\{JsonResponse, Request};
+use App\Models\{ServiceCommit, Service_Commit_Log};
 use App\Http\Requests\{CreateServiceCommitRequest, UpdateServiceCommitRequest};
 
 class ServiceCommitsController extends Controller
@@ -45,26 +45,10 @@ class ServiceCommitsController extends Controller
 
 	/**
 	 * Display the specified resource.
-	 *
-	 * @param int $id
-	 *
-	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function show(int $id): JsonResponse
+	public function show(ServiceCommit $serviceCommit)
 	{
-		$service_commit = ServiceCommit::select(
-				'service_id',
-				'badge',
-				'schedule_at',
-				'started_at',
-				'location',
-				'supervisor_id'
-			// Eager load relationships
-			)->with(['service:id,title', 'supervisor:id,name'])
-			->where('id', $id)
-			->first();
-
-		return response()->json($service_commit); // auto serialized
+		return $serviceCommit->load('service', 'service_commit_log');
 	}
 
 	/**
@@ -103,5 +87,27 @@ class ServiceCommitsController extends Controller
 	{
 		ServiceCommit::whereId($id)->delete();
 		return response()->json(status: 204);
+	}
+
+	public function myCommits()
+	{
+		return auth()->user()->service_commits()->with('service')->get();
+	}
+
+	public function addLog(Request $request)
+	{
+		Service_Commit_Log::create([
+			'service_commit_id' => $request->service_commit_id,
+			'model_type' => $request->model_type,
+			'model_id' => $request->model_id,
+			'roles' => $request->roles,
+		]);
+	}
+
+	public function initialize($id)
+	{
+		ServiceCommit::find($id)->update([
+			'started_at' => now(),
+		]);
 	}
 }
