@@ -92,16 +92,17 @@ class PhasesController extends Controller
 		return true;
 	}
 
-	public function destroyPhase($id)
+
+	/**
+	 * Delete a phase from database.
+	 *
+	 * @param \App\Models\Phase $phase
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function destroy(Phase $phase): JsonResponse
 	{
-		$phase = Phase::findorfail($id);
-		//delete Phase
-		Phase::where('id',$phase->id)->delete();
-		//delete the services connection
-		$this->clearPhaseServices($id);
-		return response()->json([
-			"success"=>true,
-			"message"=>"Phase Removed Successfully."
-		]);
+		$phase->delete();
+		return response()->json(status: 204); // No content
 	}
 }
