@@ -16,7 +16,7 @@ use App\Http\Controllers\API\{
 	MealsAPIController,
 	PhasesController,
 	ServiceAPIController,
-	ServiceCommitAPIController,
+	ServiceCommitsController,
 	UserAPIController,
 	VehicleAPIController
 };
@@ -37,18 +37,12 @@ Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 Route::middleware('auth:sanctum')->group(function () {
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
 	Route::apiResource('/services', ServiceAPIController::class);
+	Route::apiResource('/service_commits', ServiceCommitsController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
 	Route::apiResource('/hospitalities', HospitalitiesController::class);
 	Route::apiResource('/phases', PhasesController::class);
-	// Route::controller(PhasesController::class)->prefix('phases')->group(function () {
-	//    Route::get('paginate','paginate');
-	//    Route::post('/','store');
-	//    Route::post('update/{id}','update');
-	//    Route::post('delete/{id}','destroyPhase');
-	//    Route::get('info/{id}','show');
-	// });
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
@@ -74,7 +68,6 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('delete/{id}','delete');
 			Route::post('update/{id}','update');
 			Route::post('add','store');
-
 		});
 
 	Route::controller(VehicleAPIController::class)->prefix('vehicles')
@@ -148,17 +141,6 @@ Route::middleware('auth:sanctum')->group(function () {
 	// Get available users to select from when creating a service commit
 	// as a supervisor_id
 	Route::get('users/list_supervisors', [UserAPIController::class, 'list_supervisors']);
-
-	// Service commits CRUD endpoints
-	Route::controller(ServiceCommitAPIController::class)
-		->prefix('service/commits')->group(function() {
-
-			Route::get('/', 'index');
-			Route::post('/', 'store');
-			Route::get('{id}', 'show');
-			Route::patch('{id}', 'update');
-			Route::delete('{id}', 'destroy');
-	});
 });
 // TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {

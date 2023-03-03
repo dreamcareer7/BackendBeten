@@ -138,6 +138,7 @@ class UserAPIController extends Controller
 		$user->email = $request->input('email');
 		$user->username = $request->input('username');
 		$user->is_active = $request->input('is_active');
+		$user->contact = $request->input('contact');
 
 		// change password only if user entered a new one
 		if ($request->has('password')) {

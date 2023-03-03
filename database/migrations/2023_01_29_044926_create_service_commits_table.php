@@ -13,19 +13,20 @@ class CreateServiceCommitsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::create('service_commits', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('service_id');
+			$table->foreign('service_id')->references('id')->on('services');
 			$table->string('badge');
-			$table->datetime('scheduled_at')->nullable();
+			$table->datetime('schedule_at');
 			$table->datetime('started_at')->nullable();
-			$table->string('location');
-			$table->unsignedBigInteger('supervisor_id')->comment('crew_id')->nullable();
-			$table->foreign('supervisor_id')->references('id')->on('crews');
-
-			$table->timestamps();
+			$table->string('from_location');
+			$table->unsignedBigInteger('supervisor_id')->comment('user_id');
+			// TODO: this column is set as DATETIME on the diagram
+			// Check authenticity
+			$table->timestamp('created_at');
 		});
 	}
 
@@ -34,7 +35,7 @@ class CreateServiceCommitsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::dropIfExists('service__commits');
 	}

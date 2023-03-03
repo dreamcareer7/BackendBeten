@@ -28,7 +28,7 @@ class UpdateServiceCommitRequest extends FormRequest
 		return [
 			'service_id' => 'bail|required|integer|exists:services,id',
 			'badge' => 'bail|required|string|min:3|max:255',
-			'scheduled_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
+			'schedule_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
 			'started_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
 			'location' => 'bail|required|string|min:3|max:255',
 			'supervisor_id' => 'bail|nullable|integer|exists:crews,id',
@@ -46,7 +46,7 @@ class UpdateServiceCommitRequest extends FormRequest
 	{
 		$fmt = 'Y-m-d H:i:s';
 		$this->merge([
-			'scheduled_at' => $this->scheduled_at ? date($fmt, strtotime($this->scheduled_at)) : null,
+			'schedule_at' => $this->schedule_at ? date($fmt, strtotime($this->schedule_at)) : null,
 			'started_at' => $this->started_at ? date($fmt, strtotime($this->started_at)) : null,
 		]);
 	}

@@ -28,26 +28,9 @@ class CreateServiceCommitRequest extends FormRequest
 		return [
 			'service_id' => 'bail|required|integer|exists:services,id',
 			'badge' => 'bail|required|string|min:3|max:255',
-			'scheduled_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
-			'started_at' => 'bail|nullable|date_format:Y-m-d H:i:s',
-			'location' => 'bail|required|string|min:3|max:255',
-			'supervisor_id' => 'bail|nullable|integer|exists:crews,id',
+			'schedule_at' => 'bail|required|date_format:Y-m-d H:i:s',
+			'from_location' => 'bail|required|string|min:3|max:255',
+			'supervisor_id' => 'bail|required|integer|exists:users,id',
 		];
-	}
-
-	/**
-	 * Prepare the data for validation.
-	 *
-	 * Format the dates if present
-	 *
-	 * @return void
-	 */
-	protected function prepareForValidation(): void
-	{
-		$fmt = 'Y-m-d H:i:s';
-		$this->merge([
-			'scheduled_at' => $this->scheduled_at ? date($fmt, strtotime($this->scheduled_at)) : null,
-			'started_at' => $this->started_at ? date($fmt, strtotime($this->started_at)) : null,
-		]);
 	}
 }
