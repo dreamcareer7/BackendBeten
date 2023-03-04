@@ -29,6 +29,7 @@ class CreateClientsTable extends Migration
 			$table->boolean('is_handicap')->default(false);
 			$table->timestamps();
 			$table->softDeletes();
+			$table->unique(['country_id', 'id_type', 'id_number']);
 		});
 	}
 

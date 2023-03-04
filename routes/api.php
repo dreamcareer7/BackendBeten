@@ -37,21 +37,33 @@ Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 Route::middleware('auth:sanctum')->group(function () {
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
 	Route::get('/service_commits/initialize/{id}', [ServiceCommitsController::class, 'initialize']);
-	Route::apiResource('/services', ServiceAPIController::class);
-	Route::apiResource('/service_commits', ServiceCommitsController::class);
+	
 	Route::post('/service_commit_log', [ServiceCommitsController::class, 'addLog']);
 
-	// Endpoint to get the service commits assigend to a user...
-	// /service_commits/{user_id}???
 	Route::get(
 		'/my_service_commits',
 		[ServiceCommitsController::class, 'myCommits']
 	);
+
 	Route::apiResource('/cities', CitiesController::class);
+	Route::apiResource('/phases', PhasesController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
+	Route::apiResource('/clients', ClientsAPIController::class);
+	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
 	Route::apiResource('/hospitalities', HospitalitiesController::class);
-	Route::apiResource('/phases', PhasesController::class);
+	Route::apiResource('/service_commits', ServiceCommitsController::class);
+
+	// Route::controller(ClientsAPIController::class)->prefix('clients')
+	// 	->group(function () {
+	// 		Route::put('','store');
+	// 		Route::get('paginate','paginate');
+	// 		Route::get('info/{id}','show');
+	// 		Route::post('delete/{id}','destroy');
+	// 		Route::post('update/{id}','update');
+	// 		Route::post('add','store');
+	// 		Route::get('all','all');
+	// });
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
@@ -123,20 +135,6 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::get('all','all');
 			Route::get('list', 'list');
 	});
-
-
-	Route::controller(ClientsAPIController::class)->prefix('clients')
-	   // ->middleware(['permission:manage_users'])
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-			Route::get('all','all');
-	});
-
 
 	// Get available roles & crew members to select from when creating a user
 	Route::get(
