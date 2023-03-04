@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\{HasContracts, HasDocuments};
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 /**
  * App\Models\Crew
@@ -54,7 +54,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Crew extends Model
 {
-	use HasContracts, HasDocuments, HasFactory;
+	use HasContracts, HasDocuments, HasFactory, SoftDeletes;
 
 	/*
 	 * Local Query scope
