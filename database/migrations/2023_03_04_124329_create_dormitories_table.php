@@ -7,7 +7,7 @@ use App\Models\Grammar\ExtendedMySQLGrammar;
 use Illuminate\Support\Facades\{DB, Schema};
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDormitoriesTable extends Migration
+return new class extends Migration
 {
 	/**
 	 * Run the migrations.
@@ -23,12 +23,13 @@ class CreateDormitoriesTable extends Migration
 			$table->string('title');
 			$table->string('phones');
 			$table->unsignedBigInteger('city_id');
+			// TODO: what to do when the city gets deleted?
 			$table->foreign('city_id')->references('id')->on('cities');
 			$table->string('location');
 			$table->geometry('coordinate')->nullable()->comment('json of geometry');
 			$table->boolean('is_active')->default(true);
-			$table->softDeletes();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
@@ -41,4 +42,4 @@ class CreateDormitoriesTable extends Migration
 	{
 		Schema::dropIfExists('dormitories');
 	}
-}
+};

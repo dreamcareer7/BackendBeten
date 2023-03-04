@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\{City, Vehicle};
 use Illuminate\Database\Seeder;
-use App\Models\{City, Dormitory, Vehicle};
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 	{
 		// We should probably seed client_languages before seeding clients
 		// At the moment the two tables are not related
+		City::factory()->count(count: 20)->create();
 		$this->call([
 			CrewMembersTableSeeder::class,
 			GroupsTableSeeder::class,
@@ -32,9 +33,8 @@ class DatabaseSeeder extends Seeder
 			PermissionsTableSeeder::class,
 			RolesTableSeeder::class,
 			UsersTableSeeder::class,
+			DormitoriesTableSeeder::class,
 		]);
 		Vehicle::factory()->create();
-		City::factory()->count(count: 5)->create();
-		Dormitory::factory()->create();
 	}
 }

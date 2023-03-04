@@ -9,7 +9,7 @@ use App\Http\Controllers\API\{
 	ClientsAPIController,
 	CrewAPIController,
 	DocumentAPIController,
-	DormitoryAPIController,
+	DormitoriesController,
 	GroupsApiController,
 	HospitalitiesController,
 	MealTypesController,
@@ -51,6 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/clients', ClientsAPIController::class);
 	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
+	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::apiResource('/hospitalities', HospitalitiesController::class);
 	Route::apiResource('/service_commits', ServiceCommitsController::class);
 
@@ -102,15 +103,7 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('add','store');
 
 		});
-	Route::controller(DormitoryAPIController::class)->prefix('dormitories')
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::patch('{id}','update');
-			Route::post('add','add');
-	});
+
 	Route::controller(GroupsApiController::class)->prefix('groups')
 	   // ->middleware(['permission:manage_users'])
 		->group(function () {

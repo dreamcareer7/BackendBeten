@@ -21,7 +21,7 @@ class DormitoryFactory extends Factory
 		return [
 			'title' => fake()->name,
 			'phones' => fake()->phoneNumber,
-			'city_id' => 1,
+			'city_id' => rand(1, 5),
 			'location' => fake()->address,
 		];
 	}

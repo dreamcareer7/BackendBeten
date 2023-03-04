@@ -45,6 +45,15 @@ class Dormitory extends Model
 	use HasContracts, HasDocuments, HasFactory;
 
 	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'is_active' => 'boolean',
+	];
+
+	/**
 	 * Get the city in which this dormitory resides
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
