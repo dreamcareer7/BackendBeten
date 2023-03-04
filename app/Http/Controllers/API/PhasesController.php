@@ -14,15 +14,18 @@ class PhasesController extends Controller
 	/**
 	 * Display a listing of the phases.
 	 *
+	 * @param \Illuminate\Http\Request $request
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function index(Request $request): JsonResponse
 	{
+		// TODO: validate title & per_page formats (optional params)
 		$query = Phase::orderby('id');
 		$request->whenFilled('title', function ($input) use ($query) {
 			$query->where('title', 'LIKE', '%' . $input . '%');
 		});
-		return response()->json($query->paginate(20));
+		return response()->json($query->paginate(15));
 	}
 
 	/**

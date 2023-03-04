@@ -32,7 +32,7 @@ class UserController extends Controller
 	public function paginate(Request $request){
 		$users = User::orderby('id','desc');
 		$search= $request->input('q') ?? null;
-		$per_page= $request->input('per_page') ?? 25;
+		$per_page= $request->input('per_page') ?? 15;
 		if($search){
 			$users->where('name','LIKE',$search.'%');
 		}

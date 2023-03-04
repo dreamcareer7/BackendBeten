@@ -14,12 +14,18 @@ class ClientsAPIController extends Controller
 	/**
 	 * Display a listing of the clients.
 	 *
+	 * @param \Illuminate\Http\Request $request
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index(): JsonResponse
+	public function index(Request $request): JsonResponse
 	{
+		$query = Client::with('country:id,name');
+		$request->whenFilled('fullname', function ($input) use ($query) {
+			$query->where('fullname', 'LIKE', '%' . $input . '%');
+		});
 		return response()->json(
-			data: Client::with('country:id,name')->paginate(25)
+			data: $query->paginate($request->per_page ?? 15)
 		);
 	}
 
@@ -81,7 +87,7 @@ class ClientsAPIController extends Controller
 	public function paginate(Request $request)
 	{
 
-		$per_page = $request->input('per_page') ?? 25;
+		$per_page = $request->input('per_page') ?? 15;
 		$name = $request->input('name') ?? null;
 		$gender = $request->input('gender') ?? null;
 		$phone = $request->input('phone') ?? null;

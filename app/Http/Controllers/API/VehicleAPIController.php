@@ -169,7 +169,7 @@ class VehicleAPIController extends Controller
 		$model= $request->input('model') ?? null;
 		$year= $request->input('model') ?? null;
 		$model= $request->input('model') ?? null;
-		$per_page= $request->input('per_page') ?? 25;
+		$per_page= $request->input('per_page') ?? 15;
 		if($model){
 			$users->where('model','LIKE',$model.'%');
 		}

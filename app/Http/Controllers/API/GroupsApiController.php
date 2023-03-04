@@ -135,7 +135,7 @@ class GroupsApiController extends Controller
 
 		return response()->json(
 			// Only eager load what's necessary for display
-			data: $groups->with('crew:id,fullname')->paginate(25)
+			data: $groups->with('crew:id,fullname')->paginate(15)
 		);
 	}
 

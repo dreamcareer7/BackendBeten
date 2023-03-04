@@ -22,7 +22,7 @@ class UserAPIController extends Controller
 	public function index(Request $request)
 	{
 		if (auth()->user()->hasPermissionTo('users.browse')) {
-			$clients = User::paginate($request->input('per_page') ?? 25);
+			$clients = User::paginate($request->input('per_page') ?? 15);
 
 			return response()->json([
 				'message' => 'Users list',
@@ -34,8 +34,8 @@ class UserAPIController extends Controller
 	}
 	public function paginate(Request $request)
 	{
-		// TODO: not yet implemented on frontend hence always 30
-		$per_page = $request->input('per_page') ?? 30;
+		// TODO: not yet implemented on frontend hence always 15
+		$per_page = $request->input('per_page') ?? 15;
 		$name = $request->input('name') ?? null;
 		$email = $request->input('email') ?? null;
 		$contact = $request->input('contact') ?? null;

@@ -18,7 +18,7 @@ class MealTypesController extends Controller
 	 */
 	public function index(Request $request): JsonResponse
 	{
-		$per_page = $request->input('per_page') ?? 20;
+		$per_page = $request->input('per_page') ?? 15;
 		$query = MealType::query();
 		$request->whenFilled('title', function ($input) use ($query) {
 			$query->where('title', 'LIKE', '%' . $input . '%');

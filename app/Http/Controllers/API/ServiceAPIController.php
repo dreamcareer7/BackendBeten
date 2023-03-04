@@ -20,7 +20,7 @@ class ServiceAPIController extends Controller
 	{
 		$services = Service::select(
 			'id', 'title', 'city_id', 'before_date', 'exact_date', 'after_date'
-		)->with('city:id,title')->paginate(50);
+		)->with('city:id,title')->paginate(15);
 
 		return response()->json(data: $services, status: 200);
 	}

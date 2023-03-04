@@ -20,7 +20,7 @@ class CrewAPIController extends Controller
 	{
 		if (auth()->user()->hasPermissionTo('crew.index')) {
 
-			$clients = Crew::paginate($request->input('per_page')?? 25);
+			$clients = Crew::paginate($request->input('per_page')?? 15);
 
 			return response()->json( ([
 				'message'       => 'Crew list',
@@ -164,7 +164,7 @@ class CrewAPIController extends Controller
 		$location= $request->input('location') ?? null;
 		$coordinate= $request->input('coordinate') ?? null;
 		$is_active= $request->input('is_active') ?? null;
-		$per_page= $request->input('per_page') ?? 25;
+		$per_page= $request->input('per_page') ?? 15;
 		if($title){
 			$users->where('fullname','LIKE',$title.'%');
 		}

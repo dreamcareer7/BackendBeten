@@ -129,7 +129,7 @@ class DormitoryAPIController extends Controller
 		$location = $request->input('location') ?? null;
 		$coordinate = $request->input('coordinate') ?? null;
 		$is_active = $request->input('is_active') ?? null;
-		$per_page = $request->input('per_page') ?? 25;
+		$per_page = $request->input('per_page') ?? 15;
 		if ($title){
 			$dormitories->where('title','LIKE',$title.'%');
 		}

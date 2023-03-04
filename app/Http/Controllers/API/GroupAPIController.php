@@ -26,7 +26,7 @@ class GroupAPIController extends Controller
 	{
 		if ($this->authUser->hasPermissionTo('groups.index')) {
 
-			$doc = Group::paginate($request->input('per_page')?? 25);
+			$doc = Group::paginate($request->input('per_page')?? 15);
 
 			return response()->json( ([
 				'message'       => 'Groups list',

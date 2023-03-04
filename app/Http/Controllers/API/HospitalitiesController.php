@@ -27,7 +27,7 @@ class HospitalitiesController extends Controller
 			'received_by',
 			'extra'
 		// Eager load the receiver (crew member) full name
-		)->with('receiver:id,fullname')->paginate(10);
+		)->with('receiver:id,fullname')->paginate(15);
 		return response()->json(data: $hospitalities);
 	}
 

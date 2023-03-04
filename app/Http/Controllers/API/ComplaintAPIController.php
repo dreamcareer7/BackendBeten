@@ -25,7 +25,7 @@ class ComplaintAPIController extends Controller
 	{
 		if ($this->authUser->hasPermissionTo('complaints.index')) {
 
-			$clients = Complaint::paginate($request->input('per_page')?? 25);
+			$clients = Complaint::paginate($request->input('per_page')?? 15);
 
 			return response()->json(([
 				'message' => 'Complaints list',
