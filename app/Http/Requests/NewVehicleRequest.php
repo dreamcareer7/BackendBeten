@@ -15,7 +15,7 @@ class NewVehicleRequest extends FormRequest
 			'registration'=>['required'],
 			'manufacturer'=>['required'],
 			 'year' => 'required',
-			 'badge' => 'required',
+			 'badge' => 'required|integer|min:3|max:2147483647',
 		];
 	}
 
