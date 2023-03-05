@@ -69,7 +69,7 @@ class ServiceCommitsController extends Controller
 		$service_commit->badge = $request->badge;
 		$service_commit->schedule_at = $request->schedule_at;
 		$service_commit->started_at = $request->started_at;
-		$service_commit->location = $request->location;
+		$service_commit->from_location = $request->from_location;
 		$service_commit->supervisor_id = $request->supervisor_id;
 		// Save in the database
 		$service_commit->save();
