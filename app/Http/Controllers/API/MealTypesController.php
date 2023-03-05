@@ -66,7 +66,6 @@ class MealTypesController extends Controller
 	public function update(UpdateMealTypeRequest $request, MealType $mealType)
 	{
 		$mealType->update([
-			'meal_type_id' => $request->meal_type_id,
 			'title' => $request->title,
 			'description' => $request->description,
 			'has_documents' => $request->has_documents,
