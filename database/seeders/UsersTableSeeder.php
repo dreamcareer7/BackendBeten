@@ -20,8 +20,9 @@ class UsersTableSeeder extends Seeder
 		User::factory()->create([
 			'name' => 'Dr. Imad',
 			'email' => 'admin@murafiq.com',
+			'is_active' => true,
 		])->assignRole('admin');
-		User::factory()->count(20)->hasCrew()->create()
-			->each(fn (User $user) => $user->assignRole('admin'));
+
+		User::factory()->count(20)->hasCrew()->create();
 	}
 }

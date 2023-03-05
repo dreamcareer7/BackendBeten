@@ -15,9 +15,8 @@ class UserUpdateRequest extends FormRequest
 		return [
 			// TODO: allow uploading only documents
 			// How to ignore the rest of the validation rules?
-			'name' => 'required_without:documents|string|min:10', //|unique:users,name'.($resource_id > 0 ? ','.$resource_id : ''),
+			'name' => 'required_without:documents|string|min:3', //|unique:users,name'.($resource_id > 0 ? ','.$resource_id : ''),
 			'email'=>['required_without:documents','email', Rule::unique('users')->ignore($this->id, 'id')],
-			'username'=>['required_without:documents', Rule::unique('users')->ignore($this->id, 'id')],
 			 'password' => 'min:8|confirmed',
 			/*
 						'password' => [	// reference https://stackoverflow.com/questions/31539727/laravel-password-validation-rule

@@ -41,10 +41,13 @@ class LoginController extends Controller
 
 			return $this->sendLockoutResponse($request);
 		}
-		$success=false;
+		$success = false;
 		$password = $request->input('password');
 		$email = $request->input('email');
-		$user = User::where('email', $email)->first();
+		$user = User::where([
+			'email' => $email,
+			'is_active' => true,
+		])->first();
 		if ($user) {
 			//check for password
 			$dbpassword = $user->password;

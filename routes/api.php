@@ -17,7 +17,7 @@ use App\Http\Controllers\API\{
 	PhasesController,
 	ServiceAPIController,
 	ServiceCommitsController,
-	UserAPIController,
+	UsersController,
 	VehicleAPIController
 };
 
@@ -45,6 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	);
 
 	Route::apiResource('/crews', CrewsController::class);
+	Route::apiResource('/users', UsersController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/phases', PhasesController::class);
 	Route::apiResource('/groups', GroupsController::class);
@@ -55,18 +56,8 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::apiResource('/hospitalities', HospitalitiesController::class);
 	Route::apiResource('/service_commits', ServiceCommitsController::class);
-	// Route::controller(CrewAPIController::class)->prefix('crews')
-	//    // ->middleware(['permission:manage_users'])
-	// 	->group(function () {
-	// 		Route::put('','store');
-	// 		Route::get('paginate','paginate');
-	// 		Route::get('info/{id}','show');
-	// 		Route::post('delete/{id}','destroy');
-	// 		Route::post('update/{id}','update');
-	// 		Route::post('add','store');
-	// 		Route::get('all','all');
-	// 		Route::get('list', 'list');
-	// });
+
+	Route::get('users/edit/{id}', [UsersController::class, 'edit']);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
@@ -84,16 +75,6 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::delete('/{id}', 'destroy');
 		});
 
-	Route::controller(UserAPIController::class)->prefix('users')
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','delete');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-		});
-
 	Route::controller(VehicleAPIController::class)->prefix('vehicles')
 	   // ->middleware(['permission:manage_users'])
 		->group(function () {
@@ -109,7 +90,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	// Get available roles & crew members to select from when creating a user
 	Route::get(
 		'populate-create-user-dropdowns',
-		[UserAPIController::class, 'populateCreateUserDropdowns']
+		[UsersController::class, 'populateCreateUserDropdowns']
 	);
 	Route::get('services/all', [ServiceAPIController::class, 'all']);
 
@@ -117,7 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::get('service/list', [ServiceAPIController::class, 'list']);
 	// Get available users to select from when creating a service commit
 	// as a supervisor_id
-	Route::get('users/list_supervisors', [UserAPIController::class, 'list_supervisors']);
+	Route::get('users/list_supervisors', [UsersController::class, 'list_supervisors']);
 });
 // TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {
