@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
 		// At the moment the two tables are not related
 		City::factory()->count(count: 20)->create();
 		$this->call([
-			CrewMembersTableSeeder::class,
+			PermissionsTableSeeder::class,
+			RolesTableSeeder::class,
+			CountrySeeder::class,
+			UsersTableSeeder::class, // Also seeds crew member
 			GroupsTableSeeder::class,
 			HospitalitiesTableSeeder::class,
 			ServicesTableSeeder::class,
@@ -28,11 +31,7 @@ class DatabaseSeeder extends Seeder
 			MealTypesTableSeeder::class,
 			MealsTableSeeder::class,
 			ProfessionSeeder::class,
-			CountrySeeder::class,
 			ClientsTableSeeder::class,
-			PermissionsTableSeeder::class,
-			RolesTableSeeder::class,
-			UsersTableSeeder::class,
 			DormitoriesTableSeeder::class,
 		]);
 		Vehicle::factory()->create();

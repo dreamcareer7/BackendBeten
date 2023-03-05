@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
 
 /**
  * App\Models\Group
@@ -13,33 +14,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property int $id
  * @property string $title
  * @property int $crew_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
  * @property-read int|null $clients_count
- * @property-read \App\Models\Crew|null $crew
+ * @property-read \App\Models\Crew $crew
+ * @method static \Database\Factories\GroupFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Group query()
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereCrewId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @method static \Database\Factories\GroupFactory factory($count = null, $state = [])
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\GroupClients> $clients
  * @mixin \Eloquent
  */
 class Group extends Model
@@ -53,10 +37,23 @@ class Group extends Model
 	 */
 	public $timestamps = false;
 
-	public function crew(){
-		return $this->hasOne(Crew::class,'id','crew_id');
+	/**
+	 * Get the crew member of this group.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function crew(): BelongsTo
+	{
+		return $this->belongsTo(related: Crew::class);
 	}
-	public function clients(){
-		return $this->hasMany(GroupClients::class,'id','group_id');
+
+	/**
+	 * Get the client in this group.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function clients(): BelongsToMany
+	{
+		return $this->belongsToMany(related: Client::class);
 	}
 }

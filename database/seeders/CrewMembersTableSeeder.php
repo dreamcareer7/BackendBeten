@@ -16,6 +16,6 @@ class CrewMembersTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Crew::factory(count: 5000)->create();
+		Crew::factory(count: 20)->create();
 	}
 }

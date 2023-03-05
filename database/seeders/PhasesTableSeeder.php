@@ -16,7 +16,7 @@ class PhasesTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Phase::factory(count: 500)->create()->each(function (Phase $phase) {
+		Phase::factory(count: 20)->create()->each(function (Phase $phase) {
 			$phase->services()->attach(
 				Service::inRandomOrder()
 					->limit(5)

@@ -16,6 +16,6 @@ class MealTypesTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		MealType::factory(count: 5000)->create();
+		MealType::factory(count: 20)->create();
 	}
 }

@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use Faker\Factory as Faker;
-
+use App\Models\Profession;
 use Illuminate\Database\Seeder;
-use App\Models\{Profession, User};
-use Spatie\Permission\Models\{Permission, Role};
 
 class ProfessionSeeder extends Seeder
 {
@@ -17,17 +14,8 @@ class ProfessionSeeder extends Seeder
 	 *
 	 * @return void
 	 */
-	public function run()
+	public function run(): void
 	{
-		Profession::truncate();
-		$faker = Faker::create();
-		$min = 1;
-		$max = 5;
-		foreach (range($min,$max) as $index) {
-			Profession::create([
-				'id' => $faker->unique()->numberBetween($min,$max),
-				'title' => $faker->jobTitle,
-			]);
-		}
+		Profession::factory(count: 5);
 	}
 }

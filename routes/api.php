@@ -7,10 +7,10 @@ use App\Http\Controllers\ContractsAPIController;
 use App\Http\Controllers\API\{
 	CitiesController,
 	ClientsAPIController,
-	CrewAPIController,
+	CrewsController,
 	DocumentAPIController,
 	DormitoriesController,
-	GroupsApiController,
+	GroupsController,
 	HospitalitiesController,
 	MealTypesController,
 	MealsAPIController,
@@ -31,7 +31,6 @@ use App\Http\Controllers\API\{
 |
 */
 Auth::routes();
-
 Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -45,8 +44,10 @@ Route::middleware('auth:sanctum')->group(function () {
 		[ServiceCommitsController::class, 'myCommits']
 	);
 
+	Route::apiResource('/crews', CrewsController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/phases', PhasesController::class);
+	Route::apiResource('/groups', GroupsController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
 	Route::apiResource('/clients', ClientsAPIController::class);
 	Route::apiResource('/services', ServiceAPIController::class);
@@ -54,8 +55,8 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::apiResource('/hospitalities', HospitalitiesController::class);
 	Route::apiResource('/service_commits', ServiceCommitsController::class);
-
-	// Route::controller(ClientsAPIController::class)->prefix('clients')
+	// Route::controller(CrewAPIController::class)->prefix('crews')
+	//    // ->middleware(['permission:manage_users'])
 	// 	->group(function () {
 	// 		Route::put('','store');
 	// 		Route::get('paginate','paginate');
@@ -64,6 +65,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	// 		Route::post('update/{id}','update');
 	// 		Route::post('add','store');
 	// 		Route::get('all','all');
+	// 		Route::get('list', 'list');
 	// });
 
 	/** Contracts */
@@ -103,31 +105,6 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('add','store');
 
 		});
-
-	Route::controller(GroupsApiController::class)->prefix('groups')
-	   // ->middleware(['permission:manage_users'])
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('{id}', 'show');
-			Route::post('delete/{id}','destroy');
-			Route::post('update/{id}','update');
-			Route::post('add','createGroup');
-			Route::post('assign_clients/{id}','assignClients');
-	});
-
-	Route::controller(CrewAPIController::class)->prefix('crews')
-	   // ->middleware(['permission:manage_users'])
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-			Route::get('all','all');
-			Route::get('list', 'list');
-	});
 
 	// Get available roles & crew members to select from when creating a user
 	Route::get(

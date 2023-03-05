@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Profession whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profession whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Profession whereUpdatedAt($value)
+ * @method static \Database\Factories\ProfessionFactory factory($count = null, $state = [])
  * @mixin \Eloquent
  */
 class Profession extends Model

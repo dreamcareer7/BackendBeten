@@ -13,13 +13,16 @@ return new class extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
-		Schema::create('group_clients', function (Blueprint $table) {
-			$table->id();
+		Schema::create('client_group', function (Blueprint $table) {
 			$table->unsignedBigInteger('client_id');
+			$table->foreign('client_id')->references('id')->on('clients')
+				->onDelete('cascade');
 			$table->unsignedBigInteger('group_id');
-			$table->timestamps();
+			$table->foreign('group_id')->references('id')->on('groups')
+				->onDelete('cascade');
+			$table->unique(['client_id', 'group_id']);
 		});
 	}
 
@@ -28,8 +31,8 @@ return new class extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
-		Schema::dropIfExists('group_clients');
+		Schema::dropIfExists('client_group');
 	}
 };

@@ -6,19 +6,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfessionsTable extends Migration
+return new class extends Migration
 {
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
-		Schema::create('professions', function (Blueprint $table) {
-			$table->unsignedTinyInteger('id');
+		Schema::create('countries', function (Blueprint $table) {
+			$table->id();
 			$table->string('title');
-			$table->timestamps();
 		});
 	}
 
@@ -27,8 +26,8 @@ class CreateProfessionsTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
-		Schema::dropIfExists('professions');
+		Schema::dropIfExists('countries');
 	}
-}
+};

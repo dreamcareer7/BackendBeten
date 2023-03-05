@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $language
  * @mixin \Eloquent
  */
 class UserLanguage extends Model

@@ -7,9 +7,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Group>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profession>
  */
-class GroupFactory extends Factory
+class ProfessionFactory extends Factory
 {
 	/**
 	 * Define the model's default state.
@@ -19,8 +19,7 @@ class GroupFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'title' => fake()->word,
-			'crew_id' => rand(1, 20),
+			'title' => fake()->jobTitle,
 		];
 	}
 }

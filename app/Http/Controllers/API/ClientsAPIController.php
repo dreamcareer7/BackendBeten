@@ -20,7 +20,7 @@ class ClientsAPIController extends Controller
 	 */
 	public function index(Request $request): JsonResponse
 	{
-		$query = Client::with('country:id,name');
+		$query = Client::with('country:id,title');
 		$request->whenFilled('fullname', function ($input) use ($query) {
 			$query->where('fullname', 'LIKE', '%' . $input . '%');
 		});
@@ -30,7 +30,7 @@ class ClientsAPIController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created client in database.
 	 *
 	 * @param \App\HTtp\Requests\CreateClientRequest $request
 	 *

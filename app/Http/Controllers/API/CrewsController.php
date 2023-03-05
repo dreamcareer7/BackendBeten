@@ -9,27 +9,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NewCrewRequest;
 use Illuminate\Http\{JsonResponse, Request};
 
-class CrewAPIController extends Controller
+class CrewsController extends Controller
 {
 	/**
-	 * Show the form for creating a new resource.
+	 * Display a listing of the crew members.
 	 *
-	 * @return JsonResponse
+	 * @param \Illuminate\Http\Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index(Request $request)
+	public function index(Request $request): JsonResponse
 	{
-		if (auth()->user()->hasPermissionTo('crew.index')) {
-
-			$clients = Crew::paginate($request->input('per_page')?? 15);
-
-			return response()->json( ([
-				'message'       => 'Crew list',
-				'data'          =>  $clients,
-				'status_code'   => 200,
-			]));
-		} else {
-			return  response()->json('dont have permission to see clients', 402);
-		}
+		return response()->json(
+			data: Crew::with('country:id,title')
+				->paginate($request->input('per_page')?? 15)
+		);
 	}
 
 	/**
@@ -194,9 +188,7 @@ class CrewAPIController extends Controller
 		$query = Crew::select('id', 'fullname');
 
 		$request->whenFilled('fullname', function ($input) use ($query) {
-			$query->where('fullname', 'LIKE', '%' . $input . '%')->limit(10);
-		}, function () use ($query) {
-			$query->limit(10);
+			$query->where('fullname', 'LIKE', '%' . $input . '%');
 		});
 
 		return response()->json($query->get());

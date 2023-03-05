@@ -16,8 +16,6 @@ return new class () extends Migration {
 	{
 		Schema::create('users', function (Blueprint $table) {
 			$table->id();
-			$table->unsignedBigInteger('crew_member_id')->nullable();
-			$table->foreign('crew_member_id')->references('id')->on('crews');
 			$table->string('name');
 			$table->string('username')->unique();
 			$table->string('password');

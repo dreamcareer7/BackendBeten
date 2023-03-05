@@ -20,7 +20,7 @@ class MealFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'meal_type_id' => rand(1, 5000), // Already seeded 5000 types
+			'meal_type_id' => rand(1, 20), // Already seeded 20 types
 			'quantity' => fake()->randomNumber(),
 			'to_model_type' => fake()->randomElement(
 				array_merge(Contract::$model_types, Document::$model_types)

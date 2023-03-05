@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-return new class () extends Migration {
+return new class extends Migration {
 	/**
 	 * Run the migrations.
 	 *
@@ -16,19 +16,27 @@ return new class () extends Migration {
 	{
 		Schema::create('crews', function (Blueprint $table) {
 			$table->id();
-			$table->string('fullname')->comment('name in arabic language');
-			// TODO: Make it an enum for sanity
-			$table->boolean('gender')->default('0')
-				->comment('0->male, 1->female');
-			$table->unsignedTinyInteger('profession_id')->nullable();
-			$table->unsignedTinyInteger('country_id');
+			$table->unsignedBigInteger('user_id');
+			$table->foreign('user_id')->references('id')->on('users')
+				->onDelete('cascade');
+			$table->string('fullname')->comment('Name in Arabic language');
+			$table->enum('gender', [
+				'Male',
+				'Female',
+			])->default('Male');
+			$table->unsignedBigInteger('profession_id')->nullable();
+			$table->foreign('profession_id')->references('id')
+				->on('professions')
+				->onDelete('cascade');
+			$table->unsignedBigInteger('country_id');
+			$table->foreign('country_id')->references('id')->on('countries');
 			$table->string('phone');
 			$table->string('id_type');
 			$table->string('id_no');
 			$table->date('dob');
 			$table->boolean('is_active')->default(true);
-			$table->softDeletes();
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 

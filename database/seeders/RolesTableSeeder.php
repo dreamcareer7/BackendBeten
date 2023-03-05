@@ -15,12 +15,12 @@ class RolesTableSeeder extends Seeder
 	 *
 	 * @return void
 	 */
-	public function run()
+	public function run(): void
 	{
 		$roleAdmin = Role::create(['name' => 'admin']);
 		$roleSuperVisor = Role::create(['name' => 'supervisor']);
 		$roleGroupsAdmin = Role::create(['name' => 'groups-admin']);
-		$roleUser = Role::create(['name' => 'user']);
+		Role::create(['name' => 'user']);
 		$roleMember = Role::create(['name' => 'member']);
 
 		$roleAdmin->givePermissionTo([
@@ -143,8 +143,5 @@ class RolesTableSeeder extends Seeder
 			'vehicles.index',
 			'vehicles.view',
 		]);
-
-
-
 	}
 }

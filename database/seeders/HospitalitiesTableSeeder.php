@@ -16,6 +16,6 @@ class HospitalitiesTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Hospitality::factory(count: 5000)->create();
+		Hospitality::factory(count: 20)->create();
 	}
 }

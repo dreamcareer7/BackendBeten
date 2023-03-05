@@ -9,6 +9,35 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * App\Models\ServiceCommit
+ *
+ * @property int $id
+ * @property int $service_id
+ * @property string $badge
+ * @property \Illuminate\Support\Carbon $schedule_at
+ * @property \Illuminate\Support\Carbon|null $started_at
+ * @property string $from_location
+ * @property int $supervisor_id user_id
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property-read \App\Models\Service $service
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
+ * @property-read int|null $service_commit_log_count
+ * @property-read \App\Models\User|null $supervisor
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereBadge($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereFromLocation($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereScheduleAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereServiceId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereStartedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereSupervisorId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
+ * @mixin \Eloquent
+ */
 class ServiceCommit extends Model
 {
 	use HasFactory;

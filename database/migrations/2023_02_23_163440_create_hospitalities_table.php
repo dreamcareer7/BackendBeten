@@ -19,7 +19,7 @@ return new class extends Migration
 			$table->id();
 			$table->string('title');
 			$table->string('description');
-			$table->timestamp('required_date');
+			$table->dateTime('required_date');
 			$table->float('quantity');
 			$table->unsignedBigInteger('received_by');
 			$table->text('extra')->nullable();

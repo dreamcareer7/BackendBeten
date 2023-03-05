@@ -17,13 +17,12 @@ class PermissionsTableSeeder extends Seeder
 	 *
 	 * @return void
 	 */
-	public function run()
+	public function run(): void
 	{
 		// Reset cached roles and permissions
 		app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
 		$permissions = [
-
 			'users.create',
 			'users.edit',
 			'users.status',
@@ -91,9 +90,8 @@ class PermissionsTableSeeder extends Seeder
 			'settings.*',
 		];
 
-		foreach( $permissions as $permit )
+		foreach ($permissions as $permit) {
 			Permission::create(['name' => $permit]);
+		}
 	}
-
-
 }

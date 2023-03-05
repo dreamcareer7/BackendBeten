@@ -50,11 +50,27 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Contract> $contracts
  * @property-read int|null $contracts_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|Crew onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Crew whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Crew withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Crew withoutTrashed()
  * @mixin \Eloquent
  */
 class Crew extends Model
 {
 	use HasContracts, HasDocuments, HasFactory, SoftDeletes;
+
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		// dob = Date Of Birth (was too much to name it birthday apparently)
+		'dob' => 'date',
+		'is_active' => 'boolean',
+	];
 
 	/*
 	 * Local Query scope
@@ -69,8 +85,10 @@ class Crew extends Model
 		]);
 	}
 
-	/*
-	 * Relationships
+	/**
+	 * Get the country of the crew member.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
 	public function country(): BelongsTo
 	{

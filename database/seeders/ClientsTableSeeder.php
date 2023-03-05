@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Client;
+use App\Models\{Client, Group};
 use Illuminate\Database\Seeder;
 
 class ClientsTableSeeder extends Seeder
@@ -16,6 +16,16 @@ class ClientsTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Client::factory()->count(count: 5000)->create();
+		Client::factory(count: 20)->create()
+			->each(function (Client $client): void {
+					$client->groups()->attach(
+						Group::inRandomOrder()
+							->limit(3)
+							->select('id')
+							->pluck('id')
+							->toArray()
+					);
+				}
+			);
 	}
 }
