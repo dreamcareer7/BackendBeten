@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereCrewId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereTitle($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
  * @mixin \Eloquent
  */
 class Group extends Model

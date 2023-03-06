@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereSupervisorId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
  * @mixin \Eloquent
  */
 class ServiceCommit extends Model

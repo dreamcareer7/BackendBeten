@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
  * @mixin \Eloquent
  */
 class Service extends Model

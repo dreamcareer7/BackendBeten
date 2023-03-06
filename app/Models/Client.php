@@ -45,6 +45,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Client withoutTrashed()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $groups
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $groups
  * @mixin \Eloquent
  */
 class Client extends Model

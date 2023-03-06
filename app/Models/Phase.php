@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service> $services
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service> $services
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service> $services
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service> $services
  * @mixin \Eloquent
  */
 class Phase extends Model
