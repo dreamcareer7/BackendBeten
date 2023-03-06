@@ -34,6 +34,6 @@ class DatabaseSeeder extends Seeder
 			ClientsTableSeeder::class,
 			DormitoriesTableSeeder::class,
 		]);
-		Vehicle::factory()->create();
+		Vehicle::factory(count: 20)->create();
 	}
 }

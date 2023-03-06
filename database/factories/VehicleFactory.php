@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use Faker\Provider\Fakecar;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,12 +19,14 @@ class VehicleFactory extends Factory
 	 */
 	public function definition()
 	{
+		fake()->addProvider(new Fakecar($this->faker));
+		$vehicle = fake()->vehicleArray();
 		return [
-			'model' => fake()->name,
-			'manufacturer' => fake()->name,
-			'year' => fake()->year,
-			'registration' => fake()->name,
-			'badge' => fake()->randomNumber(),
+			'model' => $vehicle['model'],
+			'manufacturer' => $vehicle['brand'],
+			'year' => fake()->biasedNumberBetween(1990, date('Y'), 'sqrt'),
+			'registration' => fake()->vehicleRegistration,
+			'badge' => fake()->numerify('########'),
 		];
 	}
 }

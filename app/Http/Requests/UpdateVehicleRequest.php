@@ -27,12 +27,12 @@ class UpdateVehicleRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'id' => ['required_without:documents', Rule::exists('vehicles')],
-			'model' => 'required_without:documents',
-			'registration'=>['required_without:documents', Rule::unique('vehicles')->ignore($this->id, 'id')],
-			'manufacturer'=>['required_without:documents'],
-			'year' => 'required_without:documents',
-			'badge' => 'required_without:documents',
+			'id' => ['required', Rule::exists('vehicles')],
+			'model' => 'required',
+			'registration' => ['required', Rule::unique('vehicles')->ignore($this->id, 'id')],
+			'manufacturer' => ['required'],
+			'year' => 'required',
+			'badge' => 'required',
 		];
 	}
 }
