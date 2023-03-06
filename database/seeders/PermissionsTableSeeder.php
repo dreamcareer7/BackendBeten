@@ -7,7 +7,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use Spatie\Permission\Models\Permission;
-
 use Spatie\Permission\PermissionRegistrar;
 
 class PermissionsTableSeeder extends Seeder
@@ -35,6 +34,8 @@ class PermissionsTableSeeder extends Seeder
 
 			'roles.create',
 			'roles.edit',
+			'roles.assigning_permissions',
+			'roles.assigning_users',
 			'roles.delete',
 			'roles.*',
 

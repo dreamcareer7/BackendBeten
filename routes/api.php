@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
-use App\Http\Controllers\ContractsAPIController;
+use App\Http\Controllers\{ContractsAPIController, SettingsController};
 use App\Http\Controllers\API\{
 	CitiesController,
 	ClientsAPIController,
@@ -74,6 +74,8 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('/{type}/{id}', 'store');
 			Route::delete('/{id}', 'destroy');
 		});
+
+	Route::apiResource('settings', SettingsController::class);
 
 	Route::controller(VehicleAPIController::class)->prefix('vehicles')
 	   // ->middleware(['permission:manage_users'])

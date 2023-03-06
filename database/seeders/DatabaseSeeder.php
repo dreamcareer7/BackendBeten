@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\{City, Vehicle};
 use Illuminate\Database\Seeder;
+use App\Models\{City, Setting, Vehicle};
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,5 +35,6 @@ class DatabaseSeeder extends Seeder
 			DormitoriesTableSeeder::class,
 		]);
 		Vehicle::factory(count: 20)->create();
+		Setting::factory(count: 5)->create();
 	}
 }
