@@ -53,7 +53,7 @@ class LoginController extends Controller
 			$dbpassword = $user->password;
 			if (Hash::check($password, $dbpassword)) {
 				//issue new Token
-				$token= $user->createToken("System Login")->plainTextToken;
+				$token= $user->createToken("System Login", $user->getPermissionsViaRoles()->pluck('name')->toArray())->plainTextToken;
 				$success = true;
 				$message= "successfully logged in.";
 			} else {

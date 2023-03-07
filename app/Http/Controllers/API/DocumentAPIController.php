@@ -14,6 +14,10 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class DocumentAPIController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Document::class);
+	}
 	/**
 	 * Display a listing of the documents for a given model.
 	 *

@@ -11,6 +11,11 @@ use App\Http\Requests\{CreateServiceRequest, UpdateServiceRequest};
 
 class ServiceAPIController extends Controller
 {
+	 public function __construct()
+	{
+		$this->authorizeResource(Service::class);
+	}
+
 	/**
 	 * Display a listing of the services.
 	 *

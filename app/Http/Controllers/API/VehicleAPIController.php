@@ -11,6 +11,10 @@ use App\Http\Requests\{NewVehicleRequest, UpdateVehicleRequest};
 
 class VehicleAPIController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Vehicle::class);
+	}
 	public function paginate(Request $request)
 	{
 		$users = Vehicle::query();
