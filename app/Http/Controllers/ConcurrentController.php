@@ -56,13 +56,14 @@ class ConcurrentController extends Controller
 				'concurrent_id' => $concurrent->id,
 				'user_id' =>  $users[$key]
 			]);
-		}
+			}
 
-		return response()->json(([
-			'message' => 'Concurrent Created Successfully',
-			'data' => $concurrent,
-			'status_code' => 200,
-			'success' => true,
-		]));
+			return response()->json(([
+				'message' => 'Concurrent Created Successfully',
+				'data' => $concurrent,
+				'status_code' => 200,
+				'success' => true,
+			]));
+		}
 	}
 }
