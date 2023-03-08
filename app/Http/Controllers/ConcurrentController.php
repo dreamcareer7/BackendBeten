@@ -14,7 +14,7 @@ class ConcurrentController extends Controller
 
     public function index()
 	{
-		//
+		return response()->json(Concurrent::orderBy('id','desc')->get());
 	}
     
     public function getusersroles(){
@@ -44,31 +44,37 @@ class ConcurrentController extends Controller
 	public function store(Request $request)
 	{
 		// dd($request->all());
+		if($request->input('type') == 'Daily'){
+           $data = $request->input('daily');
+           $roles = $request->input('daily.roles');
+		   $users = $request->input('daily.users');
+		}else{
+		   $data = $request->input('weekly');
+		   $roles = $request->input('weekly.roles');
+		   $users = $request->input('weekly.users');
+		}
+
 		$concurrent = Concurrent::create([
           'starting_at' => $request->input('start_at'),
           'ending_at' => $request->input('end_at'),
           'model_type' => $request->input('modelType'),
           'model_id' => $request->input('modelId'),
           'repeated_every' => $request->input('repeatedEvery'),
-          'extra' => $request->input('extra'),
+          'extra' => json_encode($data),
 		]);
-		if($request->input('type') == 'Weekly'){
-			$roles = $request->input('wRoles');
-			$users = $request->input('wUsers');
-		}else{
-            $roles = $request->input('dRoles');
-			$users = $request->input('dUsers');
-		}
+		
 		foreach ($roles as $key => $role) {
-			ConcurrentRole::create([
-				'concurrent_id' => $concurrent->id,
-				'role_id' =>  $role
-			]);
+			foreach ($role as $key2 => $value) {
+				ConcurrentRole::create([
+					'concurrent_id' => $concurrent->id,
+					'role_id' =>  $value
+				]);
 
-			ConcurrentUser::create([
-				'concurrent_id' => $concurrent->id,
-				'user_id' =>  $users[$key]
-			]);
+				ConcurrentUser::create([
+					'concurrent_id' => $concurrent->id,
+					'user_id' =>  $users[$key][$key2]
+				]);
+			}
 
 		}
 		
