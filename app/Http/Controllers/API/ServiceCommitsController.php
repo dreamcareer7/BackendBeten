@@ -25,8 +25,9 @@ class ServiceCommitsController extends Controller
 			'schedule_at',
 			'started_at',
 			'from_location',
-			'supervisor_id'
-		)->with(['service:id,title', 'supervisor:id,name'])->get();
+			'supervisor_id',
+			'phase_id'
+		)->with(['service:id,title', 'supervisor:id,name', 'phase:id,title'])->get();
 		return response()->json($commits);
 	}
 

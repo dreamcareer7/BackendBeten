@@ -94,4 +94,9 @@ class ServiceCommit extends Model
 	{
 		return $this->hasMany(Service_Commit_Log::class, 'service_commit_id', 'id');
 	}
+
+	public function phase()
+	{
+		return $this->belongsTo(Phase::class);
+	}
 }
