@@ -57,7 +57,9 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::get('/', 'index');
 			Route::get('get_users_roles', 'getusersroles');
 			Route::post('add', 'store');
-			Route::delete('/{id}', 'destroy');
+			Route::get('info/{id}','show');
+			Route::post('delete/{id}','delete');
+			Route::post('update/{id}','update');
 		});
 	
 	/** Documents */
