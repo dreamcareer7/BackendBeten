@@ -20,7 +20,7 @@ return new class extends Migration
 			$table->unsignedBigInteger('service_commit_id');
 			$table->string('model_type');
 			$table->unsignedBigInteger('model_id');
-			$table->enum('roles', ['mechanic', 'driver', 'valet', 'host', 'guide']);
+			$table->string('role');
 			$table->timestamps();
 		});
 	}

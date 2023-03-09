@@ -101,7 +101,7 @@ class ServiceCommitsController extends Controller
 			'service_commit_id' => $request->service_commit_id,
 			'model_type' => $request->model_type,
 			'model_id' => $request->model_id,
-			'roles' => $request->roles,
+			'role' => $request->role,
 		]);
 	}
 
