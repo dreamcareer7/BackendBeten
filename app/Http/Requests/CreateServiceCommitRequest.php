@@ -31,6 +31,7 @@ class CreateServiceCommitRequest extends FormRequest
 			'schedule_at' => 'bail|required|date_format:Y-m-d H:i:s',
 			'from_location' => 'bail|required|string|min:3|max:255',
 			'supervisor_id' => 'bail|required|integer|exists:users,id',
+			'phase_id' => 'bail|nullable'
 		];
 	}
 }

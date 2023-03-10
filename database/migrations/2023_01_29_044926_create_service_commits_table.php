@@ -24,9 +24,8 @@ class CreateServiceCommitsTable extends Migration
 			$table->datetime('started_at')->nullable();
 			$table->string('from_location');
 			$table->unsignedBigInteger('supervisor_id')->comment('user_id');
-			// TODO: this column is set as DATETIME on the diagram
-			// Check authenticity
 			$table->timestamp('created_at');
+			$table->unsignedBigInteger('phase_id')->nullable();
 		});
 	}
 

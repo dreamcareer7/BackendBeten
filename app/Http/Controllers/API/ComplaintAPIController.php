@@ -12,8 +12,7 @@ class ComplaintAPIController extends Controller
 {
 	public function __construct()
 	{
-		$this->authUser = auth('api')->user();
-		$this->userId = @$this->authUser->id;
+		$this->authorizeResource(Complaint::class);
 	}
 
 	/**

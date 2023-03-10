@@ -23,6 +23,21 @@ class UsersTableSeeder extends Seeder
 			'is_active' => true,
 		])->assignRole('admin');
 
+		User::factory()->create([
+			'email' => 'supervisor@murafiq.com',
+			'is_active' => true,
+		])->assignRole('supervisor');
+
+		User::factory()->create([
+			'email' => 'groups-admin@murafiq.com',
+			'is_active' => true,
+		])->assignRole('groups-admin');
+
+		User::factory()->create([
+			'email' => 'member@murafiq.com',
+			'is_active' => true,
+		])->assignRole('member');
+
 		User::factory()->count(20)->hasCrew()->create();
 	}
 }

@@ -11,6 +11,10 @@ use Illuminate\Http\{JsonResponse, Request};
 
 class CrewsController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Crew::class);
+	}
 	/**
 	 * Display a listing of the crew members.
 	 *

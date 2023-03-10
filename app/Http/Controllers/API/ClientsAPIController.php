@@ -11,6 +11,10 @@ use App\Http\Requests\{CreateClientRequest, UpdateClientRequest};
 
 class ClientsAPIController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Client::class);
+	}
 	/**
 	 * Display a listing of the clients.
 	 *

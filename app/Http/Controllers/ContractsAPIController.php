@@ -12,6 +12,10 @@ use Illuminate\Http\{JsonResponse, Request};
 
 class ContractsAPIController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Contract::class);
+	}
 	/**
 	 * Display a listing of the contracts for a given model.
 	 *

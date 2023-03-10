@@ -9,6 +9,10 @@ use Illuminate\Http\{JsonResponse, Request};
 
 class SettingsController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Setting::class);
+	}
 	/**
 	 * Display a listing of the settings.
 	 *

@@ -11,6 +11,10 @@ use App\Http\Requests\{CreateGroupRequest, UpdateGroupRequest};
 
 class GroupsController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(Group::class);
+	}
 	/**
 	 * Display a listing of the groups.
 	 *

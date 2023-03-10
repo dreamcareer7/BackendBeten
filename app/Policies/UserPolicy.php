@@ -33,7 +33,7 @@ class UserPolicy
 	 */
 	public function view(User $user, User $model): bool
 	{
-		return $user->can('users.view') && $user->is($model);
+		return $user->can('users.view');
 	}
 
 	/**
@@ -71,7 +71,7 @@ class UserPolicy
 	 */
 	public function delete(User $user, User $model): bool
 	{
-		return $user->can('delete');
+		return $user->can('users.delete');
 	}
 
 	/**

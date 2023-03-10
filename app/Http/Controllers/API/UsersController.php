@@ -13,6 +13,10 @@ use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UserUpdateRequest};
 
 class UsersController extends Controller
 {
+	public function __construct()
+	{
+		$this->authorizeResource(User::class);
+	}
 	/**
 	 * Display a listing of the users.
 	 *
