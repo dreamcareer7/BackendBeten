@@ -44,6 +44,32 @@ Route::middleware('auth:sanctum')->group(function () {
 		[ServiceCommitsController::class, 'myCommits']
 	);
 
+	Route::get('model_types', function () {
+		return [
+			"App\Models\City" => __("App\\Models\\City"),
+			"App\Models\Crew" => __("App\\Models\\Crew"),
+			"App\Models\Hospitality" => __("App\\Models\\Hospitality"),
+			"App\Models\Phase" => __("App\\Models\\Phase"),
+			"App\Models\Client" => __("App\\Models\\Client"),
+			"App\Models\Document" => __("App\\Models\\Document"),
+			"App\Models\Invoice" => __("App\\Models\\Invoice"),
+			"App\Models\Profession" => __("App\\Models\\Profession"),
+			"App\Models\User" => __("App\\Models\\User"),
+			"App\Models\Dormitory" => __("App\\Models\\Dormitory"),
+			"App\Models\Service" => __("App\\Models\\Service"),
+			"App\Models\Complaint" => __("App\\Models\\Complaint"),
+			"App\Models\Evaluation" => __("App\\Models\\Evaluation"),
+			"App\Models\Contract" => __("App\\Models\\Contract"),
+			"App\Models\Meal" => __("App\\Models\\Meal"),
+			"App\Models\Group" => __("App\\Models\\Group"),
+			"App\Models\MealType" => __("App\\Models\\MealType"),
+			"App\Models\Vehicle" => __("App\\Models\\Vehicle"),
+		];
+	});
+	Route::get('ids_by_type/App/Models/{model_type}', function ($model_type) {
+		$model = "App\Models\\" . $model_type;
+		return (new $model)->select('id')->get();
+	});
 	Route::apiResource('/crews', CrewsController::class);
 	Route::apiResource('/users', UsersController::class);
 	Route::apiResource('/cities', CitiesController::class);
