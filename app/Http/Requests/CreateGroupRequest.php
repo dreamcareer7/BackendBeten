@@ -28,6 +28,7 @@ class CreateGroupRequest extends FormRequest
 		return [
 			'title' => 'bail|required|string|min:5|max:255',
 			'crew_id' => 'bail|required|integer|exists:crews,id',
+			'clients_count' => 'bail|nullable|integer|min:1'
 		];
 	}
 }
