@@ -27,7 +27,7 @@ class ServiceCommitsController extends Controller
 			'from_location',
 			'supervisor_id',
 			'phase_id'
-		)->with(['service:id,title', 'supervisor:id,name', 'phase:id,title'])->get();
+		)->with(['service:id,title', 'supervisor:id,name', 'phase:id,title'])->paginate(15);
 		return response()->json($commits);
 	}
 
@@ -49,7 +49,10 @@ class ServiceCommitsController extends Controller
 	 */
 	public function show(ServiceCommit $serviceCommit)
 	{
-		return $serviceCommit->load('service', 'service_commit_log');
+		return response()->json([
+			'commit' => $serviceCommit->load('service'),
+			'logs' => $serviceCommit->service_commit_log()->paginate(5)
+		]);
 	}
 
 	/**
