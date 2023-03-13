@@ -17,7 +17,6 @@ use App\Http\Controllers\API\{
 	MealsAPIController,
 	PhaseServiceAPIController,
 	ServiceAPIController,
-	ServiceCommitsAPIController,
 	UserAPIController,
 	VehicleAPIController,
     ServiceCommitsController
