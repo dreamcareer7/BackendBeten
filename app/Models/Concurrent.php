@@ -4,17 +4,47 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Traits\HasConcurrent;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
+/**
+ * App\Models\Concurrent
+ *
+ * @property int $id
+ * @property string $starting_at
+ * @property string $ending_at
+ * @property string $model_type
+ * @property int $model_id
+ * @property string $repeated_every hours, day, week
+ * @property string $extra JSON of what data to be feeded to model, NOT VERY CLEAR
+ * @method static \Database\Factories\ConcurrentFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereEndingAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereExtra($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereModelType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereRepeatedEvery($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereStartingAt($value)
+ * @mixin \Eloquent
+ */
 class Concurrent extends Model
 {
-	use HasConcurrent, HasFactory, SoftDeletes;
+	use HasFactory;
+
+	/**
+	 * Indicates if the model should be timestamped.
+	 *
+	 * @var bool
+	 */
 	public $timestamps = false;
 
-	public static array $model_types = [
-		Vehicle::class,
-	];
-
+	/**
+	 * The table associated with the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'concurrent';
 }

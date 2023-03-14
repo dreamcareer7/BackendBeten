@@ -1,39 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Concurrent;
-use App\Models\ConcurrentRole;
-use App\Models\ConcurrentUser;
-use Illuminate\Support\Facades\{Auth, Hash, Validator};
-use DB;
+use App\Models\{Concurrent, User};
+use Spatie\Permission\Models\Role;
+use Illuminate\Http\{JsonResponse, Request};
 
-class ConcurrentController extends Controller
+class ConcurrentsController extends Controller
 {
-
-    public function index()
-	{
-		return response()->json(Concurrent::orderBy('id','desc')->get());
-	}
-    
-    public function getusersroles(){
-
-       $users = User::select('id','name')->where('is_active','1')->get();
-       $roles = DB::table('roles')->select('id','name')->get();
-
-       return response()->json(['users' => $users, 'roles' => $roles]);
-    }
-
 	/**
-	 * Show the form for creating a new resource.
+	 * Display a listing of the concurrents.
 	 *
-	 * @return \Illuminate\Http\Response
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function create()
+	public function index(): JsonResponse
 	{
-		//
+		// $concurrents = Concurrent::select('id', 'model_type', 'model_id');
+		return response()->json(Concurrent::get());
+	}
+
+	public function getusersroles()
+	{
+		$users = User::select('id', 'name')->where('is_active', '1')->get();
+		$roles = Role::select('id', 'name')->get();
+
+		return response()->json(['users' => $users, 'roles' => $roles]);
 	}
 
 	/**
@@ -49,38 +42,37 @@ class ConcurrentController extends Controller
 		// 		$this->validationRules()
 		// 	)->validate();
 		// dd($request->all());
-		if($request->input('type') == 'Daily'){
-           $data = $request->input('daily');
-           $roles = $request->input('daily.roles');
-		   $users = $request->input('daily.users');
-		}else{
-		   $data = $request->input('weekly');
-		   $roles = $request->input('weekly.roles');
-		   $users = $request->input('weekly.users');
+		if ($request->input('type') == 'Daily') {
+			$data = $request->input('daily');
+			$roles = $request->input('daily.roles');
+			$users = $request->input('daily.users');
+		} else {
+			$data = $request->input('weekly');
+			$roles = $request->input('weekly.roles');
+			$users = $request->input('weekly.users');
 		}
 
 		$concurrent = Concurrent::create([
-          'starting_at' => $request->input('start_at'),
-          'ending_at' => $request->input('end_at'),
-          'model_type' => $request->input('modelType'),
-          'model_id' => $request->input('modelId'),
-          'repeated_every' => $request->input('repeatedEvery'),
-          'extra' => json_encode($data),
+			'starting_at' => $request->input('start_at'),
+			'ending_at' => $request->input('end_at'),
+			'model_type' => $request->input('modelType'),
+			'model_id' => $request->input('modelId'),
+			'repeated_every' => $request->input('repeatedEvery'),
+			'extra' => json_encode($data),
 		]);
-	
+
 		return response()->json(([
 			'message' => 'Concurrent Created Successfully',
 			'data' => $concurrent,
 			'status_code' => 200,
 			'success' => true,
 		]));
-
 	}
 
 	private function validationRules()
 	{
 		$result = [
-			'starting_at' => 'required', 
+			'starting_at' => 'required',
 			'ending_at' => 'required',
 			'model_type' => 'required',
 			'model_id' => 'required',
@@ -120,10 +112,10 @@ class ConcurrentController extends Controller
 	 */
 	public function update(Request $request, $id)
 	{
-		if($request->input('daily')){
-           $data = $request->input('daily');
-		}else{
-		   $data = $request->input('weekly');
+		if ($request->input('daily')) {
+			$data = $request->input('daily');
+		} else {
+			$data = $request->input('weekly');
 		}
 		$concurrent = Concurrent::find($request->input('id'));
 		$concurrent->starting_at = $request->starting_at;
@@ -149,12 +141,11 @@ class ConcurrentController extends Controller
 	 */
 	public function delete($id)
 	{
-		Concurrent::where('id',$id)->delete();
+		Concurrent::where('id', $id)->delete();
 		return response()->json(([
 			'message' => 'Concurrent Updated Successfully',
 			'status_code' => 200,
 			'success' => true,
 		]));
 	}
-	
 }

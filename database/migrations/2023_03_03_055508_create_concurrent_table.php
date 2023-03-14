@@ -13,18 +13,16 @@ return new class extends Migration
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
-		Schema::create('concurrents', function (Blueprint $table) {
+		Schema::create('concurrent', function (Blueprint $table) {
 			$table->id();
-			$table->date('starting_at');
-			$table->date('ending_at');
+			$table->dateTime('starting_at');
+			$table->dateTime('ending_at');
 			$table->string('model_type');
 			$table->unsignedBigInteger('model_id');
-			$table->string('repeated_every');
-			$table->text('extra')->nullable();
-			$table->timestamp('created_at');
-			$table->softDeletes();
+			$table->string('repeated_every')->comment('hours, day, week');
+			$table->text('extra')->comment('JSON of what data to be feeded to model, NOT VERY CLEAR');
 		});
 	}
 
@@ -33,8 +31,8 @@ return new class extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
-		Schema::dropIfExists('concurrents');
+		Schema::dropIfExists('concurrent');
 	}
 };

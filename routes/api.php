@@ -3,23 +3,22 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
-use App\Http\Controllers\ContractsAPIController;
-use App\Http\Controllers\ConcurrentController;
+use App\Http\Controllers\{ConcurrentsController, ContractsAPIController, SettingsController};
 use App\Http\Controllers\API\{
 	CitiesController,
 	ClientsAPIController,
-	CrewAPIController,
+	CrewsController,
 	DocumentAPIController,
-	DormitoryAPIController,
-	GroupsApiController,
+	DormitoriesController,
+	GroupsController,
 	HospitalitiesController,
 	MealTypesController,
 	MealsAPIController,
-	PhaseServiceAPIController,
+	PhasesController,
 	ServiceAPIController,
-	UserAPIController,
-	VehicleAPIController,
-    ServiceCommitsController
+	ServiceCommitsController,
+	UsersController,
+	VehicleAPIController
 };
 
 /*
@@ -32,7 +31,6 @@ use App\Http\Controllers\API\{
 |
 */
 Auth::routes();
-
 Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -81,7 +79,11 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/clients', ClientsAPIController::class);
 	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
-	Route::apiResource('hospitalities', HospitalitiesController::class);
+	Route::apiResource('/dormitories', DormitoriesController::class);
+	Route::apiResource('/hospitalities', HospitalitiesController::class);
+	Route::apiResource('/service_commits', ServiceCommitsController::class);
+
+	Route::get('users/edit/{id}', [UsersController::class, 'edit']);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
@@ -92,7 +94,7 @@ Route::middleware('auth:sanctum')->group(function () {
 		});
 
 	/** Concurrent */
-	Route::controller(ConcurrentController::class)->prefix('concurrent')
+	Route::controller(ConcurrentsController::class)->prefix('concurrent')
 		->group(function () {
 			Route::get('/', 'index');
 			Route::get('get_users_roles', 'getusersroles');
@@ -110,16 +112,7 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::delete('/{id}', 'destroy');
 		});
 
-	Route::controller(UserAPIController::class)->prefix('users')
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','delete');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-
-		});
+	Route::apiResource('settings', SettingsController::class);
 
 	Route::controller(VehicleAPIController::class)->prefix('vehicles')
 	   // ->middleware(['permission:manage_users'])
@@ -132,66 +125,11 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('add','store');
 
 		});
-	Route::controller(DormitoryAPIController::class)->prefix('dormitories')
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::patch('{id}','update');
-			Route::post('add','add');
-	});
-	Route::controller(GroupsApiController::class)->prefix('groups')
-	   // ->middleware(['permission:manage_users'])
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::post('update/{id}','update');
-			Route::post('add','createGroup');
-			Route::post('assign_clients/{id}','assignClients');
-	});
-
-	Route::controller(CrewAPIController::class)->prefix('crews')
-	   // ->middleware(['permission:manage_users'])
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-			Route::get('all','all');
-			Route::get('list', 'list');
-	});
-
-
-	Route::controller(ClientsAPIController::class)->prefix('clients')
-	   // ->middleware(['permission:manage_users'])
-		->group(function () {
-			Route::put('','store');
-			Route::get('paginate','paginate');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','destroy');
-			Route::post('update/{id}','update');
-			Route::post('add','store');
-			Route::get('all','all');
-	});
-
-	Route::controller(PhaseServiceAPIController::class)->prefix('phases')->group(function () {
-	   Route::get('paginate','paginate');
-	   Route::post('add','store');
-	   Route::post('update/{id}','update');
-	   Route::post('delete/{id}','destroyPhase');
-	   Route::get('info/{id}','show');
-	});
-
 
 	// Get available roles & crew members to select from when creating a user
 	Route::get(
 		'populate-create-user-dropdowns',
-		[UserAPIController::class, 'populateCreateUserDropdowns']
+		[UsersController::class, 'populateCreateUserDropdowns']
 	);
 	Route::get('services/all', [ServiceAPIController::class, 'all']);
 
@@ -199,18 +137,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::get('service/list', [ServiceAPIController::class, 'list']);
 	// Get available users to select from when creating a service commit
 	// as a supervisor_id
-	Route::get('users/list_supervisors', [UserAPIController::class, 'list_supervisors']);
-
-	// Service commits CRUD endpoints
-	Route::controller(ServiceCommitAPIController::class)
-		->prefix('service/commits')->group(function() {
-
-			Route::get('/', 'index');
-			Route::post('/', 'store');
-			Route::get('{id}', 'show');
-			Route::patch('{id}', 'update');
-			Route::delete('{id}', 'destroy');
-	});
+	Route::get('users/list_supervisors', [UsersController::class, 'list_supervisors']);
 });
 // TODO: clean this up, figure out what it's for
 Route::prefix('v2')->group(function() {

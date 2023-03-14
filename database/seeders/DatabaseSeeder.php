@@ -36,5 +36,6 @@ class DatabaseSeeder extends Seeder
 		]);
 		Vehicle::factory(count: 20)->create();
 		Setting::factory(count: 5)->create();
+		$this->call(ConcurrentsTableSeeder::class);
 	}
 }
