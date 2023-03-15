@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
-use App\Http\Controllers\{ContractsAPIController, SettingsController};
+use App\Http\Controllers\{ConcurrentsController, ContractsAPIController, SettingsController};
 use App\Http\Controllers\API\{
 	CitiesController,
 	ClientsAPIController,
@@ -91,6 +91,17 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::get('/{type}/{id}', 'index');
 			Route::post('/{type}/{id}', 'store');
 			Route::delete('/{id}', 'destroy');
+		});
+
+	/** Concurrent */
+	Route::controller(ConcurrentsController::class)->prefix('concurrent')
+		->group(function () {
+			Route::get('/', 'index');
+			Route::get('get_users_roles', 'getusersroles');
+			Route::post('add', 'store');
+			Route::get('info/{id}','show');
+			Route::post('delete/{id}','delete');
+			Route::post('update/{id}','update');
 		});
 	
 	/** Documents */
