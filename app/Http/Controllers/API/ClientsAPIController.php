@@ -34,6 +34,10 @@ class ClientsAPIController extends Controller
 			$query->where('country_id', $input);
 		});
 
+		$request->whenFilled('gender', function ($input) use ($query) {
+			$query->where('gender', $input);
+		});
+
 		return response()->json(
 			data: $query->paginate($request->per_page ?? 15)
 		);
