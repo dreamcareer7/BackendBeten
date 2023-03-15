@@ -18,6 +18,7 @@ class DocumentAPIController extends Controller
 	{
 		$this->authorizeResource(Document::class);
 	}
+
 	/**
 	 * Display a listing of the documents for a given model.
 	 *

@@ -63,12 +63,13 @@ class Document extends Model
 	// Note that this property is currently for documentation purposes only
 	// It's not referenced or used anywhere in the codebase
 	public static array $model_types = [
-		Contract::class,
-		Vehicle::class,
-		Crew::class,
-		User::class,
-		Complaint::class,
 		// other than contract, for example location, terms, photos..etc
+		Client::class,
+		Complaint::class,
+		Contract::class,
+		Crew::class,
 		Dormitory::class,
+		User::class,
+		Vehicle::class,
 	];
 }

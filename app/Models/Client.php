@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
@@ -44,13 +45,11 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Client withoutTrashed()
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $groups
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $groups
  * @mixin \Eloquent
  */
 class Client extends Model
 {
-	use HasFactory, SoftDeletes;
+	use HasDocuments, HasFactory, SoftDeletes;
 
 	/**
 	 * The attributes that should be cast.
