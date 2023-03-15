@@ -7,29 +7,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-/**
- * App\Models\Concurrent
- *
- * @property int $id
- * @property string $starting_at
- * @property string $ending_at
- * @property string $model_type
- * @property int $model_id
- * @property string $repeated_every hours, day, week
- * @property string $extra JSON of what data to be feeded to model, NOT VERY CLEAR
- * @method static \Database\Factories\ConcurrentFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent query()
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereEndingAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereExtra($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereModelId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereModelType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereRepeatedEvery($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Concurrent whereStartingAt($value)
- * @mixin \Eloquent
- */
 class Concurrent extends Model
 {
 	use HasFactory;
@@ -47,4 +24,11 @@ class Concurrent extends Model
 	 * @var string
 	 */
 	protected $table = 'concurrent';
+
+	/** @var array $model_types Available model types for concurrents */
+	// This property is used for validation ATM
+	public static array $model_types = [
+		Meal::class,
+		Service::class,
+	];
 }
