@@ -24,9 +24,14 @@ class CrewsController extends Controller
 	 */
 	public function index(Request $request): JsonResponse
 	{
+		$query = Crew::with('country:id,title');
+
+		$request->whenFilled('fullname', function ($input) use ($query) {
+			$query->where('fullname', 'LIKE', '%' . $input . '%');
+		});
+
 		return response()->json(
-			data: Crew::with('country:id,title')
-				->paginate($request->input('per_page')?? 15)
+			data: $query->paginate($request->input('per_page')?? 15)
 		);
 	}
 
