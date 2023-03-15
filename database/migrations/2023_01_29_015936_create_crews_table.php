@@ -32,7 +32,7 @@ return new class extends Migration {
 			$table->foreign('country_id')->references('id')->on('countries');
 			$table->string('phone');
 			$table->string('id_type');
-			$table->string('id_no');
+			$table->string('id_number');
 			$table->date('dob');
 			$table->boolean('is_active')->default(true);
 			$table->timestamps();

@@ -30,6 +30,10 @@ class CrewsController extends Controller
 			$query->where('fullname', 'LIKE', '%' . $input . '%');
 		});
 
+		$request->whenFilled('id_number', function ($input) use ($query) {
+			$query->where('id_number', 'LIKE', '%' . $input . '%');
+		});
+
 		return response()->json(
 			data: $query->paginate($request->input('per_page')?? 15)
 		);
@@ -51,7 +55,7 @@ class CrewsController extends Controller
 			'phone',
 			'country_id',
 			'id_type',
-			'id_no',
+			'id_number',
 			'dob',
 			'is_active',
 		]);
@@ -59,7 +63,7 @@ class CrewsController extends Controller
 
 		//check if any crew with same id type id number and country already exists
 		$exists = Crew::where('id_type',$request->input('id_type'))
-			->where('id_no',$request->input('id_no'))
+			->where('id_number',$request->input('id_number'))
 			->where('country_id', $data['country_id'])
 			->exists();
 		if(!$exists){
@@ -108,13 +112,13 @@ class CrewsController extends Controller
 			'phone',
 			'country_id',
 			'id_type',
-			'id_no',
+			'id_number',
 			'dob',
 			'is_active',
 		]);
 		//check if any crew with same id type id number and country already exists
 		$exists = Crew::where('id_type',$request->input('id_type'))
-			->where('id_no',$request->input('id_no'))
+			->where('id_number',$request->input('id_number'))
 			->where('country_id',$request->input('country_id'))->where('id','!=',$crew->id)
 			->exists();
 		if(!$exists){

@@ -23,7 +23,7 @@ class CrewFactory extends Factory
 			'country_id' => 1,
 			'phone' => fake()->phoneNumber,
 			'id_type' => 'Passport',
-			'id_no' => fake()->iban,
+			'id_number' => fake()->iban,
 			'dob' => fake()->date,
 		];
 	}

@@ -16,7 +16,7 @@ class NewCrewRequest extends FormRequest
 			'country_id'=>['required'],
 			 'phone' => 'required',
 			 'id_type' => 'required',
-			 'id_no' => 'required',
+			 'id_number' => 'required',
 			 'dob' => 'required',
 		 ];
 	}

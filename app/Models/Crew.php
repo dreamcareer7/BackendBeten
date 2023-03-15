@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @property int $country_id
  * @property string $phone
  * @property string $id_type
- * @property string $id_no
+ * @property string $id_number
  * @property string $dob
  * @property int $is_active
  * @property string|null $deleted_at
