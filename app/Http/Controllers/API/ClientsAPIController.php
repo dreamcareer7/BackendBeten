@@ -25,9 +25,15 @@ class ClientsAPIController extends Controller
 	public function index(Request $request): JsonResponse
 	{
 		$query = Client::with('country:id,title');
+
 		$request->whenFilled('fullname', function ($input) use ($query) {
 			$query->where('fullname', 'LIKE', '%' . $input . '%');
 		});
+
+		$request->whenFilled('country', function ($input) use ($query) {
+			$query->where('country_id', $input);
+		});
+
 		return response()->json(
 			data: $query->paginate($request->per_page ?? 15)
 		);
