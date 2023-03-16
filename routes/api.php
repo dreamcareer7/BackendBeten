@@ -34,6 +34,7 @@ Auth::routes();
 Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/token-logout', [\App\Http\Controllers\Auth\LoginController::class, 'tokenLogout']);
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
 	Route::get('/service_commits/initialize/{id}', [ServiceCommitsController::class, 'initialize']);
 	

@@ -78,4 +78,13 @@ class LoginController extends Controller
 
 		return $this->sendFailedLoginResponse($request);
 	}
+
+    public function tokenLogout(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $request->user()->currentAccessToken()->delete();
+
+        return response()->json([
+            'status' => 'success'
+        ]);
+    }
 }
