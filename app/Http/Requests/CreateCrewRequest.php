@@ -36,8 +36,7 @@ class CreateCrewRequest extends FormRequest
 				'bail',
 				'required',
 				'integer',
-				'exists',
-				'countries,id',
+				'exists:countries,id',
 				Rule::unique(table: 'clients')
 					->where(function (Builder $query): Builder {
 						return $query->where([

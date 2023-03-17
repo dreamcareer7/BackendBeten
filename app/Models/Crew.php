@@ -68,7 +68,7 @@ class Crew extends Model
 	 */
 	protected $casts = [
 		// dob = Date Of Birth (was too much to name it birthday apparently)
-		'dob' => 'date',
+		'dob' => 'date:Y-m-d',
 		'is_active' => 'boolean',
 	];
 

@@ -15,6 +15,7 @@ class CrewsController extends Controller
 	{
 		$this->authorizeResource(Crew::class);
 	}
+
 	/**
 	 * Display a listing of the crew members.
 	 *
@@ -39,7 +40,12 @@ class CrewsController extends Controller
 		);
 	}
 
-	public function create()
+	/**
+	 * Get the data for the form for creating a new crew member.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function create(): JsonResponse
 	{
 		return response()->json([
 			'users' => User::select('id', 'name')->get(),
@@ -72,6 +78,23 @@ class CrewsController extends Controller
 	  $crew = Crew::findorfail($id);
 	  return response()->json($crew);
 
+	}
+
+	/**
+	 * Get the data for the form for editing a crew member.
+	 *
+	 * @param \App\Models\Crew $crew
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function edit(Crew $crew): JsonResponse
+	{
+		return response()->json(data: [
+			'crew' => $crew,
+			'users' => User::select('id', 'name')->get(),
+			'professions' => Profession::get(),
+			'countries' => Country::select('id', 'title')->get(),
+		]);
 	}
 
 	/**

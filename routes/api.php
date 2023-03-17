@@ -70,8 +70,7 @@ Route::middleware('auth:sanctum')->group(function () {
 		$model = "App\Models\\" . $model_type;
 		return (new $model)->select('id')->get();
 	});
-	Route::get('/crews/create', [CrewsController::class, 'create']);
-	Route::apiResource('/crews', CrewsController::class);
+	Route::resource('/crews', CrewsController::class);
 	Route::apiResource('/users', UsersController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/phases', PhasesController::class);
