@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DocumentResource extends JsonResource
@@ -20,7 +21,7 @@ class DocumentResource extends JsonResource
 		return [
 			'id' => $this->id,
 			'title' => $this->title,
-			'path' => $this->path,
+			'path' => Storage::url($this->path),
 			'model_type' => $this->model_type,
 			'model_id' => $this->model_id,
 			'created_by' => $this->created_by,

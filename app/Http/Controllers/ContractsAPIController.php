@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
 use App\Models\{Contract, Document};
 use App\Http\Resources\ContractResource;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\CreateContractRequest;
 
 class ContractsAPIController extends Controller
 {
@@ -52,29 +53,14 @@ class ContractsAPIController extends Controller
 	/**
 	 * Store newly created contracts for a specific model in database.
 	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param string $type Model type to upload the contracts for
-	 * @param int $id Model ID to upload the contracts for
+	 * @param \App\Http\Requests\CreateContractRequest $request
+	 *
+	 * Note: segments are formatted and added to request data in the DTO
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request, string $type, int $id)
+	public function store(CreateContractRequest $request)
 	{
-		$type = 'App\Models\\' . Str::title($type);
-		// TODO: Must also validate that the ID exists in that model
-		// Maybe also move this whole thing to a FormRequest class
-		if (
-			// If the model specified is not in the contract model types
-			!in_array($type, Contract::$model_types) ||
-			// Or the request is missing contracts files array
-			!$request->hasFile('contracts') ||
-			// Or the request is missing 'reference' of the contract
-			// A "reference" is like a serial number (of passport for ex)
-			$request->missing('reference')
-		) {
-			// Reject the operation
-			return response()->json(status: 400); // Bad request
-		}
 		/*
 		 * Create one contract for the reference and related model type
 		 * We're assigning a contract_id variable to avoid name conflict
@@ -84,9 +70,9 @@ class ContractsAPIController extends Controller
 		 */
 		$contract_id = Contract::create([
 			'reference' => $request->reference,
-			'model_type' => $type,
-			'model_id' => $id,
-			// TODO: we may need to put file metadata in extra column
+			'model_type' => $request->model_type,
+			'model_id' => $request->model_id,
+			// TODO: we may need to put file metadata in an extra column
 			// 'extra' => 'To be implemented',
 			'created_by' => auth()->id(),
 		])->id;
@@ -116,30 +102,7 @@ class ContractsAPIController extends Controller
 				'created_by' => auth()->id(),
 			]);
 		}
-		return response()->json(data: $contract_id, status: 201); // Created
-	}
-
-	/**
-	 * Display the specified contract.
-	 *
-	 * @param int $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified contract in database.
-	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param int $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(Request $request, $id)
-	{
-		//
+		return response()->json(status: 201); // Created
 	}
 
 	/**
@@ -151,6 +114,7 @@ class ContractsAPIController extends Controller
 	 */
 	public function destroy(int $id): JsonResponse
 	{
+		// TODO: move validation to form request
 		Validator::make(['id' => $id], [
 			'id' => 'bail|required|integer|exists:contracts,id'
 		])->validate();

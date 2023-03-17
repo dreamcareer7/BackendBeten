@@ -6,11 +6,11 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Document;
 use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DocumentResource;
-use Illuminate\Http\{JsonResponse, Request};
-use Illuminate\Support\Facades\{Storage, Validator};
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\CreateDocumentRequest;
 
 class DocumentAPIController extends Controller
 {
@@ -53,43 +53,16 @@ class DocumentAPIController extends Controller
 	}
 
 	/**
-	 * Download the specified document.
-	 *
-	 * @param string $path Path of the document to download
-	 *
-	 * @return \Symfony\Component\HttpFoundation\StreamedResponse
-	 */
-	public function download(string $path): StreamedResponse
-	{
-		return Storage::download('documents/' . $path);
-	}
-
-	/**
 	 * Store a newly created document in database.
 	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @param string $type Model type to upload the documents for
-	 * @param int $id Model ID to upload the documents for
+	 * @param \App\Http\Requests\CreateDocumentRequest $request
+	 *
+	 * Note: segments are formatted and added to request data in the DTO
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function store(Request $request, string $type, int $id): JsonResponse
+	public function store(CreateDocumentRequest $request): JsonResponse
 	{
-		$type = 'App\Models\\' . Str::title($type);
-		// TODO: Must also validate that the ID exists in that model
-		// Maybe also move this whole thing to a FormRequest class
-		if (
-			// If the model specified is not in the document model types
-			!in_array($type, Document::$model_types) ||
-			// Or the request is missing documents files array
-			!$request->hasFile('documents') ||
-			// Or the request is missing a title for the documents
-			// The same title will be applied to all the created documents btw
-			$request->missing('title')
-		) {
-			// Reject the operation
-			return response()->json(status: 400); // Bad request
-		}
 		// Iterate through the documents files in the request
 		foreach ($request->documents as $document) {
 			// We can't get the dynamic model to attach contracts for
@@ -98,8 +71,8 @@ class DocumentAPIController extends Controller
 			Document::create([
 				'title' => $request->title,
 				'path' => $document->store('documents'),
-				'model_type' => $type, // Pass the model type, namespaced
-				'model_id' => $id, // Pass the model ID
+				'model_type' => $request->model_type, // Pass the model type, namespaced
+				'model_id' => $request->model_id, // Pass the model ID
 				'created_by' => auth()->id(),
 			]);
 		}
@@ -115,6 +88,7 @@ class DocumentAPIController extends Controller
 	 */
 	public function destroy(int $id): JsonResponse
 	{
+		// TODO: move validation to form request
 		Validator::make(['id' => $id], [
 			'id' => 'bail|required|integer|exists:documents,id'
 		])->validate();

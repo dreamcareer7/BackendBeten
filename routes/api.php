@@ -31,7 +31,6 @@ use App\Http\Controllers\API\{
 |
 */
 Auth::routes();
-Route::get('documents/{path}', [DocumentAPIController::class, 'download']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/token-logout', [\App\Http\Controllers\Auth\LoginController::class, 'tokenLogout']);
