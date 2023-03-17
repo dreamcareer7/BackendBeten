@@ -35,7 +35,8 @@ class DocumentAPIController extends Controller
 		if (! in_array($type, Document::$model_types)) {
 			return response()->json(status: 400); // Bad request
 		}
-		$documents = Document::where([
+		$documents = Document::with('creator:id,name')
+			->where([
 				'model_type' => $type,
 				'model_id' => $id,
 			])->select(

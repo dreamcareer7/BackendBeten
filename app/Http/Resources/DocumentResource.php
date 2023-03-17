@@ -24,7 +24,7 @@ class DocumentResource extends JsonResource
 			'path' => Storage::url($this->path),
 			'model_type' => $this->model_type,
 			'model_id' => $this->model_id,
-			'created_by' => $this->created_by,
+			'created_by' => $this->creator->name,
 			'created_at' => $this->created_at,
 			'deleted_by' => $this->deleted_by,
 			'deleted_at' => $this->deleted_at,
