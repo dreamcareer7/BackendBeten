@@ -31,6 +31,14 @@ class CrewsController extends Controller
 			$query->where('fullname', 'LIKE', '%' . $input . '%');
 		});
 
+		$request->whenFilled('country', function ($input) use ($query) {
+			$query->where('country_id', $input);
+		});
+
+		$request->whenFilled('phone', function ($input) use ($query) {
+			$query->where('phone', 'LIKE', '%' . $input . '%');
+		});
+
 		$request->whenFilled('id_number', function ($input) use ($query) {
 			$query->where('id_number', 'LIKE', '%' . $input . '%');
 		});
@@ -125,40 +133,6 @@ class CrewsController extends Controller
 			'status_code'   => 200,
 		]));
 
-	}
-
-	public function paginate(Request $request){
-		$users = Crew::countryName()->orderby('id','desc');
-		$title= $request->input('fullname') ?? null;
-		$id_type= $request->input('id_type') ?? null;
-		$country= $request->input('country') ?? null;
-		$city_id= $request->input('city_id') ?? null;
-		$location= $request->input('location') ?? null;
-		$coordinate= $request->input('coordinate') ?? null;
-		$is_active= $request->input('is_active') ?? null;
-		$per_page= $request->input('per_page') ?? 15;
-		if($title){
-			$users->where('fullname','LIKE',$title.'%');
-		}
-		if($id_type){
-			$users->where('id_type',$id_type);
-		}
-		if($country){
-			$users->where('country','LIKE',$country.'%');
-		}
-		if($city_id){
-			$users->where('city_id','LIKE',$city_id.'%');
-		}
-		if($location){
-			$users->where('location','LIKE',$location.'%');
-		}
-		if($coordinate){
-			$users->where('coordinate','LIKE',$coordinate.'%');
-		}
-		if($is_active){
-			$users->where('is_active',$is_active);
-		}
-		return response()->json($users->paginate($per_page));
 	}
 
 	public function all(Request $request)
