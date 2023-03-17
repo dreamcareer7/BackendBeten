@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models\Traits;
 
+use App\Models\User;
+
 trait HasDocuments
 {
 	/**
@@ -22,7 +24,15 @@ trait HasDocuments
 		// Any model that uses this trait should append a property called
 		// is_documentable with a value of true
 		static::retrieved(function ($model) {
-			$model->is_documentable = true;
+			if (
+				request()->user() &&
+				$model instanceof User &&
+				!request()->user()->can('users.documents.view')
+			) {
+				$model->is_documentable = false;
+			} else {
+				$model->is_documentable = true;
+			}
 		});
 	}
 }

@@ -32,6 +32,8 @@ class PermissionsTableSeeder extends Seeder
 			'users.browse',
 			'users.*', // dummy as https://github.com/spatie/laravel-permission/issues/1423
 
+			'users.documents.view',
+
 			'roles.create',
 			'roles.edit',
 			'roles.assigning_permissions',
