@@ -22,7 +22,7 @@ return new class extends Migration
 			$table->string('model_type');
 			$table->unsignedBigInteger('model_id');
 			$table->string('repeated_every')->nullable()->comment('day, week');
-			$table->text('extra')->comment('JSON of what data to be feeded to model, NOT VERY CLEAR');
+			$table->json('extra')->comment('JSON of what data to be feeded to model, NOT VERY CLEAR');
 		});
 	}
 

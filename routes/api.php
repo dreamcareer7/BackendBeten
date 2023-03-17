@@ -94,14 +94,12 @@ Route::middleware('auth:sanctum')->group(function () {
 		});
 
 	/** Concurrent */
-	Route::controller(ConcurrentsController::class)->prefix('concurrent')
+	Route::controller(ConcurrentsController::class)->prefix('concurrents')
 		->group(function () {
-			Route::get('/', 'index');
-			Route::get('get_users_roles', 'getusersroles');
-			Route::post('add', 'store');
-			Route::get('info/{id}','show');
-			Route::post('delete/{id}','delete');
-			Route::post('update/{id}','update');
+			Route::get('getusersroles', 'getusersroles');
+			Route::get('/{type}/{id}', 'index');
+			Route::post('/{type}/{id}', 'store');
+			Route::delete('/{id}', 'destroy');
 		});
 	
 	/** Documents */

@@ -4,148 +4,87 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
+use Illuminate\Http\JsonResponse;
 use App\Models\{Concurrent, User};
 use Spatie\Permission\Models\Role;
-use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\{CreateConcurrentRequest, DeleteConcurrentRequest};
 
 class ConcurrentsController extends Controller
 {
 	/**
-	 * Display a listing of the concurrents.
+	 * Apply the authorization policy
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->authorizeResource(Concurrent::class);
+	}
+
+	/**
+	 * Display a listing of the concurrents for a given model.
+	 *
+	 * @param string $type the model type
+	 * @param int $id the model id
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function index(): JsonResponse
+	public function index(string $type, int $id): JsonResponse
 	{
-		// $concurrents = Concurrent::select('id', 'model_type', 'model_id');
-		return response()->json(Concurrent::get());
+		$type = 'App\Models\\' . Str::title($type);
+		// If the model specified is not in the concurrents model types
+		// Refuse the query
+		if (! in_array($type, Concurrent::$model_types)) {
+			return response()->json(status: 400); // Bad request
+		}
+		$concurrents = Concurrent::where([
+				'model_type' => $type,
+				'model_id' => $id,
+			])->select(
+				'id',
+				'starting_at',
+				'ending_at',
+				'model_type',
+				'model_id',
+				'extra',
+			)->get();
+		return response()->json(data: $concurrents);
 	}
 
 	public function getusersroles()
 	{
-		$users = User::select('id', 'name')->where('is_active', '1')->get();
+		$users = User::select('id', 'name')->where('is_active', true)->get();
 		$roles = Role::select('id', 'name')->get();
 
 		return response()->json(['users' => $users, 'roles' => $roles]);
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store newly created concurrent for a specific model in database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store(Request $request)
-	{
-		// Validator::make(
-		// 		$request->all(),
-		// 		$this->validationRules()
-		// 	)->validate();
-		// dd($request->all());
-		if ($request->input('type') == 'Daily') {
-			$data = $request->input('daily');
-			$roles = $request->input('daily.roles');
-			$users = $request->input('daily.users');
-		} else {
-			$data = $request->input('weekly');
-			$roles = $request->input('weekly.roles');
-			$users = $request->input('weekly.users');
-		}
-
-		$concurrent = Concurrent::create([
-			'starting_at' => $request->input('start_at'),
-			'ending_at' => $request->input('end_at'),
-			'model_type' => $request->input('modelType'),
-			'model_id' => $request->input('modelId'),
-			'repeated_every' => $request->input('repeatedEvery'),
-			'extra' => json_encode($data),
-		]);
-
-		return response()->json(([
-			'message' => 'Concurrent Created Successfully',
-			'data' => $concurrent,
-			'status_code' => 200,
-			'success' => true,
-		]));
-	}
-
-	private function validationRules()
-	{
-		$result = [
-			'starting_at' => 'required',
-			'ending_at' => 'required',
-			'model_type' => 'required',
-			'model_id' => 'required',
-
-		];
-
-		return $result;
-	}
-	/**
-	 * Display the specified resource.
+	 * Note: segments are formatted and added to request data in the DTO
 	 *
-	 * @param  \App\Models\Phase  $phase
-	 * @return \Illuminate\Http\Response
+	 * @param \App\Http\Requests\CreateConcurrentRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function show($id)
+	public function store(CreateConcurrentRequest $request): JsonResponse
 	{
-		return Concurrent::find($id);
+		Concurrent::create($request->validated());
+		return response()->json(status: 201); // Created
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Remove the specified concurrent from database.
 	 *
-	 * @param  \App\Models\Phase  $phase
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit(Phase $phase)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
+	 * @param \App\Http\Requests\DeleteConcurrentRequest $request
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Models\Phase  $phase
-	 * @return \Illuminate\Http\Response
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(Request $request, $id)
+	public function destroy(DeleteConcurrentRequest $request): JsonResponse
 	{
-		if ($request->input('daily')) {
-			$data = $request->input('daily');
-		} else {
-			$data = $request->input('weekly');
-		}
-		$concurrent = Concurrent::find($request->input('id'));
-		$concurrent->starting_at = $request->starting_at;
-		$concurrent->ending_at = $request->ending_at;
-		$concurrent->extra = json_encode($data);
-		$concurrent->model_id = $request->model_id;
-		$concurrent->model_type = $request->model_type;
-		$concurrent->repeated_every = $request->repeated_every;
-		$concurrent->save();
-		return response()->json(([
-			'message' => 'Concurrent Updated Successfully',
-			'data' => $concurrent,
-			'status_code' => 200,
-			'success' => true,
-		]));
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\Models\Phase  $phase
-	 * @return \Illuminate\Http\Response
-	 */
-	public function delete($id)
-	{
-		Concurrent::where('id', $id)->delete();
-		return response()->json(([
-			'message' => 'Concurrent Updated Successfully',
-			'status_code' => 200,
-			'success' => true,
-		]));
+		Concurrent::where('id', $request->id)->delete();
+		return response()->json(status: 204); // No content
 	}
 }
