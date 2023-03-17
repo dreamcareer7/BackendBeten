@@ -23,8 +23,6 @@ class UserDetailsResource extends JsonResource
 			'email' => $this->email,
 			'is_active' => $this->is_active,
 			'contact' => $this->contact,
-			'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-			'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
 			// Roles is a collection
 			// @see https://laravel.com/docs/9.x/collections#method-implode
 			'roles' => $this->roles->implode('name', ', '),
