@@ -70,16 +70,13 @@ class ServiceAPIController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
+	 * @param \App\Models\Service $service
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function show($id)
+	public function show(Service $service): JsonResponse
 	{
-			$crew = Service::find($id);
-			return response()->json(([
-				'message' => 'services Details',
-				'data' => $crew,
-				'status_code' => 200,
-			]));
+		return response()->json(data: $service);
 	}
 
 	/**

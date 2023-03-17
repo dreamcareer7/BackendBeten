@@ -55,6 +55,17 @@ class Service extends Model
 	 */
 	public $timestamps = false;
 
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'before_date' => 'date:Y-m-d',
+		'exact_date' => 'date:Y-m-d',
+		'after_date' => 'date:Y-m-d',
+	];
+
 	public function city()
 	{
 		return $this->belongsTo(City::class, 'city_id');
