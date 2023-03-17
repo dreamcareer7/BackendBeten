@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateClientRequest extends FormRequest
@@ -25,18 +27,40 @@ class CreateClientRequest extends FormRequest
 	 */
 	public function rules(): array
 	{
-		// TODO: Check if this client already exists
-		// $client = Client::where('country_id', $request->input('country_id'))
-		// 	->where('id_type', $request->input('id_type'))
-		// 	->where('id_number', $request->input('id_number'))->first();
 		return [
 			'fullname' => 'bail|required|string|min:3|max:50',
-			'country_id' => 'bail|required|integer|exists:countries,id',
+			'country_id' => [
+				'bail',
+				'required',
+				'integer',
+				'exists',
+				'countries,id',
+				Rule::unique(table: 'clients')
+					->where(function (Builder $query): Builder {
+						return $query->where([
+							'country_id' => $this->country_id,
+							'id_type' => $this->id_type,
+							'id_number' => $this->id_number,
+						]);
+				}),
+			],
 			'id_type' => 'bail|required|string|min:3|max:255',
 			'id_number' => 'bail|required|string|min:3|max:255',
 			'id_name' => 'bail|required|string|min:3|max:255',
 			'gender' => 'bail|required|string|in:Male,Female',
 			'is_handicap' => 'bail|required|boolean',
+		];
+	}
+
+	/**
+	 * Get custom messages for validator errors.
+	 *
+	 * @return array
+	 */
+	public function messages(): array
+	{
+		return [
+			'country_id.unique' => __('Client already exists (ID type & number in country)'),
 		];
 	}
 }

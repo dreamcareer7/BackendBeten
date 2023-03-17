@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCrewRequest extends FormRequest
+class UpdateCrewRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -17,7 +17,7 @@ class CreateCrewRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return auth()->check() && $this->user()->can('crew.create');
+		return auth()->check() && $this->user()->can('crew.edit');
 	}
 
 	/**
@@ -45,7 +45,7 @@ class CreateCrewRequest extends FormRequest
 							'id_type' => $this->id_type,
 							'id_number' => $this->id_number,
 						]);
-				}),
+				})->ignore(id: $this->id),
 			],
 			'phone' => 'bail|required|string|min:3|max:255',
 			'id_type' => 'bail|required|string|min:3|max:255',

@@ -38,6 +38,7 @@ return new class extends Migration {
 			$table->boolean('is_active')->default(true);
 			$table->timestamps();
 			$table->softDeletes();
+			$table->unique(['country_id', 'id_type', 'id_number']);
 		});
 	}
 

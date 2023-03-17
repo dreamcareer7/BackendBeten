@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Models\{Country, Crew, Profession, User};
-use App\Http\Requests\{CreateCrewRequest, NewCrewRequest};
+use App\Http\Requests\{CreateCrewRequest, UpdateCrewRequest};
 
 class CrewsController extends Controller
 {
@@ -75,43 +75,17 @@ class CrewsController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified crew member in database.
 	 *
-	 * @param Request $request
-	 * @return JsonResponse
+	 * @param \App\Models\Crew $crew
+	 * @param \App\Http\Requests\UpdateCrewRequest $request
+	 *
+	 * @return \Illuminate\Http\Response
 	 */
-	public function update($id,Request $request)
+	public function update(Crew $crew, UpdateCrewRequest $request): JsonResponse
 	{
-		//
-		$crew=  Crew::findorfail($id);
-
-		$data= $request->only([
-			'fullname',
-			'gender',
-			'profession_id',
-			'phone',
-			'country_id',
-			'id_type',
-			'id_number',
-			'dob',
-			'is_active',
-		]);
-		//check if any crew with same id type id number and country already exists
-		$exists = Crew::where('id_type',$request->input('id_type'))
-			->where('id_number',$request->input('id_number'))
-			->where('country_id',$request->input('country_id'))->where('id','!=',$crew->id)
-			->exists();
-		if(!$exists){
-			$crew->update($data);
-			return response()->json( ([
-				'message'       => 'Crew updated Successfully',
-				'success'   => true,
-			]));
-		}
-		return response()->json( [
-			'message'       => 'A crew already exists with same id type, id number and country',
-			'success'   => false,
-		],422);
+		$crew->update($request->validated());
+		return response()->json(status: 204); // No content
 	}
 
 	/**
@@ -130,18 +104,6 @@ class CrewsController extends Controller
 
 	}
 
-
-	private function validationRules()
-	{
-		$result = [
-			// 'fullname' => 'required|string|min:4',
-			// 'gender' => 'required',
-			// 'id_type' => 'required',
-			// 'id_number' => 'required',
-		];
-
-		return $result;
-	}
 	public function paginate(Request $request){
 		$users = Crew::countryName()->orderby('id','desc');
 		$title= $request->input('fullname') ?? null;
