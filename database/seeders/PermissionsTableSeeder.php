@@ -47,6 +47,8 @@ class PermissionsTableSeeder extends Seeder
 			'crew.delete',
 			'crew.view',
 
+			'crew.documents.view',
+
 			'services.index',
 			'services.create',
 			'services.edit',
