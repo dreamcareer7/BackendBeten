@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 			PermissionsTableSeeder::class,
 			RolesTableSeeder::class,
 			CountrySeeder::class,
+			ProfessionsTableSeeder::class,
 			UsersTableSeeder::class, // Also seeds crew member
 			GroupsTableSeeder::class,
 			HospitalitiesTableSeeder::class,
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
 			PhasesTableSeeder::class,
 			MealTypesTableSeeder::class,
 			MealsTableSeeder::class,
-			ProfessionSeeder::class,
+			CrewMembersTableSeeder::class,
 			ClientsTableSeeder::class,
 			DormitoriesTableSeeder::class,
 		]);

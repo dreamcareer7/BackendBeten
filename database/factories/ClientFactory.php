@@ -18,7 +18,7 @@ class ClientFactory extends Factory
 	 */
 	public function definition(): array
 	{
-		// Must get a random gender
+		// Must get a random gender to apply for the name
 		$gender = fake()->randomElement(array: ['Male', 'Female']);
 		$name = fake()->firstName($gender) . ' ' . fake()->lastName;
 		return [

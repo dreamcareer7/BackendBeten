@@ -19,7 +19,7 @@ class ProfessionFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'title' => fake()->jobTitle,
+			'title' => fake(locale: 'en_US')->jobTitle,
 		];
 	}
 }

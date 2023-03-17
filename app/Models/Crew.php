@@ -97,6 +97,10 @@ class Crew extends Model
 
 	/**
 	 * Prepare a date for array / JSON serialization.
+	 *
+	 * @param \DateTimeInterface $date date object to format
+	 *
+	 * @return string formatted date as string
 	 */
 	protected function serializeDate(DateTimeInterface $date): string
 	{

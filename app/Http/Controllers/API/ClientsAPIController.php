@@ -15,6 +15,7 @@ class ClientsAPIController extends Controller
 	{
 		$this->authorizeResource(Client::class);
 	}
+
 	/**
 	 * Display a listing of the clients.
 	 *
@@ -52,7 +53,7 @@ class ClientsAPIController extends Controller
 	 */
 	public function store(CreateClientRequest $request): JsonResponse
 	{
-		Client::create($request->validate());
+		Client::create($request->validated());
 		return response()->json(status: 201); // Created
 	}
 
@@ -96,34 +97,5 @@ class ClientsAPIController extends Controller
 	{
 		$client->delete();
 		return response()->json(status: 204); // No content
-	}
-
-	public function paginate(Request $request)
-	{
-
-		$per_page = $request->input('per_page') ?? 15;
-		$name = $request->input('name') ?? null;
-		$gender = $request->input('gender') ?? null;
-		$phone = $request->input('phone') ?? null;
-		$country_id = $request->input('country') ?? null;
-		$id_number = $request->input('id_number') ?? null;
-		$clients = Client::countryName()->orderby('id', 'desc');
-
-		if ($name) {
-			$clients->where('fullname', 'LIKE', $name . '%');
-		}
-		if ($country_id) {
-			$clients->where('country_id', 'LIKE', $country_id . '%');
-		}
-		if ($phone) {
-			$clients->where('phone', 'LIKE', $phone . '%');
-		}
-		if ($gender) {
-			$clients->where('gender', $gender);
-		}
-		if ($id_number) {
-			$clients->where('id_number', 'LIKE', $id_number . '%');
-		}
-		return response()->json($clients->paginate($per_page));
 	}
 }

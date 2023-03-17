@@ -26,7 +26,6 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @property-read \App\Models\Country|null $country
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $groups
  * @property-read int|null $groups_count
- * @method static \Illuminate\Database\Eloquent\Builder|Client countryName()
  * @method static \Database\Factories\ClientFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Client newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Client newQuery()
@@ -60,19 +59,8 @@ class Client extends Model
 		'is_handicap' => 'boolean',
 	];
 
-	/*
-	 * Scopes
-	 */
-	public function scopeCountryName($query)
-	{
-		return $query->addSelect(['country_name' => Country::select('name')
-			->whereColumn('country_id', 'countries.id')
-			->limit(1)
-		]);
-	}
-
-	/*
-	 * Get the country from which the client comes from.
+	/**
+	 * Get the country from which the client came (phrasing)
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */

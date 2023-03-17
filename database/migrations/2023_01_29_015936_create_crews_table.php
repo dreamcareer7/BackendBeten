@@ -16,7 +16,7 @@ return new class extends Migration {
 	{
 		Schema::create('crews', function (Blueprint $table) {
 			$table->id();
-			$table->unsignedBigInteger('user_id');
+			$table->unsignedBigInteger('user_id')->nullable();
 			$table->foreign('user_id')->references('id')->on('users')
 				->onDelete('cascade');
 			$table->string('fullname')->comment('Name in Arabic language');
@@ -32,6 +32,7 @@ return new class extends Migration {
 			$table->foreign('country_id')->references('id')->on('countries');
 			$table->string('phone');
 			$table->string('id_type');
+			$table->string('id_name');
 			$table->string('id_number');
 			$table->date('dob');
 			$table->boolean('is_active')->default(true);

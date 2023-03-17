@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Crew;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\NewCrewRequest;
 use Illuminate\Http\{JsonResponse, Request};
+use App\Models\{Country, Crew, Profession, User};
+use App\Http\Requests\{CreateCrewRequest, NewCrewRequest};
 
 class CrewsController extends Controller
 {
@@ -39,46 +39,26 @@ class CrewsController extends Controller
 		);
 	}
 
+	public function create()
+	{
+		return response()->json([
+			'users' => User::select('id', 'name')->get(),
+			'professions' => Profession::get(),
+			'countries' => Country::select('id', 'title')->get(),
+		]);
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param Request $request
-	 * @return JsonResponse
+	 * @param \App\Http\Requests\CreateClientRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-
-	public function store(NewCrewRequest $request)
+	public function store(CreateCrewRequest $request): JsonResponse
 	{
-		$data= $request->only([
-			'fullname',
-			'gender',
-			'profession_id',
-			'phone',
-			'country_id',
-			'id_type',
-			'id_number',
-			'dob',
-			'is_active',
-		]);
-
-
-		//check if any crew with same id type id number and country already exists
-		$exists = Crew::where('id_type',$request->input('id_type'))
-			->where('id_number',$request->input('id_number'))
-			->where('country_id', $data['country_id'])
-			->exists();
-		if(!$exists){
-			Crew::create($data);
-			return response()->json( ([
-				'message'       => 'Crew Created Successfully',
-				'success'   => true,
-			]));
-		}
-
-		return response()->json( [
-			'message'       => 'A crew already exists with same id type, id number and country',
-			'success'   => false,
-		],422);
-
+		Crew::create($request->validated());
+		return response()->json(status: 201); // Created
 	}
 
 	/**
