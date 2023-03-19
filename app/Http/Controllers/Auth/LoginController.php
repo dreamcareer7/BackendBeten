@@ -30,13 +30,15 @@ class LoginController extends Controller
 		$this->validateLogin($request);
 
 		$token = null;
-		$user=null;
+		$user = null;
 
 		// If the class is using the ThrottlesLogins trait, we can automatically throttle
 		// the login attempts for this application. We'll key this by the username and
 		// the IP address of the client making these requests into this application.
-		if (method_exists($this, 'hasTooManyLoginAttempts') &&
-			$this->hasTooManyLoginAttempts($request)) {
+		if (
+			method_exists($this, 'hasTooManyLoginAttempts') &&
+			$this->hasTooManyLoginAttempts($request)
+		) {
 			$this->fireLockoutEvent($request);
 
 			return $this->sendLockoutResponse($request);
@@ -53,22 +55,23 @@ class LoginController extends Controller
 			$dbpassword = $user->password;
 			if (Hash::check($password, $dbpassword)) {
 				//issue new Token
-				$token= $user->createToken("System Login", $user->getPermissionsViaRoles()->pluck('name')->toArray())->plainTextToken;
+				$token = $user->createToken("System Login", $user->getPermissionsViaRoles()->pluck('name')->toArray())->plainTextToken;
 				$success = true;
-				$message= "successfully logged in.";
+				$message = "successfully logged in.";
 			} else {
 				$message = "Invalid Password";
 			}
 		} else {
-			$message="Invalid email address.";
+			$message = "Invalid email address.";
 		}
 
 		if ($success) {
 			return response()->json([
-				"success"=>$success,
-				"message"=>$message,
-				"token"=>$token,
-				"user"=>$user,
+				"success" => $success,
+				"message" => $message,
+				"token" => $token,
+				"user" => $user,
+				'permissions' => $user->getAllPermissions()->pluck('name'),
 			], $success ? 200 : 422);
 		}
 		// If the login attempt was unsuccessful we will increment the number of attempts
@@ -79,12 +82,12 @@ class LoginController extends Controller
 		return $this->sendFailedLoginResponse($request);
 	}
 
-    public function tokenLogout(Request $request): \Illuminate\Http\JsonResponse
-    {
-        $request->user()->currentAccessToken()->delete();
+	public function tokenLogout(Request $request): \Illuminate\Http\JsonResponse
+	{
+		$request->user()->currentAccessToken()->delete();
 
-        return response()->json([
-            'status' => 'success'
-        ]);
-    }
+		return response()->json([
+			'status' => 'success'
+		]);
+	}
 }

@@ -10,6 +10,7 @@ use App\Models\Traits\HasDocuments;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
@@ -62,6 +63,13 @@ class User extends Authenticatable
 	use HasApiTokens, HasDocuments, HasFactory, HasRoles, Notifiable, SoftDeletes;
 
 	/**
+	 * The accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $appends = ['is_admin'];
+
+	/**
 	 * The attributes that should be hidden for serialization.
 	 *
 	 * @var array<int, string>
@@ -87,6 +95,18 @@ class User extends Authenticatable
 	protected function serializeDate(DateTimeInterface $date): string
 	{
 		return $date->format('Y-m-d H:i:s');
+	}
+
+	/**
+	 * Determine if the user is an administrator.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
+	 */
+	protected function isAdmin(): Attribute
+	{
+		return new Attribute(
+			get: fn () => $this->hasRole('admin'),
+		);
 	}
 
 	/**
