@@ -91,10 +91,6 @@ class ContractsAPIController extends Controller
 				 * All the documents will have the one contract reference
 				 * as their title
 				 */
-				// Hmmm... are you sure it's not the client original name????
-				// We already have a reference to the reference (no pun intended)
-				// So we might as well keep an extra information here
-				// We may need it in the future, you never know ¯\_(ツ)_/¯
 				'title' => $contract->getClientOriginalName(),
 				'path' => $contract->store('documents'),
 				'model_type' => Contract::class,

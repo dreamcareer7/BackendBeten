@@ -37,7 +37,7 @@ class CreateContractRequest extends FormRequest
 			'model_id' => "bail|required|integer|exists:{$this->table},id",
 			'reference' => 'bail|required|string|min:5|max:255',
 			'contracts' => 'bail|required|array',
-			'contracts.*' => 'bail|required|file|mimes:pdf',
+			'contracts.*' => 'bail|required|file|mimes:pdf,png,jpg,jpeg',
 		];
 	}
 
@@ -61,5 +61,18 @@ class CreateContractRequest extends FormRequest
 				'model_id' => (int) $this->id,
 			]);
 		}
+	}
+
+	/**
+	 * Get custom messages for validator errors.
+	 *
+	 * @return array
+	 */
+	public function messages(): array
+	{
+		return [
+			'contracts.*.mimes' => __('File must be either an image or a PDF document'),
+			'contracts.required' => __('At least one file per contract is required'),
+		];
 	}
 }

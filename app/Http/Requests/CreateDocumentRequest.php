@@ -37,7 +37,7 @@ class CreateDocumentRequest extends FormRequest
 			'model_id' => "bail|required|integer|exists:{$this->table},id",
 			'title' => 'bail|required|string|min:5|max:255',
 			'documents' => 'bail|required|array',
-			'documents.*' => 'bail|required|file|mimes:pdf',
+			'documents.*' => 'bail|required|file|mimes:pdf,png,jpg,jpeg',
 		];
 	}
 
@@ -61,5 +61,18 @@ class CreateDocumentRequest extends FormRequest
 				'model_id' => (int) $this->id,
 			]);
 		}
+	}
+
+	/**
+	 * Get custom messages for validator errors.
+	 *
+	 * @return array
+	 */
+	public function messages(): array
+	{
+		return [
+			'documents.*.mimes' => __('File must be either an image or a PDF document'),
+			'documents.required' => __('At least one file per document is required'),
+		];
 	}
 }
