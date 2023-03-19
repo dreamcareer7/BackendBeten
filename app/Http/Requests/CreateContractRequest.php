@@ -37,7 +37,7 @@ class CreateContractRequest extends FormRequest
 			'model_id' => "bail|required|integer|exists:{$this->table},id",
 			'reference' => 'bail|required|string|min:5|max:255',
 			'contracts' => 'bail|required|array',
-			'contracts.*' => 'bail|required|file|mimes:pdf',
+			'contracts.*' => 'bail|required|file|mimes:pdf,docx,png,jpg,doc,jpeg',
 		];
 	}
 
