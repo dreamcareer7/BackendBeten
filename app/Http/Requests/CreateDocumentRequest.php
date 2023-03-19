@@ -37,8 +37,7 @@ class CreateDocumentRequest extends FormRequest
 			'model_id' => "bail|required|integer|exists:{$this->table},id",
 			'title' => 'bail|required|string|min:5|max:255',
 			'documents' => 'bail|required|array',
-			'documents.*' => 'bail|required|file|mimes:pdf,docx,png,jpg,doc,jpeg',
-			
+			'documents.*' => 'bail|required|file|mimes:pdf',
 		];
 	}
 

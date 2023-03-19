@@ -77,9 +77,6 @@ class ContractsAPIController extends Controller
 			'created_by' => auth()->id(),
 		])->id;
 		// Iterate through the contracts files in the request
-
-		//array to store multiple ids for document
-		$document_array=[];
 		foreach ($request->contracts as $contract) {
 			/**
 			 * A contract is an arbitrary record in the database
@@ -89,7 +86,7 @@ class ContractsAPIController extends Controller
 			 * from the request, this also explains why Contract model uses
 			 * the trait HasDocuments
 			 */
-			$document = Document::create([
+			Document::create([
 				/*
 				 * All the documents will have the one contract reference
 				 * as their title
@@ -104,10 +101,8 @@ class ContractsAPIController extends Controller
 				'model_id' => $contract_id,
 				'created_by' => auth()->id(),
 			]);
-			$document_array[] = $document->id;
-
 		}
-		return response()->json(['status'=> 201,'message'=> 'Data saved' ,'contract_id' => $contract_id,'document_ids' => $document_array]); // Created
+		return response()->json(status: 201); // Created
 	}
 
 	/**
