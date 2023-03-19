@@ -23,12 +23,11 @@ class AuthServiceProvider extends ServiceProvider
 	 *
 	 * @return void
 	 */
-	public function boot()
+	public function boot(): void
 	{
 		$this->registerPolicies();
 
 		// Implicitly grant "admin" role all permissions
-		// This works in the app by using gate-related functions like auth()->user->can() and @can()
 		Gate::before(fn ($user) => $user->hasRole('admin') ? true : null);
 	}
 }
