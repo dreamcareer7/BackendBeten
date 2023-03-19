@@ -26,40 +26,52 @@ class PermissionsTableSeeder extends Seeder
 			'users.edit',
 			'users.status',
 			'users.editOwn',
-			'users.delete',
-			'users.deleteOwn',
 			'users.view',
 			'users.browse',
-			'users.*', // dummy as https://github.com/spatie/laravel-permission/issues/1423
+			// dummy as https://github.com/spatie/laravel-permission/issues/1423
+			'users.*',
 
 			'users.documents.view',
 
 			'roles.create',
 			'roles.edit',
-			'roles.assigning_permissions',
-			'roles.assigning_users',
-			'roles.delete',
 			'roles.*',
 
 			'crew.index',
 			'crew.create',
 			'crew.edit',
-			'crew.delete',
 			'crew.view',
+			'crew.*',
 
 			'crew.documents.view',
+			'crew.documents.delete',
+			'crew.documents.add',
+			'crew.documents.*',
+
+			'crew.contracts.view',
+			'crew.contracts.add',
+			'crew.contracts.*',
 
 			'services.index',
 			'services.create',
 			'services.edit',
-			'services.delete',
 			'services.view',
 
 			'vehicles.index',
 			'vehicles.create',
 			'vehicles.edit',
-			'vehicles.delete',
 			'vehicles.view',
+			'vehicles.*',
+
+			'vehicles.documents.view',
+			'vehicles.documents.delete',
+			'vehicles.documents.add',
+			'vehicles.documents.*',
+
+			'vehicles.contracts.view',
+			'vehicles.contracts.delete',
+			'vehicles.contracts.add',
+			'vehicles.contracts.*',
 
 			'groups.index',
 			'groups.create',
@@ -72,6 +84,12 @@ class PermissionsTableSeeder extends Seeder
 			'clients.edit',
 			'clients.delete',
 			'clients.view',
+			'clients.*',
+
+			'clients.documents.view',
+			'clients.documents.delete',
+			'clients.documents.add',
+			'clients.documents.*',
 
 			'documents.index',
 			'documents.create',
@@ -92,6 +110,8 @@ class PermissionsTableSeeder extends Seeder
 			'complaints.view',
 
 			'settings.general',
+			'settings.index',
+			'settings.edit',
 			'settings.*',
 		];
 
