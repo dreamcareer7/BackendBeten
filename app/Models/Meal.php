@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Traits\{HasConcurrent, HasDocuments};
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $to_model_type
  * @property int $to_model_id
  * @property string $sent_at
- * @property-read \App\Models\MealType|null $mealType
+ * @property-read \App\Models\MealType $mealType
  * @method static \Database\Factories\MealFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Meal newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Meal newQuery()
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Meal extends Model
 {
-	use HasConcurrent, HasDocuments, HasFactory;
+	use HasDocuments, HasFactory;
 
 	/**
 	 * Indicates if the model should be timestamped.

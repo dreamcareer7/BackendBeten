@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
+use App\Models\Traits\HasConcurrent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $from_location
  * @property int $supervisor_id user_id
  * @property \Illuminate\Support\Carbon $created_at
+ * @property int|null $phase_id
+ * @property-read \App\Models\Phase|null $phase
  * @property-read \App\Models\Service $service
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
  * @property-read int|null $service_commit_log_count
@@ -31,17 +34,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereFromLocation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit wherePhaseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereScheduleAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereServiceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereSupervisorId($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
  * @mixin \Eloquent
  */
 class ServiceCommit extends Model
 {
-	use HasFactory;
+	use HasConcurrent, HasFactory;
 
 	/**
 	 * The name of the "updated at" column.
