@@ -24,8 +24,10 @@ class PermissionsTableSeeder extends Seeder
 		$entities = [
 			'clients',
 			'commits',
+			'complaints',
 			'crews',
 			'dormitories',
+			'evaluations',
 			'groups',
 			'hospitalities',
 			'logs',
@@ -36,6 +38,7 @@ class PermissionsTableSeeder extends Seeder
 			'types',
 			'users',
 			'vehicles',
+			'roles',
 		];
 
 		$relatables = [
@@ -56,12 +59,26 @@ class PermissionsTableSeeder extends Seeder
 		foreach ($entities as $entity) {
 			foreach ($actions as $action) {
 				Permission::create(['name' => $entity . '.' . $action]);
-				foreach ($relatables as $relatable) {
-					Permission::create([
-						'name' => $entity . '.' . $relatable . '.' . $action,
-					]);
+				if ($entity != 'roles') {
+					foreach ($relatables as $relatable) {
+						Permission::create([
+							'name' => $entity . '.' . $relatable . '.' . $action,
+						]);
+					}
 				}
 			}
+		}
+
+		foreach ([
+			'user_logs.view',
+			'user_logs.index',
+			'users_dataentry.view',
+			'users_dataentry.index',
+			'settings.view',
+			'settings.edit',
+			'settings.index',
+		] as $permission) {
+			Permission::create(['name' => $permission]);
 		}
 	}
 }
