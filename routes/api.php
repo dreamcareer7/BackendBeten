@@ -80,7 +80,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
 	Route::apiResource('/dormitories', DormitoriesController::class);
-	Route::apiResource('/hospitalities', HospitalitiesController::class);
+	Route::resource('/hospitalities', HospitalitiesController::class);
 	Route::apiResource('/service_commits', ServiceCommitsController::class);
 
 	/** Contracts */

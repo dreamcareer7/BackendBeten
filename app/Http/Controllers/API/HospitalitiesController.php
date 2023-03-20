@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Hospitality;
+use App\Models\{Crew, Hospitality};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateHospitalityRequest, UpdateHospitalityRequest};
@@ -12,10 +12,10 @@ use App\Http\Requests\{CreateHospitalityRequest, UpdateHospitalityRequest};
 class HospitalitiesController extends Controller
 {
 	/**
-	* Display a listing of the hospitality.
-	*
-	* @return \Illuminate\Http\JsonResponse
-	*/
+	 * Display a listing of the hospitality.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function index(): JsonResponse
 	{
 		$hospitalities = Hospitality::select(
@@ -29,6 +29,16 @@ class HospitalitiesController extends Controller
 		// Eager load the receiver (crew member) full name
 		)->with('receiver:id,fullname')->paginate(15);
 		return response()->json(data: $hospitalities);
+	}
+
+	/**
+	 * Get the data for the form for creating a new hospitality.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function create(): JsonResponse
+	{
+		return response()->json(data: Crew::select('id', 'fullname')->get());
 	}
 
 	/**
