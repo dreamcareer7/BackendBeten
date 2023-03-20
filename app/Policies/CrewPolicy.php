@@ -20,7 +20,7 @@ class CrewPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->can('crew.index');
+		return $user->can('crews.index');
 	}
 
 	/**
@@ -33,7 +33,7 @@ class CrewPolicy
 	 */
 	public function view(User $user, Crew $crew): bool
 	{
-		return $user->can('crew.view');
+		return $user->can('crews.view');
 	}
 
 	/**
@@ -45,7 +45,7 @@ class CrewPolicy
 	 */
 	public function create(User $user): bool
 	{
-		return $user->can('crew.create');
+		return $user->can('crews.create');
 	}
 
 	/**
@@ -58,7 +58,7 @@ class CrewPolicy
 	 */
 	public function update(User $user, Crew $crew): bool
 	{
-		return $user->can('crew.edit');
+		return $user->can('crews.edit');
 	}
 
 	/**
@@ -71,7 +71,7 @@ class CrewPolicy
 	 */
 	public function delete(User $user, Crew $crew): bool
 	{
-		return $user->can('crew.delete');
+		return $user->can('crews.delete');
 	}
 
 	/**

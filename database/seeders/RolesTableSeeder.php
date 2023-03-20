@@ -18,59 +18,26 @@ class RolesTableSeeder extends Seeder
 	public function run(): void
 	{
 		Role::create(['name' => 'admin']);
-		$roleSuperVisor = Role::create(['name' => 'supervisor']);
-		$roleGroupsAdmin = Role::create(['name' => 'groups-admin']);
 		Role::create(['name' => 'user']);
-		$roleMember = Role::create(['name' => 'member']);
-		$roleSuperVisor->givePermissionTo([
-			'users.create',
-			'users.edit',
-			'users.status',
-			'users.editOwn',
-			'users.delete',
-			'users.deleteOwn',
-			'users.view',
-			'users.browse',
+
+		Role::create(['name' => 'supervisor'])->givePermissionTo([
+			'users.*',
+			'crews.*',
+			'vehicles.*',
+			'clients.*',
+		]);
+
+		Role::create(['name' => 'groups-admin'])->givePermissionTo([
+			'groups.*',
+			'clients.*',
+		]);
+
+
+		Role::create(['name' => 'member'])->givePermissionTo([
 			'users.*',
 
-			'crew.index',
-			'crew.create',
-			'crew.edit',
-			'crew.delete',
-			'crew.view',
-
-			'vehicles.index',
-			'vehicles.create',
-			'vehicles.edit',
-			'vehicles.delete',
-			'vehicles.view',
-
-			'clients.index',
-			'clients.create',
-			'clients.edit',
-			'clients.delete',
-			'clients.view',
-		]);
-		$roleGroupsAdmin->givePermissionTo([
-			'groups.index',
-			'groups.create',
-			'groups.edit',
-			'groups.delete',
-			'groups.view',
-
-			'clients.index',
-			'clients.create',
-			'clients.edit',
-			'clients.delete',
-			'clients.view',
-		]);
-		$roleMember->givePermissionTo([
-			'users.view',
-			'users.browse',
-			'users.*',
-
-			'crew.index',
-			'crew.view',
+			'crews.index',
+			'crews.view',
 
 			'vehicles.index',
 			'vehicles.view',

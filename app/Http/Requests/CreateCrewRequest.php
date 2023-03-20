@@ -17,7 +17,7 @@ class CreateCrewRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return auth()->check() && $this->user()->can('crew.create');
+		return auth()->check() && $this->user()->can('crews.create');
 	}
 
 	/**

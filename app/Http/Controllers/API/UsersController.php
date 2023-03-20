@@ -8,7 +8,8 @@ use App\Models\{Crew, User};
 use Illuminate\Http\JsonResponse;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\{UserDetailsResource, UserEditResource, UserResource};
+use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\{UserDetailsResource, UserEditResource};
 use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UserUpdateRequest};
 
 class UsersController extends Controller
@@ -17,6 +18,7 @@ class UsersController extends Controller
 	{
 		$this->authorizeResource(User::class);
 	}
+
 	/**
 	 * Display a listing of the users.
 	 *
@@ -76,18 +78,20 @@ class UsersController extends Controller
 	/**
 	 * Display the user for editing.
 	 *
-	 * @param int $id ID of the user to fetch for editing
+	 * @param \App\Models\User $user
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function edit(int $id): JsonResponse
+	public function edit(User $user): JsonResponse
 	{
-		$user = User::select('id', 'name', 'email', 'contact', 'is_active')
-					->with('roles:name')
-					->where('id', $id)
-					->first();
+		if (request()->user()->can('roles')) {
+			$user->load('roles:name');
+		}
+
 		return response()->json(
 			data: [
 				'user' => new UserEditResource($user),
-				'roles' => Role::select('name')->get(),
+				'roles' => request()->user()->can('roles') ? Role::select('name')->get() : [],
 			],
 		);
 	}
@@ -133,11 +137,12 @@ class UsersController extends Controller
 	public function destroy(User $user): JsonResponse
 	{
 		if ($user->is(auth()->user())) {
-			return response()->json(data: [
-				'message' => __('Can not delete yourself.'),
-			],
-			status: 400
-		);
+			return response()->json(
+				data: [
+					'message' => __('Can not delete yourself.'),
+				],
+				status: 400
+			);
 		}
 		$user->delete();
 		return response()->json(status: 204); // No content

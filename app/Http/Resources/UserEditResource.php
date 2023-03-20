@@ -22,7 +22,7 @@ class UserEditResource extends JsonResource
 			'email' => $this->email,
 			'contact' => $this->contact,
 			'is_active' => $this->is_active,
-			'roles' => $this->roles->pluck('name'),
+			'roles' => $request->user()->can('roles') ? $this->roles->pluck('name') : [],
 		];
 	}
 }

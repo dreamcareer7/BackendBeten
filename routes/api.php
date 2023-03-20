@@ -71,7 +71,7 @@ Route::middleware('auth:sanctum')->group(function () {
 		return (new $model)->select('id')->get();
 	});
 	Route::resource('/crews', CrewsController::class);
-	Route::apiResource('/users', UsersController::class);
+	Route::resource('/users', UsersController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/phases', PhasesController::class);
 	Route::apiResource('/groups', GroupsController::class);
@@ -82,8 +82,6 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::apiResource('/hospitalities', HospitalitiesController::class);
 	Route::apiResource('/service_commits', ServiceCommitsController::class);
-
-	Route::get('users/edit/{id}', [UsersController::class, 'edit']);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')

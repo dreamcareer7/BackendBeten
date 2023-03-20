@@ -17,7 +17,7 @@ class UpdateCrewRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return auth()->check() && $this->user()->can('crew.edit');
+		return auth()->check() && $this->user()->can('crews.edit');
 	}
 
 	/**
