@@ -61,7 +61,6 @@ class Concurrent extends Model
 	// This property is used for validation ATM
 	// Not a constant because client said so
 	public static array $model_types = [
-		Meal::class,
-		Service::class,
+		'App\Models\Servicecommit'
 	];
 }
