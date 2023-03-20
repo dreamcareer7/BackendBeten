@@ -95,7 +95,9 @@ class UsersController extends Controller
 		return response()->json(
 			data: [
 				'user' => new UserEditResource($user),
-				'roles' => request()->user()->can('roles') ? Role::select('name')->get() : [],
+				'roles' => request()->user()->can('roles') ? Role::select('name')
+					->whereNot('name', 'admin')
+					->get() : [],
 			],
 		);
 	}
