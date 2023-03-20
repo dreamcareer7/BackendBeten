@@ -88,6 +88,9 @@ class UsersController extends Controller
 	 */
 	public function edit(User $user): JsonResponse
 	{
+		if ($user->is_admin) {
+			return response()->json(status: 400);
+		}
 		if (request()->user()->can('roles')) {
 			$user->load('roles:name');
 		}
@@ -112,6 +115,9 @@ class UsersController extends Controller
 	public function update(UserUpdateRequest $request, $user_id)
 	{
 		$user = User::findorfail($user_id);
+		if ($user->is_admin) {
+			return response()->json(status: 400);
+		}
 		$user->name = $request->input('name');
 		$user->email = $request->input('email');
 		$user->is_active = $request->input('is_active');
@@ -142,6 +148,9 @@ class UsersController extends Controller
 	 */
 	public function destroy(User $user): JsonResponse
 	{
+		if ($user->is_admin) {
+			return response()->json(status: 400);
+		}
 		if ($user->is(auth()->user())) {
 			return response()->json(
 				data: [

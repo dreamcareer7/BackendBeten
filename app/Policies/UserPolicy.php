@@ -58,7 +58,7 @@ class UserPolicy
 	 */
 	public function update(User $user, User $model): bool
 	{
-		return $user->can('users.edit');
+		return $user->can('users.edit') && !$model->is_admin;
 	}
 
 	/**
@@ -71,7 +71,7 @@ class UserPolicy
 	 */
 	public function delete(User $user, User $model): bool
 	{
-		return $user->can('users.delete');
+		return $user->can('users.delete') && !$model->is_admin;
 	}
 
 	/**
