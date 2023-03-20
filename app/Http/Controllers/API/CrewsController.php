@@ -145,18 +145,4 @@ class CrewsController extends Controller
 
 		return response()->json($query->get());
 	}
-
-	/**
-	 * List crew members
-	 *
-	 * This endpoint is currently used to populate the dropdown
-	 * on the hospitality creation page
-	 *
-	 * @return \Illuminate\Http\JsonResponse
-	 **/
-	public function list(): JsonResponse
-	{
-		$crew = Crew::select('id', 'fullname')->get();
-		return response()->json(data: $crew);
-	}
 }
