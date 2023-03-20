@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\{UserDetailsResource, UserEditResource};
 use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UserUpdateRequest};
 
@@ -28,7 +29,10 @@ class UsersController extends Controller
 	 */
 	public function index(ListUsersRequest $request): JsonResponse
 	{
-		$query = User::select('id', 'name', 'email', 'is_active', 'contact');
+		$query = User::select('id', 'name', 'email', 'is_active', 'contact')
+			->whereDoesntHave('roles', function (Builder $query): void {
+				$query->where('name', 'admin');
+			});
 
 		foreach (['name', 'email', 'contact'] as $column) {
 			$request->whenFilled($column, function ($input) use ($query, $column) {
