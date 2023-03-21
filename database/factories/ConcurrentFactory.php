@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Models\{Concurrent, User};
 use Spatie\Permission\Models\Role;
+use App\Models\{Concurrent, ServiceCommit, User};
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -41,6 +41,10 @@ class ConcurrentFactory extends Factory
 		// Next, model type can be any Eloquent model class that Concurrent
 		// supports
 		$model_type = fake()->randomElement(Concurrent::$model_types);
+
+		if ($model_type == 'App\Models\Servicecommit') {
+			$model_type = ServiceCommit::class;
+		}
 
 
 		// Frequency can be either daily or weekly
