@@ -13,10 +13,6 @@ use App\Http\Requests\CreateContractRequest;
 
 class ContractsAPIController extends Controller
 {
-	public function __construct()
-	{
-		$this->authorizeResource(Contract::class);
-	}
 	/**
 	 * Display a listing of the contracts for a given model.
 	 *

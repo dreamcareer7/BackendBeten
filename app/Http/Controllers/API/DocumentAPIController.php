@@ -14,11 +14,6 @@ use App\Http\Requests\CreateDocumentRequest;
 
 class DocumentAPIController extends Controller
 {
-	public function __construct()
-	{
-		$this->authorizeResource(Document::class);
-	}
-
 	/**
 	 * Display a listing of the documents for a given model.
 	 *

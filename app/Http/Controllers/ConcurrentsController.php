@@ -13,16 +13,6 @@ use App\Http\Requests\{CreateConcurrentRequest, DeleteConcurrentRequest};
 class ConcurrentsController extends Controller
 {
 	/**
-	 * Apply the authorization policy
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->authorizeResource(Concurrent::class);
-	}
-
-	/**
 	 * Display a listing of the concurrents for a given model.
 	 *
 	 * @param string $type the model type
