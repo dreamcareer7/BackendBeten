@@ -135,10 +135,3 @@ Route::middleware('auth:sanctum')->group(function () {
 	// as a supervisor_id
 	Route::get('users/list_supervisors', [UsersController::class, 'list_supervisors']);
 });
-// TODO: clean this up, figure out what it's for
-Route::prefix('v2')->group(function() {
-	Route::post('/sign_in', [App\Http\Controllers\API\Auth\LoginAPIController::class, 'signIn']);
-
-	//we do not need it for client
-   // Route::post('/sign_up', [App\Http\Controllers\API\Auth\RegisterAPIController::class, 'register']);
-});
