@@ -3,19 +3,20 @@
 declare(strict_types=1);
 
 return [
-	'model_header'=>'قائمة المستخدمين',
-	'show_header'=>'عرض مستخدم',
-	'create_header'=>'انشاء مستخدم جديد',
+	'model_header'=>'Users list',
+	'show_header'=>'Show user',
+	'create_header'=>'Create new user',
 	
 	
-	'datafield_name'=>'الآســـم',
-	'datafield_email'=>'البريد الالكتروني',
-	'datafield_password'=>'كلمة المرور',
-	'datafield_password_confirmation'=>'تأكيد كلمة المرور',
-	'datafield_roles'=>'الادوار',
-	'datafield_is_active'=>'فعٌال',
+	'datafield_name'=>'Name',
+	'datafield_email'=>'E-Mail',
+	'datafield_password'=>'Password',
+	'datafield_password_confirmation'=>'Confirm password',
+	'datafield_roles'=>'Roles',
+	'datafield_is_active'=>'Active',
+	'datafield_name'=>'Name',
 	
-	'datafield_send_confirmation'=>'ارسل رسالة تأكيد الكترونية',
+	'datafield_send_confirmation'=>'Send confirmation email',
 	
 	
 ];

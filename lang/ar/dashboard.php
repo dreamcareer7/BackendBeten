@@ -5,18 +5,21 @@ declare(strict_types=1);
 
 return [
 
-	'title'=>'لوحة التحكم',
-	'users'=>'المستخدمين',
-	'about_us'=>'عنا',
-	
+	'title'=>'Dashboard',
+	'users'=>'Users',
+	'about_us'=>'About us',
+
 	'actions'=>[
-		'index'=>'العرض',
-		'create'=>'انشاء جديد',
-		'edit'=>'تعديل',
-		'delete'=>'الحذف',
-		'save'=>'احفظ',
+		'index'=>'Browse',
+		'create'=>'Create',
+		'edit'=>'Edit',
+		'delete'=>'Delete',
+		'save'=>'Save',
 	],
-	
-	
+
+	'messages'=>[
+		'record_updated_successfully'=>'Row is been updated',
+
+	],
 
 ];
