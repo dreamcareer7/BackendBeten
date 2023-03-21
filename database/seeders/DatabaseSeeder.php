@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\{City, Setting, Vehicle};
+use App\Models\{City, ServiceCommit, Setting, Vehicle};
 
 class DatabaseSeeder extends Seeder
 {
@@ -37,6 +37,9 @@ class DatabaseSeeder extends Seeder
 		]);
 		Vehicle::factory(count: 20)->create();
 		Setting::factory(count: 5)->create();
-		$this->call(ConcurrentsTableSeeder::class);
+		ServiceCommit::factory(count: 5)->create();
+		$this->call([
+			ConcurrentsTableSeeder::class,
+		]);
 	}
 }

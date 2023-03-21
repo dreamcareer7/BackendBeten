@@ -101,8 +101,10 @@ class ConcurrentFactory extends Factory
 		// The window being 30 minutes
 		// means that the dinner is available from 19:30 to 20:31
 		// -------------------------------------------------------
-		// if weekly, the next keys in the extra column should be every day from Sat to Fri => assoc time for each
-		// For each day as well we have an assoc array of roles and/or users to be notified (but must select at least one role or one user)
+		// if weekly, the next keys in the extra column should be every day from
+		// Sat to Fri => assoc time for each
+		// For each day as well we have an assoc array of roles and/or users to
+		// be notified (but must select at least one role or one user)
 		$extra = ['frequency' => $frequency];
 		return [
 			'starting_at' => $start,
