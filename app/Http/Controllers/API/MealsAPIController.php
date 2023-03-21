@@ -38,7 +38,9 @@ class MealsAPIController extends Controller
 			'to_model_id' => $request->to_model_id,
 			'sent_at' => $request->sent_at,
 		]);
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Meal created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

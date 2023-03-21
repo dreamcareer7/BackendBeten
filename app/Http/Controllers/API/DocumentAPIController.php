@@ -72,7 +72,9 @@ class DocumentAPIController extends Controller
 				'created_by' => auth()->id(),
 			]);
 		}
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Document created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

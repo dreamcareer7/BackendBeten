@@ -63,7 +63,7 @@ class ServiceAPIController extends Controller
 		]);
 
 		return response()->json(data: [
-			'message' => __('Service created!'),
+			'message' => __('Service created successfully!'),
 		], status: 201);
 	}
 

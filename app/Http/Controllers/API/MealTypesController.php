@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\{Meal, MealType};
+use App\Models\MealType;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateMealTypeRequest, UpdateMealTypeRequest};
@@ -35,12 +35,14 @@ class MealTypesController extends Controller
 	 */
 	public function store(CreateMealTypeRequest $request): JsonResponse
 	{
-		Meal::create([
+		MealType::create([
 			'title' => $request->title,
 			'description' => $request->description,
 			'has_documents' => $request->has_documents,
 		]);
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Meal type created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

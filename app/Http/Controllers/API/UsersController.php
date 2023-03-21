@@ -62,7 +62,9 @@ class UsersController extends Controller
 			'contact' => $request->contact,
 		])->assignRole($request->roles);
 
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('User created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

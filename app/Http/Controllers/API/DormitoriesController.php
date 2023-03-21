@@ -53,7 +53,9 @@ class DormitoriesController extends Controller
 	public function store(CreateDormitoryRequest $request): JsonResponse
 	{
 		Dormitory::create($request->validated());
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Dormitory created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

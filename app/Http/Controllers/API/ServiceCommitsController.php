@@ -41,7 +41,9 @@ class ServiceCommitsController extends Controller
 	public function store(CreateServiceCommitRequest $request): JsonResponse
 	{
 		ServiceCommit::create($request->validated());
-		return response()->json(status: 201); // Created status code
+		return response()->json(data: [
+			'message' => __('Service commit created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

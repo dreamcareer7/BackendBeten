@@ -72,7 +72,9 @@ class CrewsController extends Controller
 	public function store(CreateCrewRequest $request): JsonResponse
 	{
 		Crew::create($request->validated());
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Crew member created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

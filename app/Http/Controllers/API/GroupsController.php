@@ -55,7 +55,9 @@ class GroupsController extends Controller
 	public function store(CreateGroupRequest $request): JsonResponse
 	{
 		Group::create($request->validated());
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Group created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

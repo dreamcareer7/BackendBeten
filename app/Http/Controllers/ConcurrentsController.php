@@ -62,7 +62,9 @@ class ConcurrentsController extends Controller
 	public function store(CreateConcurrentRequest $request): JsonResponse
 	{
 		Concurrent::create($request->validated());
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Concurrent created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

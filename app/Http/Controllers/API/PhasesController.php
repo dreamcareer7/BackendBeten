@@ -41,7 +41,9 @@ class PhasesController extends Controller
 			'title' => $request->title,
 			'is_required' => $request->is_required,
 		])->services()->attach($request->services);
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Phase created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

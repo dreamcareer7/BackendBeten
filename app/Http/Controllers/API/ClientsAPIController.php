@@ -54,7 +54,9 @@ class ClientsAPIController extends Controller
 	public function store(CreateClientRequest $request): JsonResponse
 	{
 		Client::create($request->validated());
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Client created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**

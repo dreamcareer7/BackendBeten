@@ -1126,5 +1126,17 @@
 	"App\\Models\\Meal": "Meal",
 	"App\\Models\\Group": "Group",
 	"App\\Models\\MealType": "MealType",
-	"App\\Models\\Vehicle": "Vehicle"
+	"App\\Models\\Vehicle": "Vehicle",
+	"Client created successfully!": "Client created successfully!",
+	"Concurrent created successfully!": "Concurrent created successfully!",
+	"Contract created successfully!": "Contract created successfully!",
+	"Crew member created successfully!": "Crew member created successfully!",
+	"Document created successfully!": "Document created successfully!",
+	"Dormitory created successfully!": "Dormitory created successfully!",
+	"Group created successfully!": "Group created successfully!",
+	"Meal created successfully!": "Meal created successfully!",
+	"Meal type created successfully!": "Meal type created successfully!",
+	"Phase created successfully!": "Phase created successfully!",
+	"Service created successfully!": "Service created successfully!",
+	"User created successfully!": "User created successfully!"
 }
