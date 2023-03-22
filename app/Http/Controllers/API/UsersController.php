@@ -166,20 +166,6 @@ class UsersController extends Controller
 	}
 
 	/**
-	 * List Supervisors
-	 *
-	 * This is currently consumed by the frontend to populate the supervisor
-	 * dropdown menu when creating a service commit
-	 *
-	 * @return \Illuminate\Http\JsonResponse
-	 **/
-	public function list_supervisors(): JsonResponse
-	{
-		$users = User::select('id', 'name')->get();
-		return response()->json($users);
-	}
-
-	/**
 	 * Populate user creation dropdowns
 	 *
 	 * Get available roles & crew members to select from when creating a user

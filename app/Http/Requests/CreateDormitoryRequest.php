@@ -30,7 +30,7 @@ class CreateDormitoryRequest extends FormRequest
 			'phones' => 'bail|required|string|min:7|max:255',
 			'city_id' => 'bail|required|integer|exists:cities,id',
 			'location' => 'bail|required|string|min:3|max:255',
-			'coordinate' => 'bail|nullable|regex:^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$',
+			'coordinate' => 'bail|nullable|regex:/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/',
 			'is_active' => 'bail|required|boolean',
 		];
 	}

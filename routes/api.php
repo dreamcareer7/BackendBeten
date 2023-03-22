@@ -131,7 +131,4 @@ Route::middleware('auth:sanctum')->group(function () {
 
 	// Get available services to select from when creating a service commit
 	Route::get('service/list', [ServiceAPIController::class, 'list']);
-	// Get available users to select from when creating a service commit
-	// as a supervisor_id
-	Route::get('users/list_supervisors', [UsersController::class, 'list_supervisors']);
 });
