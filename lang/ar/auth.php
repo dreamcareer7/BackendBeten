@@ -16,7 +16,7 @@ return [
 	*/
 
 	'failed' => '.أوراق الاعتماد هذه لا تتطابق مع سجلاتنا',
-	'password' => 'The provided password is incorrect.',
-	'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+	'password' => 'كلمة المرور المدخلة غير متوافقة.',
+	'throttle' => 'محاولات فاشلة متعددة، يمكنك المحاولة بعد :seconds ثواني.',
 
 ];
