@@ -11,7 +11,7 @@ use App\Http\Requests\{CreateServiceRequest, UpdateServiceRequest};
 
 class ServiceAPIController extends Controller
 {
-	 public function __construct()
+	public function __construct()
 	{
 		$this->authorizeResource(Service::class);
 	}
@@ -24,26 +24,28 @@ class ServiceAPIController extends Controller
 	public function index(): JsonResponse
 	{
 		$services = Service::select(
-			'id', 'title', 'city_id', 'before_date', 'exact_date', 'after_date'
+			'id',
+			'title',
+			'city_id',
+			'before_date',
+			'exact_date',
+			'after_date'
 		)->with('city:id,title')->paginate(15);
 
 		return response()->json(data: $services, status: 200);
 	}
 
 	/**
-	 * List all available services
+	 * Display the specified resource.
 	 *
-	 * This is currently consumed by the frontend to populate the services
-	 * dropdown menu when creating a service commit
+	 * @param \App\Models\Service $service
 	 *
 	 * @return \Illuminate\Http\JsonResponse
-	 **/
-	public function list(): JsonResponse
+	 */
+	public function show(Service $service): JsonResponse
 	{
-		$services = Service::select('id', 'title')->get();
-		return response()->json($services);
+		return response()->json(data: $service);
 	}
-
 
 	/**
 	 * Store a newly created service in database.
@@ -65,18 +67,6 @@ class ServiceAPIController extends Controller
 		return response()->json(data: [
 			'message' => __('Service created successfully!'),
 		], status: 201);
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param \App\Models\Service $service
-	 *
-	 * @return \Illuminate\Http\JsonResponse
-	 */
-	public function show(Service $service): JsonResponse
-	{
-		return response()->json(data: $service);
 	}
 
 	/**
@@ -103,17 +93,12 @@ class ServiceAPIController extends Controller
 	 */
 	public function destroy($id)
 	{
-			$crew = Service::find($id)->delete($id);
+		$crew = Service::find($id)->delete($id);
 
-			return response()->json( ([
-				'message'       => 'services Deleted Successfully',
-				'data'          =>  null,
-				'status_code'   => 200,
-			]));
-	}
-
-	public function all()
-	{
-		return response()->json(Service::get());
+		return response()->json(([
+			'message'       => 'services Deleted Successfully',
+			'data'          =>  null,
+			'status_code'   => 200,
+		]));
 	}
 }

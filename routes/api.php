@@ -127,8 +127,4 @@ Route::middleware('auth:sanctum')->group(function () {
 		'populate-create-user-dropdowns',
 		[UsersController::class, 'populateCreateUserDropdowns']
 	);
-	Route::get('services/all', [ServiceAPIController::class, 'all']);
-
-	// Get available services to select from when creating a service commit
-	Route::get('service/list', [ServiceAPIController::class, 'list']);
 });

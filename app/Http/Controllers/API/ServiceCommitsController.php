@@ -32,6 +32,32 @@ class ServiceCommitsController extends Controller
 	}
 
 	/**
+	 * Display the specified resource.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function show(ServiceCommit $serviceCommit): JsonResponse
+	{
+		return response()->json([
+			'commit' => $serviceCommit->load('service'),
+			'logs' => $serviceCommit->service_commit_log()->paginate(5)
+		]);
+	}
+
+	/**
+	 * Get the data for the form for creating a new service commit.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function create(): JsonResponse
+	{
+		return response()->json([
+			'users' => User::select('id', 'name')->get(),
+			'services' => Service::select('id', 'title')->get(),
+		]);
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param \App\Http\Requests\CreateServiceCommitRequest $request
@@ -47,27 +73,16 @@ class ServiceCommitsController extends Controller
 	}
 
 	/**
-	 * Display the specified resource.
-	 */
-	public function show(ServiceCommit $serviceCommit)
-	{
-		return response()->json([
-			'commit' => $serviceCommit->load('service'),
-			'logs' => $serviceCommit->service_commit_log()->paginate(5)
-		]);
-	}
-
-	/**
 	 * Get the data for the form for editing a service commit.
 	 *
 	 * @param \App\Models\ServiceCommit $commit
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function edit(ServiceCommit $commit): JsonResponse
+	public function edit(ServiceCommit $serviceCommit): JsonResponse
 	{
 		return response()->json(data: [
-			'commit' => $commit,
+			'commit' => $serviceCommit,
 			'users' => User::select('id', 'name')->get(),
 			'services' => Service::select('id', 'title')->get(),
 		]);
