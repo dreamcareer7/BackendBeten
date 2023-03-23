@@ -81,7 +81,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/meal_types', MealTypesController::class);
 	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::resource('/hospitalities', HospitalitiesController::class);
-	Route::apiResource('/service_commits', ServiceCommitsController::class);
+	Route::resource('/service_commits', ServiceCommitsController::class);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')

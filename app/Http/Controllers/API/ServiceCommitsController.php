@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
-use App\Models\{ServiceCommit, Service_Commit_Log};
+use App\Models\{Service, ServiceCommit, Service_Commit_Log, User};
 use App\Http\Requests\{CreateServiceCommitRequest, UpdateServiceCommitRequest};
 
 class ServiceCommitsController extends Controller
@@ -54,6 +54,22 @@ class ServiceCommitsController extends Controller
 		return response()->json([
 			'commit' => $serviceCommit->load('service'),
 			'logs' => $serviceCommit->service_commit_log()->paginate(5)
+		]);
+	}
+
+	/**
+	 * Get the data for the form for editing a service commit.
+	 *
+	 * @param \App\Models\ServiceCommit $commit
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function edit(ServiceCommit $commit): JsonResponse
+	{
+		return response()->json(data: [
+			'commit' => $commit,
+			'users' => User::select('id', 'name')->get(),
+			'services' => Service::select('id', 'title')->get(),
 		]);
 	}
 
