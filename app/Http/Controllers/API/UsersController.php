@@ -8,7 +8,6 @@ use App\Models\{Crew, User};
 use Illuminate\Http\JsonResponse;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\{UserDetailsResource, UserEditResource};
 use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UserUpdateRequest};
@@ -62,9 +61,7 @@ class UsersController extends Controller
 			'contact' => $request->contact,
 		])->assignRole($request->roles);
 
-		return response()->json(data: [
-			'message' => __('User created successfully!'),
-		], status: 201); // Created
+		return response()->json(status: 201); // Created
 	}
 
 	/**
@@ -112,33 +109,30 @@ class UsersController extends Controller
 	 *
 	 * @param \App\Http\Requests\UserUpdateRequest $request
 	 * @param \App\Models\User $user
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(UserUpdateRequest $request, $user_id)
+	public function update(UserUpdateRequest $request, User $user)
 	{
-		$user = User::findorfail($user_id);
 		if ($user->is_admin) {
 			return response()->json(status: 400);
 		}
-		$user->name = $request->input('name');
-		$user->email = $request->input('email');
-		$user->is_active = $request->input('is_active');
-		$user->contact = $request->input('contact');
+
+		$user->name = $request->name;
+		$user->email = $request->email;
+		$user->is_active = $request->is_active;
+		$user->contact = $request->contact;
 
 		// change password only if user entered a new one
 		if ($request->has('password')) {
-			$user->password = Hash::make($request->input('password'));
+			$user->password = bcrypt($request->password);
 		}
-		$user->syncRoles($request->input('roles'));
+
+		$user->syncRoles($request->roles);
 
 		$user->save();
 
-		return response()->json([
-			'message' => 'user updated successfully',
-			'data' => null,
-			'status_code' => 200,
-			'success' => true,
-		], 200);
+		return response()->json(status: 202); // Accepted
 	}
 
 	/**

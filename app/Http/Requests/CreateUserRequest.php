@@ -16,7 +16,7 @@ class CreateUserRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return auth()->check();
+		return auth()->check() && $this->user()->can('users.create');
 	}
 
 	/**
