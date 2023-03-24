@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Client;
+use App\Models\{Client, Country};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateClientRequest, UpdateClientRequest};
@@ -69,6 +69,21 @@ class ClientsAPIController extends Controller
 	public function show(Client $client): JsonResponse
 	{
 		return response()->json(data: $client);
+	}
+
+	/**
+	 * Get the data for the form for editing a client.
+	 *
+	 * @param \App\Models\Client $client
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function edit(Client $client): JsonResponse
+	{
+		return response()->json(data: [
+			'client' => $client,
+			'countries' => Country::select('id', 'title')->get(),
+		]);
 	}
 
 	/**

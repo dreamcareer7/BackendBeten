@@ -76,7 +76,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/phases', PhasesController::class);
 	Route::apiResource('/groups', GroupsController::class);
 	Route::apiResource('/meals', MealsAPIController::class);
-	Route::apiResource('/clients', ClientsAPIController::class);
+	Route::resource('/clients', ClientsAPIController::class);
 	Route::apiResource('/services', ServiceAPIController::class);
 	Route::apiResource('/meal_types', MealTypesController::class);
 	Route::apiResource('/dormitories', DormitoriesController::class);
