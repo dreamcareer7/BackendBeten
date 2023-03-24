@@ -17,15 +17,14 @@ class VehicleAPIController extends Controller
 	}
 	public function paginate(Request $request)
 	{
-		$users = Vehicle::query();
-		$model = $request->input('model') ?? null;
-		$year = $request->input('model') ?? null;
-		$model = $request->input('model') ?? null;
-		$per_page = $request->input('per_page') ?? 15;
-		if ($model) {
-			$users->where('model', 'LIKE', $model . '%');
+		$query = Vehicle::query();
+
+		foreach (['model', 'manufacturer', 'registration'] as $column) {
+			$request->whenFilled($column, function ($input) use ($query, $column) {
+				$query->where($column, 'LIKE', "%$input%");
+			});
 		}
-		return response()->json($users->paginate($per_page));
+		return response()->json($query->paginate(15));
 	}
 
 	/**
