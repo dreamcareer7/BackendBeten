@@ -172,5 +172,10 @@ return [
 		'time'                  => 'الوقت',
 		'available'             => 'مُتاح',
 		'size'                  => 'الحجم',
+		'badge' => 'الشاره',
+		'model' => 'نموذج',
+		'registration' => 'تسجيل',
+		'manufacturer' => 'الصانع',
+		'passengers' => 'الركاب',
 	],
 ];

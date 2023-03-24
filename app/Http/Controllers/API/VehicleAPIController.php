@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Models\Vehicle;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\{NewVehicleRequest, UpdateVehicleRequest};
+use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\{CreateVehicleRequest, UpdateVehicleRequest};
 
 class VehicleAPIController extends Controller
 {
@@ -29,26 +29,16 @@ class VehicleAPIController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created vehicle in database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
+	 * @param \App\Http\Requests\CreateVehicleRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-
-	public function store(NewVehicleRequest $request)
+	public function store(CreateVehicleRequest $request): JsonResponse
 	{
-		$data = $request->only([
-			"model",
-			"registration",
-			"manufacturer",
-			"year",
-			"badge",
-		]);
-		Vehicle::create($data);
-		return response()->json([
-			"success" => true,
-			"message" => "New Vehicle Added Successfully."
-		]);
+		Vehicle::create($request->validated());
+		return response()->json(status: 201); // Created
 	}
 
 	/**
@@ -59,37 +49,25 @@ class VehicleAPIController extends Controller
 	 */
 	public function show($id)
 	{
-		//
 		$vehicle = Vehicle::findorfail($id);
 		return response()->json($vehicle);
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified vehicle in database.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Models\Service  $vehicle
-	 * @return \Illuminate\Http\Response
+	 * @param \Illuminate\Http\Request $request
+	 * @param \App\Models\Vehicle $vehicle
+	 *
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(UpdateVehicleRequest $request, $id)
+	public function update(
+		UpdateVehicleRequest $request,
+		Vehicle $vehicle
+	): JsonResponse
 	{
-		$v = Vehicle::find($id);
-		if ($request->missing('documents')) {
-			$v->update([
-				"model" => $request->model,
-				"registration" => $request->registration,
-				"manufacturer" => $request->manufacturer,
-				"year" => $request->year,
-				"badge" => $request->badge,
-			]);
-		} else {
-			$v->update(); // trigger update for trait interecfp
-		}
-
-		return response()->json([
-			"success" => true,
-			"message" => "Information Updated Successfully."
-		]);
+		$vehicle->update($request->validated());
+		return response()->json(status: 202);
 	}
 
 	/**

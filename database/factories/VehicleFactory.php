@@ -17,7 +17,7 @@ class VehicleFactory extends Factory
 	 *
 	 * @return array<string, mixed>
 	 */
-	public function definition()
+	public function definition(): array
 	{
 		fake()->addProvider(new Fakecar($this->faker));
 		$vehicle = fake()->vehicleArray();
@@ -27,6 +27,7 @@ class VehicleFactory extends Factory
 			'year' => fake()->biasedNumberBetween(1990, date('Y'), 'sqrt'),
 			'registration' => fake()->vehicleRegistration,
 			'badge' => fake()->numerify('########'),
+			'passengers' => fake()->optional()->numberBetween(2, 50),
 		];
 	}
 }

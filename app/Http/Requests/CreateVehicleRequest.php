@@ -7,7 +7,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateVehicleRequest extends FormRequest
+class CreateVehicleRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class UpdateVehicleRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		return auth()->check() && $this->user()->can('vehicles.edit');
+		return auth()->check() && $this->user()->can('vehicles.create');
 	}
 
 	/**

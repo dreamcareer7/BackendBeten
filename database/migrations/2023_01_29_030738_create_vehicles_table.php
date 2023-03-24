@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVehiclesTable extends Migration
-{
+return new class extends Migration {
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up(): void
 	{
 		Schema::create('vehicles', function (Blueprint $table) {
 			$table->id();
@@ -22,6 +21,7 @@ class CreateVehiclesTable extends Migration
 			$table->year('year');
 			$table->string('registration');
 			$table->integer('badge');
+			$table->unsignedInteger('passengers')->nullable();
 			$table->softDeletes();
 			$table->timestamps();
 		});
@@ -32,8 +32,8 @@ class CreateVehiclesTable extends Migration
 	 *
 	 * @return void
 	 */
-	public function down()
+	public function down(): void
 	{
 		Schema::dropIfExists('vehicles');
 	}
-}
+};

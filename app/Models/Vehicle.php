@@ -18,13 +18,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $year
  * @property string $registration
  * @property int $badge
+ * @property int|null $passengers
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Contract> $contracts
- * @property-read int|null $contracts_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
- * @property-read int|null $documents_count
  * @method static \Database\Factories\VehicleFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newQuery()
@@ -35,6 +32,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereManufacturer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereModel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle wherePassengers($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereRegistration($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereYear($value)
