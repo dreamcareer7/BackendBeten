@@ -35,9 +35,7 @@ class UsersController extends Controller
 
 		foreach (['name', 'email', 'contact'] as $column) {
 			$request->whenFilled($column, function ($input) use ($query, $column) {
-				if (strlen($input) > 4) {
-					$query->where($column, 'LIKE', "%$input%");
-				}
+				$query->where($column, 'LIKE', "%$input%");
 			});
 		}
 
