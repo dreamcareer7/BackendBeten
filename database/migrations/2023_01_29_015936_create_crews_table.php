@@ -30,11 +30,11 @@ return new class extends Migration {
 				->onDelete('cascade');
 			$table->unsignedBigInteger('country_id');
 			$table->foreign('country_id')->references('id')->on('countries');
-			$table->string('phone');
+			$table->string('phone')->nullable();
 			$table->string('id_type');
 			$table->string('id_name');
 			$table->string('id_number');
-			$table->date('dob');
+			$table->date('dob')->nullable();
 			$table->boolean('is_active')->default(true);
 			$table->timestamps();
 			$table->softDeletes();

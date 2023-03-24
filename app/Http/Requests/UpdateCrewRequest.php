@@ -46,11 +46,11 @@ class UpdateCrewRequest extends FormRequest
 						]);
 				})->ignore(id: $this->id),
 			],
-			'phone' => 'bail|required|string|min:3|max:255',
+			'phone' => 'bail|nullable|string|min:3|max:255',
 			'id_type' => 'bail|required|string|min:3|max:255',
 			'id_name' => 'bail|required|string|min:3|max:255',
 			'id_number' => 'bail|required|string|min:3|max:255',
-			'dob' => 'bail|required|date_format:Y-m-d',
+			'dob' => 'bail|nullable|date_format:Y-m-d',
 			'is_active' => 'bail|required|boolean',
 		];
 	}

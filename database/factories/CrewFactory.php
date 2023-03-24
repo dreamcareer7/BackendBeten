@@ -33,11 +33,11 @@ class CrewFactory extends Factory
 				->inRandomOrder()
 				->limit(1)
 				->value('id'),
-			'phone' => fake()->phoneNumber,
+			'phone' => fake()->optional()->phoneNumber,
 			'id_type' => 'Passport',
 			'id_name' => fake(locale: 'en_US')->firstName($gender) . ' ' . fake(locale: 'en_US')->lastName,
 			'id_number' => fake()->iban,
-			'dob' => fake()->date,
+			'dob' => fake()->optional()->date,
 			'is_active' => fake()->boolean,
 		];
 	}
