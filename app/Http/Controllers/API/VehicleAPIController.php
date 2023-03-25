@@ -15,6 +15,7 @@ class VehicleAPIController extends Controller
 	{
 		$this->authorizeResource(Vehicle::class);
 	}
+
 	public function paginate(Request $request)
 	{
 		$query = Vehicle::query();
@@ -72,11 +73,12 @@ class VehicleAPIController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Models\Service  $vehicle
-	 * @return \Illuminate\Http\Response
+	 * @param \App\Models\Vehicle $vehicle
+	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function delete(Vehicle $vehicle)
 	{
 		$vehicle->forceDelete();
+		return response()->json(status: 204);
 	}
 }
