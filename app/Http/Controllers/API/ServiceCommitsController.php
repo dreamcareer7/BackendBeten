@@ -126,8 +126,20 @@ class ServiceCommitsController extends Controller
 		return response()->json(status: 204);
 	}
 
-	public function myCommits()
+	public function myCommits(Request $request)
 	{
+		if ($request->user()->is_admin) {
+			return ServiceCommit::select(
+				'id',
+				'service_id',
+				'badge',
+				'schedule_at',
+				'started_at',
+				'from_location',
+				'supervisor_id',
+				'phase_id'
+			)->with(['service:id,title', 'supervisor:id,name', 'phase:id,title'])->get();
+		}
 		return auth()->user()->service_commits()->with('service')->get();
 	}
 
