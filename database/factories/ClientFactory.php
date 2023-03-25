@@ -38,6 +38,8 @@ class ClientFactory extends Factory
 			// Their actual name on the ID
 			'id_name' => $name,
 			'gender' => $gender,
+			'dob' => fake()->date,
+			'phone' => fake()->phoneNumber,
 			'is_handicap' => fake()->boolean(chanceOfGettingTrue: 7),
 		];
 	}

@@ -47,6 +47,8 @@ class UpdateClientRequest extends FormRequest
 			'id_number' => 'bail|required|string|min:3|max:255',
 			'id_name' => 'bail|required|string|min:3|max:255',
 			'gender' => 'bail|required|string|in:Male,Female',
+			'dob' => 'bail|required|date_format:Y-m-d',
+			'phone' => 'bail|required|string|min:7|max:255',
 			'is_handicap' => 'bail|required|boolean',
 		];
 	}

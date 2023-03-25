@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @property string $id_number
  * @property string $id_name
  * @property string $gender
+ * @property \Illuminate\Support\Carbon $dob
+ * @property string $phone
  * @property bool $is_handicap
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -34,6 +36,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereCountryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Client whereDob($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereFullname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereId($value)
@@ -41,6 +44,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereIdNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereIdType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereIsHandicap($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Client wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Client withoutTrashed()
@@ -57,6 +61,7 @@ class Client extends Model
 	 */
 	protected $casts = [
 		'is_handicap' => 'boolean',
+		'dob' => 'date:Y-m-d',
 	];
 
 	/**

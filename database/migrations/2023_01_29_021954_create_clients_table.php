@@ -25,6 +25,8 @@ return new class extends Migration {
 				'Male',
 				'Female',
 			])->default('Male');
+			$table->date('dob');
+			$table->string('phone');
 			$table->boolean('is_handicap')->default(false);
 			$table->timestamps();
 			$table->softDeletes();
