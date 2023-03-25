@@ -28,7 +28,24 @@ class UpdateServiceRequest extends FormRequest
 		return [
 			'title' => 'bail|required|string|min:3|max:255',
 			'city_id' => 'bail|required|integer|exists:cities,id',
-			'before_date' => 'bail|nullable|date_format:Y-m-d',
+			// We must receive only one of these 3 dates
+			'before_date' => 'bail|prohibits:exact_date,after_date',
+			'exact_date' => 'bail|prohibits:before_date,after_date',
+			'after_date' => 'bail|prohibits:exact_date,before_date',
+		];
+	}
+
+	/**
+	 * Get the error messages for the defined validation rules.
+	 *
+	 * @return array<string, string>
+	 */
+	public function messages(): array
+	{
+		return [
+			'before_date.prohibits' => __('Only one date is allowed'),
+			'exact_date.prohibits' => __('Only one date is allowed'),
+			'after_date.prohibits' => __('Only one date is allowed'),
 		];
 	}
 }
