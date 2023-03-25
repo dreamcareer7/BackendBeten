@@ -18,7 +18,10 @@ class CreateServiceCommitsTable extends Migration
 		Schema::create('service_commits', function (Blueprint $table) {
 			$table->id();
 			$table->unsignedBigInteger('service_id');
-			$table->foreign('service_id')->references('id')->on('services');
+			$table->foreign('service_id')
+				->references('id')
+				->on('services')
+				->onDelete('cascade');
 			$table->string('badge');
 			$table->datetime('schedule_at');
 			$table->datetime('started_at')->nullable();

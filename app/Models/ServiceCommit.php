@@ -46,6 +46,13 @@ class ServiceCommit extends Model
 	use HasConcurrent, HasFactory;
 
 	/**
+	 * The table associated with the model.
+	 *
+	 * @var string
+	 */
+	protected $table = 'service_commits';
+
+	/**
 	 * The name of the "updated at" column.
 	 *
 	 * @var string|null
