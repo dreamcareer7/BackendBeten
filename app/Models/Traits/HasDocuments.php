@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models\Traits;
 
-use App\Models\{Crew, User};
+use App\Models\{Client, Crew, User};
 
 trait HasDocuments
 {
@@ -29,12 +29,14 @@ trait HasDocuments
 					($model instanceof User &&
 						!request()->user()->can('users.documents.view')) ||
 					($model instanceof Crew &&
-						!request()->user()->can('crews.documents.view'))
+						!request()->user()->can('crews.documents.view')) ||
+					($model instanceof Client &&
+						!request()->user()->can('clients.documents.view'))
 				) {
 					$model->is_documentable = false;
+				} else {
+					$model->is_documentable = true;
 				}
-			} else {
-				$model->is_documentable = true;
 			}
 		});
 	}
