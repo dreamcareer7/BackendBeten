@@ -35,8 +35,8 @@ class CreateConcurrentRequest extends FormRequest
 		return [
 			'model_type' => 'bail|required|string|in:' . $valid_types,
 			'model_id' => "bail|required|integer|exists:{$this->table},id",
-			'starting_at' => 'bail|required|date_format:Y-m-d H:i:s',
-			'ending_at' => 'bail|required|date_format:Y-m-d H:i:s',
+			'starting_at' => 'bail|required|date_format:Y-m-d',
+			'ending_at' => 'bail|required|date_format:Y-m-d',
 			'extra' => 'bail|required',
 		];
 	}
@@ -49,13 +49,11 @@ class CreateConcurrentRequest extends FormRequest
 	protected function prepareForValidation(): void
 	{
 		if ($this->type) {
+			$model = 'App\Models\\' . Str::title($this->type);
 			$this->merge([
-				'model_type' => 'App\Models\\' . Str::title($this->type),
+				'model_type' => $model,
 			]);
-			// TODO: check guarantee, table name could differ from the model?
-			// In that case, probably best to init an object and get table prop
-			// Must do before mutating the type
-			$this->table = Str::plural($this->type);
+			$this->table = (new $model)->getTable();
 		}
 		if ($this->id) {
 			$this->merge([
