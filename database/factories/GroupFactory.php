@@ -19,7 +19,7 @@ class GroupFactory extends Factory
 	public function definition(): array
 	{
 		return [
-			'title' => fake()->word,
+			'title' => fake()->words(asText: true),
 			'crew_id' => rand(1, 20),
 		];
 	}

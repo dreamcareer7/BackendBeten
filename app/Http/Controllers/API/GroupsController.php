@@ -75,6 +75,21 @@ class GroupsController extends Controller
 	}
 
 	/**
+	 * Get the data for the form for editing a group.
+	 *
+	 * @param \App\Models\Group $group
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function edit(Group $group): JsonResponse
+	{
+		return response()->json(data: [
+			'group' => $group->load('clients:id,fullname'),
+			'crews' => Crew::select('id', 'fullname')->get(),
+		]);
+	}
+
+	/**
 	 * Update the specified group in database.
 	 *
 	 * @param \App\Models\Group $group
