@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Models\{Service, ServiceCommit, Service_Commit_Log, User};
-use App\Http\Requests\{CreateServiceCommitRequest, UpdateServiceCommitRequest};
+use App\Http\Requests\{AddLogRequest, CreateServiceCommitRequest, UpdateServiceCommitRequest};
 
 class ServiceCommitsController extends Controller
 {
@@ -143,7 +143,14 @@ class ServiceCommitsController extends Controller
 		return auth()->user()->service_commits()->with('service')->get();
 	}
 
-	public function addLog(Request $request)
+	/**
+	 * Add logs to service commit
+	 *
+	 * @param \App\Http\Requests\AddLogRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function addLog(AddLogRequest $request): JsonResponse
 	{
 		Service_Commit_Log::create([
 			'service_commit_id' => $request->service_commit_id,
@@ -151,6 +158,7 @@ class ServiceCommitsController extends Controller
 			'model_id' => $request->model_id,
 			'role' => $request->role,
 		]);
+		return response()->json(status: 201); // Created
 	}
 
 	public function initialize($id)
