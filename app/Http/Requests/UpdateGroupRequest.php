@@ -28,7 +28,21 @@ class UpdateGroupRequest extends FormRequest
 		return [
 			'title' => 'bail|required|string|min:5|max:255',
 			'crew_id' => 'bail|required|integer|exists:crews,id',
-			'clients.*' => 'bail|required|integer|exists:clients,id',
+			'clients' => 'bail|nullable|array',
+			'clients.*' => 'bail|required_with:clients|integer|exists:clients,id',
+		];
+	}
+
+	/**
+	 * Get custom messages for validator errors.
+	 *
+	 * @return array
+	 */
+	public function messages(): array
+	{
+		return [
+			'crew_id.required' => __('Must select a crew member.'),
+			'crew_id.integer' => __('Must select a crew member.'),
 		];
 	}
 }

@@ -84,8 +84,8 @@ class GroupsController extends Controller
 	public function edit(Group $group): JsonResponse
 	{
 		return response()->json(data: [
-			'group' => $group->load('clients:id,fullname'),
-			'crews' => Crew::select('id', 'fullname')->get(),
+			'group' => $group,
+			'crew_members' => Crew::select('id', 'fullname')->get(),
 		]);
 	}
 
