@@ -1144,5 +1144,6 @@
 	"Can not delete yourself.": "لا يمكن حذف نفسك.",
 	"Must select a crew member.": "يجب اختيار عضو الطاقم.",
 	"Client already exists in another group.": "الحاج موجود حاليا بمجموعه أخرى",
-	"Selected group does not exist": "المجموعة المحددة غير موجودة"
+	"Selected group does not exist": "المجموعة المحددة غير موجودة",
+	"Client is not assigned to this group.": "هذا الحاج ليس في هذه المجموعة"
 }

@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\{Client, Crew, Group};
 use Illuminate\Http\{JsonResponse, Request};
-use App\Http\Requests\{AddClientsToGroupRequest, CreateGroupRequest, UpdateGroupRequest};
+use App\Http\Requests\{AddClientsToGroupRequest, CreateGroupRequest, RemoveClientsFromGroupRequest, UpdateGroupRequest};
 
 class GroupsController extends Controller
 {
@@ -114,7 +114,7 @@ class GroupsController extends Controller
 	/**
 	 * Add clients to the group
 	 *
-	 * Update an array of clients setting their group_id to the current grou
+	 * Update an array of clients setting their group_id to the current group
 	 *
 	 * @param \App\Http\Requests\AddClientsToGroupRequest $request
 	 *
@@ -130,6 +130,31 @@ class GroupsController extends Controller
 			->whereNull('group_id')
 			->update([
 				'group_id' => $request->group_id,
+			]);
+		return response()->json(status: 202); // Accepted
+	}
+
+	/**
+	 * Remove clients from the group
+	 *
+	 * Update an array of clients setting their group_id to null
+	 *
+	 * @param \App\Http\Requests\RemoveClientsFromGroupRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 **/
+	public function removeClients(
+		RemoveClientsFromGroupRequest $request
+	): JsonResponse
+	{
+		Client::whereIn('id', $request->clients)
+			/**
+			 * Extra filter just in case
+			 * It's so we avoid unassigning unrelated clients
+			 */
+			->where('group_id', $request->group_id)
+			->update([
+				'group_id' => null,
 			]);
 		return response()->json(status: 202); // Accepted
 	}
