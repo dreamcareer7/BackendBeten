@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\{Crew, Group};
 use App\Http\Controllers\Controller;
+use App\Models\{Client, Crew, Group};
 use Illuminate\Http\{JsonResponse, Request};
-use App\Http\Requests\{CreateGroupRequest, UpdateGroupRequest};
+use App\Http\Requests\{AddClientsToGroupRequest, CreateGroupRequest, UpdateGroupRequest};
 
 class GroupsController extends Controller
 {
@@ -41,7 +41,9 @@ class GroupsController extends Controller
 
 		return response()->json(
 			// Only eager load what's necessary for display
-			data: $groups->with('crew:id,fullname')->paginate(15)
+			data: $groups->with('crew:id,fullname')
+				->withCount('clients')
+				->paginate(15)
 		);
 	}
 
@@ -70,7 +72,7 @@ class GroupsController extends Controller
 	public function show(Group $group): JsonResponse
 	{
 		return response()->json(
-			data: $group->load('crew:id,fullname', 'clients:id,fullname')
+			data: $group->load('crew:id,fullname', 'clients:id,group_id,fullname')
 		);
 	}
 
@@ -107,6 +109,29 @@ class GroupsController extends Controller
 		// sync means detaching the clients not in said array
 		$group->clients()->sync($request->clients);
 		return response()->json(status: 204); // No content
+	}
+
+	/**
+	 * Add clients to the group
+	 *
+	 * Update an array of clients setting their group_id to the current grou
+	 *
+	 * @param \App\Http\Requests\AddClientsToGroupRequest $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 **/
+	public function addClients(AddClientsToGroupRequest $request): JsonResponse
+	{
+		Client::whereIn('id', $request->clients)
+			/**
+			 * Extra filter just in case
+			 * It's so we avoid overriding existing clients
+			 */
+			->whereNull('group_id')
+			->update([
+				'group_id' => $request->group_id,
+			]);
+		return response()->json(status: 202); // Accepted
 	}
 
 	/**

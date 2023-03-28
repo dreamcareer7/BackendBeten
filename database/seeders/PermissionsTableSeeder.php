@@ -80,5 +80,8 @@ class PermissionsTableSeeder extends Seeder
 		] as $permission) {
 			Permission::create(['name' => $permission]);
 		}
+
+		Permission::create(['name' => 'groups.clients.add']);
+		Permission::create(['name' => 'groups.clients.remove']);
 	}
 }

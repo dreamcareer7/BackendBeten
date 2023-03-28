@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * App\Models\Client
  *
  * @property int $id
+ * @property int|null $group_id
  * @property string $fullname Arabic language
  * @property int $country_id
  * @property string $id_type
@@ -26,8 +27,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\Country|null $country
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Group> $groups
- * @property-read int|null $groups_count
+ * @property-read \App\Models\Group|null $group
  * @method static \Database\Factories\ClientFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Client newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Client newQuery()
@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereDob($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereFullname($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereGender($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Client whereGroupId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereIdName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereIdNumber($value)
@@ -75,12 +76,12 @@ class Client extends Model
 	}
 
 	/**
-	 * Get the groups the client is a part of
+	 * Get the group the client is a part of
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function groups(): BelongsToMany
+	public function group(): BelongsTo
 	{
-		return $this->belongsToMany(related: Group::class);
+		return $this->belongsTo(related: Group::class);
 	}
 }

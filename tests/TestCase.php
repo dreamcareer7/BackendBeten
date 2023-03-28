@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Tests;
 
 use App\Models\User;
+use Laravel\Sanctum\Sanctum;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\{RefreshDatabase, TestCase as BaseTestCase};
 
 abstract class TestCase extends BaseTestCase
@@ -18,7 +21,10 @@ abstract class TestCase extends BaseTestCase
 	 */
 	protected function setUp(): void
 	{
-		User::factory()->create();
 		parent::setUp();
+		// Create an admin user
+		Role::create(['name' => 'admin']);
+		Artisan::call('db:seed --class=CountrySeeder');
+		Sanctum::actingAs(user: User::factory()->create()->assignRole('admin'));
 	}
 }

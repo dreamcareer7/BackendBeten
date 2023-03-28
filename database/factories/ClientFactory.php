@@ -31,11 +31,6 @@ class ClientFactory extends Factory
 				'Social Security Number',
 			]),
 			'id_number' => fake()->numerify(string: '##########'),
-			// TODO: verify what this is or should be
-			// For now am assuming it's the client's name
-			// Kinda weird because it would always be the same as the client's
-			// Fullname, but maybe someone prefers to have their name mismatch
-			// Their actual name on the ID
 			'id_name' => $name,
 			'gender' => $gender,
 			'dob' => fake()->date,

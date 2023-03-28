@@ -16,6 +16,11 @@ return new class extends Migration {
 	{
 		Schema::create('clients', function (Blueprint $table) {
 			$table->id();
+			$table->unsignedBigInteger('group_id')->nullable();
+			$table->foreign('group_id')
+				->references('id')
+				->on('groups')
+				->onDelete('set null');
 			$table->string('fullname')->comment('Arabic language');
 			$table->unsignedBigInteger('country_id');
 			$table->string('id_type');

@@ -177,5 +177,6 @@ return [
 		'registration' => 'تسجيل',
 		'manufacturer' => 'الصانع',
 		'passengers' => 'الركاب',
+		'group_id' => 'المجموعة',
 	],
 ];
