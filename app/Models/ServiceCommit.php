@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $badge
  * @property \Illuminate\Support\Carbon $schedule_at
  * @property \Illuminate\Support\Carbon|null $started_at
+ * @property string|null $ended_at
  * @property string $from_location
  * @property int $supervisor_id user_id
  * @property \Illuminate\Support\Carbon $created_at
@@ -27,11 +28,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Service_Commit_Log> $service_commit_log
  * @property-read int|null $service_commit_log_count
  * @property-read \App\Models\User|null $supervisor
+ * @method static \Database\Factories\ServiceCommitFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit query()
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereBadge($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereEndedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereFromLocation($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit wherePhaseId($value)

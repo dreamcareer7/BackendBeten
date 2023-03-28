@@ -7,7 +7,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Models\{Service, ServiceCommit, Service_Commit_Log, User};
-use App\Http\Requests\{AddLogRequest, CreateServiceCommitRequest, UpdateServiceCommitRequest};
+use App\Http\Requests\{AddLogRequest, CreateServiceCommitRequest, ReleaseServiceCommitRequest, UpdateServiceCommitRequest};
 
 class ServiceCommitsController extends Controller
 {
@@ -166,5 +166,23 @@ class ServiceCommitsController extends Controller
 		ServiceCommit::find($id)->update([
 			'started_at' => now(),
 		]);
+	}
+
+	/**
+	 * Release the service commit.
+	 *
+	 * Sets the ended_at time to the current UNIX timestamp.
+	 *
+	 * @param \App\Http\Requests\ReleaseServiceCommitRequest $request.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function release(ReleaseServiceCommitRequest $request): JsonResponse
+	{
+		// TODO: validate service commit has actually started
+		ServiceCommit::where('id', $request->id)->update([
+			'ended_at' => now(),
+		]);
+		return response()->json(status: 204); // No content
 	}
 }

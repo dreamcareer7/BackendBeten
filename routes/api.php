@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::post('/token-logout', [\App\Http\Controllers\Auth\LoginController::class, 'tokenLogout']);
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
 	Route::get('/service_commits/initialize/{id}', [ServiceCommitsController::class, 'initialize']);
+	Route::post('/service_commits/release', [ServiceCommitsController::class, 'release']);
 	
 	Route::post('/service_commit_log', [ServiceCommitsController::class, 'addLog']);
 
