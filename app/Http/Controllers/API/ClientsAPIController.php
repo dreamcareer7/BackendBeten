@@ -25,7 +25,7 @@ class ClientsAPIController extends Controller
 	 */
 	public function index(Request $request): JsonResponse
 	{
-		$query = Client::with('country:id,title');
+		$query = Client::query();
 
 		$request->whenFilled('fullname', function ($input) use ($query) {
 			$query->where('fullname', 'LIKE', '%' . $input . '%');
@@ -41,6 +41,10 @@ class ClientsAPIController extends Controller
 
 		$request->whenFilled('id_number', function ($input) use ($query) {
 			$query->where('id_number', 'LIKE', '%' . $input . '%');
+		});
+
+		$request->whenFilled('group', function ($input) use ($query) {
+			$query->where('group_id', $input);
 		});
 
 		return response()->json(

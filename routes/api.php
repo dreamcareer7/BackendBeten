@@ -116,6 +116,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::resource('/users', UsersController::class);
 	Route::apiResource('/cities', CitiesController::class);
 	Route::apiResource('/phases', PhasesController::class);
+	Route::get('groups/all', [GroupsController::class, 'all']);
 	Route::post('groups/clients', [GroupsController::class, 'addClients']);
 	Route::delete('groups/clients', [GroupsController::class, 'removeClients']);
 	Route::resource('/groups', GroupsController::class);

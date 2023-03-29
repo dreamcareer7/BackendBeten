@@ -48,6 +48,18 @@ class GroupsController extends Controller
 	}
 
 	/**
+	 * Get all groups
+	 *
+	 * List all groups for selection
+	 *
+	 * @return Illuminate\Http\JsonResponse
+	 **/
+	public function all(): JsonResponse
+	{
+		return response()->json(data: Group::select('id', 'title')->get());
+	}
+
+	/**
 	 * Store a newly created group in database.
 	 *
 	 * @param \App\Http\Requests\CreateGroupRequest
@@ -72,7 +84,10 @@ class GroupsController extends Controller
 	public function show(Group $group): JsonResponse
 	{
 		return response()->json(
-			data: $group->load('crew:id,fullname', 'clients:id,group_id,fullname')
+			data: $group->load(
+				'crew:id,fullname',
+				'clients:id,group_id,fullname,country_id,id_type,id_number,id_name,gender,dob,phone'
+			)
 		);
 	}
 
@@ -131,6 +146,9 @@ class GroupsController extends Controller
 			->update([
 				'group_id' => $request->group_id,
 			]);
+		// Log the assignment in each client?
+		// value is the title of the group
+		// key is assigned_group
 		return response()->json(status: 202); // Accepted
 	}
 

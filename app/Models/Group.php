@@ -6,7 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 /**
  * App\Models\Group
@@ -14,17 +14,17 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
  * @property int $id
  * @property string $title
  * @property int $crew_id
+ * @property-read int|null $clients_count it doesnt preset real clients
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
- * @property-read int|null $clients_count
  * @property-read \App\Models\Crew $crew
  * @method static \Database\Factories\GroupFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Group query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereClientsCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereCrewId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereTitle($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
  * @mixin \Eloquent
  */
 class Group extends Model
@@ -49,12 +49,12 @@ class Group extends Model
 	}
 
 	/**
-	 * Get the client in this group.
+	 * Get the clients in this group.
 	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
-	public function clients(): BelongsToMany
+	public function clients(): HasMany
 	{
-		return $this->belongsToMany(related: Client::class);
+		return $this->hasMany(related: Client::class);
 	}
 }
