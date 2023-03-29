@@ -1146,5 +1146,8 @@
 	"Client already exists in another group.": "الحاج موجود حاليا بمجموعه أخرى",
 	"Selected group does not exist": "المجموعة المحددة غير موجودة",
 	"Client is not assigned to this group.": "هذا الحاج ليس في هذه المجموعة",
-	"Service commit hasn't started": "لم يبدأ الالتزام بالخدمة"
+	"Service commit hasn't started": "لم يبدأ الالتزام بالخدمة",
+	"Concurrent frequency can only be either daily or weekly.": "يمكن أن يكون التردد المتزامن إما يوميًا أو أسبوعيًا.",
+	"Must set at least one concurrent.": "يجب تعيين تردد واحد على الأقل.",
+	"Concurrent time must be in hours:minutes format.": "يجب أن يكون وقت التردد على نموذج ساعة:دقائق."
 }

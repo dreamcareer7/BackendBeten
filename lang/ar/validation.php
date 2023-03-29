@@ -178,5 +178,9 @@ return [
 		'manufacturer' => 'الصانع',
 		'passengers' => 'الركاب',
 		'group_id' => 'المجموعة',
+		'extra.frequency' => 'التردد المتزامن',
+		'extra.alerts' => 'الترددات',
+		'extra.alerts.*.window' => 'الفاصل بالدقائق',
+		'extra.alerts.*.time' => 'وقت المتردد',
 	],
 ];

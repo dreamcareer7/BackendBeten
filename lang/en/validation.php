@@ -181,6 +181,11 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+		'extra.frequency' => 'concurrent frequency',
+		'extra.alerts' => 'concurrents',
+		'extra.alerts.*.window' => 'interval in minutes',
+		'extra.alerts.*.time' => 'concurrent time',
+	],
 
 ];

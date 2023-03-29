@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Models\Concurrent;
 use Illuminate\Support\Str;
+use App\Models\{Concurrent, ServiceCommit};
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateConcurrentRequest extends FormRequest
@@ -20,8 +20,15 @@ class CreateConcurrentRequest extends FormRequest
 	 */
 	public function authorize(): bool
 	{
-		// TODO: validate permission as well
-		return auth()->check();
+		$supervisor = null;
+		if ($this->model_type === ServiceCommit::class) {
+			$supervisor = ServiceCommit::select('supervisor_id')
+				->where('id', $this->model_id)
+				->value('supervisor_id');
+		}
+		return auth()->check() && ($this->user()->can($this->table . '.concurrents.create') ||
+			$this->user()->id === $supervisor
+		);
 	}
 
 	/**
@@ -35,9 +42,15 @@ class CreateConcurrentRequest extends FormRequest
 		return [
 			'model_type' => 'bail|required|string|in:' . $valid_types,
 			'model_id' => "bail|required|integer|exists:{$this->table},id",
-			'starting_at' => 'bail|required|date_format:Y-m-d',
-			'ending_at' => 'bail|required|date_format:Y-m-d',
+			'starting_at' => 'bail|required|date_format:Y-m-d H:i:s',
+			'ending_at' => 'bail|required|date_format:Y-m-d H:i:s',
 			'extra' => 'bail|required',
+			'extra.frequency' => 'bail|required|string|in:daily,weekly',
+			'extra.alerts' => 'bail|required|array',
+			'extra.alerts.*.window' => 'bail|required|integer|min:10|max:60',
+			'extra.alerts.*.time' => 'bail|required|date_format:H:i',
+			'notificants' => 'bail|required',
+			'notificants.*.roles' => 'bail|required_without:notificants.*.users|array',
 		];
 	}
 
@@ -50,6 +63,9 @@ class CreateConcurrentRequest extends FormRequest
 	{
 		if ($this->type) {
 			$model = 'App\Models\\' . Str::title($this->type);
+			if ($model == 'App\Models\Servicecommit') {
+				$model = ServiceCommit::class;
+			}
 			$this->merge([
 				'model_type' => $model,
 			]);
@@ -60,5 +76,19 @@ class CreateConcurrentRequest extends FormRequest
 				'model_id' => (int) $this->id,
 			]);
 		}
+	}
+
+	/**
+	 * Get custom messages for validator errors.
+	 *
+	 * @return array
+	 */
+	public function messages(): array
+	{
+		return [
+			'extra.frequency.in' => __('Concurrent frequency can only be either daily or weekly.'),
+			'extra.alerts.required' => __('Must set at least one concurrent.'),
+			'extra.alerts.*.time.date_format' => __('Concurrent time must be in hours:minutes format.')
+		];
 	}
 }

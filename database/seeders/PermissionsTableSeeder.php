@@ -23,7 +23,7 @@ class PermissionsTableSeeder extends Seeder
 
 		$entities = [
 			'clients',
-			'commits',
+			'service_commits',
 			'complaints',
 			'crews',
 			'dormitories',
@@ -83,6 +83,7 @@ class PermissionsTableSeeder extends Seeder
 
 		Permission::create(['name' => 'groups.clients.add']);
 		Permission::create(['name' => 'groups.clients.remove']);
+		Permission::create(['name' => 'service_commits.initialize']);
 		Permission::create(['name' => 'service_commits.release']);
 	}
 }
