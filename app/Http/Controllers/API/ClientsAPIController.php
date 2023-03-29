@@ -76,7 +76,7 @@ class ClientsAPIController extends Controller
 	 */
 	public function show(Client $client): JsonResponse
 	{
-		return response()->json(data: $client);
+		return response()->json(data: $client->load('logs'));
 	}
 
 	/**

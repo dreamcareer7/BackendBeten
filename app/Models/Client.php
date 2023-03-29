@@ -7,7 +7,7 @@ namespace App\Models;
 use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany};
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 /**
  * App\Models\Client
@@ -83,5 +83,15 @@ class Client extends Model
 	public function group(): BelongsTo
 	{
 		return $this->belongsTo(related: Group::class);
+	}
+
+	/**
+	 * Get the logs of the client
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+	public function logs(): HasMany
+	{
+		return $this->hasMany(related: ClientLog::class);
 	}
 }

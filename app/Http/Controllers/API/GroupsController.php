@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\{Client, Crew, Group};
 use Illuminate\Http\{JsonResponse, Request};
+use App\Models\{Client, ClientLog, Crew, Group};
 use App\Http\Requests\{AddClientsToGroupRequest, CreateGroupRequest, RemoveClientsFromGroupRequest, UpdateGroupRequest};
 
 class GroupsController extends Controller
@@ -149,6 +149,17 @@ class GroupsController extends Controller
 		// Log the assignment in each client?
 		// value is the title of the group
 		// key is assigned_group
+		foreach ($request->clients as $client) {
+			ClientLog::create([
+				'client_id' => $client,
+				'model_type' => Group::class,
+				'model_id' => $request->group_id,
+				'key' => 'assigned_group',
+				'value' => Group::select('title')
+					->where('id', $request->group_id)
+					->value('title')
+			]);
+		}
 		return response()->json(status: 202); // Accepted
 	}
 
