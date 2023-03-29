@@ -47,6 +47,12 @@ class ClientsAPIController extends Controller
 			$query->where('group_id', $input);
 		});
 
+		$request->whenFilled('unassigned', function ($input) use ($query) {
+			if ($input) {
+				$query->whereNull('group_id');
+			}
+		});
+
 		return response()->json(
 			data: $query->paginate($request->per_page ?? 15)
 		);
