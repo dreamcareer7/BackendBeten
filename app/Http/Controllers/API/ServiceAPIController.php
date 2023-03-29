@@ -70,20 +70,26 @@ class ServiceAPIController extends Controller
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified service in database.
 	 *
 	 * @param \App\Http\Requests\UpdateServiceRequest $request
 	 * @param \App\Models\Service $service
+	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(UpdateServiceRequest $request, Service $service)
+	public function update(
+		UpdateServiceRequest $request,
+		Service $service
+	): JsonResponse
 	{
 		$service->update([
 			'title' => $request->title,
 			'city_id' => $request->city_id,
 			'before_date' => $request->before_date,
+			'after_date' => $request->after_date,
+			'exact_date' => $request->exact_date,
 		]);
-		return response()->json(status: 204); // No content
+		return response()->json(status: 202); // Accepted
 	}
 
 	/**
