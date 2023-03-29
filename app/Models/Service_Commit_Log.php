@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
@@ -43,4 +44,23 @@ class Service_Commit_Log extends Model
 		'created_at',
 		'updated_at',
 	];
+
+	/**
+	 * The accessors to append to the model's array form.
+	 *
+	 * @var array
+	 */
+	protected $appends = ['title'];
+
+	/**
+	 * Determine if the user is an administrator.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
+	 */
+	protected function title(): Attribute
+	{
+		return new Attribute(
+			get: fn () => __($this->model_type),
+		);
+	}
 }
