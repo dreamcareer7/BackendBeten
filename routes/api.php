@@ -112,6 +112,7 @@ Route::middleware('auth:sanctum')->group(function () {
 		// TODO: select the label dynamically...
 		return (new $model)->select('id', "$label AS label")->get();
 	});
+	Route::get('/crews/all', [CrewsController::class, 'all']);
 	Route::resource('/crews', CrewsController::class);
 	Route::resource('/users', UsersController::class);
 	Route::apiResource('/cities', CitiesController::class);
