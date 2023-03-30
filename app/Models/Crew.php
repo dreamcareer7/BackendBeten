@@ -55,6 +55,9 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Crew withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Crew withoutTrashed()
+ * @property string $id_name
+ * @method static \Illuminate\Database\Eloquent\Builder|Crew whereIdName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Crew whereIdNumber($value)
  * @mixin \Eloquent
  */
 class Crew extends Model

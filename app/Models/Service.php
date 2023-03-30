@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereExactDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service whereTitle($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Phase> $phases
  * @mixin \Eloquent
  */
 class Service extends Model

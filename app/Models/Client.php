@@ -49,6 +49,8 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Client withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Client withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClientLog> $logs
+ * @property-read int|null $logs_count
  * @mixin \Eloquent
  */
 class Client extends Model

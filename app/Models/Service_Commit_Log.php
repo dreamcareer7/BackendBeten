@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Service_Commit_Log whereRoles($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service_Commit_Log whereServiceCommitId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Service_Commit_Log whereUpdatedAt($value)
+ * @property string $role
+ * @method static \Illuminate\Database\Eloquent\Builder|Service_Commit_Log whereRole($value)
  * @mixin \Eloquent
  */
 class Service_Commit_Log extends Model

@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dormitory> $dormitories
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dormitory> $dormitories
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dormitory> $dormitories
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Dormitory> $dormitories
  * @mixin \Eloquent
  */
 class City extends Model
