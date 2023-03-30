@@ -179,7 +179,6 @@ class ServiceCommitsController extends Controller
 	 */
 	public function release(ReleaseServiceCommitRequest $request): JsonResponse
 	{
-		// TODO: validate service commit has actually started
 		ServiceCommit::where('id', $request->id)->update([
 			'ended_at' => now(),
 		]);

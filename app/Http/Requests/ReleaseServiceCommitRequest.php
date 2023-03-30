@@ -34,7 +34,6 @@ class ReleaseServiceCommitRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			// TODO: Must validate service commit has a starting date
 			'id' => [
 				'bail',
 				'required',
@@ -42,6 +41,7 @@ class ReleaseServiceCommitRequest extends FormRequest
 				'exists:service_commits,id',
 				function ($attribute, $value, $fail) {
 					if (ServiceCommit::where('id', $value)
+						// Must validate service commit has a starting date
 						->whereNull('started_at')
 						->exists()) {
 							$fail(__('Service commit hasn\'t started'));
