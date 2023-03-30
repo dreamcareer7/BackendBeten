@@ -6,8 +6,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
-use App\Models\{Concurrent, User};
 use Spatie\Permission\Models\Role;
+use App\Models\{Concurrent, ServiceCommit, User};
 use App\Http\Requests\{CreateConcurrentRequest, DeleteConcurrentRequest};
 
 class ConcurrentsController extends Controller
@@ -23,6 +23,9 @@ class ConcurrentsController extends Controller
 	public function index(string $type, int $id): JsonResponse
 	{
 		$type = 'App\Models\\' . Str::title($type);
+		if ($type === 'App\Models\Servicecommit') {
+			$type = ServiceCommit::class;
+		}
 		// If the model specified is not in the concurrents model types
 		// Refuse the query
 		if (! in_array($type, Concurrent::$model_types)) {
