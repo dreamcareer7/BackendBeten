@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
 	{
 		// We should probably seed client_languages before seeding clients
 		// At the moment the two tables are not related
-		City::factory()->count(count: 20)->create();
 		$this->call([
+			CitiesTableSeeder::class,
 			PermissionsTableSeeder::class,
 			RolesTableSeeder::class,
 			CountrySeeder::class,
