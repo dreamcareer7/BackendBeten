@@ -47,10 +47,41 @@ class CreateConcurrentRequest extends FormRequest
 			'extra' => 'bail|required',
 			'extra.frequency' => 'bail|required|string|in:daily,weekly',
 			'extra.alerts' => 'bail|required|array',
-			'extra.alerts.*.window' => 'bail|required|integer|min:10|max:60',
-			'extra.alerts.*.time' => 'bail|required|date_format:H:i',
-			'notificants' => 'bail|required',
-			'notificants.*.roles' => 'bail|required_without:notificants.*.users|array',
+			'extra.alerts.*.window' => [
+				'bail',
+				'required_if:extra.frequency,daily',
+				'integer',
+				'min:10',
+				'max:60',
+			],
+			'extra.alerts.*.time' => [
+				'bail',
+				'required_if:extra.frequency,daily',
+				'date_format:H:i',
+			],
+			'extra.alerts.*.notificants' => 'bail|required',
+			'extra.alerts.*.notificants.roles' => [
+				'bail',
+				'required_without:extra.alerts.*.notificants.users',
+				'array',
+			],
+			'extra.alerts.*.notificants.roles.*' => [
+				'bail',
+				'required_with:extra.alerts.*.notificants.roles',
+				'integer',
+				'exists:roles,id',
+			],
+			'extra.alerts.*.notificants.users' => [
+				'bail',
+				'required_without:extra.alerts.*.notificants.roles',
+				'array',
+			],
+			'extra.alerts.*.notificants.users.*' => [
+				'bail',
+				'required_with:extra.alerts.*.notificants.users',
+				'integer',
+				'exists:users,id',
+			],
 		];
 	}
 
