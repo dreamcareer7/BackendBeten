@@ -20,7 +20,7 @@ class ServiceFactory extends Factory
 	{
 		return [
 			'title' => fake()->words(nb: 5, asText: true),
-			'city_id' => fake()->numberBetween(1, 5),
+			'city_id' => fake()->numberBetween(1, 4),
 			'before_date' => fake()->dateTime,
 		];
 	}

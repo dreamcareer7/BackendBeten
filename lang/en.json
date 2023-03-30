@@ -16,5 +16,9 @@
 	"App\\Models\\Meal": "Meal",
 	"App\\Models\\Group": "Group",
 	"App\\Models\\MealType": "MealType",
-	"App\\Models\\Vehicle": "Vehicle"
+	"App\\Models\\Vehicle": "Vehicle",
+	"جدة": "Jeddah",
+	"مكة المكرمة": "Makkah",
+	"المدينة المنورة": "AL Madinah AL Munawwarah",
+	"الرياض": "Riyadh"
 }

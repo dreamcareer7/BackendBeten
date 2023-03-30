@@ -16,12 +16,16 @@ class CitiesTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		City::create([
-			'title' => 'مكة المكرمة',
-		]);
-		City::create([
-			'title' => 'المدينة المنورة',
-		]);
-		City::factory()->count(count: 20)->create();
+		$cities = [
+			'جدة',
+			'مكة المكرمة',
+			'المدينة المنورة',
+			'الرياض',
+		];
+		foreach ($cities as $city) {
+			City::create([
+				'title' => $city,
+			]);
+		}
 	}
 }
