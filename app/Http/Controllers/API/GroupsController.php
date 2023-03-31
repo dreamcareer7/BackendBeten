@@ -146,7 +146,7 @@ class GroupsController extends Controller
 			->update([
 				'group_id' => $request->group_id,
 			]);
-		// Log the assignment in each client?
+		// Log the assignment in each client
 		// value is the title of the group
 		// key is assigned_group
 		foreach ($request->clients as $client) {
@@ -185,6 +185,20 @@ class GroupsController extends Controller
 			->update([
 				'group_id' => null,
 			]);
+		// Log the removal of each client
+		// value is the title of the group
+		// key is removed_group
+		foreach ($request->clients as $client) {
+			ClientLog::create([
+				'client_id' => $client,
+				'model_type' => Group::class,
+				'model_id' => $request->group_id,
+				'key' => 'removed_group',
+				'value' => Group::select('title')
+					->where('id', $request->group_id)
+					->value('title')
+			]);
+		}
 		return response()->json(status: 202); // Accepted
 	}
 
