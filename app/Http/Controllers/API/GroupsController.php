@@ -83,6 +83,7 @@ class GroupsController extends Controller
 	 */
 	public function show(Group $group): JsonResponse
 	{
+		unset($group->clients_count);
 		return response()->json(
 			data: $group->load(
 				'crew:id,fullname',
