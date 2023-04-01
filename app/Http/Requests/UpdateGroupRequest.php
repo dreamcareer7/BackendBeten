@@ -28,8 +28,7 @@ class UpdateGroupRequest extends FormRequest
 		return [
 			'title' => 'bail|required|string|min:5|max:255',
 			'crew_id' => 'bail|required|integer|exists:crews,id',
-			'clients' => 'bail|nullable|array',
-			'clients.*' => 'bail|required_with:clients|integer|exists:clients,id',
+			'clients_virtual_count' => 'bail|nullable|integer|min:1',
 		];
 	}
 

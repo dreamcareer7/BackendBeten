@@ -7,7 +7,12 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Models\{Client, ClientLog, Crew, Group};
-use App\Http\Requests\{AddClientsToGroupRequest, CreateGroupRequest, RemoveClientsFromGroupRequest, UpdateGroupRequest};
+use App\Http\Requests\{
+	AddClientsToGroupRequest,
+	CreateGroupRequest,
+	RemoveClientsFromGroupRequest,
+	UpdateGroupRequest
+};
 
 class GroupsController extends Controller
 {
@@ -92,7 +97,6 @@ class GroupsController extends Controller
 	 */
 	public function show(Group $group): JsonResponse
 	{
-		unset($group->clients_count);
 		return response()->json(
 			data: $group->load(
 				// Returning the user_id for authorization
@@ -127,14 +131,8 @@ class GroupsController extends Controller
 	 */
 	public function update(Group $group, UpdateGroupRequest $request): JsonResponse
 	{
-		$group->update([
-			'title' => $request->title,
-			'crew_id' => $request->crew_id,
-		]);
-		// clients from the request is an array of client ids
-		// sync means detaching the clients not in said array
-		$group->clients()->sync($request->clients);
-		return response()->json(status: 204); // No content
+		$group->update($request->validated());
+		return response()->json(status: 202); // Accepted
 	}
 
 	/**
@@ -209,7 +207,7 @@ class GroupsController extends Controller
 					->value('title')
 			]);
 		}
-		return response()->json(status: 202); // Accepted
+		return response()->json(status: 204); // No content
 	}
 
 	/**

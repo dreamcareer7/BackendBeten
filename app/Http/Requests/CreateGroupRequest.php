@@ -28,7 +28,20 @@ class CreateGroupRequest extends FormRequest
 		return [
 			'title' => 'bail|required|string|min:5|max:255',
 			'crew_id' => 'bail|required|integer|exists:crews,id',
-			'clients_count' => 'bail|nullable|integer|min:1'
+			'clients_virtual_count' => 'bail|nullable|integer|min:1|max:2147483647',
+		];
+	}
+
+	/**
+	 * Get custom messages for validator errors.
+	 *
+	 * @return array
+	 */
+	public function messages(): array
+	{
+		return [
+			'crew_id.required' => __('Must select a crew member.'),
+			'crew_id.integer' => __('Must select a crew member.'),
 		];
 	}
 }
