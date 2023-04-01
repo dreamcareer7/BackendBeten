@@ -14,14 +14,15 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
  * @property int $id
  * @property string $title
  * @property int $crew_id
- * @property-read int|null $clients_count it doesnt preset real clients
+ * @property int|null $clients_virtual_count it doesnt preset real clients
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Client> $clients
+ * @property-read int|null $clients_count
  * @property-read \App\Models\Crew $crew
  * @method static \Database\Factories\GroupFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Group newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Group newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Group query()
- * @method static \Illuminate\Database\Eloquent\Builder|Group whereClientsCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Group whereClientsVirtualCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereCrewId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Group whereTitle($value)

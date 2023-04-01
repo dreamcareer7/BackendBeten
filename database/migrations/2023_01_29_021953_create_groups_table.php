@@ -21,7 +21,8 @@ return new class extends Migration
 			$table->unsignedBigInteger('crew_id');
 			$table->foreign('crew_id')->references('id')->on('crews')
 				->onDelete('cascade');
-			$table->unsignedInteger('clients_count')->nullable()->comment('it doesnt preset real clients');
+			$table->unsignedInteger('clients_virtual_count')->nullable()
+				->comment('it doesnt preset real clients');
 		});
 	}
 

@@ -67,7 +67,7 @@ class User extends Authenticatable
 	 *
 	 * @var array
 	 */
-	protected $appends = ['is_admin'];
+	protected $appends = ['is_admin', 'is_supervisor'];
 
 	/**
 	 * The attributes that should be hidden for serialization.
@@ -106,6 +106,27 @@ class User extends Authenticatable
 	{
 		return new Attribute(
 			get: fn () => $this->hasRole('admin'),
+		);
+	}
+
+	/**
+	 * Determine if the user is a supervisor of some group.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
+	 */
+	protected function isSupervisor(): Attribute
+	{
+		$supervisor_ids = Group::select('crew_id')
+			->distinct()
+			->pluck('crew_id')
+			->toArray();
+
+		$user_ids = Crew::select('user_id')
+			->whereIn('id', $supervisor_ids)
+			->pluck('user_id');
+
+		return new Attribute(
+			get: fn () => $user_ids->contains($this->id),
 		);
 	}
 

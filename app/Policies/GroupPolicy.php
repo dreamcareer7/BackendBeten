@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\{Group, User};
+use App\Models\{Crew, Group, User};
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class GroupPolicy
@@ -20,7 +20,7 @@ class GroupPolicy
 	 */
 	public function viewAny(User $user): bool
 	{
-		return $user->can('groups.index');
+		return $user->can('groups.index') || $user->is_supervisor;
 	}
 
 	/**
@@ -33,7 +33,8 @@ class GroupPolicy
 	 */
 	public function view(User $user, Group $group): bool
 	{
-		return $user->can('groups.view');
+		return $user->can('groups.view') || Crew::where('id', $group->crew_id)
+			->select('user_id')->value('user_id') === $user->id;
 	}
 
 	/**
@@ -58,7 +59,8 @@ class GroupPolicy
 	 */
 	public function update(User $user, Group $group): bool
 	{
-		return $user->can('groups.edit');
+		return $user->can('groups.edit') || Crew::where('id', $group->crew_id)
+			->select('user_id')->value('user_id') === $user->id;
 	}
 
 	/**
@@ -71,6 +73,12 @@ class GroupPolicy
 	 */
 	public function delete(User $user, Group $group): bool
 	{
-		return $user->can('groups.delete');
+		if ($group->clients->isNotEmpty()) {
+			return false;
+		}
+		return $user->can('groups.delete') ||
+			(Crew::where('id', $group->crew_id)
+				->select('user_id')
+				->value('user_id') === $user->id);
 	}
 }

@@ -15,6 +15,7 @@ class GroupsController extends Controller
 	{
 		$this->authorizeResource(Group::class);
 	}
+
 	/**
 	 * Display a listing of the groups.
 	 *
@@ -39,9 +40,17 @@ class GroupsController extends Controller
 			$groups->whereIn('crew_id', $crew_members_ids);
 		});
 
+		if (!$request->user()->can('groups.index') && $request->user()->is_supervisor) {
+			$groups->where(
+				'crew_id', Crew::select('id')
+					->where('user_id', $request->user()->id)
+					->value('id')
+			);
+		}
+
 		return response()->json(
 			// Only eager load what's necessary for display
-			data: $groups->with('crew:id,fullname')
+			data: $groups->with('crew:id,user_id,fullname')
 				->withCount('clients')
 				->paginate(15)
 		);
@@ -86,7 +95,8 @@ class GroupsController extends Controller
 		unset($group->clients_count);
 		return response()->json(
 			data: $group->load(
-				'crew:id,fullname',
+				// Returning the user_id for authorization
+				'crew:id,user_id,fullname',
 				'clients:id,group_id,fullname,country_id,id_type,id_number,id_name,gender,dob,phone'
 			)
 		);
@@ -175,8 +185,7 @@ class GroupsController extends Controller
 	 **/
 	public function removeClients(
 		RemoveClientsFromGroupRequest $request
-	): JsonResponse
-	{
+	): JsonResponse {
 		Client::whereIn('id', $request->clients)
 			/**
 			 * Extra filter just in case

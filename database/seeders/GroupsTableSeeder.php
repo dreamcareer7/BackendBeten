@@ -16,8 +16,9 @@ class GroupsTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Group::factory(count: 20)
-			->has(factory: Client::factory()->count(6))
+		Group::factory(count: 15)
+			->has(factory: Client::factory()->count(rand(1, 6)))
 			->create();
+		Group::factory(count: 5)->create();
 	}
 }
