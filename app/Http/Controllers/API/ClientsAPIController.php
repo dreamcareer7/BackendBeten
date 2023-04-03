@@ -44,12 +44,10 @@ class ClientsAPIController extends Controller
 		});
 
 		$request->whenFilled('group', function ($input) use ($query) {
-			$query->where('group_id', $input);
-		});
-
-		$request->whenFilled('unassigned', function ($input) use ($query) {
-			if ($input) {
+			if ($input === 'ungrouped') {
 				$query->whereNull('group_id');
+			} else {
+				$query->where('group_id', $input);
 			}
 		});
 
