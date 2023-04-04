@@ -18,8 +18,8 @@ return new class extends Migration
 		Schema::create('meal_types', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			$table->string('description');
-			$table->boolean('has_documents');
+			$table->string('description')->nullable();
+			$table->boolean('has_documents')->default(false);
 		});
 	}
 

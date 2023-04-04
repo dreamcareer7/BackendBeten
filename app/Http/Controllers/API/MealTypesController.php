@@ -35,11 +35,7 @@ class MealTypesController extends Controller
 	 */
 	public function store(CreateMealTypeRequest $request): JsonResponse
 	{
-		MealType::create([
-			'title' => $request->title,
-			'description' => $request->description,
-			'has_documents' => $request->has_documents,
-		]);
+		MealType::create($request->validated());
 		return response()->json(data: [
 			'message' => __('Meal type created successfully!'),
 		], status: 201); // Created

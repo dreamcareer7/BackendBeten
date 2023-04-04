@@ -27,8 +27,8 @@ class UpdateMealTypeRequest extends FormRequest
 	{
 		return [
 			'title' => 'bail|required|string|min:3|max:255',
-			'description' => 'bail|required|string|min:5|max:255',
-			'has_documents' => 'bail|required|boolean',
+			'description' => 'bail|nullable|string|min:5|max:255',
+			'has_documents' => 'bail|nullable|boolean',
 		];
 	}
 }
