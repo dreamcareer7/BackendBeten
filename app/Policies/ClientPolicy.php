@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Policies;
 
-use App\Models\{Client, User};
+use App\Models\{Client, Crew, Group, User};
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ClientPolicy
@@ -33,7 +33,11 @@ class ClientPolicy
 	 */
 	public function view(User $user, Client $client): bool
 	{
-		return $user->can('clients.view');
+		$crew_id = Group::whereId($client->group_id)
+			->select('crew_id')
+			->value('crew_id');
+		return $user->can('clients.view') || Crew::whereId($crew_id)
+			->select('user_id')->value('user_id') === $user->id;
 	}
 
 	/**
