@@ -10,7 +10,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\{UserDetailsResource, UserEditResource};
-use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UserUpdateRequest};
+use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UpdateUserRequest};
 
 class UsersController extends Controller
 {
@@ -107,12 +107,12 @@ class UsersController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param \App\Http\Requests\UserUpdateRequest $request
+	 * @param \App\Http\Requests\UpdateUserRequest $request
 	 * @param \App\Models\User $user
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function update(UserUpdateRequest $request, User $user)
+	public function update(UpdateUserRequest $request, User $user)
 	{
 		if ($user->is_admin) {
 			return response()->json(status: 400);
