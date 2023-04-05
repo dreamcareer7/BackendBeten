@@ -161,6 +161,19 @@ class ServiceCommitsController extends Controller
 		return response()->json(status: 201); // Created
 	}
 
+	/**
+	 * Remove a log from service commit
+	 *
+	 * @param int $id ID of the service commit log to delete.
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function removeLog(int $id): JsonResponse
+	{
+		Service_Commit_Log::whereId($id)->delete();
+		return response()->json(status: 204); // No content
+	}
+
 	public function initialize($id)
 	{
 		ServiceCommit::find($id)->update([

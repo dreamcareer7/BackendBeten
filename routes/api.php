@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::post('/service_commits/release', [ServiceCommitsController::class, 'release']);
 	
 	Route::post('/service_commit_log', [ServiceCommitsController::class, 'addLog']);
+	Route::delete('/service_commit_log/{id}', [ServiceCommitsController::class, 'removeLog']);
 
 	Route::get(
 		'/my_service_commits',
