@@ -106,6 +106,16 @@ class Crew extends Model
 	}
 
 	/**
+	 * Get the user of the crew member.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
+
+	/**
 	 * Prepare a date for array / JSON serialization.
 	 *
 	 * @param \DateTimeInterface $date date object to format
