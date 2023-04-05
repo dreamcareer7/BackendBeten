@@ -52,7 +52,7 @@ class Service_Commit_Log extends Model
 	 *
 	 * @var array
 	 */
-	protected $appends = ['title'];
+	protected $appends = ['title', 'name'];
 
 	/**
 	 * Determine if the user is an administrator.
@@ -63,6 +63,22 @@ class Service_Commit_Log extends Model
 	{
 		return new Attribute(
 			get: fn () => __($this->model_type),
+		);
+	}
+
+	/**
+	 * Get the model name (title).
+	 *
+	 * Retreive the related model record's title based on the model type and ID
+	 *
+	 * @return \Illuminate\Database\Eloquent\Casts\Attribute
+	 */
+	protected function name(): Attribute
+	{
+		return new Attribute(
+			get: fn () => $this->model_type::select($this->model_type::$title)
+				->where('id', $this->model_id)
+				->value($this->model_type::$title),
 		);
 	}
 }

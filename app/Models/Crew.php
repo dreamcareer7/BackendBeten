@@ -65,6 +65,13 @@ class Crew extends Model
 	use HasContracts, HasDocuments, HasFactory, SoftDeletes;
 
 	/**
+	 * The single value that should be used to represent the model when being displayed.
+	 *
+	 * @var string
+	 */
+	public static string $title = 'fullname';
+
+	/**
 	 * The attributes that should be cast.
 	 *
 	 * @var array

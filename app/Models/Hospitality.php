@@ -42,6 +42,13 @@ class Hospitality extends Model
 	use HasFactory;
 
 	/**
+	 * The single value that should be used to represent the model when being displayed.
+	 *
+	 * @var string
+	 */
+	public static string $title = 'title';
+
+	/**
 	 * The attributes that should be cast.
 	 *
 	 * @var array

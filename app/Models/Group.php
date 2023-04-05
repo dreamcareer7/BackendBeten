@@ -33,6 +33,13 @@ class Group extends Model
 	use HasFactory;
 
 	/**
+	 * The single value that should be used to represent the model when being displayed.
+	 *
+	 * @var string
+	 */
+	public static string $title = 'title';
+
+	/**
 	 * Indicates if the model should be timestamped.
 	 *
 	 * @var bool
