@@ -28,7 +28,6 @@ class UpdateCrewRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'user_id' => 'bail|nullable|integer|exists:users,id',
 			'fullname' => 'bail|required|string|min:3|max:255',
 			'gender' => 'bail|required|string|in:Male,Female',
 			'profession_id' => 'bail|nullable|integer|exists:professions,id',

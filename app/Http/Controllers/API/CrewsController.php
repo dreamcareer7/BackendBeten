@@ -101,7 +101,6 @@ class CrewsController extends Controller
 	{
 		return response()->json(data: [
 			'crew' => $crew,
-			'users' => User::select('id', 'name')->get(),
 			'professions' => Profession::get(),
 			'countries' => Country::select('id', 'title')->get(),
 		]);
