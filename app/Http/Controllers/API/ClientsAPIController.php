@@ -51,6 +51,11 @@ class ClientsAPIController extends Controller
 			}
 		});
 
+		$request->whenFilled('client_query', function ($input) use ($query) {
+			$query->where('fullname', 'LIKE', '%' . $input . '%')
+				->orWhere('id_number', 'LIKE', '%' . $input . '%');
+		});
+
 		return response()->json(
 			data: $query->paginate($request->per_page ?? 15)
 		);
