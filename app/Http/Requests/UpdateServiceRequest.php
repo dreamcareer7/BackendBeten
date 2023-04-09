@@ -29,9 +29,9 @@ class UpdateServiceRequest extends FormRequest
 			'title' => 'bail|required|string|min:3|max:255',
 			'city_id' => 'bail|required|integer|exists:cities,id',
 			// We must receive only one of these 3 dates
-			'before_date' => 'bail|prohibits:exact_date,after_date',
-			'exact_date' => 'bail|prohibits:before_date,after_date',
-			'after_date' => 'bail|prohibits:exact_date,before_date',
+			'before_date' => 'bail|prohibits:exact_date,after_date|date_format:Y-m-d',
+			'exact_date' => 'bail|prohibits:before_date,after_date|date_format:Y-m-d',
+			'after_date' => 'bail|prohibits:exact_date,before_date|date_format:Y-m-d',
 		];
 	}
 
