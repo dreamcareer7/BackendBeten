@@ -69,7 +69,7 @@ class LoginController extends Controller
 	public function tokenLogout(Request $request): \Illuminate\Http\JsonResponse
 	{
 		$request->user()->currentAccessToken()->delete();
-
+		Cache::forget(auth()->user()->id);
 		return response()->json([
 			'status' => 'success'
 		]);
