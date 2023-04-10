@@ -23,7 +23,7 @@ class CheckTokenExpiration
 		if(auth()->check())
 		{
 			$currentTime = Carbon::now();
-			if(!Cache::has(auth()->user()->id))
+			if(!Cache::has(auth()->user()->id)) 
 			{
 				Cache::put(auth()->user()->id, $currentTime);
 				return $next($request);
