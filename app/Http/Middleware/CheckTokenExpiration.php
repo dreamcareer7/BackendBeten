@@ -38,6 +38,7 @@ class CheckTokenExpiration
 					'status' => 'success'
 				]);
 			}
+			Cache::put(auth()->user()->id, $currentTime);
 		}
 		return $next($request);
 	}

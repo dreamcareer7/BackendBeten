@@ -46,7 +46,7 @@ class LoginController extends Controller
 			$user = User::where([
 				'email' => $request->email,
 				'is_active' => true,
-			])->select('id')->first();
+			])->select('id', 'name')->first();
 
 			// issue new Token
 			$token = $user->createToken("System Login", $user->getPermissionsViaRoles()->pluck('name')->toArray())->plainTextToken;

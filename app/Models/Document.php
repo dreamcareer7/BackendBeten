@@ -67,6 +67,7 @@ class Document extends Model
 		Dormitory::class,
 		User::class,
 		Vehicle::class,
+		Group::class
 	];
 
 	/**
