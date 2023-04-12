@@ -73,7 +73,7 @@ class ClientGroupTest extends TestCase
 				->toArray()
 		]);
 
-		$response->assertAccepted();
+		$response->assertNoContent();
 	}
 
 	/**
