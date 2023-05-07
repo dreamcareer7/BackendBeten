@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Phase;
+use App\Models\{Phase, Service};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Http\Requests\{CreatePhaseRequest, UpdatePhaseRequest};
 
 class PhasesController extends Controller
@@ -26,6 +27,16 @@ class PhasesController extends Controller
 			$query->where('title', 'LIKE', '%' . $input . '%');
 		});
 		return response()->json($query->paginate(15));
+	}
+
+	/**
+	 * Get data for the creation form of a phase
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function create(): JsonResponse
+	{
+		return response()->json(data: Service::select('id', 'title')->get());
 	}
 
 	/**
@@ -49,16 +60,17 @@ class PhasesController extends Controller
 	/**
 	 * Display the specified phase.
 	 *
-	 * @param \App\Models\Phase $phaseService
+	 * @param \App\Models\Phase $phase
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function show(Phase $phase): JsonResponse
 	{
-		$phase->load('services:id,title');
+		$phase->load(['services' => function (BelongsToMany $query): void {
+			$query->select('id', 'title')->orderby('services.id');
+		}]);
 		return response()->json(data: $phase);
 	}
-
 
 	/**
 	 * Update the specified phase in database.

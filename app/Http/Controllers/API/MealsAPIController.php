@@ -19,7 +19,10 @@ class MealsAPIController extends Controller
 	public function index(): JsonResponse
 	{
 		// TODO: API resource and collection
-		return response()->json(Meal::paginate(15));
+		return response()->json(
+			Meal::with('mealType:id,title')
+				->paginate(15)
+		);
 	}
 
 	/**
