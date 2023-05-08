@@ -30,14 +30,17 @@ use App\Http\Controllers\API\{
 | We only need POST /login & /password-confirm & /password/email & /password/reset
 |
 */
+
+
 Auth::routes();
+Route::post('/verify/otp', [\App\Http\Controllers\Auth\LoginController::class, 'verifyOTPandLogin']);
 
 Route::middleware('auth:sanctum')->group(function () {
 	Route::post('/token-logout', [\App\Http\Controllers\Auth\LoginController::class, 'tokenLogout']);
 	Route::get('countries', [\App\Http\Controllers\API\Data\CountriesController::class, 'index']);
 	Route::get('/service_commits/initialize/{id}', [ServiceCommitsController::class, 'initialize']);
 	Route::post('/service_commits/release', [ServiceCommitsController::class, 'release']);
-	
+
 	Route::post('/service_commit_log', [ServiceCommitsController::class, 'addLog']);
 	Route::delete('/service_commit_log/{id}', [ServiceCommitsController::class, 'removeLog']);
 
@@ -146,7 +149,7 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('/{type}/{id}', 'store');
 			Route::delete('/{id}', 'destroy');
 		});
-	
+
 	/** Documents */
 	Route::controller(DocumentAPIController::class)->prefix('documents')
 		->group(function () {
