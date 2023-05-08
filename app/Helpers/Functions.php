@@ -55,3 +55,19 @@ if (! function_exists('getModels')) {
 		return $out;
 	}
 }
+
+/**
+ * Using Taqnyat SMS provider to send SMS
+ *
+ * 
+ * @param array $recipients which phone number(s) of receptions
+ * @param string $body sms message body
+ * @return type
+ * @throws conditon
+ **/
+if (! function_exists('taqnyatSendSmsMsg')) {
+	function taqnyatSendSmsMsg($body, $recipients) {
+		$taqnyt = new TaqnyatSms(config('app.eogsoft.gateways.sms.taqnyt.bearer'));
+		return $message = $taqnyt->sendMsg($body, $recipients, config('app.eogsoft.gateways.sms.taqnyt.sender'));
+	}
+}
