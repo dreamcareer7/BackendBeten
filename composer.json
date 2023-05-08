@@ -40,7 +40,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Helpers/Functions.php"
+            "app/Helpers/Functions.php",
+            "app/Helpers/TaqnyatSms.php"
         ]
     },
     "autoload-dev": {
