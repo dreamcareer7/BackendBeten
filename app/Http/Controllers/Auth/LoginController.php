@@ -72,7 +72,7 @@ class LoginController extends Controller
                 // SEND SMS TO END USER
                 $body = "Your login verification code is " . $otp;
                 $recipients = $user->contact;
-               // taqnyatSendSmsMsg($body, $recipients);
+                taqnyatSendSmsMsg($body, [$recipients]);
 
                 return response()->json([
                     'user_id' => $user->id
