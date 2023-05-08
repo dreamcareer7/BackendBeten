@@ -67,7 +67,7 @@ if (! function_exists('getModels')) {
  **/
 if (! function_exists('taqnyatSendSmsMsg')) {
 	function taqnyatSendSmsMsg($body, $recipients) {
-		$taqnyt = new TaqnyatSms(config('app.eogsoft.gateways.sms.taqnyt.bearer'));
-		return $message = $taqnyt->sendMsg($body, $recipients, config('app.eogsoft.gateways.sms.taqnyt.sender'));
+		$taqnyt = new \App\Helpers\TaqnyatSms(config('eogsoft.gateways.sms.taqnyt.bearer'));
+		return $message = $taqnyt->sendMsg($body, $recipients, config('eogsoft.gateways.sms.taqnyt.sender'));
 	}
 }
