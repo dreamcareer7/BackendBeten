@@ -70,7 +70,7 @@ class LoginController extends Controller
                 $otp = $this->setOTPCacheByUserId($user->id);
 
                 // SEND SMS TO END USER
-                $body = "Your login verification code is " . $otp;
+                $body = $otp;
                 $recipients = $user->contact;
                 taqnyatSendSmsMsg($body, [$recipients]);
 
