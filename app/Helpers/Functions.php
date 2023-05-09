@@ -69,6 +69,7 @@ if (! function_exists('taqnyatSendSmsMsg')) {
 	function taqnyatSendSmsMsg($body, $recipients) {
 		$taqnyt = new \App\Helpers\TaqnyatSms(config('eogsoft.gateways.sms.taqnyat.bearer'));
 		$message = $taqnyt->sendMsg($body, $recipients, config('eogsoft.gateways.sms.taqnyat.sender'));
+        // \Log::useFiles(storage_path() . '/logs/sms_messages.log'); // to save to seprate file 
 		Illuminate\Support\Facades\Log::info($message);
 		return true;
 	}
