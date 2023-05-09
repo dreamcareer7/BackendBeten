@@ -69,7 +69,7 @@ if (! function_exists('taqnyatSendSmsMsg')) {
 	function taqnyatSendSmsMsg($body, $recipients) {
 		$taqnyt = new \App\Helpers\TaqnyatSms(config('eogsoft.gateways.sms.taqnyat.bearer'));
 		$message = $taqnyt->sendMsg($body, $recipients, config('eogsoft.gateways.sms.taqnyat.sender'));
-		Illuminate\Support\Facades\Log::inf($message);
+		Illuminate\Support\Facades\Log::info($message);
 		return true;
 	}
 }
