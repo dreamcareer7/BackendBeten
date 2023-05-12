@@ -18,7 +18,8 @@ use App\Http\Controllers\API\{
 	ServiceAPIController,
 	ServiceCommitsController,
 	UsersController,
-	VehicleAPIController
+	VehicleAPIController,
+	RolesController
 };
 
 /*
@@ -156,6 +157,17 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::get('/{type}/{id}', 'index');
 			Route::post('/{type}/{id}', 'store');
 			Route::delete('/{id}', 'destroy');
+		});
+		
+	/** Roles */
+	Route::controller(RolesController::class)->prefix('roles')
+		->group(function () {
+			Route::get('/', 'index');
+			Route::get('/{id}', 'show');
+			Route::get('/{id}/edit', 'edit');
+			Route::get('/permissions/all', 'getAllPermissions');
+			Route::post('/', 'store');
+			Route::patch('/{id}', 'update');
 		});
 
 	Route::apiResource('settings', SettingsController::class);
