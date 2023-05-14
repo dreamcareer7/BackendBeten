@@ -1138,6 +1138,7 @@
 	"Phase created successfully!": "تم انشاء المرحلة بنجاح!",
 	"Service created successfully!": "تم انشاء الخدمة بنجاح!",
 	"User created successfully!": "تم اضافة المستخدم بنجاح!",
+    "Location created successfully!": "تم اضافة الموقع بنجاح!",
 	"At least one file per contract is required": "مطلوب ملف واحد على الأقل لكل عقد",
 	"File must be either an image or a PDF document": "يجب أن يكون الملف صورة أو مستند PDF",
 	"Can not delete yourself.": "لا يمكن حذف نفسك.",
