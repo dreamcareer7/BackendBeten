@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\CreateCityRequest;
+use App\Http\Requests\UpdateCityRequest;
 use App\Models\City;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
@@ -82,13 +83,17 @@ class CitiesController extends Controller
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
+	 * @param  UpdateCityRequest  $request
+	 * @param  City  $city
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(UpdateCityRequest $request, City $city)
 	{
-		//
+        $city->title = $request->title;
+        $city->location_url = $request->location_url;
+        $city->save();
+
+        return response()->json(status: 202); // Accepted
 	}
 
 	/**
