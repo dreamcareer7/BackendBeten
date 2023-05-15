@@ -4,21 +4,23 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\{ConcurrentsController, ContractsAPIController, SettingsController};
-use App\Http\Controllers\API\{CitiesController,
-    ClientsAPIController,
-    CrewsController,
-    DocumentAPIController,
-    DormitoriesController,
-    EvaluationsController,
-    GroupsController,
-    HospitalitiesController,
-    MealTypesController,
-    MealsAPIController,
-    PhasesController,
-    ServiceAPIController,
-    ServiceCommitsController,
-    UsersController,
-    VehicleAPIController};
+use App\Http\Controllers\API\{
+	CitiesController,
+	ClientsAPIController,
+	CrewsController,
+	DocumentAPIController,
+	DormitoriesController,
+	GroupsController,
+	HospitalitiesController,
+	MealTypesController,
+	MealsAPIController,
+	PhasesController,
+	ServiceAPIController,
+	ServiceCommitsController,
+	UsersController,
+	VehicleAPIController,
+	RolesController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -156,6 +158,17 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::get('/{type}/{id}', 'index');
 			Route::post('/{type}/{id}', 'store');
 			Route::delete('/{id}', 'destroy');
+		});
+		
+	/** Roles */
+	Route::controller(RolesController::class)->prefix('roles')
+		->group(function () {
+			Route::get('/', 'index');
+			Route::get('/{id}', 'show');
+			Route::get('/{id}/edit', 'edit');
+			Route::get('/permissions/all', 'getAllPermissions');
+			Route::post('/', 'store');
+			Route::patch('/{id}', 'update');
 		});
 
 	Route::apiResource('settings', SettingsController::class);
