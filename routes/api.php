@@ -120,9 +120,10 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::get('/crews/all', [CrewsController::class, 'all']);
 	Route::resource('/crews', CrewsController::class);
 	Route::resource('/users', UsersController::class);
-	Route::apiResource('/cities', CitiesController::class);
+	Route::resource('/cities', CitiesController::class);
 	Route::resource('/phases', PhasesController::class);
-	Route::get('groups/all', [GroupsController::class, 'all']);
+    Route::resource('/evaluations', EvaluationsController::class);
+    Route::get('groups/all', [GroupsController::class, 'all']);
 	Route::post('groups/clients', [GroupsController::class, 'addClients']);
 	Route::delete('groups/clients', [GroupsController::class, 'removeClients']);
 	Route::resource('/groups', GroupsController::class);
