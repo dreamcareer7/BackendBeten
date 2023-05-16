@@ -1140,6 +1140,7 @@
 	"User created successfully!": "تم اضافة المستخدم بنجاح!",
     "Location created successfully!": "تم اضافة الموقع بنجاح!",
     "Evaluation created successfully!": "تم اضافة التقييم بنجاح!",
+    "Profession created successfully!": "تم اضافة المهنة بنجاح!",
     "At least one file per contract is required": "مطلوب ملف واحد على الأقل لكل عقد",
 	"File must be either an image or a PDF document": "يجب أن يكون الملف صورة أو مستند PDF",
 	"Can not delete yourself.": "لا يمكن حذف نفسك.",
