@@ -4,23 +4,23 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\{ConcurrentsController, ContractsAPIController, SettingsController};
-use App\Http\Controllers\API\{
-	CitiesController,
-	ClientsAPIController,
-	CrewsController,
-	DocumentAPIController,
-	DormitoriesController,
-	GroupsController,
-	HospitalitiesController,
-	MealTypesController,
-	MealsAPIController,
-	PhasesController,
-	ServiceAPIController,
-	ServiceCommitsController,
-	UsersController,
-	VehicleAPIController,
-	RolesController
-};
+use App\Http\Controllers\API\{CitiesController,
+    ClientsAPIController,
+    CrewsController,
+    DocumentAPIController,
+    DormitoriesController,
+    GroupsController,
+    HospitalitiesController,
+    MealTypesController,
+    MealsAPIController,
+    PhasesController,
+    ProfessionController,
+    ServiceAPIController,
+    ServiceCommitsController,
+    UsersController,
+    VehicleAPIController,
+    RolesController,
+    EvaluationsController};
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +123,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::resource('/cities', CitiesController::class);
 	Route::resource('/phases', PhasesController::class);
     Route::resource('/evaluations', EvaluationsController::class);
+    Route::resource('/professions', ProfessionController::class);
     Route::get('groups/all', [GroupsController::class, 'all']);
 	Route::post('groups/clients', [GroupsController::class, 'addClients']);
 	Route::delete('groups/clients', [GroupsController::class, 'removeClients']);
@@ -159,7 +160,7 @@ Route::middleware('auth:sanctum')->group(function () {
 			Route::post('/{type}/{id}', 'store');
 			Route::delete('/{id}', 'destroy');
 		});
-		
+
 	/** Roles */
 	Route::controller(RolesController::class)->prefix('roles')
 		->group(function () {
