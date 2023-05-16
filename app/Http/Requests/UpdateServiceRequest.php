@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Rules\ServiceDatesRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateServiceRequest extends FormRequest
@@ -29,9 +30,9 @@ class UpdateServiceRequest extends FormRequest
 			'title' => 'bail|required|string|min:3|max:255',
 			'city_id' => 'bail|required|integer|exists:cities,id',
 			// We must receive only one of these 3 dates
-			'before_date' => 'bail|prohibits:exact_date,after_date|date_format:Y-m-d',
-			'exact_date' => 'bail|prohibits:before_date,after_date|date_format:Y-m-d',
-			'after_date' => 'bail|prohibits:exact_date,before_date|date_format:Y-m-d',
+			'before_date' => ['bail', new ServiceDatesRule(fieldname: 'before_date')],
+			'exact_date' => ['bail', new ServiceDatesRule(fieldname: 'exact_date')],
+			'after_date' => ['bail', new ServiceDatesRule(fieldname: 'after_date')],
 		];
 	}
 
