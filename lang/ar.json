@@ -1151,5 +1151,6 @@
 	"Service commit hasn't started": "لم يبدأ الالتزام بالخدمة",
 	"Concurrent frequency can only be either daily or weekly.": "يمكن أن يكون التردد المتزامن إما يوميًا أو أسبوعيًا.",
 	"Must set at least one concurrent.": "يجب تعيين تردد واحد على الأقل.",
-	"Concurrent time must be in hours:minutes format.": "يجب أن يكون وقت التردد على نموذج ساعة:دقائق."
+	"Concurrent time must be in hours:minutes format.": "يجب أن يكون وقت التردد على نموذج ساعة:دقائق.",
+    "Only one date is allowed": "مسموح بتاريخ واحد على الاقل"
 }
