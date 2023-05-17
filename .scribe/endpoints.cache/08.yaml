@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 1bagfacV4dPk686veZ3hD5E'
+      - 'Bearer cbh3VD8aav51kZEf6d6P4eg'
     controller: null
     method: null
     route: null
@@ -78,34 +78,34 @@ endpoints:
         name: provider_model_type
         description: ''
         required: true
-        example: voluptate
+        example: iusto
         type: string
         custom: []
       provider_model_id:
         name: provider_model_id
         description: ''
         required: true
-        example: 4
+        example: 13
         type: integer
         custom: []
       vote:
         name: vote
         description: ''
         required: true
-        example: ut
+        example: tenetur
         type: string
         custom: []
     cleanBodyParameters:
-      provider_model_type: voluptate
-      provider_model_id: 4
-      vote: ut
+      provider_model_type: iusto
+      provider_model_id: 13
+      vote: tenetur
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Eavgd6a4hb6VD1keZ85fPc3'
+      - 'Bearer 56e8fgvhaaPEb63DZ1Vck4d'
     controller: null
     method: null
     route: null
@@ -158,7 +158,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer dfab5gPZcvE1D3eh6ak684V'
+      - 'Bearer kvfP8bD5V36ea1Zga6Ecdh4'
     controller: null
     method: null
     route: null
@@ -211,7 +211,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer d513eP686EcfDgvbZah4kVa'
+      - 'Bearer E356fgZ8hvae6kV1Pb4cDda'
     controller: null
     method: null
     route: null
@@ -253,7 +253,7 @@ endpoints:
         name: provider_mode_type
         description: ''
         required: true
-        example: laborum
+        example: sint
         type: string
         custom: []
       provider_model_id:
@@ -267,20 +267,20 @@ endpoints:
         name: vote
         description: ''
         required: true
-        example: et
+        example: distinctio
         type: string
         custom: []
     cleanBodyParameters:
-      provider_mode_type: laborum
+      provider_mode_type: sint
       provider_model_id: 4
-      vote: et
+      vote: distinctio
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 631ZgdDaP4h8fk6eVc5bavE'
+      - 'Bearer g4f3cDP86edhE51k6bVZvaa'
     controller: null
     method: null
     route: null
@@ -324,7 +324,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Dc6vf5ad46bVkagh31PeZ8E'
+      - 'Bearer 3E1gd4aDfh6Vvc8ebP6Za5k'
     controller: null
     method: null
     route: null

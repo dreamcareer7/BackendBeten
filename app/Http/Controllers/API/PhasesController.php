@@ -45,7 +45,11 @@ class PhasesController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created phase.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam is_required boolean required
+	 * @bodyParam services array required
 	 *
 	 * @param \App\Requests\CreatePhaseRequest $request
 	 *
@@ -78,7 +82,11 @@ class PhasesController extends Controller
 	}
 
 	/**
-	 * Update the specified phase in database.
+	 * Update the specified phase.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam is_required boolean required
+	 * @bodyParam services array required
 	 *
 	 * @param \App\Http\Requests\UpdatePhaseRequest $request
 	 * @param \App\Models\Phase $phase

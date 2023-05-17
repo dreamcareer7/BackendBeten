@@ -27,19 +27,19 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: 12
+        example: 11
         type: integer
         custom: []
       id:
         name: id
         description: 'The ID of the {type}.'
         required: true
-        example: et
+        example: eos
         type: string
         custom: []
     cleanUrlParameters:
-      type: 12
-      id: et
+      type: 11
+      id: eos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -59,7 +59,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer d6bc5kZvPaV8D14eaghfE63'
+      - 'Bearer 4Ehfaa3Vd86cgZekbD6Pv15'
     controller: null
     method: null
     route: null
@@ -88,19 +88,19 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: 11
+        example: 10
         type: integer
         custom: []
       id:
         name: id
         description: 'The ID of the {type}.'
         required: true
-        example: id
+        example: veniam
         type: string
         custom: []
     cleanUrlParameters:
-      type: 11
-      id: id
+      type: 10
+      id: veniam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -108,21 +108,21 @@ endpoints:
         name: model_type
         description: 'Must be one of <code>App\Models\Client</code>, <code>App\Models\Complaint</code>, <code>App\Models\Contract</code>, <code>App\Models\Crew</code>, <code>App\Models\Dormitory</code>, <code>App\Models\User</code>, <code>App\Models\Vehicle</code>, or <code>App\Models\Group</code>.'
         required: true
-        example: App\Models\Complaint
+        example: App\Models\Vehicle
         type: string
         custom: []
       model_id:
         name: model_id
         description: ''
         required: true
-        example: 13
+        example: 3
         type: integer
         custom: []
       title:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: jfljoux
+        example: mnbwrcatpicoi
         type: string
         custom: []
       documents:
@@ -134,9 +134,9 @@ endpoints:
         type: 'file[]'
         custom: []
     cleanBodyParameters:
-      model_type: App\Models\Complaint
-      model_id: 13
-      title: jfljoux
+      model_type: App\Models\Vehicle
+      model_id: 3
+      title: mnbwrcatpicoi
     fileParameters:
       documents:
         - null
@@ -145,7 +145,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Ee4a61cb58dhaDZVfgk3P6v'
+      - 'Bearer 356veh8g64EadfbVka1ZDPc'
     controller: null
     method: null
     route: null
@@ -174,11 +174,11 @@ endpoints:
         name: id
         description: 'The ID of the document.'
         required: true
-        example: 11
+        example: 19
         type: integer
         custom: []
     cleanUrlParameters:
-      id: 11
+      id: 19
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -189,7 +189,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vf8b4k3d1eDZa6c6a5hVEPg'
+      - 'Bearer daZ4VPgf1ebD5kEh836vc6a'
     controller: null
     method: null
     route: null

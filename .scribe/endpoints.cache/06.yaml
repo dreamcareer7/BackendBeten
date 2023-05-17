@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 8Dc34ka5hdb6avVfEeP6gZ1'
+      - 'Bearer Eg68k3cP4Za6eh1f5bVaDvd'
     controller: null
     method: null
     route: null
@@ -78,26 +78,26 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا.'
         required: true
-        example: xkgudgupwyfvfxwthgkexbbyyenhvpfglufbgyomhjcalrbvrtwdsyoayrelzggmjgqojpxfhspwnk
+        example: gnphrrrqfasybkfppgnyqqzzbaqlqrdaurvkzfpsqqcnsxtg
         type: string
         custom: []
       location_url:
         name: location_url
         description: 'Must be a valid URL.'
         required: true
-        example: 'http://kunze.com/in-omnis-inventore-delectus-magni'
+        example: 'https://boyer.com/voluptates-voluptatem-aut-esse-tempore-praesentium-incidunt.html'
         type: string
         custom: []
     cleanBodyParameters:
-      title: xkgudgupwyfvfxwthgkexbbyyenhvpfglufbgyomhjcalrbvrtwdsyoayrelzggmjgqojpxfhspwnk
-      location_url: 'http://kunze.com/in-omnis-inventore-delectus-magni'
+      title: gnphrrrqfasybkfppgnyqqzzbaqlqrdaurvkzfpsqqcnsxtg
+      location_url: 'https://boyer.com/voluptates-voluptatem-aut-esse-tempore-praesentium-incidunt.html'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 14b8faE6DhP5akVeg6vc3Zd'
+      - 'Bearer Eca3v1e4kgV6dfaPDhZ5b86'
     controller: null
     method: null
     route: null
@@ -150,7 +150,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vaDg186d43heZfckV5aEP6b'
+      - 'Bearer E4ca6vhe8V6f351bDkdZgaP'
     controller: null
     method: null
     route: null
@@ -203,7 +203,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer haPack6b4De5Vg8Z3dE6f1v'
+      - 'Bearer 8dfhV6bvaEk1agPec346D5Z'
     controller: null
     method: null
     route: null
@@ -245,26 +245,26 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا.'
         required: true
-        example: bflcnxcxemmzusskfguaekkowdlpgjxjr
+        example: rfjqdhzqttobccjglhmxzaedazxayfzztjzmkcrgyoxmawxapexortbdmruuhroivnrzwpgwlzcipzqy
         type: string
         custom: []
       location_url:
         name: location_url
         description: 'Must be a valid URL.'
         required: true
-        example: 'http://www.gorczany.com/'
+        example: 'http://www.aufderhar.info/ad-omnis-suscipit-unde-sint-numquam-tempore'
         type: string
         custom: []
     cleanBodyParameters:
-      title: bflcnxcxemmzusskfguaekkowdlpgjxjr
-      location_url: 'http://www.gorczany.com/'
+      title: rfjqdhzqttobccjglhmxzaedazxayfzztjzmkcrgyoxmawxapexortbdmruuhroivnrzwpgwlzcipzqy
+      location_url: 'http://www.aufderhar.info/ad-omnis-suscipit-unde-sint-numquam-tempore'
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Vd8k14Deag563ZP6aEcbhvf'
+      - 'Bearer ZDVdPgv46b1a6E8fack3h5e'
     controller: null
     method: null
     route: null
@@ -308,7 +308,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 4cvbVf5aP1k6Eg8edZ63haD'
+      - 'Bearer 56vd1eZP8ghaE3c6bfD4Vak'
     controller: null
     method: null
     route: null

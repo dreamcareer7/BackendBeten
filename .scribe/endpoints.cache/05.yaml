@@ -33,35 +33,35 @@ endpoints:
         name: per_page
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 2. يجب أن تكون قيمة value مساوية أو أصغر من 100.'
         required: false
-        example: 4
+        example: 9
         type: integer
         custom: []
       name:
         name: name
         description: 'يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: ccotvctvnckhayugu
+        example: jarmxikpvpyhbmovbnkrpqqof
         type: string
         custom: []
       email:
         name: email
         description: 'يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: selmer.hand@example.net
+        example: rutherford.louvenia@example.com
         type: string
         custom: []
       contact:
         name: contact
         description: 'يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: ooflnxccqbiqkpo
+        example: yrihfujazhobbgwxfksxkhq
         type: string
         custom: []
     cleanBodyParameters:
-      per_page: 4
-      name: ccotvctvnckhayugu
-      email: selmer.hand@example.net
-      contact: ooflnxccqbiqkpo
+      per_page: 9
+      name: jarmxikpvpyhbmovbnkrpqqof
+      email: rutherford.louvenia@example.com
+      contact: yrihfujazhobbgwxfksxkhq
     fileParameters: []
     responses:
       -
@@ -77,7 +77,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer aa386e6hZfvcPD5VkE14bdg'
+      - 'Bearer v8E5VZfPc16abade63kg4hD'
     controller: null
     method: null
     route: null
@@ -110,50 +110,50 @@ endpoints:
         name: name
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: lzzyh
+        example: etsqwh
         type: string
         custom: []
       email:
         name: email
         description: 'يجب أن يكون value عنوان بريد إلكتروني صحيح البُنية.'
         required: true
-        example: wrogahn@example.net
+        example: rebeca09@example.com
         type: string
         custom: []
       password:
         name: password
         description: ''
         required: true
-        example: eius
+        example: ad
         type: string
         custom: []
       is_active:
         name: is_active
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
       contact:
         name: contact
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: bxxbewvzfraggfazmmrmbu
+        example: xiksip
         type: string
         custom: []
     cleanBodyParameters:
-      name: lzzyh
-      email: wrogahn@example.net
-      password: eius
-      is_active: false
-      contact: bxxbewvzfraggfazmmrmbu
+      name: etsqwh
+      email: rebeca09@example.com
+      password: ad
+      is_active: true
+      contact: xiksip
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 5vZ64PV3bEagfed1hDack68'
+      - 'Bearer cEZf5ePh64vgb13k6adDa8V'
     controller: null
     method: null
     route: null
@@ -206,7 +206,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Pbke6vV5Dac86f4a13EZghd'
+      - 'Bearer PD36hb4k8dVvgfE5a16Zcae'
     controller: null
     method: null
     route: null
@@ -259,7 +259,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer g1dEkDPZ4b6Vea53hfv6ac8'
+      - 'Bearer 661hdP85DZkacg4bfvV3aeE'
     controller: null
     method: null
     route: null
@@ -301,34 +301,34 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: dolorum
+        example: facere
         type: string
         custom: []
       is_active:
         name: is_active
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         custom: []
       contact:
         name: contact
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: myyhpkfvmyuzybsjflleyqum
+        example: swyhxakpwmfmkntlyxa
         type: string
         custom: []
     cleanBodyParameters:
-      password: dolorum
-      is_active: false
-      contact: myyhpkfvmyuzybsjflleyqum
+      password: facere
+      is_active: true
+      contact: swyhxakpwmfmkntlyxa
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer eva5EaDbdZg84c3P166hkfV'
+      - 'Bearer efvZa1b384gVDPE5ha66ckd'
     controller: null
     method: null
     route: null
@@ -372,7 +372,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vVfZdE5h81kP63eac64gDab'
+      - 'Bearer d6egD6V4Z8ka5avEcP3f1bh'
     controller: null
     method: null
     route: null
@@ -417,7 +417,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer eD6dk1v3gf4h8baP5ZVc6aE'
+      - 'Bearer 6afe5gE1cV6vhd8Z4kaPb3D'
     controller: null
     method: null
     route: null

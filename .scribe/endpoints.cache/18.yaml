@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fVba46PE5h613Dgaed8kcZv'
+      - 'Bearer hcE6VvZ8kg35b16aPfeDa4d'
     controller: null
     method: null
     route: null
@@ -98,7 +98,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ED46VavcP13hekf58Zbdag6'
+      - 'Bearer PE6adkce4hVfgvab18ZD563'
     controller: null
     method: null
     route: null
@@ -151,7 +151,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fkbZe6c63g1adhaPDEV584v'
+      - 'Bearer fE1bZV83vd5D6hc6gaeakP4'
     controller: null
     method: null
     route: null
@@ -196,7 +196,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer abEh8cVd5D1fvPZgake6463'
+      - 'Bearer 3kE6fg1vZVd4Pbhc68Deaa5'
     controller: null
     method: null
     route: null
@@ -229,7 +229,7 @@ endpoints:
         name: name
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: qrno
+        example: jyulmpgcbhvqiyvcbmwcvllk
         type: string
         custom: []
       permissions:
@@ -240,7 +240,7 @@ endpoints:
         type: object
         custom: []
     cleanBodyParameters:
-      name: qrno
+      name: jyulmpgcbhvqiyvcbmwcvllk
       permissions: []
     fileParameters: []
     responses: []
@@ -248,7 +248,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Z6fhb43Ekvgd5P68aeaVD1c'
+      - 'Bearer g16fhDe65akcV4Pda8vEb3Z'
     controller: null
     method: null
     route: null
@@ -289,7 +289,7 @@ endpoints:
         name: name
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: rgmqypjllbmkatqoh
+        example: jkmursvofmbpr
         type: string
         custom: []
       permissions:
@@ -300,7 +300,7 @@ endpoints:
         type: object
         custom: []
     cleanBodyParameters:
-      name: rgmqypjllbmkatqoh
+      name: jkmursvofmbpr
       permissions: []
     fileParameters: []
     responses: []
@@ -308,7 +308,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer hkf4vP66aeVb5dDag1Ec8Z3'
+      - 'Bearer acP86b3hkfEZ45avV16gdDe'
     controller: null
     method: null
     route: null

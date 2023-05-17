@@ -527,7 +527,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer PEk6DbV1ga436f5ahvdc8eZ'
+      - 'Bearer c6abeDdV15f8ZghkPE4av36'
     controller: null
     method: null
     route: null
@@ -559,19 +559,19 @@ endpoints:
         name: email
         description: 'The email of the user'
         required: true
-        example: wfeeney@example.org
+        example: will.mcclure@example.org
         type: string
         custom: []
       password:
         name: password
         description: 'The password'
         required: true
-        example: 'U&-?4{3Jl|)'
+        example: /OD.g`
         type: string
         custom: []
     cleanBodyParameters:
-      email: wfeeney@example.org
-      password: 'U&-?4{3Jl|)'
+      email: will.mcclure@example.org
+      password: /OD.g`
     fileParameters: []
     responses: []
     responseFields: []
@@ -611,7 +611,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer PEcf58DZgv6Vdahab3k4e61'
+      - 'Bearer Z6ba4VEdgc5Pfvke386a1hD'
     controller: null
     method: null
     route: null
@@ -695,7 +695,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bd6hPvEZa8f3Dekg6V5c4a1'
+      - 'Bearer fcaEgd34ke6hvDPV18Z56ba'
     controller: null
     method: null
     route: null

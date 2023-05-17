@@ -24,6 +24,11 @@ class CrewsController extends Controller
 	/**
 	 * Display a listing of the crew members.
 	 *
+	 * @queryParam fullname string.
+	 * @queryParam country int.
+	 * @queryParam phone string.
+	 * @queryParam id_number string.
+	 *
 	 * @param \Illuminate\Http\Request $request
 	 *
 	 * @return \Illuminate\Http\JsonResponse
@@ -68,7 +73,18 @@ class CrewsController extends Controller
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created resource.
+	 *
+	 * @bodyParam fullname string required
+	 * @bodyParam gender string required
+	 * @bodyParam profession_id int
+	 * @bodyParam country_id int required
+	 * @bodyParam phone string
+	 * @bodyParam id_type string required
+	 * @bodyParam id_name string required
+	 * @bodyParam id_number string required
+	 * @bodyParam dob string
+	 * @bodyParam is_active boolean
 	 *
 	 * @param \App\Http\Requests\CreateClientRequest $request
 	 *
@@ -112,7 +128,18 @@ class CrewsController extends Controller
 	}
 
 	/**
-	 * Update the specified crew member in database.
+	 * Update the specified crew member.
+	 *
+	 * @bodyParam fullname string required
+	 * @bodyParam gender string required
+	 * @bodyParam profession_id int
+	 * @bodyParam country_id int required
+	 * @bodyParam phone string
+	 * @bodyParam id_type string required
+	 * @bodyParam id_name string required
+	 * @bodyParam id_number string required
+	 * @bodyParam dob string
+	 * @bodyParam is_active boolean
 	 *
 	 * @param \App\Models\Crew $crew
 	 * @param \App\Http\Requests\UpdateCrewRequest $request

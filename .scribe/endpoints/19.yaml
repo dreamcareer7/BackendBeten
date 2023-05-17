@@ -31,21 +31,21 @@ endpoints:
         name: model
         description: 'يجب أن يكون طول النص value على الأقل 2 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: ajx
+        example: sbqkixk
         type: string
         custom: []
       registration:
         name: registration
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: olsueikscpfhoimtc
+        example: orvpvhfkxdf
         type: string
         custom: []
       manufacturer:
         name: manufacturer
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: gdyoffdoscxnzzglwgvh
+        example: tnnajjqtvebxroylgh
         type: string
         custom: []
       year:
@@ -59,30 +59,30 @@ endpoints:
         name: badge
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 3. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
         required: true
-        example: 16
+        example: 11
         type: integer
         custom: []
       passengers:
         name: passengers
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
         required: false
-        example: 13
+        example: 24
         type: integer
         custom: []
     cleanBodyParameters:
-      model: ajx
-      registration: olsueikscpfhoimtc
-      manufacturer: gdyoffdoscxnzzglwgvh
+      model: sbqkixk
+      registration: orvpvhfkxdf
+      manufacturer: tnnajjqtvebxroylgh
       year: '2023'
-      badge: 16
-      passengers: 13
+      badge: 11
+      passengers: 24
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer VgcE6kdhPeva4Zb16385faD'
+      - 'Bearer Eh83av4DdVPfe16Zk6cgb5a'
     controller: null
     method: null
     route: null
@@ -127,7 +127,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Vv85PZ1aa4cbE6hD3gfkd6e'
+      - 'Bearer gEd41cae6VDZa56hPkb3vf8'
     controller: null
     method: null
     route: null
@@ -156,11 +156,11 @@ endpoints:
         name: id
         description: 'The ID of the info.'
         required: true
-        example: nostrum
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      id: nostrum
+      id: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -180,7 +180,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6fPVc641ZaDk5vgad38bheE'
+      - 'Bearer dcZ6ebkD368aV5hg1f4EvPa'
     controller: null
     method: null
     route: null
@@ -224,7 +224,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Zf6kg4PeEdVa5v6cDb318ha'
+      - 'Bearer 4Pvg36d8bkf5ehD6aEaVZ1c'
     controller: null
     method: null
     route: null
@@ -265,21 +265,21 @@ endpoints:
         name: model
         description: 'يجب أن يكون طول النص value على الأقل 2 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: tjnvnkoevtmg
+        example: hh
         type: string
         custom: []
       registration:
         name: registration
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: ovpndeasxsrxaapf
+        example: t
         type: string
         custom: []
       manufacturer:
         name: manufacturer
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: dkk
+        example: swnxrjowzhjmxouyezidjl
         type: string
         custom: []
       year:
@@ -293,30 +293,30 @@ endpoints:
         name: badge
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 3. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
         required: true
-        example: 12
+        example: 19
         type: integer
         custom: []
       passengers:
         name: passengers
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
         required: false
-        example: 21
+        example: 16
         type: integer
         custom: []
     cleanBodyParameters:
-      model: tjnvnkoevtmg
-      registration: ovpndeasxsrxaapf
-      manufacturer: dkk
+      model: hh
+      registration: t
+      manufacturer: swnxrjowzhjmxouyezidjl
       year: '2023'
-      badge: 12
-      passengers: 21
+      badge: 19
+      passengers: 16
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer P6fE4eac6ZbghkD31aVv8d5'
+      - 'Bearer deVfk65aaZE4cPb3D1v6gh8'
     controller: null
     method: null
     route: null
@@ -349,21 +349,21 @@ endpoints:
         name: model
         description: 'يجب أن يكون طول النص value على الأقل 2 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: qskchrteulfzuehrj
+        example: xhgafy
         type: string
         custom: []
       registration:
         name: registration
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: wmyjszvoy
+        example: xfdsufckzjthsgokcmvad
         type: string
         custom: []
       manufacturer:
         name: manufacturer
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: weygwp
+        example: rcufxqhb
         type: string
         custom: []
       year:
@@ -377,30 +377,30 @@ endpoints:
         name: badge
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 3. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
         required: true
-        example: 19
+        example: 21
         type: integer
         custom: []
       passengers:
         name: passengers
         description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
         required: false
-        example: 1
+        example: 13
         type: integer
         custom: []
     cleanBodyParameters:
-      model: qskchrteulfzuehrj
-      registration: wmyjszvoy
-      manufacturer: weygwp
+      model: xhgafy
+      registration: xfdsufckzjthsgokcmvad
+      manufacturer: rcufxqhb
       year: '2023'
-      badge: 19
-      passengers: 1
+      badge: 21
+      passengers: 13
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer h51kfaV3bdePcDa6vE468gZ'
+      - 'Bearer E5V6af8d1Dabhevc63Zk4Pg'
     controller: null
     method: null
     route: null

@@ -29,6 +29,9 @@ class GroupsController extends Controller
 	/**
 	 * Display a listing of the groups.
 	 *
+	 * @queryParam title string.
+	 * @queryParam crew_member string.
+	 *
 	 * @param \Illuminate\Http\Request $request
 	 *
 	 * @return \Illuminate\Http\JsonResponse
@@ -79,7 +82,11 @@ class GroupsController extends Controller
 	}
 
 	/**
-	 * Store a newly created group in database.
+	 * Store a newly created group.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam crew_id int required
+	 * @bodyParam clients_virtual_count int
 	 *
 	 * @param \App\Http\Requests\CreateGroupRequest
 	 *
@@ -127,7 +134,11 @@ class GroupsController extends Controller
 	}
 
 	/**
-	 * Update the specified group in database.
+	 * Update the specified group.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam crew_id int required
+	 * @bodyParam clients_virtual_count int
 	 *
 	 * @param \App\Models\Group $group
 	 * @param \App\Http\Requests\UpdateGroupRequest $request
