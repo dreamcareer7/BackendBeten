@@ -1,0 +1,276 @@
+name: MealTypes
+description: |-
+
+  API endpoints for managing MealTypes
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/meal_types
+    metadata:
+      groupName: MealTypes
+      groupDescription: |-
+
+        API endpoints for managing MealTypes
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the meal type.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer dVvhg4kcbZ56EeDPaf816a3'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/meal_types
+    metadata:
+      groupName: MealTypes
+      groupDescription: |-
+
+        API endpoints for managing MealTypes
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created meal type in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: qgkrsbubmwbarrymxaz
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: 'Nesciunt modi assumenda corporis atque corporis.'
+        type: string
+        custom: []
+      has_documents:
+        name: has_documents
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        custom: []
+    cleanBodyParameters:
+      title: qgkrsbubmwbarrymxaz
+      description: 'Nesciunt modi assumenda corporis atque corporis.'
+      has_documents: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer hkgEZcv16f6853PD4baVaed'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/meal_types/{id}'
+    metadata:
+      groupName: MealTypes
+      groupDescription: |-
+
+        API endpoints for managing MealTypes
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified meal type.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the meal type.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer veDf35g4P6kdEhabcaV816Z'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/meal_types/{id}'
+    metadata:
+      groupName: MealTypes
+      groupDescription: |-
+
+        API endpoints for managing MealTypes
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified meal type in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the meal type.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: gardyhmshcundwld
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: 'Quasi et nihil culpa sapiente.'
+        type: string
+        custom: []
+      has_documents:
+        name: has_documents
+        description: ''
+        required: false
+        example: true
+        type: boolean
+        custom: []
+    cleanBodyParameters:
+      title: gardyhmshcundwld
+      description: 'Quasi et nihil culpa sapiente.'
+      has_documents: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer h3kvg1Vafc8D4ad6EP56bZe'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/meal_types/{id}'
+    metadata:
+      groupName: MealTypes
+      groupDescription: |-
+
+        API endpoints for managing MealTypes
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified meal type from database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the meal type.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer g4eEZa8hbVaD63d5f6vc1Pk'
+    controller: null
+    method: null
+    route: null
+    custom: []

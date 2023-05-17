@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateDormitoryRequest, UpdateDormitoryRequest};
 
+/**
+ * @group Dormitories
+ *
+ * API endpoints for managing Dormitories
+ */
 class DormitoriesController extends Controller
 {
 	/**

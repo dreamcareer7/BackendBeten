@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\{Client, Complaint, Crew};
 
+/**
+ * @group Complaint
+ *
+ * API endpoints for managing complaint
+ */
 class ComplaintAPIController extends Controller
 {
 	public function __construct()

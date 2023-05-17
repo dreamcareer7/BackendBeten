@@ -1,0 +1,422 @@
+name: Users
+description: |-
+
+  API endpoints for managing Users
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/users
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the users.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      per_page:
+        name: per_page
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 2. يجب أن تكون قيمة value مساوية أو أصغر من 100.'
+        required: false
+        example: 4
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: ccotvctvnckhayugu
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: selmer.hand@example.net
+        type: string
+        custom: []
+      contact:
+        name: contact
+        description: 'يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: ooflnxccqbiqkpo
+        type: string
+        custom: []
+    cleanBodyParameters:
+      per_page: 4
+      name: ccotvctvnckhayugu
+      email: selmer.hand@example.net
+      contact: ooflnxccqbiqkpo
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer aa386e6hZfvcPD5VkE14bdg'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/users
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created user in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: lzzyh
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'يجب أن يكون value عنوان بريد إلكتروني صحيح البُنية.'
+        required: true
+        example: wrogahn@example.net
+        type: string
+        custom: []
+      password:
+        name: password
+        description: ''
+        required: true
+        example: eius
+        type: string
+        custom: []
+      is_active:
+        name: is_active
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        custom: []
+      contact:
+        name: contact
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: bxxbewvzfraggfazmmrmbu
+        type: string
+        custom: []
+    cleanBodyParameters:
+      name: lzzyh
+      email: wrogahn@example.net
+      password: eius
+      is_active: false
+      contact: bxxbewvzfraggfazmmrmbu
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 5vZ64PV3bEagfed1hDack68'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified user with their roles.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Pbke6vV5Dac86f4a13EZghd'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/users/{user_id}/edit'
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the user for editing.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      user_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer g1dEkDPZ4b6Vea53hfv6ac8'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified resource in storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      password:
+        name: password
+        description: ''
+        required: true
+        example: dolorum
+        type: string
+        custom: []
+      is_active:
+        name: is_active
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        custom: []
+      contact:
+        name: contact
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: myyhpkfvmyuzybsjflleyqum
+        type: string
+        custom: []
+    cleanBodyParameters:
+      password: dolorum
+      is_active: false
+      contact: myyhpkfvmyuzybsjflleyqum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer eva5EaDbdZg84c3P166hkfV'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/users/{id}'
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark the specified user in database as deleted.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the user.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer vVfZdE5h81kP63eac64gDab'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/populate-create-user-dropdowns
+    metadata:
+      groupName: Users
+      groupDescription: |-
+
+        API endpoints for managing Users
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Populate user creation dropdowns'
+      description: 'Get available roles & crew members to select from when creating a user'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer eD6dk1v3gf4h8baP5ZVc6aE'
+    controller: null
+    method: null
+    route: null
+    custom: []

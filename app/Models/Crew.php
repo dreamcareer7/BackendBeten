@@ -49,7 +49,6 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereUpdatedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Contract> $contracts
  * @property-read int|null $contracts_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @property int $user_id
  * @method static \Illuminate\Database\Eloquent\Builder|Crew onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereUserId($value)
@@ -58,6 +57,7 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @property string $id_name
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereIdName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereIdNumber($value)
+ * @property-read \App\Models\User|null $user
  * @mixin \Eloquent
  */
 class Crew extends Model

@@ -12,6 +12,11 @@ use App\Http\Resources\DocumentResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\CreateDocumentRequest;
 
+/**
+ * @group Document
+ *
+ * API endpoints for managing Document
+ */
 class DocumentAPIController extends Controller
 {
 	/**

@@ -9,6 +9,11 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\{Request, ResponseTrait};
 use Illuminate\Support\Facades\{Hash, Validator};
 
+/**
+ * @group Auth
+ *
+ * API endpoints for managing Auth
+ */
 class RegisterAPIController extends \App\Http\Controllers\Controller
 {
 	use ResponseTrait;

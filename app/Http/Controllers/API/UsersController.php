@@ -12,6 +12,11 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Http\Resources\{UserDetailsResource, UserEditResource};
 use App\Http\Requests\{CreateUserRequest, ListUsersRequest, UpdateUserRequest};
 
+/**
+ * @group Users
+ *
+ * API endpoints for managing Users
+ */
 class UsersController extends Controller
 {
 	public function __construct()

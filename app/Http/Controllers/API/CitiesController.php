@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\CreateCityRequest;
-use App\Http\Requests\UpdateCityRequest;
 use App\Models\City;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
+use App\Http\Requests\{CreateCityRequest, UpdateCityRequest};
 
+/**
+ * @group Cities
+ *
+ * API endpoints for managing cities
+ */
 class CitiesController extends Controller
 {
-    public function __construct()
-    {
-        $this->authorizeResource(City::class);
-    }
+	public function __construct()
+	{
+		$this->authorizeResource(City::class);
+	}
 
 	/**
 	 * Display a listing of the cities.
@@ -24,22 +28,22 @@ class CitiesController extends Controller
 	 */
 	public function index(Request $request): JsonResponse
 	{
-	    if($request->withPaging) {
-            $query = City::select('id', 'title', 'location_url');
+		if($request->withPaging) {
+			$query = City::select('id', 'title', 'location_url');
 
-            $column = 'title';
+			$column = 'title';
 
-            $request->whenFilled($column, function ($input) use ($query, $column) {
-                $query->where($column, 'LIKE', "%$input%");
-            });
+			$request->whenFilled($column, function ($input) use ($query, $column) {
+				$query->where($column, 'LIKE', "%$input%");
+			});
 
-            return response()->json(
-                data: $query->paginate($request->input('per_page') ?? 15)
-            );
-        }
+			return response()->json(
+				data: $query->paginate($request->input('per_page') ?? 15)
+			);
+		}
 
-        return response()->json(City::select('id', 'title')->get());
-    }
+		return response()->json(City::select('id', 'title')->get());
+	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -51,9 +55,9 @@ class CitiesController extends Controller
 	{
 		City::create($request->validated());
 
-        return response()->json(data: [
-            'message' => __('Location created successfully!'),
-        ], status: 201); // Created
+		return response()->json(data: [
+			'message' => __('Location created successfully!'),
+		], status: 201); // Created
 	}
 
 	/**
@@ -75,9 +79,9 @@ class CitiesController extends Controller
 	 */
 	public function edit(City $city)
 	{
-        return response()->json(data: [
-            'city' => $city
-        ]);
+		return response()->json(data: [
+			'city' => $city
+		]);
 	}
 
 	/**
@@ -89,11 +93,11 @@ class CitiesController extends Controller
 	 */
 	public function update(UpdateCityRequest $request, City $city)
 	{
-        $city->title = $request->title;
-        $city->location_url = $request->location_url;
-        $city->save();
+		$city->title = $request->title;
+		$city->location_url = $request->location_url;
+		$city->save();
 
-        return response()->json(status: 202); // Accepted
+		return response()->json(status: 202); // Accepted
 	}
 
 	/**
@@ -104,7 +108,7 @@ class CitiesController extends Controller
 	 */
 	public function destroy(City $city)
 	{
-        $city->delete();
-        return response()->json(status: 204); // No content
+		$city->delete();
+		return response()->json(status: 204); // No content
 	}
 }
