@@ -1,0 +1,482 @@
+name: Groups
+description: |-
+
+  API endpoints for managing Groups
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/groups/all
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all groups'
+      description: 'List all groups for selection'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DPc61eh53kb8EVZ46aagfdv'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/groups/clients
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Add clients to the group'
+      description: 'Update an array of clients setting their group_id to the current group'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      group_id:
+        name: group_id
+        description: ''
+        required: true
+        example: 13
+        type: integer
+        custom: []
+      clients:
+        name: clients
+        description: ''
+        required: true
+        example:
+          - 4
+        type: 'integer[]'
+        custom: []
+    cleanBodyParameters:
+      group_id: 13
+      clients:
+        - 4
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Pd6V458ZcE6kD1eb3hafvga'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: api/groups/clients
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove clients from the group'
+      description: 'Update an array of clients setting their group_id to null'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      group_id:
+        name: group_id
+        description: ''
+        required: true
+        example: 19
+        type: integer
+        custom: []
+      clients:
+        name: clients
+        description: ''
+        required: true
+        example:
+          - 17
+        type: 'integer[]'
+        custom: []
+    cleanBodyParameters:
+      group_id: 19
+      clients:
+        - 17
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer PV5cb86Z13aDe64dfEhgakv'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/groups
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the groups.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer f8aZ5ckdh6Va3b64EvDgeP1'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/groups
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created group in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: g
+        type: string
+        custom: []
+      crew_id:
+        name: crew_id
+        description: ''
+        required: true
+        example: 18
+        type: integer
+        custom: []
+      clients_virtual_count:
+        name: clients_virtual_count
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: false
+        example: 9
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      title: g
+      crew_id: 18
+      clients_virtual_count: 9
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer gkVh8f4D63c15EZdb6vaaeP'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/groups/{id}'
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified group.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the group.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer cd5VZv64Pa1a3D6ebfh8gkE'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/groups/{group_id}/edit'
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the data for the form for editing a group.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      group_id:
+        name: group_id
+        description: 'The ID of the group.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      group_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer P1d36ah6ZgvE8Va4fDcek5b'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/groups/{id}'
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified group in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the group.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: w
+        type: string
+        custom: []
+      crew_id:
+        name: crew_id
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        custom: []
+      clients_virtual_count:
+        name: clients_virtual_count
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1.'
+        required: false
+        example: 72
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      title: w
+      crew_id: 9
+      clients_virtual_count: 72
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer EVh1ec56ag4Zbfa6DP8dk3v'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/groups/{id}'
+    metadata:
+      groupName: Groups
+      groupDescription: |-
+
+        API endpoints for managing Groups
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified group from database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the group.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DfPv4dEZ86g6eba5ca3h1Vk'
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -9,6 +9,11 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\{CreateServiceRequest, UpdateServiceRequest};
 
+/**
+ * @group Service
+ *
+ * API endpoints for managing Service
+ */
 class ServiceAPIController extends Controller
 {
 	public function __construct()

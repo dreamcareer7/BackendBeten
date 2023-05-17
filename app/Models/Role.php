@@ -20,6 +20,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Role whereValueType($value)
+ * @property string $guard_name
+ * @property string|null $created_at
+ * @property string|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereGuardName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Role whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Role extends Model

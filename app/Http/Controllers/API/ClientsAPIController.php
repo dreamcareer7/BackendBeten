@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateClientRequest, UpdateClientRequest};
 
+/**
+ * @group Clients
+ *
+ * API endpoints for managing clients
+ */
 class ClientsAPIController extends Controller
 {
 	public function __construct()

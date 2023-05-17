@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+/**
+ * @group Auth
+ *
+ * API endpoints for managing Auth
+ */
 class LoginController extends Controller
 {
 	/*
@@ -25,6 +30,17 @@ class LoginController extends Controller
 
 	use AuthenticatesUsers;
 
+	/**
+	 *
+	 * @bodyParam email string required The email of the user
+	 * @bodyParam password string required The password
+	 * @unauthenticated
+	 *
+	 *
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+	 * @throws \Illuminate\Validation\ValidationException
+	 */
 	public function login(Request $request)
 	{
 
@@ -116,6 +132,16 @@ class LoginController extends Controller
 			'user_id' => 'required',
 		]);
 	}
+
+	/**
+	 * @bodyParam user_id int required The id of the user Example: 20
+	 * @bodyParam otp int required The otp Example: 2222
+	 * @unauthenticated
+	 *
+	 *
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function verifyOTPandLogin(Request $request){
 
 		$this->validateOTP($request);

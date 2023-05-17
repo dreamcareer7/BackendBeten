@@ -9,6 +9,11 @@ use Illuminate\Http\{JsonResponse, Request};
 use App\Models\{Country, Crew, Profession, User};
 use App\Http\Requests\{CreateCrewRequest, UpdateCrewRequest};
 
+/**
+ * @group Crews
+ *
+ * API endpoints for managing crews
+ */
 class CrewsController extends Controller
 {
 	public function __construct()

@@ -1,0 +1,407 @@
+name: VehicleAPI
+description: |-
+
+  API endpoints for managing VehicleAPI
+endpoints:
+  -
+    httpMethods:
+      - PUT
+    uri: api/vehicles
+    metadata:
+      groupName: VehicleAPI
+      groupDescription: |-
+
+        API endpoints for managing VehicleAPI
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created vehicle in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      model:
+        name: model
+        description: 'يجب أن يكون طول النص value على الأقل 2 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: ajx
+        type: string
+        custom: []
+      registration:
+        name: registration
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: olsueikscpfhoimtc
+        type: string
+        custom: []
+      manufacturer:
+        name: manufacturer
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: gdyoffdoscxnzzglwgvh
+        type: string
+        custom: []
+      year:
+        name: year
+        description: 'Must be a valid date in the format <code>Y</code>.'
+        required: true
+        example: '2023'
+        type: string
+        custom: []
+      badge:
+        name: badge
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 3. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: true
+        example: 16
+        type: integer
+        custom: []
+      passengers:
+        name: passengers
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: false
+        example: 13
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      model: ajx
+      registration: olsueikscpfhoimtc
+      manufacturer: gdyoffdoscxnzzglwgvh
+      year: '2023'
+      badge: 16
+      passengers: 13
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer VgcE6kdhPeva4Zb16385faD'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/vehicles/paginate
+    metadata:
+      groupName: VehicleAPI
+      groupDescription: |-
+
+        API endpoints for managing VehicleAPI
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Vv85PZ1aa4cbE6hD3gfkd6e'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/vehicles/info/{id}'
+    metadata:
+      groupName: VehicleAPI
+      groupDescription: |-
+
+        API endpoints for managing VehicleAPI
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the info.'
+        required: true
+        example: nostrum
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: nostrum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6fPVc641ZaDk5vgad38bheE'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/vehicles/delete/{vehicle_id}'
+    metadata:
+      groupName: VehicleAPI
+      groupDescription: |-
+
+        API endpoints for managing VehicleAPI
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      vehicle_id:
+        name: vehicle_id
+        description: 'The ID of the vehicle.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      vehicle_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Zf6kg4PeEdVa5v6cDb318ha'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/vehicles/update/{id}'
+    metadata:
+      groupName: VehicleAPI
+      groupDescription: |-
+
+        API endpoints for managing VehicleAPI
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified vehicle in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the update.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      model:
+        name: model
+        description: 'يجب أن يكون طول النص value على الأقل 2 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: tjnvnkoevtmg
+        type: string
+        custom: []
+      registration:
+        name: registration
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: ovpndeasxsrxaapf
+        type: string
+        custom: []
+      manufacturer:
+        name: manufacturer
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: dkk
+        type: string
+        custom: []
+      year:
+        name: year
+        description: 'Must be a valid date in the format <code>Y</code>.'
+        required: true
+        example: '2023'
+        type: string
+        custom: []
+      badge:
+        name: badge
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 3. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: true
+        example: 12
+        type: integer
+        custom: []
+      passengers:
+        name: passengers
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: false
+        example: 21
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      model: tjnvnkoevtmg
+      registration: ovpndeasxsrxaapf
+      manufacturer: dkk
+      year: '2023'
+      badge: 12
+      passengers: 21
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer P6fE4eac6ZbghkD31aVv8d5'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/vehicles/add
+    metadata:
+      groupName: VehicleAPI
+      groupDescription: |-
+
+        API endpoints for managing VehicleAPI
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created vehicle in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      model:
+        name: model
+        description: 'يجب أن يكون طول النص value على الأقل 2 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: qskchrteulfzuehrj
+        type: string
+        custom: []
+      registration:
+        name: registration
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: wmyjszvoy
+        type: string
+        custom: []
+      manufacturer:
+        name: manufacturer
+        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: weygwp
+        type: string
+        custom: []
+      year:
+        name: year
+        description: 'Must be a valid date in the format <code>Y</code>.'
+        required: true
+        example: '2023'
+        type: string
+        custom: []
+      badge:
+        name: badge
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 3. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: true
+        example: 19
+        type: integer
+        custom: []
+      passengers:
+        name: passengers
+        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+    cleanBodyParameters:
+      model: qskchrteulfzuehrj
+      registration: wmyjszvoy
+      manufacturer: weygwp
+      year: '2023'
+      badge: 19
+      passengers: 1
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer h51kfaV3bdePcDa6vE468gZ'
+    controller: null
+    method: null
+    route: null
+    custom: []

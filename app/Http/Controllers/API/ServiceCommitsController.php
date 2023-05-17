@@ -9,6 +9,11 @@ use Illuminate\Http\{JsonResponse, Request};
 use App\Models\{Service, ServiceCommit, Service_Commit_Log, User};
 use App\Http\Requests\{AddLogRequest, CreateServiceCommitRequest, ReleaseServiceCommitRequest, UpdateServiceCommitRequest};
 
+/**
+ * @group ServiceCommits
+ *
+ * API endpoints for managing ServiceCommits
+ */
 class ServiceCommitsController extends Controller
 {
 	/**

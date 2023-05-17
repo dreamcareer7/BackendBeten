@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateMealTypeRequest, UpdateMealTypeRequest};
 
+/**
+ * @group MealTypes
+ *
+ * API endpoints for managing MealTypes
+ */
 class MealTypesController extends Controller
 {
 	/**

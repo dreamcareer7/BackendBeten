@@ -23,6 +23,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereProviderModelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereProviderModelType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereUpdatedAt($value)
+ * @property string|null $voter_model_type
+ * @property int|null $voter_model_id
+ * @property float|null $vote
+ * @property string|null $note
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereNote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereVote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereVoterModelId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Evaluation whereVoterModelType($value)
  * @mixin \Eloquent
  */
 class Evaluation extends Model

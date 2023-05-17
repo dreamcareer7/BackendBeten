@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateHospitalityRequest, UpdateHospitalityRequest};
 
+/**
+ * @group Hospitalities
+ *
+ * API endpoints for managing Hospitalities
+ */
 class HospitalitiesController extends Controller
 {
 	/**

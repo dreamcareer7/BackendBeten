@@ -10,6 +10,11 @@ use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Http\Requests\{CreatePhaseRequest, UpdatePhaseRequest};
 
+/**
+ * @group Phases
+ *
+ * API endpoints for managing Phases
+ */
 class PhasesController extends Controller
 {
 	/**

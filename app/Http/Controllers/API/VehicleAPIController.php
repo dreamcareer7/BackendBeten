@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateVehicleRequest, UpdateVehicleRequest};
 
+/**
+ * @group VehicleAPI
+ *
+ * API endpoints for managing VehicleAPI
+ */
 class VehicleAPIController extends Controller
 {
 	public function __construct()

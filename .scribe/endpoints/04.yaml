@@ -1,0 +1,531 @@
+name: Crews
+description: |-
+
+  API endpoints for managing crews
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/crews/all
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer vg8Dcb4P6d1ekZEaaV6fh53'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/crews
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display a listing of the crew members.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 51abv3efd6ck6P8ha4VgEZD'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/crews/create
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the data for the form for creating a new crew member.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer a41k5b6gv6ZhEedaDc3Vf8P'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/crews
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      fullname:
+        name: fullname
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: eencvqicfhag
+        type: string
+        custom: []
+      gender:
+        name: gender
+        description: 'Must be one of <code>Male</code> or <code>Female</code>.'
+        required: true
+        example: Male
+        type: string
+        custom: []
+      profession_id:
+        name: profession_id
+        description: ''
+        required: false
+        example: 15
+        type: integer
+        custom: []
+      country_id:
+        name: country_id
+        description: ''
+        required: true
+        example: 9
+        type: integer
+        custom: []
+      phone:
+        name: phone
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: hfypyxiq
+        type: string
+        custom: []
+      id_type:
+        name: id_type
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: wdrksmzk
+        type: string
+        custom: []
+      id_name:
+        name: id_name
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: gxknwxsdezdhcnwqdddozivq
+        type: string
+        custom: []
+      id_number:
+        name: id_number
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: riogqjitwxmpozeswtgzreb
+        type: string
+        custom: []
+      dob:
+        name: dob
+        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        required: false
+        example: '2023-05-17'
+        type: string
+        custom: []
+      is_active:
+        name: is_active
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        custom: []
+    cleanBodyParameters:
+      fullname: eencvqicfhag
+      gender: Male
+      profession_id: 15
+      country_id: 9
+      phone: hfypyxiq
+      id_type: wdrksmzk
+      id_name: gxknwxsdezdhcnwqdddozivq
+      id_number: riogqjitwxmpozeswtgzreb
+      dob: '2023-05-17'
+      is_active: false
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Z3Vdhafb4a6vE5kP6gec8D1'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/crews/{id}'
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the crew.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer Efcv861dVgPDaZab456kh3e'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/crews/{crew_id}/edit'
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the data for the form for editing a crew member.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      crew_id:
+        name: crew_id
+        description: 'The ID of the crew.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      crew_id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          vary: Origin
+        description: null
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 6E6dgeP1hVkf4aacvDZ8b35'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/crews/{id}'
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified crew member in database.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the crew.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      fullname:
+        name: fullname
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: avywxi
+        type: string
+        custom: []
+      gender:
+        name: gender
+        description: 'Must be one of <code>Male</code> or <code>Female</code>.'
+        required: true
+        example: Male
+        type: string
+        custom: []
+      profession_id:
+        name: profession_id
+        description: ''
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      country_id:
+        name: country_id
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        custom: []
+      phone:
+        name: phone
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: false
+        example: fierxhdwzeufwoep
+        type: string
+        custom: []
+      id_type:
+        name: id_type
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: ztqm
+        type: string
+        custom: []
+      id_name:
+        name: id_name
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: cwmxcqfkutmidachhzwevt
+        type: string
+        custom: []
+      id_number:
+        name: id_number
+        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        required: true
+        example: 'n'
+        type: string
+        custom: []
+      dob:
+        name: dob
+        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        required: false
+        example: '2023-05-17'
+        type: string
+        custom: []
+      is_active:
+        name: is_active
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        custom: []
+    cleanBodyParameters:
+      fullname: avywxi
+      gender: Male
+      profession_id: 1
+      country_id: 16
+      phone: fierxhdwzeufwoep
+      id_type: ztqm
+      id_name: cwmxcqfkutmidachhzwevt
+      id_number: 'n'
+      dob: '2023-05-17'
+      is_active: false
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer v5aE1h3a84ePdc6gkZfDbV6'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/crews/{id}'
+    metadata:
+      groupName: Crews
+      groupDescription: |-
+
+        API endpoints for managing crews
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the crew.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer hakD65EdVb1Z8Pga3fe46vc'
+    controller: null
+    method: null
+    route: null
+    custom: []

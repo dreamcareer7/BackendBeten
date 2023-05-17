@@ -14,6 +14,11 @@ use App\Http\Requests\{
 	UpdateGroupRequest
 };
 
+/**
+ * @group Groups
+ *
+ * API endpoints for managing Groups
+ */
 class GroupsController extends Controller
 {
 	public function __construct()

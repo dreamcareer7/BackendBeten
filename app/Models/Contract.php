@@ -35,7 +35,6 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @property int $created_by
  * @property int|null $deleted_by
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Document> $documents
  * @method static \Illuminate\Database\Eloquent\Builder|Contract onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereCreatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contract whereDeletedAt($value)

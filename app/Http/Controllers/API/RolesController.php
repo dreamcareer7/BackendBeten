@@ -4,13 +4,17 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Role;
-use App\Models\User;
+use App\Models\{Role, User};
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\{CreateRoleRequest, UpdateRoleRequest};
 use Illuminate\Support\Facades\{DB};
+use App\Http\Requests\{CreateRoleRequest, UpdateRoleRequest};
 
+/**
+ * @group Roles
+ *
+ * API endpoints for managing roles
+ */
 class RolesController extends Controller
 {
 	/**
@@ -132,7 +136,7 @@ class RolesController extends Controller
 					'role_id' => $id,
 					'permission_id' => $permission
 				]);
-		}		
+		}
 		return response()->json(status: 204); // No content
 	}
 }
