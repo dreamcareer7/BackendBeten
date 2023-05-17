@@ -24,8 +24,48 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      fullname:
+        name: fullname
+        description: string.
+        required: false
+        example: enim
+        type: string
+        custom: []
+      country:
+        name: country
+        description: int.
+        required: false
+        example: odit
+        type: string
+        custom: []
+      gender:
+        name: gender
+        description: string.
+        required: false
+        example: et
+        type: string
+        custom: []
+      id_number:
+        name: id_number
+        description: string.
+        required: false
+        example: ad
+        type: string
+        custom: []
+      group:
+        name: group
+        description: int.
+        required: false
+        example: velit
+        type: string
+        custom: []
+    cleanQueryParameters:
+      fullname: enim
+      country: odit
+      gender: et
+      id_number: ad
+      group: velit
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -43,7 +83,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 68fZPb3VEdvke54aaDg16ch'
+      - 'Bearer 1E6Vhv8gef3k6Pa4bZc5aDd'
     controller: null
     method: null
     route: null
@@ -59,7 +99,7 @@ endpoints:
         API endpoints for managing clients
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created client in database.'
+      title: 'Store a newly created client.'
       description: ''
       authenticated: true
       custom: []
@@ -74,58 +114,58 @@ endpoints:
     bodyParameters:
       fullname:
         name: fullname
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 50 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: qtxifeqnmqkkmiyzropysqaus
+        example: consequatur
         type: string
         custom: []
       country_id:
         name: country_id
         description: ''
         required: true
-        example: 1
+        example: 8
         type: integer
         custom: []
       id_type:
         name: id_type
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: klauzvf
+        example: qui
         type: string
         custom: []
       id_number:
         name: id_number
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: qysoxwpjfzh
+        example: nam
         type: string
         custom: []
       id_name:
         name: id_name
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: boidfrd
+        example: totam
         type: string
         custom: []
       gender:
         name: gender
-        description: 'Must be one of <code>Male</code> or <code>Female</code>.'
+        description: ''
         required: true
-        example: Male
+        example: atque
         type: string
         custom: []
       dob:
         name: dob
-        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        description: ''
         required: true
-        example: '2023-05-17'
+        example: necessitatibus
         type: string
         custom: []
       phone:
         name: phone
-        description: 'يجب أن يكون طول النص value على الأقل 7 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: zmlcbtecfciaonmswze
+        example: quis
         type: string
         custom: []
       is_handicap:
@@ -136,14 +176,14 @@ endpoints:
         type: boolean
         custom: []
     cleanBodyParameters:
-      fullname: qtxifeqnmqkkmiyzropysqaus
-      country_id: 1
-      id_type: klauzvf
-      id_number: qysoxwpjfzh
-      id_name: boidfrd
-      gender: Male
-      dob: '2023-05-17'
-      phone: zmlcbtecfciaonmswze
+      fullname: consequatur
+      country_id: 8
+      id_type: qui
+      id_number: nam
+      id_name: totam
+      gender: atque
+      dob: necessitatibus
+      phone: quis
       is_handicap: true
     fileParameters: []
     responses: []
@@ -151,7 +191,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 13gk658aE6PZDbcfev4Vdha'
+      - 'Bearer Z51DgE3a8fekV4avPhbd6c6'
     controller: null
     method: null
     route: null
@@ -204,7 +244,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer PvDfa6548ZV3cdk6gbeEha1'
+      - 'Bearer cv5kah1PVafbg63dEZ486eD'
     controller: null
     method: null
     route: null
@@ -257,7 +297,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fgZ3Vd1ePvhbD86ck6aE4a5'
+      - 'Bearer Da5Vg68fdPZ14hvE36ckabe'
     controller: null
     method: null
     route: null
@@ -274,7 +314,7 @@ endpoints:
         API endpoints for managing clients
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified client in database.'
+      title: 'Update the specified client.'
       description: ''
       authenticated: true
       custom: []
@@ -297,84 +337,84 @@ endpoints:
     bodyParameters:
       fullname:
         name: fullname
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 50 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: sbnnafmobuhbjfazzodgdh
+        example: cumque
         type: string
         custom: []
       country_id:
         name: country_id
         description: ''
         required: true
-        example: 9
+        example: 12
         type: integer
         custom: []
       id_type:
         name: id_type
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: rmydmxbipebtgssmrzvkmw
+        example: rerum
         type: string
         custom: []
       id_number:
         name: id_number
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: uojie
+        example: id
         type: string
         custom: []
       id_name:
         name: id_name
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: ruvodjimoxqoa
+        example: delectus
         type: string
         custom: []
       gender:
         name: gender
-        description: 'Must be one of <code>Male</code> or <code>Female</code>.'
+        description: ''
         required: true
-        example: Male
+        example: voluptas
         type: string
         custom: []
       dob:
         name: dob
-        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        description: ''
         required: true
-        example: '2023-05-17'
+        example: non
         type: string
         custom: []
       phone:
         name: phone
-        description: 'يجب أن يكون طول النص value على الأقل 7 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: bhgxbyzocgqnsvynph
+        example: iusto
         type: string
         custom: []
       is_handicap:
         name: is_handicap
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
     cleanBodyParameters:
-      fullname: sbnnafmobuhbjfazzodgdh
-      country_id: 9
-      id_type: rmydmxbipebtgssmrzvkmw
-      id_number: uojie
-      id_name: ruvodjimoxqoa
-      gender: Male
-      dob: '2023-05-17'
-      phone: bhgxbyzocgqnsvynph
-      is_handicap: true
+      fullname: cumque
+      country_id: 12
+      id_type: rerum
+      id_number: id
+      id_name: delectus
+      gender: voluptas
+      dob: non
+      phone: iusto
+      is_handicap: false
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Phcbfdeak6aD643VE5vg81Z'
+      - 'Bearer ehDafVZv3P4gbak1c568E6d'
     controller: null
     method: null
     route: null
@@ -418,7 +458,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gfd13Z6hD6a5PEcabvke84V'
+      - 'Bearer 5e634cbaP6VfZ1dgEh8vaDk'
     controller: null
     method: null
     route: null

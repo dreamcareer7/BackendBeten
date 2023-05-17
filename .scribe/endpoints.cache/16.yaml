@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer v64e5acfab1Vkdg3EP8DZ6h'
+      - 'Bearer af1ahVg5bEPk3dDZ6c84ev6'
     controller: null
     method: null
     route: null
@@ -90,7 +90,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bhD6P3gk85cveafV1d64EZa'
+      - 'Bearer h6gEkP34bDc1Vdf5Z8a6eva'
     controller: null
     method: null
     route: null
@@ -123,14 +123,14 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: dycxbspkejq
+        example: fvkvdvipdhdhfdx
         type: string
         custom: []
       description:
         name: description
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: 'Ratione eligendi et nihil autem voluptatem veniam.'
+        example: 'Quod eos quo voluptas laudantium nesciunt magni rerum neque.'
         type: string
         custom: []
       required_date:
@@ -144,37 +144,37 @@ endpoints:
         name: quantity
         description: 'يجب أن يكون طول النص value على الأقل 1 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 999999 حروفٍ/حرفًا.'
         required: true
-        example: ktdkioddhdqqlihjowywkdn
+        example: yxprfvbditil
         type: string
         custom: []
       received_by:
         name: received_by
         description: ''
         required: true
-        example: 20
+        example: 4
         type: integer
         custom: []
       extra:
         name: extra
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 65535 حروفٍ/حرفًا.'
         required: false
-        example: tksllv
+        example: tihdbdq
         type: string
         custom: []
     cleanBodyParameters:
-      title: dycxbspkejq
-      description: 'Ratione eligendi et nihil autem voluptatem veniam.'
+      title: fvkvdvipdhdhfdx
+      description: 'Quod eos quo voluptas laudantium nesciunt magni rerum neque.'
       required_date: '2023-05-17'
-      quantity: ktdkioddhdqqlihjowywkdn
-      received_by: 20
-      extra: tksllv
+      quantity: yxprfvbditil
+      received_by: 4
+      extra: tihdbdq
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer adDb1PvhVge485c6kEZ3fa6'
+      - 'Bearer PE6Z58ka6Va1D3hevfcg4db'
     controller: null
     method: null
     route: null
@@ -227,7 +227,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer b8eE1dDf6khvZc3Pa4gV65a'
+      - 'Bearer 1ch6PbeDZkfaa4V53gdv68E'
     controller: null
     method: null
     route: null
@@ -269,14 +269,14 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: gntdeuresfrhknj
+        example: nwpbhwfxly
         type: string
         custom: []
       description:
         name: description
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: 'Molestiae voluptatibus eius esse est quia voluptatem.'
+        example: 'Magnam sapiente harum adipisci aspernatur qui eum.'
         type: string
         custom: []
       required_date:
@@ -290,37 +290,37 @@ endpoints:
         name: quantity
         description: 'يجب أن يكون طول النص value على الأقل 1 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 999999 حروفٍ/حرفًا.'
         required: true
-        example: pceypsblmabxatqlff
+        example: fbkktatfkny
         type: string
         custom: []
       received_by:
         name: received_by
         description: ''
         required: true
-        example: 15
+        example: 3
         type: integer
         custom: []
       extra:
         name: extra
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 65535 حروفٍ/حرفًا.'
         required: false
-        example: akktlrpraea
+        example: qwponunngfzz
         type: string
         custom: []
     cleanBodyParameters:
-      title: gntdeuresfrhknj
-      description: 'Molestiae voluptatibus eius esse est quia voluptatem.'
+      title: nwpbhwfxly
+      description: 'Magnam sapiente harum adipisci aspernatur qui eum.'
       required_date: '2023-05-17'
-      quantity: pceypsblmabxatqlff
-      received_by: 15
-      extra: akktlrpraea
+      quantity: fbkktatfkny
+      received_by: 3
+      extra: qwponunngfzz
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 56P8V63vakDegcdZEabh14f'
+      - 'Bearer 6kebVE3ZPg8f4dD65chaa1v'
     controller: null
     method: null
     route: null
@@ -364,7 +364,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bcPk66d43Ef5ZhVD81vgaae'
+      - 'Bearer ab6vc8eEkfgahdDZ415VP36'
     controller: null
     method: null
     route: null

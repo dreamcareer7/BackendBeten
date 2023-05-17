@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer dVvhg4kcbZ56EeDPaf816a3'
+      - 'Bearer EVhd58Dfaebck31Za64vg6P'
     controller: null
     method: null
     route: null
@@ -78,34 +78,34 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: qgkrsbubmwbarrymxaz
+        example: bqqzyiooillzgrvjlrmdlv
         type: string
         custom: []
       description:
         name: description
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: 'Nesciunt modi assumenda corporis atque corporis.'
+        example: 'Error et ut vel est perspiciatis unde assumenda in.'
         type: string
         custom: []
       has_documents:
         name: has_documents
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         custom: []
     cleanBodyParameters:
-      title: qgkrsbubmwbarrymxaz
-      description: 'Nesciunt modi assumenda corporis atque corporis.'
-      has_documents: true
+      title: bqqzyiooillzgrvjlrmdlv
+      description: 'Error et ut vel est perspiciatis unde assumenda in.'
+      has_documents: false
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer hkgEZcv16f6853PD4baVaed'
+      - 'Bearer fP5E1eZk84b6dDgh6c3vVaa'
     controller: null
     method: null
     route: null
@@ -158,7 +158,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer veDf35g4P6kdEhabcaV816Z'
+      - 'Bearer D4b16ha6e3dP85kvfVEgcZa'
     controller: null
     method: null
     route: null
@@ -200,34 +200,34 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: gardyhmshcundwld
+        example: kgvajafwsfslnltubzc
         type: string
         custom: []
       description:
         name: description
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: false
-        example: 'Quasi et nihil culpa sapiente.'
+        example: 'Quod dolor quidem voluptatem quod vel.'
         type: string
         custom: []
       has_documents:
         name: has_documents
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         custom: []
     cleanBodyParameters:
-      title: gardyhmshcundwld
-      description: 'Quasi et nihil culpa sapiente.'
-      has_documents: true
+      title: kgvajafwsfslnltubzc
+      description: 'Quod dolor quidem voluptatem quod vel.'
+      has_documents: false
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer h3kvg1Vafc8D4ad6EP56bZe'
+      - 'Bearer ZV3c86e1aDah4fdEb6gkP5v'
     controller: null
     method: null
     route: null
@@ -271,7 +271,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer g4eEZa8hbVaD63d5f6vc1Pk'
+      - 'Bearer Ddvg164c3eb68PEa5hakfZV'
     controller: null
     method: null
     route: null

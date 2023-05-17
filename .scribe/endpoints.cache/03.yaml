@@ -29,11 +29,11 @@ endpoints:
         name: id
         description: 'The ID of the initialize.'
         required: true
-        example: expedita
+        example: id
         type: string
         custom: []
     cleanUrlParameters:
-      id: expedita
+      id: id
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -53,7 +53,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 65ae41kvaE3hgfZbPD86dcV'
+      - 'Bearer fe6ak6438cbD1PhgdE5ZaVv'
     controller: null
     method: null
     route: null
@@ -97,7 +97,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 41fvDV3Pkcdha866geZabE5'
+      - 'Bearer bc58a3av4kg6fV6Ee1dhPDZ'
     controller: null
     method: null
     route: null
@@ -137,7 +137,7 @@ endpoints:
         name: model_type
         description: ''
         required: true
-        example: perspiciatis
+        example: animi
         type: string
         custom: []
       model_id:
@@ -151,21 +151,21 @@ endpoints:
         name: role
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: vhoulndirxgmrjqviotjmsk
+        example: q
         type: string
         custom: []
     cleanBodyParameters:
       service_commit_id: 13
-      model_type: perspiciatis
+      model_type: animi
       model_id: 1
-      role: vhoulndirxgmrjqviotjmsk
+      role: q
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 4a1ecEbd6Z3ga5vh6PDfkV8'
+      - 'Bearer P6c6f1bgd5hEaeavkD834ZV'
     controller: null
     method: null
     route: null
@@ -194,11 +194,11 @@ endpoints:
         name: id
         description: 'The ID of the service commit log.'
         required: true
-        example: ea
+        example: beatae
         type: string
         custom: []
     cleanUrlParameters:
-      id: ea
+      id: beatae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -209,7 +209,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer EvgZafb56k413ehacD8VPd6'
+      - 'Bearer 63E8ekf45DVa1hgPdv6Zcab'
     controller: null
     method: null
     route: null
@@ -254,7 +254,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer f66baPD4Va5dvZhEc318egk'
+      - 'Bearer 8EPe3146aZ56vcVagkdfbhD'
     controller: null
     method: null
     route: null
@@ -299,7 +299,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a64gZkP1hcfad6bV5vE8De3'
+      - 'Bearer PZ85kaf4EvDd6e1g6hbVac3'
     controller: null
     method: null
     route: null
@@ -344,7 +344,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer advD8Ega536kbfc1V4Z6Peh'
+      - 'Bearer PgekV18E45cDh6a3fZadvb6'
     controller: null
     method: null
     route: null
@@ -377,35 +377,35 @@ endpoints:
         name: service_id
         description: ''
         required: true
-        example: 10
+        example: 5
         type: integer
         custom: []
       badge:
         name: badge
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: dxndnfbhnwhwgtmzgthus
+        example: nujdxdsdreqvwsmmdi
         type: string
         custom: []
       schedule_at:
         name: schedule_at
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-05-17 16:57:16'
+        example: '2023-05-17 18:29:54'
         type: string
         custom: []
       from_location:
         name: from_location
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: lbxleozpbfzmacc
+        example: qalkhyympfoysnapbvv
         type: string
         custom: []
       supervisor_id:
         name: supervisor_id
         description: ''
         required: true
-        example: 16
+        example: 18
         type: integer
         custom: []
       phase_id:
@@ -416,18 +416,18 @@ endpoints:
         type: string
         custom: []
     cleanBodyParameters:
-      service_id: 10
-      badge: dxndnfbhnwhwgtmzgthus
-      schedule_at: '2023-05-17 16:57:16'
-      from_location: lbxleozpbfzmacc
-      supervisor_id: 16
+      service_id: 5
+      badge: nujdxdsdreqvwsmmdi
+      schedule_at: '2023-05-17 18:29:54'
+      from_location: qalkhyympfoysnapbvv
+      supervisor_id: 18
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer kave6P6fdgb1EaDZ43Vh5c8'
+      - 'Bearer bfh164kcVDaZPe3dE8vag65'
     controller: null
     method: null
     route: null
@@ -480,7 +480,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer b4k1Zvh58E6cfdaaPg6Ve3D'
+      - 'Bearer 6g4kf5VavecPDE63hZb1ad8'
     controller: null
     method: null
     route: null
@@ -533,7 +533,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 8cdEa3aDh65Ve6v4PZgkf1b'
+      - 'Bearer evdPc3D6465hgab8k1fVEaZ'
     controller: null
     method: null
     route: null
@@ -575,58 +575,58 @@ endpoints:
         name: service_id
         description: ''
         required: true
-        example: 7
+        example: 3
         type: integer
         custom: []
       badge:
         name: badge
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: pbbmtiqjvvpdbo
+        example: nqwwszfowvqabgr
         type: string
         custom: []
       schedule_at:
         name: schedule_at
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2023-05-17 16:57:16'
+        example: '2023-05-17 18:29:54'
         type: string
         custom: []
       started_at:
         name: started_at
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: false
-        example: '2023-05-17 16:57:16'
+        example: '2023-05-17 18:29:54'
         type: string
         custom: []
       from_location:
         name: from_location
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: cijdlwkae
+        example: qbyqexorkzyiwjp
         type: string
         custom: []
       supervisor_id:
         name: supervisor_id
         description: ''
         required: false
-        example: 13
+        example: 17
         type: integer
         custom: []
     cleanBodyParameters:
-      service_id: 7
-      badge: pbbmtiqjvvpdbo
-      schedule_at: '2023-05-17 16:57:16'
-      started_at: '2023-05-17 16:57:16'
-      from_location: cijdlwkae
-      supervisor_id: 13
+      service_id: 3
+      badge: nqwwszfowvqabgr
+      schedule_at: '2023-05-17 18:29:54'
+      started_at: '2023-05-17 18:29:54'
+      from_location: qbyqexorkzyiwjp
+      supervisor_id: 17
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer k8PVv3fh46bZ1aeag6cDEd5'
+      - 'Bearer ZPE6kb31g65D8Vhfceaa4vd'
     controller: null
     method: null
     route: null
@@ -670,7 +670,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6g8Z6h5Ddfc1V43EakaebvP'
+      - 'Bearer ha1ZfD54a8P6Vv3bde6cEkg'
     controller: null
     method: null
     route: null

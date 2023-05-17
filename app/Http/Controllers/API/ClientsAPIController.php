@@ -24,6 +24,12 @@ class ClientsAPIController extends Controller
 	/**
 	 * Display a listing of the clients.
 	 *
+	 * @queryParam fullname string.
+	 * @queryParam country int.
+	 * @queryParam gender string.
+	 * @queryParam id_number string.
+	 * @queryParam group int.
+	 *
 	 * @param \Illuminate\Http\Request $request
 	 *
 	 * @return \Illuminate\Http\JsonResponse
@@ -67,7 +73,17 @@ class ClientsAPIController extends Controller
 	}
 
 	/**
-	 * Store a newly created client in database.
+	 * Store a newly created client.
+	 *
+	 * @bodyParam fullname string required
+	 * @bodyParam country_id int required
+	 * @bodyParam id_type string required
+	 * @bodyParam id_name string required
+	 * @bodyParam id_number string required
+	 * @bodyParam dob string required
+	 * @bodyParam gender string required
+	 * @bodyParam is_handicap boolean required
+	 * @bodyParam phone string required
 	 *
 	 * @param \App\HTtp\Requests\CreateClientRequest $request
 	 *
@@ -109,7 +125,17 @@ class ClientsAPIController extends Controller
 	}
 
 	/**
-	 * Update the specified client in database.
+	 * Update the specified client.
+	 *
+	 * @bodyParam fullname string required
+	 * @bodyParam country_id int required
+	 * @bodyParam id_type string required
+	 * @bodyParam id_name string required
+	 * @bodyParam id_number string required
+	 * @bodyParam dob string required
+	 * @bodyParam gender string required
+	 * @bodyParam is_handicap boolean required
+	 * @bodyParam phone string required
 	 *
 	 * @param \App\Models\Client $client
 	 * @param \App\Http\Requests\UpdateClientRequest $request

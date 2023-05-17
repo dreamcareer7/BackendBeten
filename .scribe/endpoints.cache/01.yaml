@@ -32,7 +32,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 64VvPabda6fhD1EeZ8kc53g'
+      - 'Bearer 1c6hk5edZfE8DPVgbv36aa4'
     controller: null
     method: null
     route: null
@@ -66,7 +66,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gDhZ5dkfv61a6aeEb43Vc8P'
+      - 'Bearer havVdg31aEZ8Dcfek646Pb5'
     controller: null
     method: null
     route: null
@@ -593,7 +593,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer habdcgD8EV66f35Zak1vPe4'
+      - 'Bearer bEdehg3415fcV8DPakavZ66'
     controller: null
     method: null
     route: null
@@ -627,7 +627,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a4PD6dZ3EaVfvgeb58chk16'
+      - 'Bearer 63dhc4Dg86b1aZf5eavVEPk'
     controller: null
     method: null
     route: null
@@ -654,11 +654,11 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: repellat
+        example: enim
         type: string
         custom: []
     cleanUrlParameters:
-      token: repellat
+      token: enim
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1162,7 +1162,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer k34dZhefvPa8gVDc16ba65E'
+      - 'Bearer 1geVh8dkabDv3Z45afE6c6P'
     controller: null
     method: null
     route: null
@@ -1196,7 +1196,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 1EcPhV86g3Dd5efkv6b4Zaa'
+      - 'Bearer 6V168d3DZ4khvceag5fbPEa'
     controller: null
     method: null
     route: null
@@ -1239,7 +1239,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer gae4cZd5D6VfPa1kE8h6vb3'
+      - 'Bearer avEc43d1VPk6ahg658feDZb'
     controller: null
     method: null
     route: null
@@ -1273,7 +1273,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Z6Df4ad568E3kPeVh1avbcg'
+      - 'Bearer 3Vve5g4Ebhk8D16c6adPZaf'
     controller: null
     method: null
     route: null
@@ -1316,7 +1316,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer g5a1ePkhD8ZEa63vcdf4V6b'
+      - 'Bearer 34dek186fbDga6aPZE5vVch'
     controller: null
     method: null
     route: null
@@ -1343,11 +1343,11 @@ endpoints:
         name: model_type
         description: ''
         required: true
-        example: officia
+        example: magnam
         type: string
         custom: []
     cleanUrlParameters:
-      model_type: officia
+      model_type: magnam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1367,7 +1367,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Dv4b6P3k56aVcEe1Z8gfdha'
+      - 'Bearer cVhvkba31g4ZfP6E56d8aDe'
     controller: null
     method: null
     route: null
@@ -1394,19 +1394,19 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: 11
+        example: 8
         type: integer
         custom: []
       id:
         name: id
         description: 'The ID of the {type}.'
         required: true
-        example: doloribus
+        example: magnam
         type: string
         custom: []
     cleanUrlParameters:
-      type: 11
-      id: doloribus
+      type: 8
+      id: magnam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1426,7 +1426,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer V4v31gdaba65ZE8PcfekDh6'
+      - 'Bearer dcVPf6g4DZh1av3Eeka856b'
     controller: null
     method: null
     route: null
@@ -1453,19 +1453,19 @@ endpoints:
         name: type
         description: ''
         required: true
-        example: 16
+        example: 6
         type: integer
         custom: []
       id:
         name: id
         description: 'The ID of the {type}.'
         required: true
-        example: et
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      type: 16
-      id: et
+      type: 6
+      id: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1473,21 +1473,21 @@ endpoints:
         name: model_type
         description: 'Must be one of <code>App\Models\Crew</code>, <code>App\Models\Vehicle</code>, or <code>App\Models\Dormitory</code>.'
         required: true
-        example: App\Models\Crew
+        example: App\Models\Vehicle
         type: string
         custom: []
       model_id:
         name: model_id
         description: ''
         required: true
-        example: 17
+        example: 16
         type: integer
         custom: []
       reference:
         name: reference
         description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
         required: true
-        example: icvpzkrudmjrxmo
+        example: bmyggc
         type: string
         custom: []
       contracts:
@@ -1499,9 +1499,9 @@ endpoints:
         type: 'file[]'
         custom: []
     cleanBodyParameters:
-      model_type: App\Models\Crew
-      model_id: 17
-      reference: icvpzkrudmjrxmo
+      model_type: App\Models\Vehicle
+      model_id: 16
+      reference: bmyggc
     fileParameters:
       contracts:
         - null
@@ -1510,7 +1510,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer ghckvZd3Pe4a1E58afbVD66'
+      - 'Bearer fP6VD5dhkcab1ZEgva6e483'
     controller: null
     method: null
     route: null
@@ -1537,11 +1537,11 @@ endpoints:
         name: id
         description: 'The ID of the contract.'
         required: true
-        example: 16
+        example: 5
         type: integer
         custom: []
     cleanUrlParameters:
-      id: 16
+      id: 5
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1552,7 +1552,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer fEa4a8PV6gZ5hved3cb61kD'
+      - 'Bearer Ecvhda63g4a51kfb8DV6ZPe'
     controller: null
     method: null
     route: null
@@ -1595,7 +1595,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a1E8ZvbDhfkea43P6c65Vdg'
+      - 'Bearer ga6P8Vf4cahbZ5d61kveD3E'
     controller: null
     method: null
     route: null
@@ -1629,12 +1629,12 @@ endpoints:
         name: id
         description: 'The ID of the {type}.'
         required: true
-        example: sit
+        example: esse
         type: string
         custom: []
     cleanUrlParameters:
       type: 1
-      id: sit
+      id: esse
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1654,7 +1654,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 1Dha6cPve385EafkZbd46Vg'
+      - 'Bearer fEhea3P8a5kD6dgbv4VZc16'
     controller: null
     method: null
     route: null
@@ -1688,12 +1688,12 @@ endpoints:
         name: id
         description: 'The ID of the {type}.'
         required: true
-        example: sunt
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
       type: 1
-      id: sunt
+      id: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1708,35 +1708,35 @@ endpoints:
         name: model_id
         description: ''
         required: true
-        example: 10
+        example: 7
         type: integer
         custom: []
       starting_at:
         name: starting_at
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-05-17 16:57:16'
+        example: '2023-05-17 18:29:54'
         type: string
         custom: []
       ending_at:
         name: ending_at
         description: 'Must be a valid date in the format <code>Y-m-d H:i:s</code>.'
         required: true
-        example: '2023-05-17 16:57:16'
+        example: '2023-05-17 18:29:54'
         type: string
         custom: []
       extra:
         name: extra
         description: ''
         required: true
-        example: quibusdam
+        example: nostrum
         type: string
         custom: []
       extra.frequency:
         name: extra.frequency
         description: 'Must be one of <code>daily</code> or <code>weekly</code>.'
         required: true
-        example: weekly
+        example: daily
         type: string
         custom: []
       extra.alerts:
@@ -1744,28 +1744,28 @@ endpoints:
         description: ''
         required: true
         example:
-          - corporis
+          - ipsam
         type: 'integer[]'
         custom: []
       'extra.alerts[].window':
         name: 'extra.alerts[].window'
         description: 'This field is required when <code>extra.frequency</code> is <code>daily</code>. يجب أن تكون قيمة value مساوية أو أكبر من 10. يجب أن تكون قيمة value مساوية أو أصغر من 60.'
         required: false
-        example: 3
+        example: 20
         type: integer
         custom: []
       'extra.alerts[].time':
         name: 'extra.alerts[].time'
         description: 'This field is required when <code>extra.frequency</code> is <code>daily</code>.  Must be a valid date in the format <code>H:i</code>.'
         required: false
-        example: '16:57'
+        example: '18:29'
         type: string
         custom: []
       'extra.alerts[].notificants':
         name: 'extra.alerts[].notificants'
         description: ''
         required: true
-        example: error
+        example: omnis
         type: string
         custom: []
       'extra.alerts[].notificants.roles':
@@ -1773,7 +1773,7 @@ endpoints:
         description: 'This field is required when <code>extra.alerts.*.notificants.roles</code> is present.'
         required: false
         example:
-          - 3
+          - 12
         type: 'integer[]'
         custom: []
       'extra.alerts[].notificants.users':
@@ -1781,22 +1781,22 @@ endpoints:
         description: 'This field is required when <code>extra.alerts.*.notificants.users</code> is present.'
         required: false
         example:
-          - 16
+          - 9
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
       model_type: App\Models\ServiceCommit
-      model_id: 10
-      starting_at: '2023-05-17 16:57:16'
-      ending_at: '2023-05-17 16:57:16'
-      extra: quibusdam
+      model_id: 7
+      starting_at: '2023-05-17 18:29:54'
+      ending_at: '2023-05-17 18:29:54'
+      extra: nostrum
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer k86D61E4Zab3gVePdvafc5h'
+      - 'Bearer hVbeDd45E66gfaaZc38Pkv1'
     controller: null
     method: null
     route: null
@@ -1835,18 +1835,18 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: 19
+        example: 3
         type: integer
         custom: []
     cleanBodyParameters:
-      id: 19
+      id: 3
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer 6avP3D5Zgc461kh8VdfEabe'
+      - 'Bearer Dbfk16vg4hVeZE86a5cda3P'
     controller: null
     method: null
     route: null
@@ -1889,7 +1889,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vha6ea15Vd8fEc36Pk4DZgb'
+      - 'Bearer bhea85akEd31cVfvZ4DPg66'
     controller: null
     method: null
     route: null
@@ -1923,7 +1923,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer EZc6hD18af46k5gbadvePV3'
+      - 'Bearer cd5D686efa3VaZvhb4gk1EP'
     controller: null
     method: null
     route: null
@@ -1974,7 +1974,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6ka4cPfgd6aEvh358Z1ebVD'
+      - 'Bearer c8da15eh6DkaVP6Z43gvbEf'
     controller: null
     method: null
     route: null
@@ -2017,7 +2017,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6aeha5ZcDP1g8V3b4E6dvkf'
+      - 'Bearer d6851PfE4bkae6agZhcV3vD'
     controller: null
     method: null
     route: null
@@ -2059,7 +2059,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer f86k3dcP5a6Vba1hZDg4Eve'
+      - 'Bearer EZcgk1v6edVP3bf8h45Daa6'
     controller: null
     method: null
     route: null

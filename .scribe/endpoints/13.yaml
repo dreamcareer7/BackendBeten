@@ -43,7 +43,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer kVeE1d6ZD3gch6va8ab4Pf5'
+      - 'Bearer Pa6Db35favEgck16Zd8e4hV'
     controller: null
     method: null
     route: null
@@ -59,8 +59,8 @@ endpoints:
         API endpoints for managing Service
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created service in database.'
-      description: ''
+      title: 'Store a newly created service.'
+      description: 'at least the user must enter one of the dates'
       authenticated: true
       custom: []
     headers:
@@ -74,49 +74,52 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: gnpfpphoxljjhxnckkcwqa
+        example: sed
         type: string
         custom: []
       city_id:
         name: city_id
         description: ''
         required: true
-        example: 16
+        example: 18
         type: integer
         custom: []
       before_date:
         name: before_date
         description: ''
         required: false
-        example: null
+        example: corrupti
         type: string
         custom: []
       exact_date:
         name: exact_date
         description: ''
         required: false
-        example: null
+        example: qui
         type: string
         custom: []
       after_date:
         name: after_date
         description: ''
         required: false
-        example: null
+        example: neque
         type: string
         custom: []
     cleanBodyParameters:
-      title: gnpfpphoxljjhxnckkcwqa
-      city_id: 16
+      title: sed
+      city_id: 18
+      before_date: corrupti
+      exact_date: qui
+      after_date: neque
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer aceD31PkgbfV4va6h68ZdE5'
+      - 'Bearer 4aVEg6ck8bZ13PdDefa6vh5'
     controller: null
     method: null
     route: null
@@ -169,7 +172,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6a46dE5caPDfhVZ8bvgek31'
+      - 'Bearer aDEab4vh1cgVZedP8f665k3'
     controller: null
     method: null
     route: null
@@ -186,7 +189,7 @@ endpoints:
         API endpoints for managing Service
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified service in database.'
+      title: 'Update the specified service.'
       description: ''
       authenticated: true
       custom: []
@@ -209,49 +212,52 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: f
+        example: odit
         type: string
         custom: []
       city_id:
         name: city_id
         description: ''
         required: true
-        example: 17
+        example: 16
         type: integer
         custom: []
       before_date:
         name: before_date
         description: ''
         required: false
-        example: null
+        example: eaque
         type: string
         custom: []
       exact_date:
         name: exact_date
         description: ''
         required: false
-        example: null
+        example: doloribus
         type: string
         custom: []
       after_date:
         name: after_date
         description: ''
         required: false
-        example: null
+        example: eligendi
         type: string
         custom: []
     cleanBodyParameters:
-      title: f
-      city_id: 17
+      title: odit
+      city_id: 16
+      before_date: eaque
+      exact_date: doloribus
+      after_date: eligendi
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer VDv8Zbaad6PeEfkg1654hc3'
+      - 'Bearer 14DcEPkagV6fbdhZ8ave356'
     controller: null
     method: null
     route: null
@@ -295,7 +301,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer g48DZVdb5afacPe3E61kv6h'
+      - 'Bearer e6dkDV1g5Z68h4aE3Pacfbv'
     controller: null
     method: null
     route: null

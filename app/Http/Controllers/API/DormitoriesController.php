@@ -19,6 +19,10 @@ class DormitoriesController extends Controller
 	/**
 	 * Display a listing of the dormitories.
 	 *
+	 * @queryParam title string.
+	 * @queryParam phones string.
+	 * @queryParam city string.
+	 *
 	 * @param \Illuminate\Http\Request
 	 *
 	 * @return \Illuminate\Http\JsonResponse
@@ -49,7 +53,14 @@ class DormitoriesController extends Controller
 	}
 
 	/**
-	 * Store a newly created dormitory in database.
+	 * Store a newly created dormitory.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam phones string required
+	 * @bodyParam city_id int required
+	 * @bodyParam location string required
+	 * @bodyParam coordinate string
+	 * @bodyParam is_active boolean required
 	 *
 	 * @param \App\HTtp\Requests\CreateDormitoryRequest $request
 	 *
@@ -77,6 +88,13 @@ class DormitoriesController extends Controller
 
 	/**
 	 * Update the specified dormitory in database.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam phones string required
+	 * @bodyParam city_id int required
+	 * @bodyParam location string required
+	 * @bodyParam coordinate string
+	 * @bodyParam is_active boolean required
 	 *
 	 * @param \App\Models\Dormitory $dormitory
 	 * @param \App\Http\Requests\UpdateDormitoryRequest $request

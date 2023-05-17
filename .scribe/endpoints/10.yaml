@@ -43,7 +43,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer DPc61eh53kb8EVZ46aagfdv'
+      - 'Bearer e6Ekcah143a56fPvgVDdb8Z'
     controller: null
     method: null
     route: null
@@ -84,20 +84,20 @@ endpoints:
         description: ''
         required: true
         example:
-          - 4
+          - 13
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
       group_id: 13
       clients:
-        - 4
+        - 13
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Pd6V458ZcE6kD1eb3hafvga'
+      - 'Bearer 8dPZ61a6E3b45cVvehfaDgk'
     controller: null
     method: null
     route: null
@@ -130,7 +130,7 @@ endpoints:
         name: group_id
         description: ''
         required: true
-        example: 19
+        example: 15
         type: integer
         custom: []
       clients:
@@ -138,20 +138,20 @@ endpoints:
         description: ''
         required: true
         example:
-          - 17
+          - 6
         type: 'integer[]'
         custom: []
     cleanBodyParameters:
-      group_id: 19
+      group_id: 15
       clients:
-        - 17
+        - 6
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer PV5cb86Z13aDe64dfEhgakv'
+      - 'Bearer 63cdeD8khP4bVE1fZ56gava'
     controller: null
     method: null
     route: null
@@ -177,8 +177,24 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      title:
+        name: title
+        description: string.
+        required: false
+        example: consequuntur
+        type: string
+        custom: []
+      crew_member:
+        name: crew_member
+        description: string.
+        required: false
+        example: aperiam
+        type: string
+        custom: []
+    cleanQueryParameters:
+      title: consequuntur
+      crew_member: aperiam
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -196,7 +212,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer f8aZ5ckdh6Va3b64EvDgeP1'
+      - 'Bearer aD3Z1h66dvkPfe4E5cab8Vg'
     controller: null
     method: null
     route: null
@@ -212,7 +228,7 @@ endpoints:
         API endpoints for managing Groups
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created group in database.'
+      title: 'Store a newly created group.'
       description: ''
       authenticated: true
       custom: []
@@ -227,36 +243,36 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: g
+        example: iusto
         type: string
         custom: []
       crew_id:
         name: crew_id
         description: ''
         required: true
-        example: 18
+        example: 15
         type: integer
         custom: []
       clients_virtual_count:
         name: clients_virtual_count
-        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1. يجب أن تكون قيمة value مساوية أو أصغر من 2147483647.'
+        description: ''
         required: false
-        example: 9
+        example: 6
         type: integer
         custom: []
     cleanBodyParameters:
-      title: g
-      crew_id: 18
-      clients_virtual_count: 9
+      title: iusto
+      crew_id: 15
+      clients_virtual_count: 6
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer gkVh8f4D63c15EZdb6vaaeP'
+      - 'Bearer Zafb8a4cd6v3D5gPehVE16k'
     controller: null
     method: null
     route: null
@@ -309,7 +325,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer cd5VZv64Pa1a3D6ebfh8gkE'
+      - 'Bearer ZvPd8EaeVg415k663Dcbfah'
     controller: null
     method: null
     route: null
@@ -362,7 +378,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer P1d36ah6ZgvE8Va4fDcek5b'
+      - 'Bearer a6Zc63ekvVh1a5dfPEb4gD8'
     controller: null
     method: null
     route: null
@@ -379,7 +395,7 @@ endpoints:
         API endpoints for managing Groups
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified group in database.'
+      title: 'Update the specified group.'
       description: ''
       authenticated: true
       custom: []
@@ -402,36 +418,36 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: 'يجب أن يكون طول النص value على الأقل 5 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: w
+        example: consequatur
         type: string
         custom: []
       crew_id:
         name: crew_id
         description: ''
         required: true
-        example: 9
+        example: 7
         type: integer
         custom: []
       clients_virtual_count:
         name: clients_virtual_count
-        description: 'يجب أن تكون قيمة value مساوية أو أكبر من 1.'
+        description: ''
         required: false
-        example: 72
+        example: 2
         type: integer
         custom: []
     cleanBodyParameters:
-      title: w
-      crew_id: 9
-      clients_virtual_count: 72
+      title: consequatur
+      crew_id: 7
+      clients_virtual_count: 2
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer EVh1ec56ag4Zbfa6DP8dk3v'
+      - 'Bearer e6k4caZb5a3VPvED1hf6gd8'
     controller: null
     method: null
     route: null
@@ -475,7 +491,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer DfPv4dEZ86g6eba5ca3h1Vk'
+      - 'Bearer a836VP1cZ6dDfEhav54kgbe'
     controller: null
     method: null
     route: null

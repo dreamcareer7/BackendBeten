@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer bgVEk6h831Z64avafd5DceP'
+      - 'Bearer V83DPa4dvgabkef561Ehc6Z'
     controller: null
     method: null
     route: null
@@ -90,7 +90,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6E35bPcZ64vg8hfdkV1aaDe'
+      - 'Bearer baE34Pv6fdh5aDc1kgV6Ze8'
     controller: null
     method: null
     route: null
@@ -106,7 +106,7 @@ endpoints:
         API endpoints for managing Phases
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: 'Store a newly created phase.'
       description: ''
       authenticated: true
       custom: []
@@ -121,9 +121,9 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: blzde
+        example: repudiandae
         type: string
         custom: []
       is_required:
@@ -136,23 +136,23 @@ endpoints:
       services:
         name: services
         description: ''
-        required: false
+        required: true
         example:
-          - 20
-        type: 'integer[]'
+          - vitae
+        type: 'string[]'
         custom: []
     cleanBodyParameters:
-      title: blzde
+      title: repudiandae
       is_required: true
       services:
-        - 20
+        - vitae
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer f3V54g6ZDhP8bv1ac6edkEa'
+      - 'Bearer 6Vhda43DPek56v8cfa1bgZE'
     controller: null
     method: null
     route: null
@@ -205,7 +205,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer v4cd6g3k8VeZ6bhaED5faP1'
+      - 'Bearer vaPa866VcZgf51k43eEdDbh'
     controller: null
     method: null
     route: null
@@ -222,7 +222,7 @@ endpoints:
         API endpoints for managing Phases
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified phase in database.'
+      title: 'Update the specified phase.'
       description: ''
       authenticated: true
       custom: []
@@ -245,38 +245,38 @@ endpoints:
     bodyParameters:
       title:
         name: title
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: hiygsdyffaufsbzaymofee
+        example: ipsa
         type: string
         custom: []
       is_required:
         name: is_required
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         custom: []
       services:
         name: services
         description: ''
-        required: false
+        required: true
         example:
-          - 9
-        type: 'integer[]'
+          - deserunt
+        type: 'string[]'
         custom: []
     cleanBodyParameters:
-      title: hiygsdyffaufsbzaymofee
-      is_required: false
+      title: ipsa
+      is_required: true
       services:
-        - 9
+        - deserunt
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer v43c1gZPEfe5D6Vhkabd68a'
+      - 'Bearer ca6Ehgb5ZvV6148kPDfd3ae'
     controller: null
     method: null
     route: null
@@ -320,7 +320,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 46PEk13Vhba865acfdegZDv'
+      - 'Bearer 46kc6de8Zg5bEDvhfa1V3aP'
     controller: null
     method: null
     route: null

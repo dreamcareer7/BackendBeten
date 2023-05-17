@@ -45,7 +45,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer d4VDcvb3fEP6aeh8Z156agk'
+      - 'Bearer fZ3kheb8V5PcED4aa1v66dg'
     controller: null
     method: null
     route: null
@@ -78,18 +78,18 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا.'
         required: true
-        example: bvfxcgptanmewdwjnlnhgoofenulvrozqskdxcdwmfkknihuwpps
+        example: gpoifmwcsrpfzcsilikwxoczzpqviogpdunkgzscjcvbjruhhwsixrczvmwsmnorxynlixlsowziifybievyvpskhf
         type: string
         custom: []
     cleanBodyParameters:
-      title: bvfxcgptanmewdwjnlnhgoofenulvrozqskdxcdwmfkknihuwpps
+      title: gpoifmwcsrpfzcsilikwxoczzpqviogpdunkgzscjcvbjruhhwsixrczvmwsmnorxynlixlsowziifybievyvpskhf
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer PkV51cDE8636febhgd4aZva'
+      - 'Bearer bcdfVkg6PhE864av1aeD35Z'
     controller: null
     method: null
     route: null
@@ -142,7 +142,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer c63fvk8Pbdg1aEhVeDa6Z45'
+      - 'Bearer fe6Vbhd3EZ4a681vD5akPcg'
     controller: null
     method: null
     route: null
@@ -195,7 +195,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer db1Zek3vcfPVE46a5g6D8ah'
+      - 'Bearer dcP3baveD6h1V6Zga485kEf'
     controller: null
     method: null
     route: null
@@ -237,18 +237,18 @@ endpoints:
         name: title
         description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا.'
         required: true
-        example: oxamrdvcpwzzer
+        example: mguqslgakwbhaabqtxcdzdfgivucgendjydeckeqrlmnsftlycweywkszobaktdhfiwvsyd
         type: string
         custom: []
     cleanBodyParameters:
-      title: oxamrdvcpwzzer
+      title: mguqslgakwbhaabqtxcdzdfgivucgendjydeckeqrlmnsftlycweywkszobaktdhfiwvsyd
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer VE6bPZf38vd645Dchkgaae1'
+      - 'Bearer dEVac64bg86Z35vPhD1kafe'
     controller: null
     method: null
     route: null
@@ -292,7 +292,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer k16c8fga6b5eDVa4PhE3dZv'
+      - 'Bearer Ef8ga5kP41dZ6Vecva3bDh6'
     controller: null
     method: null
     route: null

@@ -43,7 +43,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer vg8Dcb4P6d1ekZEaaV6fh53'
+      - 'Bearer 3h6Ef8Pk5Vdc4vbe61ZgaaD'
     controller: null
     method: null
     route: null
@@ -69,8 +69,40 @@ endpoints:
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      fullname:
+        name: fullname
+        description: string.
+        required: false
+        example: odit
+        type: string
+        custom: []
+      country:
+        name: country
+        description: int.
+        required: false
+        example: quis
+        type: string
+        custom: []
+      phone:
+        name: phone
+        description: string.
+        required: false
+        example: est
+        type: string
+        custom: []
+      id_number:
+        name: id_number
+        description: string.
+        required: false
+        example: beatae
+        type: string
+        custom: []
+    cleanQueryParameters:
+      fullname: odit
+      country: quis
+      phone: est
+      id_number: beatae
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -88,7 +120,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 51abv3efd6ck6P8ha4VgEZD'
+      - 'Bearer 616PZe38kVdvaEbaf4hcgD5'
     controller: null
     method: null
     route: null
@@ -133,7 +165,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer a41k5b6gv6ZhEedaDc3Vf8P'
+      - 'Bearer 48ca66vfdb1ZPDkgV3aEe5h'
     controller: null
     method: null
     route: null
@@ -149,7 +181,7 @@ endpoints:
         API endpoints for managing crews
       subgroup: ''
       subgroupDescription: ''
-      title: 'Store a newly created resource in storage.'
+      title: 'Store a newly created resource.'
       description: ''
       authenticated: true
       custom: []
@@ -164,92 +196,92 @@ endpoints:
     bodyParameters:
       fullname:
         name: fullname
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: eencvqicfhag
+        example: corporis
         type: string
         custom: []
       gender:
         name: gender
-        description: 'Must be one of <code>Male</code> or <code>Female</code>.'
+        description: ''
         required: true
-        example: Male
+        example: quasi
         type: string
         custom: []
       profession_id:
         name: profession_id
         description: ''
         required: false
-        example: 15
+        example: 1
         type: integer
         custom: []
       country_id:
         name: country_id
         description: ''
         required: true
-        example: 9
+        example: 6
         type: integer
         custom: []
       phone:
         name: phone
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: false
-        example: hfypyxiq
+        example: modi
         type: string
         custom: []
       id_type:
         name: id_type
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: wdrksmzk
+        example: ipsum
         type: string
         custom: []
       id_name:
         name: id_name
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: gxknwxsdezdhcnwqdddozivq
+        example: expedita
         type: string
         custom: []
       id_number:
         name: id_number
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: riogqjitwxmpozeswtgzreb
+        example: ut
         type: string
         custom: []
       dob:
         name: dob
-        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        description: ''
         required: false
-        example: '2023-05-17'
+        example: dolores
         type: string
         custom: []
       is_active:
         name: is_active
         description: ''
-        required: true
-        example: false
+        required: false
+        example: true
         type: boolean
         custom: []
     cleanBodyParameters:
-      fullname: eencvqicfhag
-      gender: Male
-      profession_id: 15
-      country_id: 9
-      phone: hfypyxiq
-      id_type: wdrksmzk
-      id_name: gxknwxsdezdhcnwqdddozivq
-      id_number: riogqjitwxmpozeswtgzreb
-      dob: '2023-05-17'
-      is_active: false
+      fullname: corporis
+      gender: quasi
+      profession_id: 1
+      country_id: 6
+      phone: modi
+      id_type: ipsum
+      id_name: expedita
+      id_number: ut
+      dob: dolores
+      is_active: true
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer Z3Vdhafb4a6vE5kP6gec8D1'
+      - 'Bearer gc166ek8bDfEZPvVad3a45h'
     controller: null
     method: null
     route: null
@@ -302,7 +334,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer Efcv861dVgPDaZab456kh3e'
+      - 'Bearer cab8kZ1e6PfVhd53vE6Dag4'
     controller: null
     method: null
     route: null
@@ -355,7 +387,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer 6E6dgeP1hVkf4aacvDZ8b35'
+      - 'Bearer kbD8P1d3eahE64vaV5Z6fcg'
     controller: null
     method: null
     route: null
@@ -372,7 +404,7 @@ endpoints:
         API endpoints for managing crews
       subgroup: ''
       subgroupDescription: ''
-      title: 'Update the specified crew member in database.'
+      title: 'Update the specified crew member.'
       description: ''
       authenticated: true
       custom: []
@@ -395,92 +427,92 @@ endpoints:
     bodyParameters:
       fullname:
         name: fullname
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: avywxi
+        example: in
         type: string
         custom: []
       gender:
         name: gender
-        description: 'Must be one of <code>Male</code> or <code>Female</code>.'
+        description: ''
         required: true
-        example: Male
+        example: et
         type: string
         custom: []
       profession_id:
         name: profession_id
         description: ''
         required: false
-        example: 1
+        example: 11
         type: integer
         custom: []
       country_id:
         name: country_id
         description: ''
         required: true
-        example: 16
+        example: 2
         type: integer
         custom: []
       phone:
         name: phone
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: false
-        example: fierxhdwzeufwoep
+        example: exercitationem
         type: string
         custom: []
       id_type:
         name: id_type
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: ztqm
+        example: voluptas
         type: string
         custom: []
       id_name:
         name: id_name
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: cwmxcqfkutmidachhzwevt
+        example: voluptas
         type: string
         custom: []
       id_number:
         name: id_number
-        description: 'يجب أن يكون طول النص value على الأقل 3 حروفٍ/حرفًا يجب أن لا يتجاوز طول النّص value 255 حروفٍ/حرفًا.'
+        description: ''
         required: true
-        example: 'n'
+        example: dolores
         type: string
         custom: []
       dob:
         name: dob
-        description: 'Must be a valid date in the format <code>Y-m-d</code>.'
+        description: ''
         required: false
-        example: '2023-05-17'
+        example: maiores
         type: string
         custom: []
       is_active:
         name: is_active
         description: ''
-        required: true
-        example: false
+        required: false
+        example: true
         type: boolean
         custom: []
     cleanBodyParameters:
-      fullname: avywxi
-      gender: Male
-      profession_id: 1
-      country_id: 16
-      phone: fierxhdwzeufwoep
-      id_type: ztqm
-      id_name: cwmxcqfkutmidachhzwevt
-      id_number: 'n'
-      dob: '2023-05-17'
-      is_active: false
+      fullname: in
+      gender: et
+      profession_id: 11
+      country_id: 2
+      phone: exercitationem
+      id_type: voluptas
+      id_name: voluptas
+      id_number: dolores
+      dob: maiores
+      is_active: true
     fileParameters: []
     responses: []
     responseFields: []
     auth:
       - headers
       - Authorization
-      - 'Bearer v5aE1h3a84ePdc6gkZfDbV6'
+      - 'Bearer 6e4aga5V6kb1cdEv8Df3ZhP'
     controller: null
     method: null
     route: null
@@ -524,7 +556,7 @@ endpoints:
     auth:
       - headers
       - Authorization
-      - 'Bearer hakD65EdVb1Z8Pga3fe46vc'
+      - 'Bearer aVfDk64c3hvEdgb81eaPZ65'
     controller: null
     method: null
     route: null

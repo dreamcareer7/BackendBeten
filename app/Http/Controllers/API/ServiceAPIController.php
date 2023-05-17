@@ -53,7 +53,14 @@ class ServiceAPIController extends Controller
 	}
 
 	/**
-	 * Store a newly created service in database.
+	 * Store a newly created service.
+	 * at least the user must enter one of the dates
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam city_id int required
+	 * @bodyParam before_date string
+	 * @bodyParam exact_date string
+	 * @bodyParam after_date string
 	 *
 	 * @param \App\Http\Requests\CreateServiceRequest $request
 	 *
@@ -75,7 +82,13 @@ class ServiceAPIController extends Controller
 	}
 
 	/**
-	 * Update the specified service in database.
+	 * Update the specified service.
+	 *
+	 * @bodyParam title string required
+	 * @bodyParam city_id int required
+	 * @bodyParam before_date string
+	 * @bodyParam exact_date string
+	 * @bodyParam after_date string
 	 *
 	 * @param \App\Http\Requests\UpdateServiceRequest $request
 	 * @param \App\Models\Service $service
