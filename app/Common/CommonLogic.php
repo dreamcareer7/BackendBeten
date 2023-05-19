@@ -46,7 +46,7 @@ class CommonLogic
     }
 
 
-    public function getModelTypes($model_type): array
+    public function getModelTypes($model_type)
     {
         $model = "App\Models\\" . $model_type;
         $label = [
