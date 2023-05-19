@@ -29,6 +29,7 @@ class UpdateServiceRequest extends FormRequest
 		return [
 			'title' => 'bail|required|string|min:3|max:255',
 			'city_id' => 'bail|required|integer|exists:cities,id',
+            'model_ids'=>'required|array',
 			// We must receive only one of these 3 dates
 			'before_date' => ['bail', new ServiceDatesRule(fieldname: 'before_date')],
 			'exact_date' => ['bail', new ServiceDatesRule(fieldname: 'exact_date')],
@@ -47,6 +48,7 @@ class UpdateServiceRequest extends FormRequest
 			'before_date.prohibits' => __('Only one date is allowed'),
 			'exact_date.prohibits' => __('Only one date is allowed'),
 			'after_date.prohibits' => __('Only one date is allowed'),
+            'model_ids.required'=>__('Please select model')
 		];
 	}
 }

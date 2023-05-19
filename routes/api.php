@@ -51,39 +51,12 @@ Route::middleware('auth:sanctum')->group(function () {
 	);
 
 	Route::get('model_types', function () {
-		return [
-			"App\Models\Crew" => [
-				'key' => __("App\\Models\\Crew"),
-				'label' => 'fullname'
-			],
-			"App\Models\Hospitality" => [
-				'key' => __("App\\Models\\Hospitality"),
-				'label' => 'title'
-			],
-			"App\Models\Client" => [
-				'key' => __("App\\Models\\Client"),
-				'label' => 'fullname'
-			],
-			"App\Models\Dormitory" => [
-				'key' => __("App\\Models\\Dormitory"),
-				'label' => 'title'
-			],
-			"App\Models\MealType" => [
-				'key' => __("App\\Models\\MealType"),
-				'label' => 'title'
-			],
-			"App\Models\Group" => [
-				'key' => __("App\\Models\\Group"),
-				'label' => 'title'
-			],
-			"App\Models\Vehicle" => [
-				'key' => __("App\\Models\\Vehicle"),
-				'label' => 'model'
-			],
-		];
+		return (new \App\Common\CommonLogic())->getModels();
 	});
+
+    Route::get('service/models', [ServiceAPIController::class,'getModels']);
 	Route::get('ids_by_type/App/Models/{model_type}', function ($model_type) {
-		$model = "App\Models\\" . $model_type;
+		/*$model = "App\Models\\" . $model_type;
 		$label = [
 			"App\Models\Crew" => [
 				'key' => __("App\\Models\\Crew"),
@@ -115,7 +88,8 @@ Route::middleware('auth:sanctum')->group(function () {
 			],
 		][$model]['label'];
 		// TODO: select the label dynamically...
-		return (new $model)->select('id', "$label AS label")->get();
+		return (new $model)->select('id', "$label AS label")->get();*/
+        return (new \App\Common\CommonLogic())->getModelTypes($model_type);
 	});
 	Route::get('/crews/all', [CrewsController::class, 'all']);
 	Route::resource('/crews', CrewsController::class);
