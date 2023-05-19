@@ -147,6 +147,10 @@ class ServiceAPIController extends Controller
 	{
 		$crew = Service::find($id)->delete($id);
 
+        if($crew){
+            (new ServiceModel())->deleteByServiceId($id);
+        }
+
 		return response()->json(([
 			'message'       => 'services Deleted Successfully',
 			'data'          =>  null,

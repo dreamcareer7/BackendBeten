@@ -29,9 +29,13 @@ class ServiceModel extends Model
         }
     }
 
-    public function updateServiceModels($service_id, $model_ids): void
+    public function deleteByServiceId($service_id)
     {
         $this->where('service_id', $service_id)->delete();
+    }
+
+    public function updateServiceModels($service_id, $model_ids): void
+    {
         $this->insertServiceModels($service_id, $model_ids);
     }
 
