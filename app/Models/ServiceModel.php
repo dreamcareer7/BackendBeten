@@ -36,6 +36,7 @@ class ServiceModel extends Model
 
     public function updateServiceModels($service_id, $model_ids): void
     {
+        $this->deleteByServiceId($service_id);
         $this->insertServiceModels($service_id, $model_ids);
     }
 
