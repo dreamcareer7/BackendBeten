@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
-use App\Models\{Service, ServiceCommit, Service_Commit_Log, User};
+use App\Models\{Service, ServiceCommit, Service_Commit_Log, ServiceModel, User};
 use App\Http\Requests\{AddLogRequest, CreateServiceCommitRequest, ReleaseServiceCommitRequest, UpdateServiceCommitRequest};
 
 /**
@@ -202,4 +202,21 @@ class ServiceCommitsController extends Controller
 		]);
 		return response()->json(status: 204); // No content
 	}
+
+    public function getModelTypeWithAssoc($service_id){
+        $service_models = (new ServiceModel())->getServiceModelsByServiceId($service_id);
+        $models = (new \App\Common\CommonLogic())->getModels();
+        $responseData = [];
+        if(!empty($models) && !empty($service_models)){
+            foreach ($models as $key => $m){
+                if(in_array($m['id'],$service_models->toArray())){
+                    $responseData[$key] = $m;
+                }
+            }
+        }
+
+        return response()->json([
+            'models'=>$responseData
+        ],200);
+    }
 }
