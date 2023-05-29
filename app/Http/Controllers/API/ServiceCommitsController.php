@@ -181,9 +181,10 @@ class ServiceCommitsController extends Controller
 
 	public function initialize($id)
 	{
-		ServiceCommit::find($id)->update([
+		ServiceCommit::findOrFail($id)->update([
 			'started_at' => now(),
 		]);
+		return response()->json(['initialized successfully'], 200); // No content
 	}
 
 	/**
