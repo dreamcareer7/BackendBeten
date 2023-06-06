@@ -28,7 +28,7 @@ class CreateUserRequest extends FormRequest
 	{
 		return [
 			'name' => 'bail|required|string|min:3|max:255',
-			'email' => 'bail|required|email|unique:users,email',
+			'email' => 'bail|required|string|unique:users,email',
 			// Password validation rules
 			'password' => [
 				'bail',
