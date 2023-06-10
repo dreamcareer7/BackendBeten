@@ -129,7 +129,8 @@ class UsersController extends Controller
 		$user->contact = $request->contact;
 
 		// change password only if user entered a new one
-		if ($request->has('password')) {
+		//if ($request->has('password')) {
+		if ($request->password > '') {
 			$user->password = bcrypt($request->password);
 		}
 
