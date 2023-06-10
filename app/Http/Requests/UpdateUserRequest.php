@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
 		return [
 			// Password validation rules
 			'password' => [
-				'bail',
+				'nullable',
 				'confirmed',
 				Password::min(8)
 					->letters()
