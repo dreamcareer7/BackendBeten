@@ -2,7 +2,7 @@
 namespace App\Models\Traits;
 declare(strict_types=1);
 
-use App\Exceptions\MissingOrganisationException;
+//use App\Exceptions\MissingServiceCenterException;
 use App\Models\ServiceCenter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +27,8 @@ trait HasServiceCenter
 
                 if (is_null($serviceCenterID)) {
                     // Feel free to just use a standard `\Exception` here.
-                    throw new MissingServiceCenterException($model);
+                    //throw new MissingServiceCenterException($model);
+                    throw new Exception('Unknown service center', 32001);                    
                 }
 
                 $model->service_center_id = $serviceCenterID;
