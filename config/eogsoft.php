@@ -10,8 +10,13 @@ return [
 	],
 	'adminuser' => 'admin@eogsoft.com',
 	'adminusername' => 'admin',
-	'contact' => 'Eimad',
+	'contact' => 'Emad',
 	'adminpass' => 'T,W;e0n#4l$QY_',
+
+    'superadmins'=>[
+        0=>'superadmin',
+        1=>'administration',
+    ],
     
     'gateways'=>[
 		'sms'=>[
