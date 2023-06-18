@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
+use App\Models\Traits\HasServiceCenter;
 use App\Models\Traits\{HasContracts, HasDocuments};
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
@@ -62,7 +64,7 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  */
 class Crew extends Model
 {
-	use HasContracts, HasDocuments, HasFactory, SoftDeletes;
+	use HasContracts, HasDocuments, HasFactory, HasServiceCenter, SoftDeletes;
 
 	/**
 	 * The single value that should be used to represent the model when being displayed.

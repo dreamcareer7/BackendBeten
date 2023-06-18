@@ -6,12 +6,12 @@ namespace App\Models;
 
 use DateTimeInterface;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Traits\HasDocuments;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\{HasDocuments, HasServiceCenter};
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
 
@@ -60,7 +60,7 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
  */
 class User extends Authenticatable
 {
-	use HasApiTokens, HasDocuments, HasFactory, HasRoles, Notifiable, SoftDeletes;
+	use HasApiTokens, HasDocuments, HasFactory, HasRoles, HasServiceCenter, Notifiable, SoftDeletes;
 
 	/**
 	 * The accessors to append to the model's array form.

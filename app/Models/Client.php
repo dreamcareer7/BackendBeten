@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\{Model, SoftDeletes};
+use App\Models\Traits\{HasDocuments, HasServiceCenter};
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 /**
@@ -55,7 +55,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
  */
 class Client extends Model
 {
-	use HasDocuments, HasFactory, SoftDeletes;
+	use HasDocuments, HasFactory, HasServiceCenter, SoftDeletes;
 
 	/**
 	 * The single value that should be used to represent the model when being displayed.

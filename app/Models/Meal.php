@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Models\Traits\HasDocuments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\{HasDocuments, HasServiceCenter};
 
 /**
  * App\Models\Meal
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Meal extends Model
 {
-	use HasDocuments, HasFactory;
+	use HasDocuments, HasFactory, HasServiceCenter;
 
 	/**
 	 * Indicates if the model should be timestamped.

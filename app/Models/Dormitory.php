@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
+use App\Models\Traits\HasServiceCenter;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\{HasContracts, HasDocuments};
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -42,7 +44,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Dormitory extends Model
 {
-	use HasContracts, HasDocuments, HasFactory;
+	use HasContracts, HasDocuments, HasFactory, HasServiceCenter;
 
 	/**
 	 * The single value that should be used to represent the model when being displayed.

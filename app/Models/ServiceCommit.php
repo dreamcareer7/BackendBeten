@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
-use App\Models\Traits\HasConcurrent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Traits\{HasConcurrent, HasServiceCenter};
 
 /**
  * App\Models\ServiceCommit
@@ -46,7 +46,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class ServiceCommit extends Model
 {
-	use HasConcurrent, HasFactory;
+	use HasConcurrent, HasFactory, HasServiceCenter;
 
 	/**
 	 * The table associated with the model.

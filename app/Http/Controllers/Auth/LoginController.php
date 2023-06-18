@@ -166,7 +166,7 @@ class LoginController extends Controller
 			$user = User::where([
 				'id' => $id,
 				'is_active' => true,
-			])->select('id', 'name')->first();
+			])->select('id', 'name', 'service_center_id')->first();
 
 			// issue new Token
 			$token = $user->createToken("System Login", $user->getPermissionsViaRoles()->pluck('name')->toArray())->plainTextToken;
@@ -175,6 +175,7 @@ class LoginController extends Controller
 				'token' => $token,
 				'user' => $user,
 				'permissions' => $user->getAllPermissions()->pluck('name'),
+				'service_center'=> \App\Models\ServiceCenter::find($user->service_center_id)
 			]);
 		}
 	}
