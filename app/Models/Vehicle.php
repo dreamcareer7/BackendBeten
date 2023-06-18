@@ -6,7 +6,7 @@ namespace App\Models;
 
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Traits\{HasContracts, HasDocuments};\
+use App\Models\Traits\{HasContracts, HasDocuments};
 use App\Models\Traits\HasServiceCenter;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

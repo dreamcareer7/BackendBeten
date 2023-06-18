@@ -149,4 +149,9 @@ class User extends Authenticatable
 	{
 		return $this->hasMany(ServiceCommit::class, 'supervisor_id');
 	}
+
+    public function updateById($user_id,$updateData){
+        $this->fill($updateData);
+        return $this->where('id',$user_id)->update($updateData);
+    }
 }

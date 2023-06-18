@@ -6,6 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Models\{Crew, User};
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
@@ -58,13 +59,25 @@ class UsersController extends Controller
 	 */
 	public function store(CreateUserRequest $request): JsonResponse
 	{
-		User::create([
-			'name' => $request->name,
-			'email' => $request->email,
-			'password' => bcrypt($request->password),
-			'is_active' => $request->is_active,
-			'contact' => $request->contact,
-		])->assignRole($request->roles);
+        try {
+            DB::beginTransaction();
+
+            $inserted_user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'is_active' => $request->is_active,
+                'contact' => $request->contact,
+            ])->assignRole($request->roles);
+
+            $updateData['user_id'] = $inserted_user['id'];
+            (new Crew())->updateById($request->crew_member_id,$updateData);
+
+            DB::commit();
+
+        }catch (Exception $exception){
+            DB::rollBack();
+        }
 
 		return response()->json(status: 201); // Created
 	}
@@ -176,7 +189,7 @@ class UsersController extends Controller
 	{
 		return response()->json(data: [
 			'roles' => Role::select('name')->pluck('name'),
-			'crew_members' => Crew::select('id', 'fullname')->get(),
+			'crew_members' => Crew::select('id', 'fullname')->whereNull('user_id')->get(),
 		]);
 	}
 }

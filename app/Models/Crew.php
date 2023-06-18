@@ -128,4 +128,11 @@ class Crew extends Model
 	{
 		return $date->format('Y-m-d H:i:s');
 	}
+
+
+    // for update crews
+    public function updateById($crew_id, $updateData){
+        $this->fill($updateData);
+        return $this->where('id',$crew_id)->update($updateData);
+    }
 }

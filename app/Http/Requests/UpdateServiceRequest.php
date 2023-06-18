@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Models\Service;
 use App\Rules\ServiceDatesRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateServiceRequest extends FormRequest
 {
@@ -26,8 +28,9 @@ class UpdateServiceRequest extends FormRequest
 	 */
 	public function rules(): array
 	{
+        info('test => '.$this->id);
 		return [
-			'title' => 'bail|required|string|min:3|max:255',
+			'title' => ['required','bail','string','min:3','max:255',Rule::unique(Service::class)->ignore($this->id, 'id')],
 			'city_id' => 'bail|required|integer|exists:cities,id',
             'model_ids'=>'required|array',
 			// We must receive only one of these 3 dates

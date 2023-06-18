@@ -27,7 +27,7 @@ class CreateServiceRequest extends FormRequest
 	public function rules(): array
 	{
 		return [
-			'title' => 'bail|required|string|min:3|max:255',
+			'title' => 'bail|required|string|min:3|max:255|unique:services,title',
 			'city_id' => 'bail|required|integer|exists:cities,id',
             'model_ids'=>'required|array',
 			// We must receive only one of these 3 dates

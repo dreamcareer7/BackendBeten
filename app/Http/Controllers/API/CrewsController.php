@@ -148,7 +148,14 @@ class CrewsController extends Controller
 	 */
 	public function update(Crew $crew, UpdateCrewRequest $request): JsonResponse
 	{
-		$crew->update($request->validated());
+        $user_id = $crew->user_id;
+        $inputData = $request->validated();
+
+        // when update crew name than update users table name column by user_id
+        if($crew->update($inputData)){
+            $upDateData['name'] = $inputData['fullname'];
+            (new User())->updateById($user_id,$upDateData);
+        }
 		return response()->json(status: 204); // No content
 	}
 
