@@ -17,7 +17,7 @@ class RolesTableSeeder extends Seeder
 	 */
 	public function run(): void
 	{
-		Role::create(['name' => 'admin']);
+		Role::create(['name' => 'admin'])->givePermissionTo(['*.*']);
 		Role::create(['name' => 'user']);
 
 		Role::create(['name' => 'supervisor'])->givePermissionTo([

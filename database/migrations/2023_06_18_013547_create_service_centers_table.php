@@ -18,7 +18,9 @@ return new class extends Migration
 		Schema::create('service_centers', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');
-			$table->string('location');
+			$table->string('phone')->nullable();
+			$table->string('location')->nullable();
+			$table->string('group')->nullable();
 			$table->unsignedInteger('maxClientCount')->nullable()->default(0);
 			$table->timestamps();
 		});
