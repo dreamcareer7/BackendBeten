@@ -10,4 +10,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ServiceCenter extends Model
 {
 	use HasFactory;
+	
+	protected $fillable = ['title', 'phone', 'location', 'group', 'maxClientCount'];
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\API\{CitiesController,
     UsersController,
     VehicleAPIController,
     RolesController,
+	ServiceCenterController,
     EvaluationsController};
 
 /*
@@ -110,6 +111,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::resource('/hospitalities', HospitalitiesController::class);
 	Route::resource('/service_commits', ServiceCommitsController::class);
+	Route::resource('/service_centers', ServiceCenterController::class);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')

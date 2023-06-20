@@ -17,8 +17,10 @@ trait HasServiceCenter
 	{
 		static::addGlobalScope('serviceCenter', function (Builder $query) {
 			if ($serviceCenterID = auth()->user()?->service_center_id) {
-			  if ( auth()->user()->service_center_id  > 1 )  // because service center id 1 is administration
+			  if ( auth()->user()?->service_center_id  > 1 )  // because service center id 1 is administration
 				$query->where('service_center_id', $serviceCenterID);
+			  else
+				$query->whereNotNull('service_center_id');
 			}
 		});
 
