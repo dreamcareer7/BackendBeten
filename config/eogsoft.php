@@ -17,7 +17,7 @@ return [
         0=>'superadmin',
         1=>'administration',
     ],
-    
+
     'gateways'=>[
 		'sms'=>[
 			'taqnyat'=>[
@@ -27,4 +27,7 @@ return [
 			],
 		],
     ],
+    'special_role'=>[
+        'service_center_admin_role'=>'member'
+    ]
 ];

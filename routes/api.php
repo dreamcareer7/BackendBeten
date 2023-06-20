@@ -111,7 +111,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::apiResource('/dormitories', DormitoriesController::class);
 	Route::resource('/hospitalities', HospitalitiesController::class);
 	Route::resource('/service_commits', ServiceCommitsController::class);
-	Route::resource('/service_centers', ServiceCenterController::class);
+	Route::resource('/service-center', ServiceCenterController::class);
 
 	/** Contracts */
 	Route::controller(ContractsAPIController::class)->prefix('contracts')
