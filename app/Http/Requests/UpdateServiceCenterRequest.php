@@ -28,10 +28,10 @@ class UpdateServiceCenterRequest extends FormRequest
 	{
         return [
             'title'=> 'bail|required|string|min:3|max:50',
-            'phone'=>['bail', 'required', 'nullable', 'integer'],
-            'location'=>['bail', 'required', 'nullable', 'string'],
-            'group'=>['bail', 'required', 'nullable', 'string'],
-            'maxClientCount'=>['bail', 'required', 'nullable', 'integer']
+            'phone'=>['bail','nullable', 'integer'],
+            'location'=>['bail','nullable', 'string'],
+            'group'=>['bail','nullable', 'string'],
+            'maxClientCount'=>['bail', 'nullable', 'integer']
         ];
 	}
 }
