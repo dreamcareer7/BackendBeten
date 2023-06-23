@@ -34,7 +34,7 @@ class CreateServiceCenterRequest extends FormRequest
 			'maxClientCount'=>['bail', 'required', 'nullable', 'integer'],
 			
 			'name' => 'bail|required|string|min:3|max:255',
-			'email' => 'bail|required|string|unique:users,email',
+			'email' => 'bail|required|string',
 			'contact' => 'bail|required|min:5|max:255',
 		];
 	}

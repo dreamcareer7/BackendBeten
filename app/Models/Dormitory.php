@@ -44,7 +44,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class Dormitory extends Model
 {
-	use HasContracts, HasDocuments, HasFactory, HasServiceCenter;
+	use HasContracts, HasDocuments, HasFactory;
+	//use HasServiceCenter; // as requested its a shareable rersource
 
 	/**
 	 * The single value that should be used to represent the model when being displayed.

@@ -29,7 +29,8 @@ return new class extends Migration
 	public function down()
 	{
 		Schema::table('cities', function (Blueprint $table) {
-			//
+			$table->dropColumn('location_url');
+
 		});
 	}
 };

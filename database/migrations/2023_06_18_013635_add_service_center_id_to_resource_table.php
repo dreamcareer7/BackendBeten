@@ -101,8 +101,48 @@ return new class extends Migration
 	 */
 	public function down()
 	{
-		Schema::table('resources', function (Blueprint $table) {
-			//
+		Schema::table('users', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('crews', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('groups', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('clients', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('meals', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('dormitories', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('hospitalities', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('service_commits', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('settings', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('vehicles', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
+		});
+
+		Schema::table('personal_access_tokens', function (Blueprint $table) {
+			$table->dropConstrainedForeignId('service_center_id');
 		});
 	}
 };

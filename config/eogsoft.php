@@ -28,6 +28,6 @@ return [
 		],
     ],
     'special_role'=>[
-        'service_center_admin_role'=>'member'
+        'service_center_admin_role'=>'مدير مركز خدمه',
     ]
 ];

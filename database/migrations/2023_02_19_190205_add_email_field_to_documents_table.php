@@ -31,7 +31,9 @@ return new class extends Migration
 	public function down()
 	{
 		Schema::table('users', function (Blueprint $table) {
-			//
+			$table->dropColumn('document_type');
+			$table->dropColumn('description');
+			$table->dropColumn('uploaded_by');
 		});
 	}
 };
