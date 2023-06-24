@@ -47,7 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::delete('/service_commit_log/{id}', [ServiceCommitsController::class, 'removeLog']);
 	Route::get('/service/commit/model-types/{id}', [ServiceCommitsController::class, 'getModelTypeWithAssoc']);
 
-	Route::post('/dormitory/import', [DormitoriesController::class, 'import_xlsx']);
+	Route::post('/dormitories/import', [DormitoriesController::class, 'import_xlsx']);
 
 	Route::get(
 		'/my_service_commits',

@@ -17,7 +17,7 @@ return new class extends Migration
 	public function up(): void
 	{
 		// DB::connection()->setSchemaGrammar(new ExtendedMySQLGrammar());
-		$schema = DB::connection()->getSchemaBuilder();
+		//$schema = DB::connection()->getSchemaBuilder();
 		$schema->create('dormitories', function (Blueprint $table) {
 			$table->id();
 			$table->string('title');

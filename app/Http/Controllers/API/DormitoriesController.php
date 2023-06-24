@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateDormitoryRequest, UpdateDormitoryRequest};
 
+use Maatwebsite\Excel\Facades\Excel;
+
 /**
  * @group Dormitories
  *
@@ -121,5 +123,14 @@ class DormitoriesController extends Controller
 	{
 		$dormitory->delete();
 		return response()->json(status: 204);
+	}
+	
+	public function import_xlsx(Request $request)
+	{
+        Excel::import(new DormitoriesImport, request()->file('dormitories'));
+        
+		return response()->json(status: 204);
+
+		
 	}
 }

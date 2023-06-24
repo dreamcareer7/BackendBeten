@@ -46,6 +46,24 @@ class Dormitory extends Model
 {
 	use HasContracts, HasDocuments, HasFactory;
 	//use HasServiceCenter; // as requested its a shareable rersource
+	
+	protected $fillable = [
+		'title', 'phones', 'city_id', 'location', 'coordinate', 'is_active',
+		// the follows been requested by Hulool/ArbHaj to be imported from Excel file
+		'HOUSE_ID',
+		'HOUSE_COMMERCIAL_NAME_AR',
+		'HOUSE_COMMERCIAL_NAME_LA',
+		'HOUSE_CITY_ID',
+		'HOUSE_TOTAL_ROOMS',
+		'HOUSE_GUEST_CAPACITY',
+		'HOUSE_MAP_ADDRESS_LATITUDE',
+		'HOUSE_MAP_ADDRESS_LONGITUDE',
+		'HOUSE_ADDRESS_1',
+		'HOUSE_PHONES_NO',
+		'HOUSE_MANAGER_NAME',
+		'HOUSE_MANAGER_PHONE',
+		'HOUSE_RENEWAL_SEASON',
+	];
 
 	/**
 	 * The single value that should be used to represent the model when being displayed.

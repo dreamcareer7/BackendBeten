@@ -34,7 +34,7 @@ class UsersController extends Controller
 	 */
 	public function index(ListUsersRequest $request): JsonResponse
 	{
-		$query = User::select('id', 'name', 'email', 'is_active', 'contact')
+		$query = User::select('id', 'name', 'email', 'is_active', 'contact', 'service_center_id')
 			->whereDoesntHave('roles', function (Builder $query): void {
 				$query->where('name', 'admin');
 			});
