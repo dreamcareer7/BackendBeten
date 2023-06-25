@@ -179,9 +179,11 @@ class ServiceCommitsController extends Controller
 		return response()->json(status: 204); // No content
 	}
 
-	public function initialize($id)
+	public function initialize(Request $request)
 	{
-		ServiceCommit::findOrFail($id)->update([
+		$lat = $request->lat;
+		$lng = $request->lng;
+		ServiceCommit::findOrFail($request->id)->update([
 			'started_at' => now(),
 		]);
 		return response()->json(['initialized successfully'], 200); // No content
@@ -196,12 +198,16 @@ class ServiceCommitsController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function release(ReleaseServiceCommitRequest $request): JsonResponse
+	//public function release(ReleaseServiceCommitRequest $request): JsonResponse
+	public function release(Request $request)   //: JsonResponse
 	{
+		$lat = $request->lat;
+		$lng = $request->lng;
+		
 		ServiceCommit::where('id', $request->id)->update([
 			'ended_at' => now(),
 		]);
-		return response()->json(status: 204); // No content
+		return response()->json(['Finished successfully'], 200); // No content
 	}
 
     public function getModelTypeWithAssoc($service_id){

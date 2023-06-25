@@ -28,10 +28,12 @@ return new class extends Migration
 		Schema::table('meals', function (Blueprint $table) {
 			$table->unsignedBigInteger('service_center_id')->nullable()->change();
 		});
+        /*
 
 		Schema::table('dormitories', function (Blueprint $table) {
 			$table->unsignedBigInteger('service_center_id')->nullable()->change();
 		});
+        */
 
 		Schema::table('hospitalities', function (Blueprint $table) {
 			$table->unsignedBigInteger('service_center_id')->nullable()->change();
