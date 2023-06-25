@@ -10,6 +10,7 @@ use Illuminate\Http\{JsonResponse, Request};
 use App\Http\Requests\{CreateDormitoryRequest, UpdateDormitoryRequest};
 
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\DormitoriesImport;
 
 /**
  * @group Dormitories
