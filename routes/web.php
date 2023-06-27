@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => 'welcome to our page');
 
-Route::get('servicecenters', [ServiceCenterController::class, 'index']);
+//Route::get('servicecenters', [ServiceCenterController::class, 'index']);
 
 

@@ -21,6 +21,13 @@ class VehicleAPIController extends Controller
 		$this->authorizeResource(Vehicle::class);
 	}
 
+	public function index()
+	{
+		$query = Vehicle::query();
+
+		return response()->json($query->paginate(15));
+	}
+	
 	public function paginate(Request $request)
 	{
 		$query = Vehicle::query();

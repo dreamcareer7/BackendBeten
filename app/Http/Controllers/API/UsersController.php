@@ -45,6 +45,7 @@ class UsersController extends Controller
 			});
 		}
 
+		$query->with('crew');
 		return response()->json(
 			data: $query->paginate($request->input('per_page') ?? 15)
 		);
@@ -59,25 +60,53 @@ class UsersController extends Controller
 	 */
 	public function store(CreateUserRequest $request): JsonResponse
 	{
-        try {
-            DB::beginTransaction();
+		try {
 
-            $inserted_user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'is_active' => $request->is_active,
-                'contact' => $request->contact,
-            ])->assignRole($request->roles);
+			//try to find if there is already a user with same crew_id
+			$crew_id = $request->input('crew_id') ?? null;
+			$existing_crew = Crew::where('id',$crew_id)->first();
+			if(!$existing_crew){
 
-            $updateData['user_id'] = $inserted_user['id'];
-            (new Crew())->updateById($request->crew_member_id,$updateData);
+				//check if this crew has a user ID, which would mean it already has an account
+				$user_id = $existing_crew->user_id;
 
-            DB::commit();
+				if(!$user_id){
+					$inserted_user = User::create([
+						'name' => $request->name,
+						'email' => $request->email,
+						'password' => bcrypt($request->password),
+						'is_active' => $request->is_active,
+						'contact' => $request->contact,
+					])->assignRole($request->roles);
 
-        }catch (Exception $exception){
-            DB::rollBack();
-        }
+					$updateData['user_id'] = $inserted_user['id'];
+					(new Crew())->updateById($request->crew_member_id,$updateData);
+
+					DB::commit();
+					DB::beginTransaction();
+
+				}
+				else{
+					return response()->json([
+						"success"=>false,
+						"message"=>"This crew already has user account."
+					]);
+				}
+
+			}
+			else{
+
+				return response()->json([
+				   "success"=>false,
+				   "message"=>"Invalid Crew Selected"
+				]);
+			}
+
+
+
+		}catch (Exception $exception){
+			DB::rollBack();
+		}
 
 		return response()->json(status: 201); // Created
 	}

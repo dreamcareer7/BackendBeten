@@ -6,7 +6,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\{JsonResponse, Request};
-use App\Models\{Service, ServiceCommit, Service_Commit_Log, ServiceModel, User};
+use App\Models\{Service, ServiceCommit, ServiceModel, Service_Commit_Log, User};
 use App\Http\Requests\{AddLogRequest, CreateServiceCommitRequest, ReleaseServiceCommitRequest, UpdateServiceCommitRequest};
 
 /**
@@ -71,8 +71,9 @@ class ServiceCommitsController extends Controller
 	 */
 	public function store(CreateServiceCommitRequest $request): JsonResponse
 	{
-		ServiceCommit::create($request->validated());
+		$sc = ServiceCommit::create($request->validated());
 		return response()->json(data: [
+			'id'=>$sc->id,
 			'message' => __('Service commit created successfully!'),
 		], status: 201); // Created
 	}
@@ -148,6 +149,25 @@ class ServiceCommitsController extends Controller
 		return auth()->user()->service_commits()->with('service')->get();
 	}
 
+	public function userCommits($id)
+	{
+		$user = User::findOrFail($id);
+		if ($user->is_admin) {
+			return ServiceCommit::select(
+				'id',
+				'service_id',
+				'badge',
+				'schedule_at',
+				'started_at',
+				'from_location',
+				'supervisor_id',
+				'phase_id'
+			)->with(['service:id,title', 'supervisor:id,name', 'phase:id,title'])->get();
+		}
+		$collection = $user->service_commits()->with(['service', 'phase'])->orderBy('phase_id')->get();
+		return response()->json(data: $collection, status: 200 );
+	}
+
 	/**
 	 * Add logs to service commit
 	 *
@@ -157,13 +177,16 @@ class ServiceCommitsController extends Controller
 	 */
 	public function addLog(AddLogRequest $request): JsonResponse
 	{
-		Service_Commit_Log::create([
+		$scl=Service_Commit_Log::create([
 			'service_commit_id' => $request->service_commit_id,
 			'model_type' => $request->model_type,
 			'model_id' => $request->model_id,
 			'role' => $request->role,
 		]);
-		return response()->json(status: 201); // Created
+		return response()->json(data: [
+			'id'=>$scl->id,
+			'message' => __('Service commit log appended successfully!'),
+		], status: 201); // Created
 	}
 
 	/**
@@ -185,6 +208,8 @@ class ServiceCommitsController extends Controller
 		$lng = $request->lng;
 		ServiceCommit::findOrFail($request->id)->update([
 			'started_at' => now(),
+			'lat'=>$request->lat,
+			'lng'=>$request->lng
 		]);
 		return response()->json(['initialized successfully'], 200); // No content
 	}
@@ -206,24 +231,32 @@ class ServiceCommitsController extends Controller
 		
 		ServiceCommit::where('id', $request->id)->update([
 			'ended_at' => now(),
+			'lat'=>$request->lat,
+			'lng'=>$request->lng
 		]);
 		return response()->json(['Finished successfully'], 200); // No content
 	}
 
-    public function getModelTypeWithAssoc($service_id){
-        $service_models = (new ServiceModel())->getServiceModelsByServiceId($service_id);
-        $models = (new \App\Common\CommonLogic())->getModels();
-        $responseData = [];
-        if(!empty($models) && !empty($service_models)){
-            foreach ($models as $key => $m){
-                if(in_array($m['id'],$service_models->toArray())){
-                    $responseData[$key] = $m;
-                }
-            }
-        }
+	public function getModelTypeWithAssoc($service_id){
+		$service_models = (new ServiceModel())->getServiceModelsByServiceId($service_id);
+		$models = (new \App\Common\CommonLogic())->getModels();
+		$responseData = [];
+		if(!empty($models) && !empty($service_models)){
+			foreach ($models as $key => $m){
+				if(in_array($m['id'],$service_models->toArray())){
+					$responseData[$key] = $m;
+				}
+			}
+		}
 
-        return response()->json([
-            'models'=>$responseData
-        ],200);
-    }
+		return response()->json([
+			'models'=>$responseData
+		],200);
+	}
+	
+	public function get_logs($service_commit_id)
+	{
+		$logs = ServiceCommit::query()->findOrFail($service_commit_id)->service_commit_log;
+		return response()->json(['data'=>$logs], 200); // No content
+	}
 }

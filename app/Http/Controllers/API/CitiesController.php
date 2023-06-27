@@ -18,7 +18,7 @@ class CitiesController extends Controller
 {
 	public function __construct()
 	{
-		$this->authorizeResource(City::class);
+		//$this->authorizeResource(City::class);
 	}
 
 	/**

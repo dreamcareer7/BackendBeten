@@ -4,24 +4,26 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\{Auth, Route};
 use App\Http\Controllers\{ConcurrentsController, ContractsAPIController, SettingsController};
-use App\Http\Controllers\API\{CitiesController,
-    ClientsAPIController,
-    CrewsController,
-    DocumentAPIController,
-    DormitoriesController,
-    GroupsController,
-    HospitalitiesController,
-    MealTypesController,
-    MealsAPIController,
-    PhasesController,
-    ProfessionController,
-    ServiceAPIController,
-    ServiceCommitsController,
-    UsersController,
-    VehicleAPIController,
-    RolesController,
+use App\Http\Controllers\API\{
+	CitiesController,
+	ClientsAPIController,
+	CrewsController,
+	DocumentAPIController,
+	DormitoriesController,
+	EvaluationsController,
+	GroupsController,
+	HospitalitiesController,
+	MealTypesController,
+	MealsAPIController,
+	PhasesController,
+	ProfessionController,
+	RolesController,
+	ServiceAPIController,
 	ServiceCenterController,
-    EvaluationsController};
+	ServiceCommitsController,
+	UsersController,
+	VehicleAPIController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -46,19 +48,26 @@ Route::middleware('auth:sanctum')->group(function () {
 	Route::post('/service_commit_log', [ServiceCommitsController::class, 'addLog']);
 	Route::delete('/service_commit_log/{id}', [ServiceCommitsController::class, 'removeLog']);
 	Route::get('/service/commit/model-types/{id}', [ServiceCommitsController::class, 'getModelTypeWithAssoc']);
+	Route::get('/service/commit/{id}/get_logs', [ServiceCommitsController::class, 'get_logs']);
 
 	Route::post('/dormitories/import', [DormitoriesController::class, 'import_xlsx']);
+	
+	Route::get('/users/{role}/hasrole', [UsersController::class, 'users_with_specific_role']);
+	
 
 	Route::get(
 		'/my_service_commits',
 		[ServiceCommitsController::class, 'myCommits']
 	);
 
-	Route::get('model_types', function () {
-		return (new \App\Common\CommonLogic())->getModels();
-	});
+	Route::get(
+		'/user_service_commits/{id}',
+		[ServiceCommitsController::class, 'userCommits']
+	);
 
-    Route::get('service/models', [ServiceAPIController::class,'getModels']);
+	Route::get('model_types', fn () => (new \App\Common\CommonLogic())->getModels());
+
+	Route::get('service/models', [ServiceAPIController::class,'getModels']);
 	Route::get('ids_by_type/App/Models/{model_type}', function ($model_type) {
 		/*$model = "App\Models\\" . $model_type;
 		$label = [
@@ -93,16 +102,16 @@ Route::middleware('auth:sanctum')->group(function () {
 		][$model]['label'];
 		// TODO: select the label dynamically...
 		return (new $model)->select('id', "$label AS label")->get();*/
-        return (new \App\Common\CommonLogic())->getModelTypes($model_type);
+		return (new \App\Common\CommonLogic())->getModelTypes($model_type);
 	});
 	Route::get('/crews/all', [CrewsController::class, 'all']);
 	Route::resource('/crews', CrewsController::class);
 	Route::resource('/users', UsersController::class);
 	Route::resource('/cities', CitiesController::class);
 	Route::resource('/phases', PhasesController::class);
-    Route::resource('/evaluations', EvaluationsController::class);
-    Route::resource('/professions', ProfessionController::class);
-    Route::get('groups/all', [GroupsController::class, 'all']);
+	Route::resource('/evaluations', EvaluationsController::class);
+	Route::resource('/professions', ProfessionController::class);
+	Route::get('groups/all', [GroupsController::class, 'all']);
 	Route::post('groups/clients', [GroupsController::class, 'addClients']);
 	Route::delete('groups/clients', [GroupsController::class, 'removeClients']);
 	Route::resource('/groups', GroupsController::class);
@@ -157,6 +166,7 @@ Route::middleware('auth:sanctum')->group(function () {
 	   // ->middleware(['permission:manage_users'])
 		->group(function () {
 			Route::put('','store');
+			Route::get('/', 'index');
 			Route::get('paginate','paginate');
 			Route::get('info/{id}','show');
 			Route::post('delete/{vehicle}','delete');

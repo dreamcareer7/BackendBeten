@@ -68,4 +68,14 @@ class Service extends Model
 	{
 		return $this->belongsToMany(related: Phase::class);
 	}
+	
+	/**
+	 * The phases that belong to the service.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function models()
+	{
+		return $this->hasMany(ServiceModel::class);
+	}
 }
