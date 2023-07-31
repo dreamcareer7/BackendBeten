@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Hospitality whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Hospitality whereUpdatedAt($value)
  * @method static \Database\Factories\HospitalityFactory factory($count = null, $state = [])
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class Hospitality extends Model

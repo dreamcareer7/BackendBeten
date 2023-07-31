@@ -29,6 +29,7 @@ use App\Models\Traits\{HasDocuments, HasServiceCenter};
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereSentAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereToModelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereToModelType($value)
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class Meal extends Model

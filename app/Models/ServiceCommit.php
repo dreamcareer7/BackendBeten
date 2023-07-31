@@ -42,6 +42,7 @@ use App\Models\Traits\{HasConcurrent, HasServiceCenter};
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereServiceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ServiceCommit whereSupervisorId($value)
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class ServiceCommit extends Model

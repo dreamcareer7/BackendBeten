@@ -56,6 +56,7 @@ use Illuminate\Database\Eloquent\Relations\{HasMany, HasOne};
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class User extends Authenticatable
@@ -150,8 +151,8 @@ class User extends Authenticatable
 		return $this->hasMany(ServiceCommit::class, 'supervisor_id');
 	}
 
-    public function updateById($user_id,$updateData){
-        $this->fill($updateData);
-        return $this->where('id',$user_id)->update($updateData);
-    }
+	public function updateById($user_id,$updateData){
+		$this->fill($updateData);
+		return $this->where('id',$user_id)->update($updateData);
+	}
 }

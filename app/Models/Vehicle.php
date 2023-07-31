@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Models;
 
 use DateTimeInterface;
+use App\Models\Traits\HasServiceCenter;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\{HasContracts, HasDocuments};
-use App\Models\Traits\HasServiceCenter;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereRegistration($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereYear($value)
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class Vehicle extends Model

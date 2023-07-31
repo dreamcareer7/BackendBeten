@@ -51,6 +51,7 @@ use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
  * @method static \Illuminate\Database\Eloquent\Builder|Client withoutTrashed()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClientLog> $logs
  * @property-read int|null $logs_count
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class Client extends Model

@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereKey($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValue($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Setting whereValueType($value)
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class Setting extends Model

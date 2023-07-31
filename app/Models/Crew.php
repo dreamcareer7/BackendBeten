@@ -60,6 +60,7 @@ use Illuminate\Database\Eloquent\{Model, SoftDeletes};
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereIdName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Crew whereIdNumber($value)
  * @property-read \App\Models\User|null $user
+ * @property-read \App\Models\ServiceCenter|null $serviceCenter
  * @mixin \Eloquent
  */
 class Crew extends Model
@@ -130,9 +131,9 @@ class Crew extends Model
 	}
 
 
-    // for update crews
-    public function updateById($crew_id, $updateData){
-        $this->fill($updateData);
-        return $this->where('id',$crew_id)->update($updateData);
-    }
+	// for update crews
+	public function updateById($crew_id, $updateData){
+		$this->fill($updateData);
+		return $this->where('id',$crew_id)->update($updateData);
+	}
 }
